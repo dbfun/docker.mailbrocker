@@ -15,11 +15,11 @@ RUN mkdir -p /var/spool/mail/ /var/mail/ && \
     chown root.mail /var/spool/mail/ /var/mail/ && \
     adduser -D -G mail mailtester
 
-ADD ./exim.sh /exim.sh
+ADD ./run.sh /run.sh
 ADD ./exim.conf /etc/exim/exim.conf
 
 ENV EXIM_DOMAIN=your-domain.com \
     # on/off
     DEBUG_EXIM=on
 
-CMD ["/exim.sh"]
+CMD ["/run.sh"]

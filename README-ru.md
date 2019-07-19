@@ -81,6 +81,14 @@ check_message:
     accept
 ```
 
+# Spamassassin
+
+* https://www.opennet.ru/base/net/tranz_spamassassin.txt.html
+* https://github.com/dinkel/docker-spamassassin
+* https://cwiki.apache.org/confluence/display/SPAMASSASSIN/X+Spam+Status
+* https://github.com/bombbomb/spamassassin-node-api
+* https://hub.docker.com/r/analogic/poste.io/
+* https://github.com/instantlinux/docker-tools/tree/master/images/spamassassin
 
 
 # Ссылки
