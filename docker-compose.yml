@@ -1,0 +1,17 @@
+version: '3'
+services:
+  exim:
+    build: ./exim
+    ports:
+      - "25:25"
+    environment:
+      EXIM_DOMAIN: "${EXIM_DOMAIN}"
+      DEBUG_EXIM: "${DEBUG_EXIM}"
+    restart: always
+    hostname: "${EXIM_DOMAIN}"
+  test-bundle:
+    build: ./test-bundle
+    environment:
+      EXIM_DOMAIN: "${EXIM_DOMAIN}"
+    depends_on:
+      - exim
