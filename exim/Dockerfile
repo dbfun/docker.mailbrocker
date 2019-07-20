@@ -2,7 +2,7 @@ FROM alpine:latest
 
 # TODO: minify
 
-RUN apk add --no-cache exim
+RUN apk add --no-cache exim curl
 
 # dev section
 ENV ENV="/etc/profile"

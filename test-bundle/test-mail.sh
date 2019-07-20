@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Mail delivery test
+
 set -u
 
 cd "$(dirname "$0")"
@@ -9,7 +11,7 @@ source lib/case.sh
 TESTS_PASSED=1
 
 start_case "Right mail message"
-RESP=`echo "This is the message body" | swaks --to test@${EXIM_DOMAIN} --from "junk@wrong-domain-name.com" -tls`
+RESP=`swaks --body mail-spam.txt --to test@${EXIM_DOMAIN} --from "junk@wrong-domain-name.com" -tls`
 assert "$RESP" '=== Connected to'
 assert "$RESP" '~> MAIL FROM:'
 assert "$RESP" '~> RCPT TO:'
@@ -20,7 +22,7 @@ end_case
 
 
 start_case "Not open relay"
-RESP=`echo "This is the message body" | swaks --to test@gmail.com --from "junk@wrong-domain-name.com" --server ${EXIM_DOMAIN} -tls`
+RESP=`swaks --body mail-spam.txt --to test@gmail.com --from "junk@wrong-domain-name.com" --server ${EXIM_DOMAIN} -tls`
 assert "$RESP" '=== Connected to'
 assert "$RESP" '~> MAIL FROM:'
 assert "$RESP" '~> RCPT TO:'

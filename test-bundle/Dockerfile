@@ -1,6 +1,6 @@
 FROM alpine
 
-RUN apk add swaks perl-net-dns perl-net-ssleay bash --update-cache --repository http://nl.alpinelinux.org/alpine/edge/testing
+RUN apk add curl swaks perl-net-dns perl-net-ssleay bash --update-cache --repository http://nl.alpinelinux.org/alpine/edge/testing
 
 ADD . /srv
 WORKDIR /srv

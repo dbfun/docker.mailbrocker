@@ -14,9 +14,22 @@ services:
     ports:
       - "783:783"
     hostname: spamassassin
+  mongo:
+    image: "mvertes/alpine-mongo"
   test-bundle:
     build: ./test-bundle
     environment:
       EXIM_DOMAIN: "${EXIM_DOMAIN}"
     depends_on:
+      - api
+  api:
+    build: ./api
+    volumes:
+      - ./api/index.js:/srv/index.js
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo
       - exim
+      - spamassassin
+

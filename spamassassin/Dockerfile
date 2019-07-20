@@ -1,5 +1,5 @@
 FROM alpine
-RUN apk add spamassassin && sa-update
+RUN apk add --no-cache spamassassin && sa-update
 
 ADD . /srv
 
