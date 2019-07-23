@@ -1,6 +1,13 @@
+/*
+@see https://mochajs.org/
+@see https://nodejs.org/api/assert.html
+*/
 "use strict";
 
-const spamassassinReport =
+const
+  assert = require('assert'),
+  reports = {
+    spam:
 `1008.4/5.0
 Spam detection software, running on the system "spamassassin",
 has identified this incoming email as possible spam.  The original
@@ -22,4 +29,18 @@ Content analysis details:   (1008.4 points, 5.0 required)
  1.0 MISSING_FROM           Missing From: header
  2.5 TVD_SPACE_RATIO_MINFP  Space ratio
  0.0 BODY_EMPTY             No body text in message
-`;
+`
+};
+
+describe('spamassassin', () => {
+
+  describe('parse', () => {
+
+    it('report must be a string', () => {
+      assert.ok(typeof reports.spam === "string");
+    });
+
+  });
+
+});
+

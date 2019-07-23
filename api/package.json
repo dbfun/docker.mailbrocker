@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test.js"
+    "test": "mocha"
   },
   "author": "Ilya Vagun",
   "license": "ISC",
