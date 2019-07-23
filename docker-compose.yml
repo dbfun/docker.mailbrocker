@@ -3,33 +3,49 @@ services:
   exim:
     build: ./exim
     ports:
-      - "25:25"
+      - "${PORT_EXIM}:${PORT_EXIM}"
     environment:
       EXIM_DOMAIN: "${EXIM_DOMAIN}"
       DEBUG_EXIM: "${DEBUG_EXIM}"
+      EXIM_INCOMING_MAIL_MAX_SIZE: "${EXIM_INCOMING_MAIL_MAX_SIZE}"
+      PORT_EXIM: "${PORT_EXIM}"
+      PORT_API: "${PORT_API}"
     restart: always
     hostname: "${EXIM_DOMAIN}"
   spamassassin:
     build: ./spamassassin
-    ports:
-      - "783:783"
+    environment:
+      PORT_SPAMASSASSIN: "${PORT_SPAMASSASSIN}"
     hostname: spamassassin
   mongo:
     image: "mvertes/alpine-mongo"
   test-bundle:
     build: ./test-bundle
     environment:
+      RUN_TESTS: "${RUN_TESTS}"
       EXIM_DOMAIN: "${EXIM_DOMAIN}"
+      PORT_API: "${PORT_API}"
+      PORT_EXIM: "${PORT_EXIM}"
     depends_on:
       - api
   api:
     build: ./api
     volumes:
       - ./api/index.js:/srv/index.js
+      - ./api/test.js:/srv/test.js
+      - ./api/lib:/srv/lib
+    environment:
+      PORT_SPAMASSASSIN: "${PORT_SPAMASSASSIN}"
+      PORT_API: "${PORT_API}"
+      API_INCOMING_MAIL_MAX_SIZE: "${API_INCOMING_MAIL_MAX_SIZE}"
+      SPAMASSASSIN_MAX_MSG_SIZE: "${SPAMASSASSIN_MAX_MSG_SIZE}"
+      MONGO_URI: "${MONGO_URI}"
+      MONGO_DB: "${MONGO_DB}"
+      MONGO_MAIL_SIZE: "${MONGO_MAIL_SIZE}"
+    restart: always
     ports:
-      - "8080:8080"
+      - "${PORT_API}:${PORT_API}"
     depends_on:
       - mongo
       - exim
       - spamassassin
-

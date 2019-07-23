@@ -5,4 +5,6 @@ ADD . /srv
 
 WORKDIR srv
 
+ENV PORT_SPAMASSASSIN=783
+
 CMD "./run.sh"

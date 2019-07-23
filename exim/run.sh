@@ -6,9 +6,32 @@ echo $PRIMARY_HOST > /etc/exim/primary_host
 chmod 640 /etc/exim/exim.conf
 chown root.mail /etc/exim/exim.conf
 
+# From man:
+# -q<qflags><time>
+#           When a time value is present, the -q option causes Exim to
+#           run as a daemon, starting a queue runner process at intervals
+#           specified by the given time value. This form of the -q option
+#           is commonly combined with the -bd option, in which case a
+#           single daemon process handles both functions. A common way of
+#           starting up a combined daemon at system boot time is to use a
+#           command such as
+#
+#             /usr/exim/bin/exim -bd -q30m
+#
+#           Such a daemon listens for incoming SMTP calls, and also
+#           starts a queue runner process every 30 minutes.
+#
+#           When a daemon is started by -q with a time value, but without
+#           -bd, no pid file is written unless one is explicitly
+#           requested by the -oP option.
+
+# `-q 5s` - check queue every 5sec
+# `-d` - debug, `-v` - verbose
+# `-oX` - port, but no pid file created => added `-oP`
+
 if [ "$DEBUG_EXIM" == "on" ]; then
-  exim -bd -d
+  exim -bd -q5s -d -oX $PORT_EXIM -oP /run/exim.pid
 else
   # `-v` - verbose mode
-  exim -bdf -v
+  exim -bd -q5s -v -oX $PORT_EXIM -oP /run/exim.pid
 fi

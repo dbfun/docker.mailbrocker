@@ -18,7 +18,7 @@ RESP=`cat mail-spam.txt | curl -s \
     --header 'Content-Type: text/plain' \
     --data-binary @- \
     --no-buffer \
-    http://api:8080/checkmail 2>&1`
+    http://api:$PORT_API/checkmail 2>&1`
 
 assert "$RESP" '> POST /checkmail HTTP/1.1'
 assert "$RESP" '< HTTP/1.1 200 OK'
