@@ -1,5 +1,5 @@
 Return-path: <junk@wrong-domain-name.com>
-Envelope-to: test@spam24.ru
+Envelope-to: 5d3892c882cd8e8960498a42@spam24.ru
 Delivery-date: Sat, 20 Jul 2019 09:24:05 +0000
 Received: from pushorigin.ru ([193.124.185.185])
         by spam24.ru with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)

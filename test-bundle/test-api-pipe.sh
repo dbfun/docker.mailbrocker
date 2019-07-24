@@ -11,7 +11,7 @@ source lib/case.sh
 TESTS_PASSED=1
 
 start_case "Add spam mail into check queue"
-RESP=`cat mail-spam.txt | curl -s \
+RESP=`cat test-letters/spam-GTUBE.eml | curl -s \
     --verbose \
     --request POST \
     --include \

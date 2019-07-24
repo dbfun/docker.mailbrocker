@@ -1,0 +1,299 @@
+Delivered-To: 5cc8161582cd8ed026085eb1@spam24.ru
+Received: by 2002:a17:90a:a389:0:0:0:0 with SMTP id x9csp7679845pjp;
+        Mon, 22 Jul 2019 10:33:22 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqx3DaCr8R9gZoAd1BAnT1QtUKhj4q8Ysru8cnh25/H8Xr+k1/wxFF6w5UEFdCA5Lprgs3fa
+X-Received: by 2002:a50:fa96:: with SMTP id w22mr62553893edr.45.1563816801970;
+        Mon, 22 Jul 2019 10:33:21 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1563816801; cv=none;
+        d=google.com; s=arc-20160816;
+        b=rd135eneHYru+SRO9OgRZckhjlrZweH00e9F/PzBpm0ZNCUU2gnWai2om2Dh+z9C20
+         bRYH93YJoM67l/OMGEO12/PmSrTG4K9c9u5oFOsa1aYUQcjK8Uf6f8kNA4QGJ7vbJA89
+         fSrTu6RavUbZG8SnUclJgdDLfT/Z7bzvlQNbIT8uWFcDAOW0fQmvPvKD5RQTYkKUkm4a
+         UooCVt7izfZbenXc3uCE9+MZJnfECdh/zFRbHc7Ui78gm91+0q5q9kg/Y8CbNg1zSUX3
+         Nj+LUP+8Jtk0ghigOwKFU1TBgTRNVgUQPZokBz+XldDt0KHcKQ57NYUsbqyNWIYRX7tN
+         ikAQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:message-id:date:to:from:subject:mime-version
+         :dkim-signature;
+        bh=z/lawDyC/4MmAk9YtRFyZwDTkpnAl6vauSK2zPtRfRo=;
+        b=KoDRT6Mt859NmgyAJKCcas3brHBBnn4qEFuls+7+YnrPwAluUkV2Qz3gKB/p9T4RL/
+         ylmV/FrqnnmunqROgsGLuvt4ALkdTWf4XlZhq5q7zPhZ2GHNo84YkCNZlQnqVrb8vu1p
+         rbOiL8jg3Xx4oXOsqQu5MH355bj/lnlbXylS2Li40Dm6m4+tYZCHNW2bIv28rVfLzSdP
+         nz4MxFov1aNAhx2zkw8FKxkyp4eCvIm/sDcKFck9Fe0YqDgTnBuZ/SCoAsGOcJiBJpY9
+         ZiC8KYgSqlYLaVt1hFOwz60/bjvox8VBaWawUCKN+MblqEdR5NsPLqGHb6D0sF6ocxN+
+         tA6A==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@stepik.org header.s=dkim header.b=ntcJuZ75;
+       spf=pass (google.com: domain of noreply@stepik.org designates 13.69.75.239 as permitted sender) smtp.mailfrom=noreply@stepik.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=stepik.org
+Return-Path: <noreply@stepik.org>
+Received: from mail.stepik.org (mail.stepik.org. [13.69.75.239])
+        by mx.google.com with ESMTPS id z26si4250112ejf.145.2019.07.22.10.33.21
+        for <5cc8161582cd8ed026085eb1@spam24.ru>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 22 Jul 2019 10:33:21 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@stepik.org designates 13.69.75.239 as permitted sender) client-ip=13.69.75.239;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@stepik.org header.s=dkim header.b=ntcJuZ75;
+       spf=pass (google.com: domain of noreply@stepik.org designates 13.69.75.239 as permitted sender) smtp.mailfrom=noreply@stepik.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=stepik.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=stepik.org; s=dkim; h=List-Unsubscribe:Message-ID:Date:To:From:Subject:MIME-Version:Content-Type; bh=z/lawDyC/4MmAk9YtRFyZwDTkpnAl6vauSK2zPtRfRo=; b=ntcJuZ7527J7EQgh0NDzUyo/81HVf/DDytlOKF3qIrj0wPJEUw+SPqIKm+zNVSLE0IiYnzrDefqKLLgATIzyNYzp3iVOjz31U0j5k/oV/BHsydpdZD2gBmhfjO6Ny7N5xeL8ndniu67RsDaHXd05DjtAvzpxD5cgtmkORkpAflA=;
+Received: from [172.17.0.3] (helo=0ecde1666524) by mail.stepik.org with esmtp (Exim 4.84_2) (envelope-from <noreply@stepik.org>) id 1hpcBd-0009mX-AU for 5cc8161582cd8ed026085eb1@spam24.ru; Mon, 22 Jul 2019 17:33:21 +0000
+Content-Type: multipart/alternative; boundary="===============6853863273446769893=="
+MIME-Version: 1.0
+Subject: Старт чемпионата Mini Ai Cup 4! Присоединяйтесь!
+From: "Mail.ru Group" <noreply@stepik.org>
+To: "Somebody" <5cc8161582cd8ed026085eb1@spam24.ru>
+Date: Mon, 22 Jul 2019 17:33:21 -0000
+Message-ID: <20190722173321.1073.74127@0ecde1666524>
+List-Unsubscribe: <https://stepik.org/unsubscribe/dummy/>
+
+--===============6853863273446769893==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+
+|  [ ![](https://stepik.org/static/emails/default/logo_black.png)
+](https://stepik.org/?utm_source=announcement&utm_medium=email&utm_campaign=announcement&utm_term=user-
+group4&utm_content=main-
+page&etk=dummy)
+---
+|
+
+**![](https://lh6.googleusercontent.com/gf-VZfkuOYwsl8DCLPNd18JoGQ4gQQ0T0Gd1FlDKtb0em7TqMoTYhtWQf7bgQAmeAujz_RKa3VJvE_JmtnlptQtlZ5yuOYptmCT7SE4o1VyE63PhlrczmT8QY7Vc894dvLsPr0gQ)**
+
+**Уважаемые слушатели курса!**
+
+У команды IT-Чемпионатов Mail.ru Group есть отличная новость для всех
+любителей веселья, соревнований и io игр - старт **Mini Ai Cup 4**! На этот
+раз участникам предстоит программировать ботов, которые будут сражаться в
+игровом мире модернизированной Paper.io. Естественно, мы всё перекроили,
+добавили интересных элементов и получили на выходе очень занимательную
+механику.
+
+Чемпионат продлится ровно месяц и завершится 18 августа в 19:00. По
+результатам финальных игр авторы лучших стратегий будут награждены.
+
+**Подробная информация о правилах, расписании и призах - на [портале соревнования.](https://aicups.ru/?utm_campaign=miniaicup4&utm_source=stepik&utm_medium=announcement&utm_term=mini-ai-cup-4&utm_content=cta)**
+
+Регистрируйтесь на портале и присоединяйтесь к чату чемпионата в телеграм
+([@aicups](https://t.me/aicups)) чтобы ничего не пропустить!
+
+Команда IT-Чемпионатов Mail.ru Group.
+
+---
+Вы получили это письмо потому, что подписаны на пользователя [Mail.ru
+Group](https://stepik.org/org/mailru?etk=dummy).
+---
+|
+
+|
+
+Попробуйте наши мобильные приложения!
+
+---
+
+[ ![Get it on Apple
+Store](https://stepik.org/static/emails/default/app_store_ru.png)
+](https://redirect.appmetrica.yandex.com/serve/168884546916387946) |  [ ![Get
+it on Google Play](https://stepik.org/static/emails/default/ru-play-badge.png)
+](https://redirect.appmetrica.yandex.com/serve/312999733398396995)
+---|---
+
+[![](https://stepik.org/static/emails/default/icon_vk.png)](https://vk.com/rustepik)
+[![](https://stepik.org/static/emails/default/icon_fb.png)](https://facebook.com/rustepik)
+[![](https://stepik.org/static/emails/default/icon_twitter.png)](https://twitter.com/rustepik)
+|  [Помощь](http://support.stepik.org) [Отписаться от новостей
+пользователя](https://stepik.org/unsubscribe/custom/dummy/?utm_source=announcement&utm_medium=email&utm_campaign=announcement&utm_term=user-
+group4&utm_content=extra-
+unsubscribe&etk=dummy)
+[Отписаться от всех
+писем](https://stepik.org/unsubscribe/dummy/?utm_source=announcement&utm_medium=email&utm_campaign=announcement&utm_term=user-
+group4&utm_content=unsubscribe&etk=dummy)
+[Настройки уведомлений](https://stepik.org/edit-
+profile/notifications?utm_source=announcement&utm_medium=email&utm_campaign=announcement&utm_term=user-
+group4&utm_content=notification-
+settings&etk=dummy)
+---
+[ ![](https://stepik.org/static/emails/default/stepik_logo_black.png)
+](https://stepik.org/?utm_source=announcement&utm_medium=email&utm_campaign=announcement&utm_term=user-
+group4&utm_content=main-
+page&etk=dummy)
+![](https://www.google-
+analytics.com/collect?v=1&tid=UA-41633741-1&cid=8c88b3f0-0eb2-66fe-
+ece7-8fb53e23e432&ul=ru&t=event&ec=announcement&ea=open&el=5375&dp=%2Femail%2Fannouncement%2F5375&cs=announcement&cm=email&cc=opening&cn=announcement&ck=user-
+group4) ![](https://stepik.org/email-
+open/dummy.gif)
+
+
+--===============6853863273446769893==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+
+
+
+
+<table bgcolor="#FCFCFC" border="0" cellpadding="0" cellspacing="0" style="color:#444; background-color:#FCFCFC; margin:0; padding:0" width="100%">
+  <tbody><tr>
+    <td>
+      <center style="max-width: 660px; width: 100%; margin: 0 auto;">
+        <table border="0" cellpadding="0" cellspacing="0" style="color:#444; margin:0 auto; padding:0" width="100%">
+          <tbody><tr>
+            <td align="center" height="180" style="margin: 0; padding: 0; text-align: center;" valign="center">
+              <a href="https://stepik.org/?utm_source=announcement&amp;utm_medium=email&amp;utm_campaign=announcement&amp;utm_term=user-group4&amp;utm_content=main-page&amp;etk=dummy">
+                <img alt="" border="0" height="64" src="https://stepik.org/static/emails/default/logo_black.png" width="64">
+              </a>
+            </td>
+          </tr>
+        </tbody></table>
+        <table border="0" cellpadding="0" cellspacing="0" class="contenttable" style="color:#444; margin:0; padding:0" width="100%">
+          <tbody><tr>
+            <td align="left" style="margin: 0; padding: 0; font-family: Arial, sans-serif; line-height: 1.5;">
+
+
+
+
+
+
+  <table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" style="color:#444; background-color:#fff; font-size:16px; margin-bottom:20px; padding:15px; width:100%" width="100%">
+    <tbody><tr>
+      <td class="announcement-text" style="line-height:1.6">
+        <p style="line-height:inherit; margin:1em 0; padding:0"><strong><img alt="" height="auto" src="https://lh6.googleusercontent.com/gf-VZfkuOYwsl8DCLPNd18JoGQ4gQQ0T0Gd1FlDKtb0em7TqMoTYhtWQf7bgQAmeAujz_RKa3VJvE_JmtnlptQtlZ5yuOYptmCT7SE4o1VyE63PhlrczmT8QY7Vc894dvLsPr0gQ" style="max-width:100%; height:auto; vertical-align:middle" valign="middle" width="708"></strong></p>
+
+<p style="line-height:inherit; margin:1em 0; padding:0"><strong>Уважаемые слушатели курса!</strong></p>
+
+<p style="line-height:inherit; margin:1em 0; padding:0">У команды IT-Чемпионатов Mail.ru Group есть отличная новость для всех любителей веселья, соревнований и io игр - старт <strong>Mini Ai Cup 4</strong>! На этот раз участникам предстоит программировать ботов, которые будут сражаться в игровом мире модернизированной Paper.io. Естественно, мы всё перекроили, добавили интересных элементов и получили на выходе очень занимательную механику. </p>
+
+<p style="line-height:inherit; margin:1em 0; padding:0">Чемпионат продлится ровно месяц и завершится 18 августа в 19:00. По результатам финальных игр авторы лучших стратегий будут награждены. </p>
+
+<p style="line-height:inherit; margin:1em 0; padding:0"><strong>Подробная информация о правилах, расписании и призах - на <a href="https://aicups.ru/?utm_campaign=miniaicup4&amp;utm_source=stepik&amp;utm_medium=announcement&amp;utm_term=mini-ai-cup-4&amp;utm_content=cta" rel="noopener noreferrer nofollow" style="color:#1466c6; font-weight:normal; text-decoration:none">портале соревнования.</a></strong></p>
+
+<p style="line-height:inherit; margin:1em 0; padding:0">Регистрируйтесь на портале и присоединяйтесь к чату чемпионата в телеграм (<a href="https://t.me/aicups" rel="noopener noreferrer nofollow" style="color:#1466c6; font-weight:normal; text-decoration:none">@aicups</a>)  чтобы ничего не пропустить!</p>
+
+<p style="line-height:inherit; margin:1em 0; padding:0">Команда IT-Чемпионатов Mail.ru Group.</p>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+
+      </td>
+    </tr>
+  </tbody></table>
+
+    <table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" style="color:#444; background-color:#fff; font-size:16px; margin-bottom:20px; padding:15px; width:100%" width="100%">
+      <tbody><tr>
+        <td>
+          Вы получили это письмо потому, что подписаны на пользователя
+          <a href="https://stepik.org/org/mailru?etk=dummy" style="color:#1466c6; font-weight:normal; text-decoration:none">Mail.ru Group</a>.
+        </td>
+      </tr>
+    </tbody></table>
+
+
+
+            </td>
+          </tr>
+        </tbody></table>
+      </center>
+
+      <table border="0" cellpadding="0" cellspacing="0" class="footer" style="color:#444; margin:0; padding:0" width="100%">
+          <tbody><tr>
+            <td>
+              <center style="max-width: 660px; width: 100%; margin: 0 auto; font-family: Arial, sans-serif;">
+                <table border="0" cellpadding="0" cellspacing="0" style="color:#444" width="100%">
+                  <tbody><tr>
+                    <td align="center" class="two-column app_list" style="min-height:90px; padding:10px 0; table-layout:fixed; width:100%; font-size:0; text-align:center; background:#E7EEFF; border-radius:6px" width="100%">
+
+
+                        <div class="column" style="display:inline-block; max-width:300px; vertical-align:middle; width:100%" valign="middle" width="100%">
+                          <table style="color:#444" width="100%">
+                            <tbody><tr>
+                              <td class="inner">
+                                <p style="padding: 0 15px; font-size: 18px; line-height: 24px; margin: 0;">Попробуйте наши мобильные приложения!</p>
+                              </td>
+                            </tr>
+                          </tbody></table>
+                        </div>
+
+                        <div class="column" style="display:inline-block; max-width:300px; vertical-align:middle; width:100%" valign="middle" width="100%">
+                          <table style="color:#444" width="100%">
+                            <tbody><tr>
+                              <td class="app_list-item" style="padding-bottom:10px; padding-top:10px" valign="center" width="145">
+                                <a href="https://redirect.appmetrica.yandex.com/serve/168884546916387946" style="text-decoration:none">
+                                  <img alt="Get it on Apple Store" height="40" src="https://stepik.org/static/emails/default/app_store_ru.png" style="height:40px; width:135px" width="135">
+                                </a>
+                              </td>
+                              <td class="app_list-item" style="padding-bottom:10px; padding-top:10px" valign="center" width="145">
+                                <a href="https://redirect.appmetrica.yandex.com/serve/312999733398396995" style="text-decoration:none">
+                                  <img alt="Get it on Google Play" height="40" src="https://stepik.org/static/emails/default/ru-play-badge.png" style="height:40px; width:135px" width="135">
+                                </a>
+                              </td>
+                            </tr>
+                          </tbody></table>
+                        </div>
+
+
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="center" height="60" style="margin: 0; padding: 0; font-family: Arial, sans-serif; font-size: 14px;" valign="bottom">
+
+                        <a href="https://vk.com/rustepik" style="text-decoration:none; color:#007aff; margin-right:20px"><img src="https://stepik.org/static/emails/default/icon_vk.png"></a>
+                        <a href="https://facebook.com/rustepik" style="text-decoration:none; color:#007aff; margin-right:20px"><img src="https://stepik.org/static/emails/default/icon_fb.png"></a>
+                        <a href="https://twitter.com/rustepik" style="text-decoration:none; color:#007aff"><img src="https://stepik.org/static/emails/default/icon_twitter.png"></a>
+
+                    </td>
+                  </tr>
+                </tbody></table>
+              </center>
+            </td>
+          </tr>
+      </tbody></table>
+
+        <table border="0" cellpadding="0" cellspacing="0" style="color:#444; margin:2px 0 0; padding:0" width="100%">
+          <tbody><tr>
+            <td>
+              <center style="max-width: 660px; width: 100%; margin: 0 auto;">
+                <table border="0" cellpadding="0" cellspacing="0" style="color:#444" width="100%">
+                  <tbody><tr>
+                    <td align="center" height="50" style="margin: 0; padding: 0; font-family: Arial, sans-serif; font-size: 12px;" valign="center">
+
+                        <a href="http://support.stepik.org" style="color: #555555; text-decoration: none;">Помощь</a>
+
+
+
+                          <a href="https://stepik.org/unsubscribe/custom/dummy/?utm_source=announcement&amp;utm_medium=email&amp;utm_campaign=announcement&amp;utm_term=user-group4&amp;utm_content=extra-unsubscribe&amp;etk=dummy" style="color: #555555; margin-left: 20px; text-decoration: none;">Отписаться от новостей пользователя</a>
+
+
+                          <a href="https://stepik.org/unsubscribe/dummy/?utm_source=announcement&amp;utm_medium=email&amp;utm_campaign=announcement&amp;utm_term=user-group4&amp;utm_content=unsubscribe&amp;etk=dummy" style="color: #555555; margin-left: 20px; text-decoration: none;">Отписаться от всех писем</a>
+
+
+                          <a href="https://stepik.org/edit-profile/notifications?utm_source=announcement&amp;utm_medium=email&amp;utm_campaign=announcement&amp;utm_term=user-group4&amp;utm_content=notification-settings&amp;etk=dummy" style="color: #555555; margin-left: 20px; text-decoration: none;">Настройки уведомлений</a>
+
+
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="center" height="60" valign="center">
+                      <a href="https://stepik.org/?utm_source=announcement&amp;utm_medium=email&amp;utm_campaign=announcement&amp;utm_term=user-group4&amp;utm_content=main-page&amp;etk=dummy">
+                        <img src="https://stepik.org/static/emails/default/stepik_logo_black.png">
+                      </a>
+                    </td>
+                  </tr>
+                </tbody></table>
+              </center>
+            </td>
+          </tr>
+        </tbody></table>
+    </td>
+  </tr>
+</tbody></table>
+
+  <img height="1" src="https://www.google-analytics.com/collect?v=1&amp;tid=UA-41633741-1&amp;cid=8c88b3f0-0eb2-66fe-ece7-8fb53e23e432&amp;ul=ru&amp;t=event&amp;ec=announcement&amp;ea=open&amp;el=5375&amp;dp=%2Femail%2Fannouncement%2F5375&amp;cs=announcement&amp;cm=email&amp;cc=opening&amp;cn=announcement&amp;ck=user-group4" width="1">
+
+  <img height="1" src="https://stepik.org/email-open/dummy.gif" width="1">
+
+
+
+--===============6853863273446769893==--
