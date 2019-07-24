@@ -35,9 +35,72 @@ Content analysis details:   (1008.4 points, 5.0 required)
 describe('spamassassin', () => {
 
   describe('parse', () => {
+    const
+      { Spamassassin } = require('../lib/Spamassassin');
 
     it('report must be a string', () => {
       assert.ok(typeof reports.spam === "string");
+    });
+
+    it('data parsed', () => {
+      assert.deepStrictEqual(Spamassassin.prototype.parseTests(reports.spam), {
+        score: 1008.4,
+        rules: {
+          "NO_DNS_FOR_FROM": {
+            name: "NO_DNS_FOR_FROM",
+            score: 0.4,
+            description: "DNS: Envelope sender has no MX or A DNS records"
+          },
+          "MISSING_HEADERS": {
+            name: "MISSING_HEADERS",
+            score: 1.2,
+            description: "Missing To: header"
+          },
+          "GTUBE": {
+            name: "GTUBE",
+            score: 1000,
+            description: "BODY: Generic Test for Unsolicited Bulk Email"
+          },
+          "MISSING_MID": {
+            name: "MISSING_MID",
+            score: 0.1,
+            description: "Missing Message-Id: header"
+          },
+          "TVD_SPACE_RATIO": {
+            name: "TVD_SPACE_RATIO",
+            score: 0.0,
+            description: "No description available."
+          },
+          "MISSING_DATE": {
+            name: "MISSING_DATE",
+            score: 1.4,
+            description: "Missing Date: header"
+          },
+          "MISSING_SUBJECT": {
+            name: "MISSING_SUBJECT",
+            score: 1.8,
+            description: "Missing Subject: header"
+          },
+          "MISSING_FROM": {
+            name: "MISSING_FROM",
+            score: 1.0,
+            description: "Missing From: header"
+          },
+          "TVD_SPACE_RATIO_MINFP": {
+            name: "TVD_SPACE_RATIO_MINFP",
+            score: 2.5,
+            description: "Space ratio"
+          },
+          "BODY_EMPTY": {
+            name: "BODY_EMPTY",
+            score: 0.0,
+            description: "No body text in message"
+          }
+        }
+
+
+
+      });
     });
 
   });
