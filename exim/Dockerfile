@@ -16,6 +16,7 @@ RUN mkdir -p        /var/spool/mail /var/mail /var/spool/exim /var/spool/exim/db
     adduser -D -G mail mailtester
 
 ADD ./run.sh /run.sh
+ADD ./api-pipe.sh /srv/api-pipe.sh
 ADD ./exim.conf /etc/exim/exim.conf
 
 ENV EXIM_DOMAIN=your-domain.com \
