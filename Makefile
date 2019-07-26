@@ -1,0 +1,42 @@
+#################################
+# Settings
+#################################
+
+# Run all containers
+.PHONY: up
+up:
+	@docker-compose up -d --build
+
+# Stop all containers
+down:
+	@docker-compose down
+
+# Runs test container separately
+.PHONY: test-compose
+test-compose:
+	@docker-compose up test-compose
+	@docker-compose logs -tf test-compose
+
+# Runs test container for debug purposes
+.PHONY: debug-compose
+debug-compose:
+	@docker-compose run test-compose sh
+
+# Shows exim status
+.PHONY: exim
+exim: exim-bp
+
+# Shows exim queue
+.PHONY: exim-bp
+exim-bp:
+	@echo Queue:
+	@docker-compose exec exim exim -bp
+
+# Shows mails status
+.PHONY: mail
+mail:	mail-count
+
+# Shows mail count
+.PHONY: mail-count
+mail-count:
+	@echo Num mails: `docker-compose exec mongo mongo mailtester --quiet --eval 'db.mails.count({});'`

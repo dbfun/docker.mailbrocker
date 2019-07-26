@@ -109,8 +109,7 @@ check_message:
 * en: `/usr/share/doc/exim4-base/` в Debian
 * en: [avenus/exim-relay](https://hub.docker.com/r/avenus/exim-relay/dockerfile)
 * en: [Exim command line](https://www.exim.org/exim-html-current/doc/html/spec_html/ch-the_exim_command_line.html)
-* ru: [VPS - почтовый сервер](https://dka-develop.ru/blog/article/7-vps-pochtovyy-server-ubuntu-debian-0607171734)
-* ru: [EXIM 4.62](https://www.lissyara.su/doc/exim/4.62/the_default_configuration_file/)
 * en: [Проверить на openrelay](https://beta.mxtoolbox.com/SuperTool.aspx?action=smtp)
+* ru: [EXIM 4.62](https://www.lissyara.su/doc/exim/4.62/the_default_configuration_file/)
+* ru: [VPS - почтовый сервер](https://dka-develop.ru/blog/article/7-vps-pochtovyy-server-ubuntu-debian-0607171734)
 * ru: [Полезные команды Exim](http://adminunix.ru/polezny-e-komandy-exim/)
-* ru: [мана на русском](https://www.lissyara.su/doc/exim/4.62/the_default_configuration_file/)

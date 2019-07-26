@@ -5,9 +5,8 @@ Email to special address then check your spam score.
 Modules:
 
 * Exim MTA
-* Tester
-* API
-* Web site
+* Website
+* API with mail tester engine (Spamassassin + ...)
 
 # FAQ
 

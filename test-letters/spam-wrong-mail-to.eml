@@ -1,5 +1,5 @@
 Return-path: <junk@wrong-domain-name.com>
-Envelope-to: 5cc8161582cd8ed026085eb2@spam24.ru
+Envelope-to: info@spam24.ru
 Delivery-date: Sat, 20 Jul 2019 09:24:05 +0000
 Received: from pushorigin.ru ([193.124.185.185])
         by spam24.ru with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
@@ -7,6 +7,6 @@ Received: from pushorigin.ru ([193.124.185.185])
         (envelope-from <junk@wrong-domain-name.com>)
         id 1holb3-00000r-5m
         for test@spam24.ru; Sat, 20 Jul 2019 09:24:05 +0000
-To: "Somebody" <5cc8161582cd8ed026085eb2@spam24.ru>
+To: "Somebody" <info@spam24.ru>
 
 This is 100% spam mail; XJS*C4JDBQADN1.NSBN3*2IDNEN*GTUBE-STANDARD-ANTI-UBE-TEST-EMAIL*C.34X

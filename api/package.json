@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "mailparser": "^2.7.1",
     "mongodb": "^3.3.0-beta2"
   }
 }

@@ -31,4 +31,5 @@ end_case
 
 if [ $TESTS_PASSED != 1 ]; then
   echo -e $Red"Tests error"$Color_Off
+  exit 1
 fi

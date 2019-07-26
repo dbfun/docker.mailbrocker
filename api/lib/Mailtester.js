@@ -1,32 +1,88 @@
 "use strinct";
 
-var spamassassin;
+const
+  simpleParser = require('mailparser').simpleParser,
+  { ObjectId } = require('mongodb'),
+  Registry = new (require('./Registry').Registry)
+  ;
 
 class Mailtester {
 
-  constructor(msg, collectionMails) {
-    this.msg = msg;
-    this.collectionMails = collectionMails;
+  constructor() {
+    this.ObjectId = null;
+    this.to = null;
+    this.doc = {
+      done: false,
+      to: null,
+      raw: null
+    };
+  }
+
+  async makeFromRaw(raw) {
+    this.doc.raw = raw;
+    await this.parseMail();
+  }
+
+  async parseMail() {
+    // @see https://nodemailer.com/extras/mailparser/
+    let parsed = await simpleParser(this.doc.raw);
+    try {
+      this.doc.to = parsed.to.value[0].address;
+      this.ObjectId = this.getMailObjectId(this.doc.to);
+    } catch (e) { }
+  }
+
+  getMailObjectId(to) {
+    try {
+      let m = to.match(/^([0-9a-f]{24})@/);
+      return m[1];
+    } catch (e) {
+      return null;
+    }
   }
 
   async saveRaw() {
-    return this.collectionMails.insertOne({done: false, raw: this.msg});
+    if(!this.ObjectId) throw new Error("No ObjectId specified");
+    let collectionMails = Registry.get('mongo').collection('mails');
+    return collectionMails.replaceOne(
+      {
+        _id: ObjectId(this.ObjectId)
+      },
+      this.doc,
+      {
+        upsert: true
+      }
+    );
   }
 
   async checkAll() {
-    let data = await spamassassin.check(this.msg);
-    console.log(data);
-    let saTests = spamassassin.parseTests(data);
+    let spamassassin = Registry.get('spamassassin');
+    spamassassin.check(this.doc.raw).then(async (data) => {
+      let results = spamassassin.parseTests(data);
+      console.log(results);
+      await this.saveResults('spamassassin', results);
+    });
   }
 
-  async saveResults() {
+  async saveResults(section, data) {
+    if(!this.ObjectId) throw new Error("No ObjectId specified");
+    let collectionMails = Registry.get('mongo').collection('mails');
+    let update = {};
+    update[section] = data;
 
+    // console.log(`Results saved: ${this.ObjectId}`);
+
+    return collectionMails.updateOne(
+      {
+        _id: ObjectId(this.ObjectId)
+      },
+      { $set: update },
+      {
+        upsert: false
+      }
+    );
   }
 
 }
 
-module.exports = function(config) {
-  const { Spamassassin } = require('./Spamassassin');
-  spamassassin = new Spamassassin(config.spamassassin);
-  return Mailtester;
-};
+module.exports.Mailtester = Mailtester;
