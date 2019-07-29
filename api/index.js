@@ -75,11 +75,11 @@ class Api {
       console.log(`Mails count: ${stats['count']}`);
       let removeBorder = stats['count'] - config.maxMailCount;
       if(removeBorder <= 0) return;
-      // `sort({_id: 1})` is used because sometimes _id order may be random
-      let borderDoc = await collectionMails.find().sort({_id: 1}).skip(removeBorder).limit(1).next();
-      let borderId = borderDoc._id;
+      // `sort({_id: 1})` is not used because sometimes _id order may be random
+      let borderDoc = await collectionMails.find().sort({created: 1}).skip(removeBorder).limit(1).next();
+
+      collectionMails.deleteMany({created: { $lt: new Date(borderDoc.created) }});
       console.log(`Removed ${removeBorder} mails`);
-      collectionMails.deleteMany({_id:{$lt:borderId}});
     } catch (err) {
       console.log(err);
     }

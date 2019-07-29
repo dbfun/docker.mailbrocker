@@ -40,3 +40,10 @@ mail:	mail-count
 .PHONY: mail-count
 mail-count:
 	@echo Num mails: `docker-compose exec mongo mongo mailtester --quiet --eval 'db.mails.count({});'`
+
+# Reload all services
+.PHONY: reload
+reload:
+	@docker-compose exec spamassassin sh -c 'kill -HUP `cat /var/run/spamd.pid`'
+	@docker-compose exec exim sh -c 'kill -HUP `cat /run/exim.pid`'
+	@docker-compose exec api sh -c 'pm2 restart all'

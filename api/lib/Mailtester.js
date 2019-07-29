@@ -12,6 +12,7 @@ class Mailtester {
     this.ObjectId = null;
     this.to = null;
     this.doc = {
+      created: new Date(),
       done: false,
       to: null,
       raw: null
@@ -59,7 +60,6 @@ class Mailtester {
     let spamassassin = Registry.get('spamassassin');
     spamassassin.check(this.doc.raw).then(async (data) => {
       let results = spamassassin.parseTests(data);
-      console.log(results);
       await this.saveResults('spamassassin', results);
     });
   }
