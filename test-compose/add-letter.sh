@@ -5,8 +5,8 @@
 # * add dummy message:      ./add-letter.sh dummy
 # * add message from file:  ./add-letter.sh test-letters/ham-spf-rebus3d.ru.eml
 
-
 set -u
+CASE_PASSED=1
 
 cd "$(dirname "$0")"
 source lib/ui.sh
@@ -45,3 +45,7 @@ assert "$RESP" '< Content-Type: application/json;'
 assert "$RESP" '{"result":"ok"}'
 
 end_case
+
+if [ $CASE_PASSED != 1 ]; then
+  echo "$RESP"
+fi

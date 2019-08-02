@@ -17,8 +17,12 @@ class Spfquery {
 
 
   async check(ip, from) {
-    let data = await fetchData(ip, from);
-    return parseTest(data.report);
+    let { report, debug } = await this.fetchData(ip, from);
+    return {
+      report: report,
+      debug: debug,
+      test: this.parseTest(report)
+    }
   }
 
   async fetchData(ip, from) {
@@ -28,8 +32,8 @@ class Spfquery {
           echo '8.8.8.8 info@google.com' | spfquery -debug -f - > /tmp/stdout 2>/tmp/stderr
           debug message writes to stderr
       */
-      const spfquery = spawn('spfquery', ['-debug', '-f']);
-      spfquery.stdin.write(`${ip} ${from}`);
+      const spfquery = spawn('spfquery', ['-ip', ip, '-sender', from, '-debug']);
+
       let stdout = '';
       let stderr = '';
 
@@ -45,7 +49,6 @@ class Spfquery {
         resolve({report: stdout, debug: stderr});
       });
 
-      spfquery.stdin.end();
     });
   }
 
@@ -54,13 +57,10 @@ class Spfquery {
       result: null
     };
 
-    var m;
-
-    m = report.match(/^Response result:\s(.*)$/m);
+    let m = report.match(/^Response result:\s(.*)$/m);
     ret.result = m ? m[1].trim() : null;
 
     return ret;
-
   }
 
 

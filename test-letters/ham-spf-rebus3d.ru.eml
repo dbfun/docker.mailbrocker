@@ -4,15 +4,15 @@ Received: from smtpng2.m.smailru.net (smtpng2.m.smailru.net [94.100.179.3])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mail-tester.com (Postfix) with ESMTPS id 1F7AFA810E
-	for <mailnospam-5cc8161582cd8ed026085eb1@mail-tester.com>; Tue, 30 Apr 2019 11:32:50 +0200 (CEST)
+	for <5cc8161582cd8ed026085eb1@spam24.ru>; Tue, 30 Apr 2019 11:32:50 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=rebus3d.ru; s=mailru;
 	h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Subject:Reply-To:From:To:Date; bh=liVmhC8CIjg9PNq4S6Ii6ayIli1KIHGc73Dk08Y5odg=;
 	b=YMns7LBGANSEK3WGh7aL0YB2afTCktwV74/apBS12NPpyQoAfi64hSPHxS/fYZ96VKYWZf9KdmFdCnglYQMa11LlwNKU2S82vb7/2DWd/Tt7QUCq1vKzK6L/5WCc4zHAtYii0WKr2QIFgS1qR5/jJWOSno6oY5iQ9U2VOz6MPDU=;
 Received: by smtpng2.m.smailru.net with esmtpa (envelope-from <noreply@rebus3d.ru>)
 	id 1hLP85-0002wl-97
-	for mailnospam-5cc8161582cd8ed026085eb1@mail-tester.com; Tue, 30 Apr 2019 12:32:49 +0300
+	for 5cc8161582cd8ed026085eb1@spam24.ru; Tue, 30 Apr 2019 12:32:49 +0300
 Date: Tue, 30 Apr 2019 09:32:49 +0000
-To: mailnospam-5cc8161582cd8ed026085eb1@mail-tester.com
+To: 5cc8161582cd8ed026085eb1@spam24.ru
 From: =?UTF-8?B?0KHQsNC50YIgcmVidXMzZC5ydQ==?= <noreply@rebus3d.ru>
 Reply-To: noreply@rebus3d.ru
 Subject: =?UTF-8?B?0KEg0LPQu9Cw0LLQvdC+0Lkg0YHRgtGA0LDQvdC40YbRiw==?=
@@ -34,4 +34,3 @@ Content-Transfer-Encoding: quoted-printable
 
 =D0=A1=D0=BE=D0=BE=D0=B1=D1=89=D0=B5=D0=BD=D0=B8=D0=B5:
 test
-

@@ -6,7 +6,51 @@
 
 const
   assert = require('assert'),
-  testCases = [
+  testCasesCheck = [
+    {
+      ip: "8.8.8.8",
+      from: "info@google.com",
+      expect: {
+        result: "softfail"
+      }
+    },
+    {
+      ip: "8.8.8.8",
+      from: "info@wrong-domain-name.com",
+      expect: {
+        result: "none"
+      }
+    },
+    {
+      ip: "37.9.109.3",
+      from: "devnull@yandex-team.ru",
+      expect: {
+        result: "pass"
+      }
+    },
+    {
+      ip: "8.8.8.8",
+      from: "devnull@yandex-team.ru",
+      expect: {
+        result: "fail"
+      }
+    },
+    {
+      ip: "37.9.109.3",
+      from: "info@yandex.ru",
+      expect: {
+        result: "pass"
+      }
+    },
+    {
+      ip: "2a02:6b8:0:1a2d::503",
+      from: "devnull@yandex-team.ru",
+      expect: {
+        result: "pass"
+      }
+    }
+  ],
+  testCasesParse = [
     {
       name: "echo '8.8.8.8 info@google.com' | spfquery -debug -f - 2>/tmp/stderr",
       data: `--vv--
@@ -133,18 +177,29 @@ Received-SPF: pass (spfquery: domain of yandex-team.ru designates 2a02:6b8:0:1a2
 
 describe('spfquery', () => {
 
+  const
+    { Spfquery } = require('../lib/Spfquery');
+
   describe('parseTest', () => {
-    const
-      { Spfquery } = require('../lib/Spfquery');
-
-      for(let testCase of testCases) {
-        it(testCase.name, () => {
-          assert.deepStrictEqual(Spfquery.prototype.parseTest(testCase.data), testCase.expect);
-        });
-      }
-
-
+    for(let testCase of testCasesParse) {
+      it(testCase.name, () => {
+        let test = Spfquery.prototype.parseTest(testCase.data);
+        assert.deepStrictEqual(test, testCase.expect);
+      });
+    }
   });
 
-});
+  describe('check', () => {
+    for(let testCase of testCasesCheck) {
+      it(`${testCase.from} ${testCase.ip}`, async () => {
+        let spf = await Spfquery.prototype.check(testCase.ip, testCase.from);
+        assert.equal(spf.test.result, testCase.expect.result);
+      });
+    }
+  });
 
+
+
+
+
+});

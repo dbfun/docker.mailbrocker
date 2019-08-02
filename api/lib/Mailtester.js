@@ -5,7 +5,8 @@ const
   { ObjectId } = require('mongodb'),
   Registry = new (require('./Registry').Registry),
   _ = require('lodash'),
-  assert = require('assert')
+  assert = require('assert'),
+  { Spfquery } = require('../lib/Spfquery')
   ;
 
 class Mailtester {
@@ -82,6 +83,11 @@ class Mailtester {
     spamassassin.check(this.doc.raw).then(async (data) => {
       let results = spamassassin.parseTests(data);
       await this.saveResults('spamassassin', results);
+    });
+
+    let spfquery = new Spfquery;
+    spfquery.check(this.doc.lastMtaIP, this.doc.from).then(async (spf) => {
+      await this.saveResults('spf', spf);
     });
   }
 
