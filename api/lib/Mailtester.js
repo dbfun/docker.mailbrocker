@@ -3,7 +3,8 @@
 const
   simpleParser = require('mailparser').simpleParser,
   { ObjectId } = require('mongodb'),
-  Registry = new (require('./Registry').Registry)
+  Registry = new (require('./Registry').Registry),
+  _ = require('lodash')
   ;
 
 class Mailtester {
@@ -15,6 +16,8 @@ class Mailtester {
       created: new Date(),
       done: false,
       to: null,
+      from: null,
+      lastMtaIP: null,
       raw: null
     };
   }
@@ -31,6 +34,15 @@ class Mailtester {
       this.doc.to = parsed.to.value[0].address;
       this.ObjectId = this.getMailObjectId(this.doc.to);
     } catch (e) { }
+    try {
+      this.doc.from = parsed.from.value[0].address;
+    } catch (e) { }
+    try {
+      let Received = _.filter(parsed.headerLines, ['key', 'received']);
+      let m = Received[1].line.match(/(\[([0-9a-f:]{8,}|[0-9.]{7,})\])/);
+      this.doc.lastMtaIP = m[2];
+    } catch (e) { }
+
   }
 
   getMailObjectId(to) {

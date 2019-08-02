@@ -2,7 +2,7 @@ FROM alpine
 
 ADD ./package.json /tmp/package.json
 
-RUN apk add --no-cache nodejs npm spamassassin-client && \
+RUN apk add --no-cache nodejs npm spamassassin-client libspf2-tools && \
     npm install --global pm2 mocha && \
     cd /tmp && \
     npm install

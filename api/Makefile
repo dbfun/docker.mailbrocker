@@ -66,6 +66,7 @@ push: clean-image image
 #################################
 
 .PHONY: test-unit
+test-unit:
 	@echo "+ $@"
 	npm run test
 

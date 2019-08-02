@@ -6,9 +6,10 @@
 
 const
   assert = require('assert'),
-  reports = {
-    spam:
-`1008.4/5.0
+  testCases = [
+    {
+      name: "GTUBE",
+      data: `1008.4/5.0
 Spam detection software, running on the system "spamassassin",
 has identified this incoming email as possible spam.  The original
 message has been attached to this so you can view it or label
@@ -29,21 +30,8 @@ Content analysis details:   (1008.4 points, 5.0 required)
  1.0 MISSING_FROM           Missing From: header
  2.5 TVD_SPACE_RATIO_MINFP  Space ratio
  0.0 BODY_EMPTY             No body text in message
-`
-};
-
-describe('spamassassin', () => {
-
-  describe('parse', () => {
-    const
-      { Spamassassin } = require('../lib/Spamassassin');
-
-    it('report must be a string', () => {
-      assert.ok(typeof reports.spam === "string");
-    });
-
-    it('data parsed', () => {
-      assert.deepStrictEqual(Spamassassin.prototype.parseTests(reports.spam), {
+`,
+      expect: {
         score: 1008.4,
         rules: {
           "NO_DNS_FOR_FROM": {
@@ -97,11 +85,22 @@ describe('spamassassin', () => {
             description: "No body text in message"
           }
         }
+      }
+    }
+  ]
+;
 
+describe('spamassassin', () => {
 
+  describe('parseTests', () => {
+    const
+      { Spamassassin } = require('../lib/Spamassassin');
 
+    for(let testCase of testCases) {
+      it(testCase.name, () => {
+        assert.deepStrictEqual(Spamassassin.prototype.parseTests(testCase.data), testCase.expect);
       });
-    });
+    }
 
   });
 

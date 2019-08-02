@@ -12,6 +12,7 @@ TESTS_PASSED=1
 
 start_case "Healthcheck"
 RESP=`curl -s \
+    -H "Connection: close" \
     --max-time 10 \
     --verbose \
     --include \
@@ -24,6 +25,7 @@ end_case
 
 start_case "Deny wrong mail \"To:\" header"
 RESP=`cat test-letters/spam-wrong-mail-to.eml | curl -s \
+    -H "Connection: close" \
     --max-time 10 \
     --verbose \
     --request POST \
@@ -41,6 +43,7 @@ end_case
 
 start_case "Add spam mail into check queue"
 RESP=`cat test-letters/spam-GTUBE.eml | curl -s \
+    -H "Connection: close" \
     --max-time 10 \
     --verbose \
     --request POST \

@@ -1,3 +1,5 @@
+# !/bin/bash
+
 function assert {
   SUBSTR=`echo "$1" | grep -F "$2"`
   if [ $? != 0 ]; then
