@@ -4,14 +4,14 @@ const
   simpleParser = require('mailparser').simpleParser,
   { ObjectId } = require('mongodb'),
   Registry = new (require('./Registry').Registry),
-  _ = require('lodash')
+  _ = require('lodash'),
+  assert = require('assert')
   ;
 
 class Mailtester {
 
   constructor() {
     this.ObjectId = null;
-    this.to = null;
     this.doc = {
       created: new Date(),
       done: false,
@@ -25,6 +25,15 @@ class Mailtester {
   async makeFromRaw(raw) {
     this.doc.raw = raw;
     await this.parseMail();
+  }
+
+  async load(_ObjecId) {
+    this.ObjectId = _ObjecId;
+    if(!this.ObjectId) throw new Error("No ObjectId specified");
+
+    let collectionMails = Registry.get('mongo').collection('mails');
+    this.doc = await collectionMails.findOne({_id: ObjectId(this.ObjectId)});
+    assert.notEqual(this.doc, null, "Mail not found");
   }
 
   async parseMail() {

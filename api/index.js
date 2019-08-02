@@ -114,15 +114,14 @@ class Api {
 
       # MTA will be retry delivery via API for 5xx HTTP codes and "Connection refused" (exit code 7)
     */
-    api.post('/checkmail', async (req, res) => {
+    api.post('/checkmail', async (req, res, next) => {
       // res.status(400).send('Temp error'); return;        // Error test case
       // res.status(503).send('Server error'); return;      // Error test case
       // res.send(JSON.stringify({result: "ok"})); return;  // Ok short case
 
-      let mailtester = new Mailtester();
-      await mailtester.makeFromRaw(req.body);
-
       try {
+        let mailtester = new Mailtester();
+        await mailtester.makeFromRaw(req.body);
         try {
           // Save mail and report about this
           await mailtester.saveRaw();
@@ -146,20 +145,46 @@ class Api {
         }
       } catch (err) {
         console.log(err);
-        res.status(500).send(JSON.stringify({result: "fail", reason: err.message}));
+        next(err);
       }
     });
 
-    api.use(function(req, res, next) {
-      res.status(404).send('Wrong API URI');
+    api.get(/^\/mail\/([0-9a-f]{24})(\/(raw|spamassassin|spf)?)?$/, async (req, res, next) => {
+      try {
+        let ObjecId = req.params[0];
+        let select = req.params[2];
+
+        let mailtester = new Mailtester();
+        try {
+          await mailtester.load(ObjecId);
+        } catch (err) {
+          res.status(404).send(JSON.stringify({ error: err.message ? err.message : "Not found" }));
+          return;
+        }
+        if(select === "raw") {
+          res.setHeader('Content-Type', 'text/plain');
+          res.send(mailtester.doc.raw);
+          return;
+        }
+        res.send(JSON.stringify(select ? mailtester.doc[select] : mailtester.doc));
+
+      } catch (err) {
+        next(err);
+      }
     });
 
+    // 404 error handler
+    api.use(function(req, res, next) {
+      res.status(404).send(JSON.stringify({ error: "Wrong API URI" }));
+    });
+
+    // Final error handler
     api.use(function(err, req, res, next) {
       console.log(err);
       if (req.xhr) {
-        res.status(500).send({ error: err.message ? err.message : "Internal Server Error" });
+        res.status(500).send(JSON.stringify({ error: err.message ? err.message : "Internal Server Error" }));
       } else {
-        next(err);
+        next(err.message ? err.message : err);
       }
     });
 
