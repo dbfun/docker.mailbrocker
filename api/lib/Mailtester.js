@@ -48,8 +48,10 @@ class Mailtester {
       this.doc.from = parsed.from.value[0].address;
     } catch (e) { }
     try {
-      let Received = _.filter(parsed.headerLines, ['key', 'received']);
-      let m = Received[1].line.match(/(\[([0-9a-f:]{8,}|[0-9.]{7,})\])/);
+      let Received = _.find(parsed.headerLines, (o) => {
+        return o.key === "received" && o.line.match(/^Received: from/);
+      });
+      let m = Received.line.match(/(\[([0-9a-f:]{8,}|[0-9.]{7,})\])/);
       this.doc.lastMtaIP = m[2];
     } catch (e) { }
 

@@ -8,7 +8,7 @@ Work in progress
 * [x] API
   * [x] Launch API
   * [x] Spamassassin check
-  * [ ] WIP: Validate SPF
+  * [x] Validate SPF
   * [ ] Validate DKIM
   * [ ] Check DMARK
   * [ ] Blacklist Check

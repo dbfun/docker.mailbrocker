@@ -28,6 +28,34 @@ const
         from: "noreply@rebus3d.ru",
         lastMtaIP: "94.100.179.3"
       }
+    },
+    {
+      src: __dirname + "/../../test-letters/ham-speed24.ru.eml",
+      expect: {
+        from: "start@speed24.ru",
+        lastMtaIP: "37.140.190.181"
+      }
+    },
+    {
+      src: __dirname + "/../../test-letters/ham-stepic.org.eml",
+      expect: {
+        from: "noreply@stepik.org",
+        lastMtaIP: "13.69.75.239"
+      }
+    },
+    {
+      src: __dirname + "/../../test-letters/spam-GTUBE.eml",
+      expect: {
+        from: null,
+        lastMtaIP: "193.124.185.185"
+      }
+    },
+    {
+      src: __dirname + "/../../test-letters/spam-JakobFichtl.eml",
+      expect: {
+        from: "noreply@guide-des-vins-de-bourgogne.fr",
+        lastMtaIP: "212.170.160.112"
+      }
     }
   ]
 ;
