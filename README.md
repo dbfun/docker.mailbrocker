@@ -1,3 +1,21 @@
+# Project status
+
+Work in progress
+
+## Stages
+
+* [x] Exim MTA configuring
+* [x] API
+  * [x] Launch API
+  * [x] Spamassassin check
+  * [ ] WIP: Validate SPF
+  * [ ] Validate DKIM
+  * [ ] Check DMARK
+  * [ ] Blacklist Check
+  * [ ] Pyzor Check
+  * [ ] Razor2 Check
+* [ ] WIP: Launch Demo Website
+
 # Check your mail for spam
 
 Email to special address then check your spam score.
