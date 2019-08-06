@@ -31,7 +31,7 @@ IMAGE_NAME_VERSION="${HUB_NAMESPACE}/${IMAGE_NAME}:${VERSION}"
 .PHONY: install-prerequirements
 install-prerequirements:
 	@sudo npm install --global pm2 mocha
-	@sudo apt install -y spfquery dkimproxy
+	@sudo apt install -y spfquery dkimproxy opendmarc
 
 .PHONY: install-dev
 install-dev:

@@ -12,6 +12,7 @@
     "express": "^4.17.1",
     "lodash": "^4.17.15",
     "mailparser": "^2.7.1",
-    "mongodb": "^3.3.0-beta2"
+    "mongodb": "^3.3.0-beta2",
+    "yaml": "^1.6.0"
   }
 }

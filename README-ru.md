@@ -113,3 +113,4 @@ check_message:
 * ru: [EXIM 4.62](https://www.lissyara.su/doc/exim/4.62/the_default_configuration_file/)
 * ru: [VPS - почтовый сервер](https://dka-develop.ru/blog/article/7-vps-pochtovyy-server-ubuntu-debian-0607171734)
 * ru: [Полезные команды Exim](http://adminunix.ru/polezny-e-komandy-exim/)
+* ru: [Полный синтаксис DKIM, DMARC и SPF](https://habr.com/ru/post/343128/)

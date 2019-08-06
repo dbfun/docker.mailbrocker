@@ -7,7 +7,8 @@ const
   _ = require('lodash'),
   assert = require('assert'),
   { Spfquery } = require('../lib/Spfquery'),
-  { Dkimverify } = require('../lib/Dkimverify')
+  { Dkimverify } = require('../lib/Dkimverify'),
+  { Dmarccheck } = require('../lib/Dmarccheck')
   ;
 
 class Mailtester {
@@ -95,6 +96,11 @@ class Mailtester {
     let dkimverify = new Dkimverify;
     dkimverify.check(this.doc.raw).then(async (dkim) => {
       await this.saveResults('dkim', dkim);
+    });
+
+    let dmarccheck = new Dmarccheck;
+    dmarccheck.check(this.doc.from).then(async (dmarc) => {
+      await this.saveResults('dmarc', dmarc);
     });
 
   }

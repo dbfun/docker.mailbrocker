@@ -1,8 +1,9 @@
 FROM alpine
 
-# DKIM
+# DKIM, DMARC
 ADD http://deb.debian.org/debian/pool/main/libm/libmail-dkim-perl/libmail-dkim-perl_0.40.orig.tar.gz /tmp
 RUN apk add perl make perl-crypt-openssl-rsa perl-mailtools perl-net-dns && \
+    apk add opendmarc --update-cache --repository http://nl.alpinelinux.org/alpine/edge/testing && \
     cd /tmp/ && \
     tar -xzf libmail-dkim-perl_0.40.orig.tar.gz && \
     cd /tmp/Mail-DKIM-0.40 && \

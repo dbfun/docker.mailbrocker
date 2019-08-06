@@ -10,7 +10,7 @@ Work in progress
   * [x] Spamassassin check
   * [x] Validate SPF
   * [x] Validate DKIM
-  * [ ] Check DMARK
+  * [x] Check DMARK
   * [ ] Blacklist Check
   * [ ] Pyzor Check
   * [ ] Razor2 Check
