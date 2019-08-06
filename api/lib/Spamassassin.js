@@ -10,7 +10,15 @@ class Spamassassin {
     this.config = config;
   }
 
-  check(msg) {
+  async check(msg) {
+    let report = await this.fetchData(msg);
+    return {
+      report: report,
+      test: this.parseTests(report)
+    }
+  }
+
+  async fetchData(msg) {
     return new Promise((resolve, reject) => {
       const spamc = spawn('spamc', ['-d', 'spamassassin', '-p', this.config.port, '-R', '-s', this.config.maxSize]);
       spamc.stdin.write(msg);
@@ -40,7 +48,7 @@ class Spamassassin {
     };
     var m;
 
-    m = data.match(/Content\s+analysis\s+details:\s+\(([0-9.]+)\s+points/);
+    m = data.match(/Content\s+analysis\s+details:\s+\(([0-9.-]+)\s+points/);
     ret.score = m ? parseFloat(m[1]) : null;
 
     m = data.match(/(-{1,}\s+-{3,}\s+-{3,})\n(.*)(\r\n|\r|\n)$/ms);

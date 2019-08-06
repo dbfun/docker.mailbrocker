@@ -1,5 +1,18 @@
 FROM alpine
 
+# DKIM
+ADD http://deb.debian.org/debian/pool/main/libm/libmail-dkim-perl/libmail-dkim-perl_0.40.orig.tar.gz /tmp
+RUN apk add perl make perl-crypt-openssl-rsa perl-mailtools perl-net-dns && \
+    cd /tmp/ && \
+    tar -xzf libmail-dkim-perl_0.40.orig.tar.gz && \
+    cd /tmp/Mail-DKIM-0.40 && \
+    perl Makefile.PL && \
+    make && \
+    make install && \
+    mv /tmp/Mail-DKIM-0.40/scripts/dkimverify.pl /usr/bin/dkimproxy-verify && \
+    rm -rf /tmp/libmail-dkim-perl_0.40.orig.tar.gz /tmp/Mail-DKIM-0.40
+
+# App
 ADD ./package.json /tmp/package.json
 
 RUN apk add --no-cache nodejs npm spamassassin-client libspf2-tools && \

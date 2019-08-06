@@ -9,7 +9,7 @@ Work in progress
   * [x] Launch API
   * [x] Spamassassin check
   * [x] Validate SPF
-  * [ ] Validate DKIM
+  * [x] Validate DKIM
   * [ ] Check DMARK
   * [ ] Blacklist Check
   * [ ] Pyzor Check

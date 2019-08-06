@@ -149,7 +149,7 @@ class Api {
       }
     });
 
-    api.get(/^\/mail\/([0-9a-f]{24})(\/(raw|spamassassin|spf)?)?$/, async (req, res, next) => {
+    api.get(/^\/mail\/([0-9a-f]{24})(\/(raw|spamassassin|spf|dkim)?)?$/, async (req, res, next) => {
       try {
         let ObjecId = req.params[0];
         let select = req.params[2];
