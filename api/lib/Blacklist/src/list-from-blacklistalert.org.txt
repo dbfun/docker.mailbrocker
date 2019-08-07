@@ -1,0 +1,35 @@
+all.s5h.net OK
+aspews.ext.sorbs.net OK
+b.barracudacentral.org Listed! See why
+bl.blocklist.de OK
+bl.mailspike.net OK
+bl.scientificspam.net OK
+bl.spamcop.net OK
+bl.spameatingmonkey.net OK
+black.junkemailfilter.com OK
+cbl.abuseat.org OK
+db.wpbl.info OK
+dnsbl.cobion.com OK
+dnsbl.dnsbl.ru OK
+dnsbl.dronebl.org OK
+dnsbl.justspam.org OK
+dnsbl.mags.net OK
+dnsbl.sorbs.net OK
+dnsbl.rangers.eu.org OK
+dnsbl-0.uceprotect.net OK
+dnsbl-1.uceprotect.net OK
+dnsbl-2.uceprotect.net OK
+dnsbl-3.uceprotect.net OK
+ips.backscatterer.org OK
+ix.dnsbl.manitu.net OK
+l2.apews.org Listed! See why
+psbl.surriel.com OK
+rbl.megarbl.net OK
+spam.dnsbl.anonmails.de OK
+spamguard.leadmon.net OK
+superblock.ascams.com OK
+tor.dan.me.uk OK
+truncate.gbud.net OK
+ubl.unsubscore.com OK
+virbl.dnsbl.bit.nl OK
+zen.spamhaus.org OK

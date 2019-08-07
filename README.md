@@ -11,7 +11,7 @@ Work in progress
   * [x] Validate SPF
   * [x] Validate DKIM
   * [x] Check DMARK
-  * [ ] Blacklist Check
+  * [x] Blacklist Check
   * [ ] Pyzor Check
   * [ ] Razor2 Check
 * [ ] WIP: Launch Demo Website

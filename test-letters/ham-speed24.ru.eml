@@ -1,0 +1,37 @@
+From start@speed24.ru Fri Aug 02 13:38:07 2019
+Return-path: <start@speed24.ru>
+Envelope-to: 5d443c9882cd8e56734b18e9@spam24.ru
+Delivery-date: Fri, 02 Aug 2019 13:38:07 +0000
+Received: from forward101o.mail.yandex.net ([37.140.190.181])
+	by spam24.ru with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+	(Exim 4.92)
+	(envelope-from <start@speed24.ru>)
+	id 1htXl1-0000hE-G1
+	for 5d443c9882cd8e56734b18e9@spam24.ru; Fri, 02 Aug 2019 13:38:07 +0000
+Received: from mxback23g.mail.yandex.net (mxback23g.mail.yandex.net [IPv6:2a02:6b8:0:1472:2741:0:8b7:323])
+	by forward101o.mail.yandex.net (Yandex) with ESMTP id 215743C02803
+	for <5d443c9882cd8e56734b18e9@spam24.ru>; Fri,  2 Aug 2019 16:38:07 +0300 (MSK)
+Received: from localhost (localhost [::1])
+	by mxback23g.mail.yandex.net (nwsmtp/Yandex) with ESMTP id D9c0gGzRUt-c6gqqJr9;
+	Fri, 02 Aug 2019 16:38:06 +0300
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=speed24.ru; s=mail; t=1564753086;
+	bh=6cZYSCXHXapH0wa6EedMXzSSIua6AI+5MEmf9RXvraM=;
+	h=Message-Id:Date:Subject:To:From;
+	b=JxZ0hm4f8XsnFdcL2KH4+9JbixE9cqE51hyrOak5vu7pbm5SPUA6UhYseYJttEvoR
+	 Be82cx6HBwh66u661s4XFZOiKUSgnWK+6LavZ6cuCjAVqLYTsoOL0j2MCMbwqBIrrD
+	 RglkWBUTOd5wE/YvzcNP4MB+zwzgdIz55e1xZBBI=
+Authentication-Results: mxback23g.mail.yandex.net; dkim=pass header.i=@speed24.ru
+Received: by sas2-3b71b6ddd4dd.qloud-c.yandex.net with HTTP;
+	Fri, 02 Aug 2019 16:38:06 +0300
+From: start@speed24.ru
+To: 5d443c9882cd8e56734b18e9@spam24.ru
+Subject: =?utf-8?B?0JjRgdC/0YDQsNCy0LvQtdC90LjQtSDQv9GA0L7QsdC70LXQvCDQtNC+0YHRgtCw0LLQutC4INC/0L4=?=
+	=?utf-8?B?0YfRgtGL?=
+MIME-Version: 1.0
+X-Mailer: Yamail [ http://yandex.ru ] 5.0
+Date: Fri, 02 Aug 2019 16:38:06 +0300
+Message-Id: <16084281564753086@sas2-3b71b6ddd4dd.qloud-c.yandex.net>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/html; charset=utf-8
+
+<div>Проверочное сообщение</div>

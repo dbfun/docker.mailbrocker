@@ -1,0 +1,279 @@
+[
+  {
+    "name": "Spamhaus SBL Advisory",
+    "url": "https://www.spamhaus.org/sbl/",
+    "dns": "sbl.spamhaus.org",
+    "statusCode": 0,
+    "hitMark": -1,
+    "mark": 0,
+    "details": ""
+  },
+  {
+    "mark": 0,
+    "name": "Spamhaus CSS Advisory",
+    "url": "https://www.spamhaus.org/css/",
+    "dns": "css.spamhaus.org",
+    "statusCode": 0,
+    "hitMark": -1,
+    "details": ""
+  },
+  {
+    "name": "Spamhaus XBL Advisory",
+    "url": "https://www.spamhaus.org/xbl/",
+    "dns": "xbl.spamhaus.org",
+    "statusCode": 0,
+    "hitMark": -1,
+    "mark": 0,
+    "details": ""
+  },
+  {
+    "name": "Spamhaus PBL Advisory",
+    "url": "https://www.spamhaus.org/pbl/",
+    "dns": "pbl.spamhaus.org",
+    "statusCode": 0,
+    "hitMark": -1,
+    "mark": 0,
+    "details": ""
+  },
+  {
+    "name": "Barracuda",
+    "url": "http://barracudacentral.org/rbl",
+    "dns": "b.barracudacentral.org",
+    "description": "",
+    "removal": "To request adjustment of your IP reputation on the Barracuda Reputation System, you should submit a <a href=\"http://barracudacentral.org/rbl/removal-request\" target=\"_blank\">removal request</a>.",
+    "hitMark": -0.5,
+    "statusCode": 0,
+    "mark": 0,
+    "details": ""
+  },
+  {
+    "name": "Hostkarma",
+    "url": "http://ipadmin.junkemailfilter.com/remove.php",
+    "dns": "hostkarma.junkemailfilter.com",
+    "description": "",
+    "removal": "",
+    "hitMark": -0.5,
+    "statusCode": 0,
+    "mark": 0
+  },
+  {
+    "name": "IMP-SPAM",
+    "url": "http://antispam.imp.ch",
+    "dns": "spamrbl.imp.ch",
+    "description": "",
+    "removal": "",
+    "hitMark": -0.5,
+    "statusCode": 0,
+    "mark": 0,
+    "details": ""
+  },
+  {
+    "name": "BACKSCATTERER",
+    "url": "http://www.backscatterer.org/index.php",
+    "dns": "ips.backscatterer.org",
+    "description": "",
+    "removal": "All you have to do to be removed is stopping your system to send misdirected bounces, misdirected autoresponders and sender callouts.<br/>After you did so, your IP will be removed automatically and free of charge 4 weeks after they have seen the last abusive action.",
+    "hitMark": -0.5,
+    "statusCode": 0,
+    "mark": 0,
+    "details": ""
+  },
+  {
+    "name": "China Anti-Spam Alliance",
+    "url": "http://www.anti-spam.org.cn/",
+    "dns": "cblplus.anti-spam.org.cn",
+    "description": "",
+    "removal": "You can submit a <a href=\"http://www.anti-spam.org.cn/appeal.action\" target=\"_blank\">removal request</a> to be removed from this blacklist.",
+    "hitMark": -0.5,
+    "statusCode": 0,
+    "mark": 0,
+    "details": ""
+  },
+  {
+    "name": "inps.de",
+    "url": "http://dnsbl.inps.de/index.cgi",
+    "dns": "dnsbl.inps.de",
+    "description": "",
+    "removal": "",
+    "hitMark": -0.5,
+    "statusCode": 0,
+    "mark": 0,
+    "details": ""
+  },
+  {
+    "name": "LashBack",
+    "url": "http://blacklist.lashback.com/",
+    "dns": "ubl.unsubscore.com",
+    "description": "",
+    "removal": "",
+    "hitMark": -0.5,
+    "statusCode": 0,
+    "mark": 0,
+    "details": ""
+  },
+  {
+    "name": "mailskipe",
+    "url": "http://mailspike.net",
+    "dns": "bl.mailspike.net",
+    "description": "",
+    "removal": "",
+    "hitMark": -0.5,
+    "statusCode": 0,
+    "mark": 0,
+    "details": ""
+  },
+  {
+    "name": "NiX Spam",
+    "url": "http://www.heise.de/ix/nixspam/dnsbl_en/",
+    "dns": "ix.dnsbl.manitu.net",
+    "description": "",
+    "removal": "",
+    "hitMark": -0.5,
+    "statusCode": 0,
+    "mark": 0,
+    "details": ""
+  },
+  {
+    "name": "REDHAWK",
+    "url": "http://www.redhawk.org",
+    "dns": "access.redhawk.org",
+    "description": "",
+    "removal": "",
+    "hitMark": -0.5,
+    "statusCode": 0,
+    "mark": 0,
+    "details": ""
+  },
+  {
+    "name": "SORBS (Relay)",
+    "url": "http://www.sorbs.net/lookup.shtml",
+    "dns": "relays.dnsbl.sorbs.net",
+    "description": "",
+    "removal": "",
+    "hitMark": -0.5,
+    "statusCode": 0,
+    "mark": 0,
+    "details": ""
+  },
+  {
+    "name": "SORBS (last 48 hours)",
+    "url": "http://www.sorbs.net/lookup.shtml",
+    "dns": "new.spam.dnsbl.sorbs.net",
+    "description": "",
+    "removal": "",
+    "hitMark": -0.5,
+    "statusCode": 0,
+    "mark": 0,
+    "details": ""
+  },
+  {
+    "name": "SORBS (last 28 days)",
+    "url": "http://www.sorbs.net/lookup.shtml",
+    "dns": "recent.spam.dnsbl.sorbs.net",
+    "description": "",
+    "removal": "",
+    "hitMark": -0.5,
+    "statusCode": 0,
+    "mark": 0,
+    "details": ""
+  },
+  {
+    "name": "SpamCannibal",
+    "url": "http://www.spamcannibal.org/",
+    "dns": "bl.spamcannibal.org",
+    "description": "",
+    "removal": "",
+    "hitMark": -0.5,
+    "statusCode": 0,
+    "mark": 0,
+    "details": ""
+  },
+  {
+    "name": "SPAMCOP",
+    "url": "http://spamcop.net/bl.shtml",
+    "dns": "bl.spamcop.net",
+    "description": "The SpamCop Blocking List (SCBL) lists IP addresses which have transmitted reported email to SpamCop users. SpamCop, service providers and individual users then use the SCBL to block and filter unwanted email. The SCBL is a fast and automatic list of sites sending reported mail, fueled by a number of sources, including automated reports and SpamCop user submissions. The SCBL is time-based, resulting in quick and automatic delisting of these sites when reports stop.",
+    "removal": "Entries in SpamCop expire automatically several days after the SpamCop reports decrease.",
+    "hitMark": -1,
+    "statusCode": 0,
+    "mark": 0,
+    "details": ""
+  },
+  {
+    "name": "SEM-BACKSCATTER",
+    "url": "http://spameatingmonkey.com/index.html",
+    "dns": "backscatter.spameatingmonkey.net",
+    "description": "",
+    "removal": "",
+    "hitMark": -0.5,
+    "statusCode": 0,
+    "mark": 0,
+    "details": ""
+  },
+  {
+    "name": "SEM-BLACK",
+    "url": "http://spameatingmonkey.com/index.html",
+    "dns": "bl.spameatingmonkey.net",
+    "description": "",
+    "removal": "",
+    "hitMark": -0.5,
+    "statusCode": 0,
+    "mark": 0,
+    "details": ""
+  },
+  {
+    "name": "RATS-ALL",
+    "url": "http://www.spamrats.com",
+    "dns": "all.spamrats.com",
+    "description": "",
+    "removal": "",
+    "hitMark": -0.5,
+    "statusCode": 0,
+    "mark": 0,
+    "details": ""
+  },
+  {
+    "name": "PSBL",
+    "url": "http://psbl.surriel.com/",
+    "dns": "psbl.surriel.com",
+    "description": "",
+    "removal": "",
+    "hitMark": -0.5,
+    "statusCode": 0,
+    "mark": 0,
+    "details": ""
+  },
+  {
+    "name": "SWINOG",
+    "url": "",
+    "dns": "dnsrbl.swinog.ch",
+    "description": "",
+    "removal": "",
+    "hitMark": -0.5,
+    "statusCode": 0,
+    "mark": 0,
+    "details": ""
+  },
+  {
+    "name": "GBUdb Truncate",
+    "url": "http://www.gbudb.com/truncate/index.jsp",
+    "dns": "truncate.gbudb.net",
+    "description": "",
+    "removal": "",
+    "hitMark": -0.5,
+    "statusCode": 0,
+    "mark": 0,
+    "details": ""
+  },
+  {
+    "name": "Weighted Private Block List",
+    "url": "http://wpbl.pc9.org/",
+    "dns": "db.wpbl.info",
+    "description": "",
+    "removal": "",
+    "hitMark": -0.5,
+    "statusCode": 0,
+    "mark": 0,
+    "details": ""
+  }
+]

@@ -8,12 +8,27 @@ const
   assert = require('assert'),
   { Spfquery } = require('../lib/Spfquery'),
   { Dkimverify } = require('../lib/Dkimverify'),
-  { Dmarccheck } = require('../lib/Dmarccheck')
+  { Dmarccheck } = require('../lib/Dmarccheck'),
+  { Blacklist } = require('../lib/Blacklist'),
+  blacklistDomains = require('../lib/Blacklist/dnsbl-domains')
   ;
 
 class Mailtester {
 
   constructor() {
+    this.availableTests = [ "spamassassin", "spf", "dkim", "dmarc", "blacklist" ];
+    /*
+    check for DNS servers if you got this error:
+
+      err: Error: queryAny ENOTIMP 181.190.140.37.black.junkemailfilter.com
+          at QueryReqWrap.onresolve [as oncomplete] (dns.js:203:19) {
+        errno: 'ENOTIMP',
+        code: 'ENOTIMP',
+        syscall: 'queryAny',
+        hostname: '181.190.140.37.black.junkemailfilter.com'
+      }
+    */
+    this.availableDNS = [ "8.8.8.8", "77.88.8.8", "94.142.137.100", "94.142.136.100" ];
     this.ObjectId = null;
     this.doc = {
       created: new Date(),
@@ -83,26 +98,63 @@ class Mailtester {
   }
 
   async checkAll() {
+    let tests = [];
+
+    for(let testName of this.availableTests) {
+      switch(testName) {
+        case "spamassassin":
+          tests.push(this.checkSpamassassin());
+          break;
+        case "spf":
+          tests.push(this.checkSpf());
+          break;
+        case "dkim":
+          tests.push(this.checkDkim());
+          break;
+        case "dmarc":
+          tests.push(this.checkDmarc());
+          break;
+        case "blacklist":
+          tests.push(this.checkBlacklist());
+          break;
+      }
+    }
+    return Promise.all(tests);
+  }
+
+  checkSpamassassin() {
     let spamassassin = Registry.get('spamassassin');
-    spamassassin.check(this.doc.raw).then(async (spamassassin) => {
+    return spamassassin.check(this.doc.raw).then(async (spamassassin) => {
       await this.saveResults('spamassassin', spamassassin);
     });
+  }
 
+  checkSpf() {
     let spfquery = new Spfquery;
-    spfquery.check(this.doc.lastMtaIP, this.doc.from).then(async (spf) => {
+    return spfquery.check(this.doc.lastMtaIP, this.doc.from).then(async (spf) => {
       await this.saveResults('spf', spf);
     });
+  }
 
+  checkDkim() {
     let dkimverify = new Dkimverify;
-    dkimverify.check(this.doc.raw).then(async (dkim) => {
+    return dkimverify.check(this.doc.raw).then(async (dkim) => {
       await this.saveResults('dkim', dkim);
     });
+  }
 
+  checkDmarc() {
     let dmarccheck = new Dmarccheck;
-    dmarccheck.check(this.doc.from).then(async (dmarc) => {
+    return dmarccheck.check(this.doc.from).then(async (dmarc) => {
       await this.saveResults('dmarc', dmarc);
     });
+  }
 
+  checkBlacklist() {
+    let blacklist = new Blacklist(this.availableDNS, blacklistDomains);
+    return blacklist.check(this.doc.lastMtaIP).then(async (bl) => {
+      await this.saveResults('blacklist', bl);
+    });
   }
 
   async saveResults(section, data) {
