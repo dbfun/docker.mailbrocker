@@ -123,6 +123,21 @@ class Api {
         let mailtester = new Mailtester();
         await mailtester.makeFromRaw(req.body);
         try {
+          /*
+            TODO:
+
+            POST /checkmail
+            POST /checkmail?mode=MTA
+              - parse mail body for ObjectId (default for MTA)
+            POST /checkmail?mode=new
+            POST /checkmail?mode=create
+              - generage ObjectId
+            POST /checkmail?mode=set&ObjectId=...
+              - set ObjectId from URI query string
+
+            if(req.query.ObjectId)
+            mailtester.setObjectId()
+          */
           // Save mail and report about this
           await mailtester.saveRaw();
           res.send(JSON.stringify({result: "ok"}));
@@ -149,7 +164,7 @@ class Api {
       }
     });
 
-    api.get(/^\/mail\/([0-9a-f]{24})(\/(raw|spamassassin|spf|dkim|dmarc|blacklist)?)?$/, async (req, res, next) => {
+    api.get(/^\/mail\/([0-9a-f]{24})(\/(raw|spamassassin|spf|dkim|dmarc|blacklist|pyzor)?)?$/, async (req, res, next) => {
       try {
         let ObjecId = req.params[0];
         let select = req.params[2];

@@ -10,9 +10,9 @@ Work in progress
   * [x] Spamassassin check
   * [x] Validate SPF
   * [x] Validate DKIM
-  * [x] Check DMARK
+  * [x] Check DMARC
   * [x] Blacklist Check
-  * [ ] Pyzor Check
+  * [x] Pyzor Check
   * [ ] Razor2 Check
 * [ ] WIP: Launch Demo Website
 

@@ -10,13 +10,14 @@ const
   { Dkimverify } = require('../lib/Dkimverify'),
   { Dmarccheck } = require('../lib/Dmarccheck'),
   { Blacklist } = require('../lib/Blacklist'),
-  blacklistDomains = require('../lib/Blacklist/dnsbl-domains')
+  blacklistDomains = require('../lib/Blacklist/dnsbl-domains'),
+  { Pyzor } = require('../lib/Pyzor')
   ;
 
 class Mailtester {
 
   constructor() {
-    this.availableTests = [ "spamassassin", "spf", "dkim", "dmarc", "blacklist" ];
+    this.availableTests = [ "spamassassin", "spf", "dkim", "dmarc", "blacklist", "pyzor" ];
     /*
     check for DNS servers if you got this error:
 
@@ -71,7 +72,10 @@ class Mailtester {
       let m = Received.line.match(/(\[([0-9a-f:]{8,}|[0-9.]{7,})\])/);
       this.doc.lastMtaIP = m[2];
     } catch (e) { }
+  }
 
+  setObjectId(_ObjectId) {
+    this.ObjectId = _ObjectId;
   }
 
   getMailObjectId(to) {
@@ -117,6 +121,9 @@ class Mailtester {
         case "blacklist":
           tests.push(this.checkBlacklist());
           break;
+        case "pyzor":
+          tests.push(this.checkPyzor());
+          break;
       }
     }
     return Promise.all(tests);
@@ -154,6 +161,13 @@ class Mailtester {
     let blacklist = new Blacklist(this.availableDNS, blacklistDomains);
     return blacklist.check(this.doc.lastMtaIP).then(async (bl) => {
       await this.saveResults('blacklist', bl);
+    });
+  }
+
+  checkPyzor() {
+    let pyzor = new Pyzor;
+    return pyzor.check(this.doc.raw).then(async (pz) => {
+      await this.saveResults('pyzor', pz);
     });
   }
 

@@ -119,3 +119,5 @@ check_message:
 * en: [blacklistalert](http://www.blacklistalert.org/)
 * en: [Blacklist Check](https://whatismyipaddress.com/blacklist-check)
 * en: [System: Expanding IPv6 Addresses for DNSBL Checks](https://www.the-art-of-web.com/system/ipv6-expand-for-rbl/)
+* en: [Pyzor Client Commands](http://www.pyzor.org/en/release-1-0-0/client.html#commands)
+* en: [Pyzor Whitelist](http://public.pyzor.org/whitelist/)

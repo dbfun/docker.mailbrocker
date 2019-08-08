@@ -1,9 +1,10 @@
 FROM alpine
 
-# DKIM, DMARC
 ADD http://deb.debian.org/debian/pool/main/libm/libmail-dkim-perl/libmail-dkim-perl_0.40.orig.tar.gz /tmp
-RUN apk add perl make perl-crypt-openssl-rsa perl-mailtools perl-net-dns && \
-    apk add opendmarc --update-cache --repository http://nl.alpinelinux.org/alpine/edge/testing && \
+
+RUN \
+    # DKIM
+    apk add perl make perl-crypt-openssl-rsa perl-mailtools perl-net-dns && \
     cd /tmp/ && \
     tar -xzf libmail-dkim-perl_0.40.orig.tar.gz && \
     cd /tmp/Mail-DKIM-0.40 && \
@@ -11,12 +12,22 @@ RUN apk add perl make perl-crypt-openssl-rsa perl-mailtools perl-net-dns && \
     make && \
     make install && \
     mv /tmp/Mail-DKIM-0.40/scripts/dkimverify.pl /usr/bin/dkimproxy-verify && \
-    rm -rf /tmp/libmail-dkim-perl_0.40.orig.tar.gz /tmp/Mail-DKIM-0.40
+    cd / && \
+    rm -rf /tmp/libmail-dkim-perl_0.40.orig.tar.gz /tmp/Mail-DKIM-0.40 && \
+    # DMARC
+    apk add opendmarc --update-cache --repository http://nl.alpinelinux.org/alpine/edge/testing && \
+    # Pyzor
+    apk add python3 && \
+    pip3 install pyzor && \
+    # SPF
+    apk add libspf2-tools && \
+    # Spamassassin client
+    apk add spamassassin-client
 
 # App
 ADD ./package.json /tmp/package.json
 
-RUN apk add --no-cache nodejs npm spamassassin-client libspf2-tools && \
+RUN apk add --no-cache nodejs npm && \
     npm install --global pm2 mocha && \
     cd /tmp && \
     npm install

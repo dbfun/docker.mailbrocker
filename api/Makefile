@@ -6,8 +6,9 @@
 
 MAJOR?=0
 MINOR?=1
+PATCH?=0
 
-VERSION=$(MAJOR).$(MINOR)
+VERSION=$(MAJOR).$(MINOR).$(PATCH)
 
 APP_NAME="mailtester-api"
 HUB_NAMESPACE="required"
@@ -31,7 +32,8 @@ IMAGE_NAME_VERSION="${HUB_NAMESPACE}/${IMAGE_NAME}:${VERSION}"
 .PHONY: install-prerequirements
 install-prerequirements:
 	@sudo npm install --global pm2 mocha
-	@sudo apt install -y spfquery dkimproxy opendmarc
+	@sudo apt install -y spfquery dkimproxy opendmarc python3
+	@sudo pip3 install pyzor
 
 .PHONY: install-dev
 install-dev:
@@ -44,13 +46,11 @@ install-dev:
 
 .PHONY: clean-image
 clean-image: version-check
-	@echo "+ $@"
 	@docker rmi ${IMAGE_NAME_LATEST} || true
 	@docker rmi ${IMAGE_NAME_VERSION} || true
 
 .PHONY: image
 image: version-check
-	@echo "+ $@"
 	@docker build -t ${IMAGE_NAME_VERSION} -f ./${DOCKERFILE} .
 	@docker tag ${IMAGE_NAME_VERSION} ${IMAGE_NAME_LATEST}
 	@echo 'Done.'
@@ -58,7 +58,6 @@ image: version-check
 
 .PHONY: push
 push: clean-image image
-	@echo "+ $@"
 	@docker push ${IMAGE_NAME_LATEST}
 	@docker push ${IMAGE_NAME_VERSION}
 
@@ -68,13 +67,11 @@ push: clean-image image
 
 .PHONY: test-unit
 test-unit:
-	@echo "+ $@"
 	npm run test
 
 .PHONY: test-container
 test-container: image
-	@echo "+ $@"
-	@docker run --rm -it ${IMAGE_NAME_LATEST} npm run test
+	@docker run --rm -it -v`pwd`/../test-letters:/test-letters ${IMAGE_NAME_LATEST} npm run test
 
 
 #################################
@@ -83,7 +80,6 @@ test-container: image
 
 .PHONY: version-check
 version-check:
-	@echo "+ $@"
 	if [ -z "${VERSION}" ]; then \
 		echo "VERSION is not set" ; \
 		false ; \
