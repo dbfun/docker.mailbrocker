@@ -36,7 +36,7 @@ class Razor {
           - 1 if the mail is not catalogued by the server (not a spam).
         */
         resolve({
-          result: code === 0 ? "spam" : "ham"
+          test: code === 0 ? "spam" : "ham"
         });
       });
 

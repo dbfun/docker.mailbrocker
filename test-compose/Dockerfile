@@ -6,8 +6,7 @@ ENV EXIM_DOMAIN=your-domain.com \
     PORT_EXIM=25 \
     TZ=Europe/Moscow
 
-RUN apk add curl swaks perl-net-dns perl-net-ssleay bash --update-cache --repository http://nl.alpinelinux.org/alpine/edge/testing && \
-    apk add tzdata && \
+RUN apk add curl swaks perl-net-dns perl-net-ssleay bash tzdata jq --update-cache --repository http://nl.alpinelinux.org/alpine/edge/testing && \
     cp /usr/share/zoneinfo/Europe/Moscow /etc/localtime && \
     echo "$TZ" >  /etc/timezone
 

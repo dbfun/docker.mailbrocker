@@ -1,5 +1,6 @@
 "use strict";
 
+require("core-js"); // for Promise.allSettled
 
 const
   assert = require('assert'),
@@ -112,8 +113,17 @@ class Api {
       * 400 Bad Request - wrong field "To:"
       * 500 Internal Server Error - for server errors
 
-      # MTA will be retry delivery via API for 5xx HTTP codes and "Connection refused" (exit code 7)
+      MTA will be retry delivery via API for 5xx HTTP codes and "Connection refused" (exit code 7)
+
+      POST /checkmail
+      POST /checkmail?mode=MTA
+        - parse mail header from: for ObjectId (default mode for MTA)
+      POST /checkmail?mode=new
+        - generate ObjectId
+      POST /checkmail?mode=set&ObjectId=...
+        - set ObjectId from URI query string
     */
+
     api.post('/checkmail', async (req, res, next) => {
       // res.status(400).send('Temp error'); return;        // Error test case
       // res.status(503).send('Server error'); return;      // Error test case
@@ -122,25 +132,23 @@ class Api {
       try {
         let mailtester = new Mailtester();
         await mailtester.makeFromRaw(req.body);
+
+        let mode = req.query.mode ? req.query.mode : 'MTA';
+        if(["MTA", "new", "set"].indexOf(mode) === -1) {
+          mode = "MTA";
+        }
+        if(mode === "set") {
+          mailtester.setObjectId(req.query.ObjectId);
+        }
+        if(mode === "new") {
+          mailtester.generateObjectId();
+        }
+
         try {
-          /*
-            TODO:
-
-            POST /checkmail
-            POST /checkmail?mode=MTA
-              - parse mail body for ObjectId (default for MTA)
-            POST /checkmail?mode=new
-            POST /checkmail?mode=create
-              - generage ObjectId
-            POST /checkmail?mode=set&ObjectId=...
-              - set ObjectId from URI query string
-
-            if(req.query.ObjectId)
-            mailtester.setObjectId()
-          */
           // Save mail and report about this
           await mailtester.saveRaw();
-          res.send(JSON.stringify({result: "ok"}));
+          let ret = {result: "ok", ObjecId: mailtester.getObjectId()};
+          res.send(JSON.stringify(ret));
         } catch (err) {
           // ... or report about wrong ObjectId in To: field
           if(mailtester.ObjectId === null) {

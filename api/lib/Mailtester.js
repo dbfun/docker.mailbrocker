@@ -75,8 +75,16 @@ class Mailtester {
     } catch (e) { }
   }
 
+  getObjectId() {
+    return this.ObjectId;
+  }
+
   setObjectId(_ObjectId) {
     this.ObjectId = _ObjectId;
+  }
+
+  generateObjectId() {
+    this.ObjectId = ObjectId().valueOf();
   }
 
   getMailObjectId(to) {
@@ -130,7 +138,7 @@ class Mailtester {
           break;
       }
     }
-    return Promise.all(tests);
+    return Promise.allSettled(tests);
   }
 
   checkSpamassassin() {

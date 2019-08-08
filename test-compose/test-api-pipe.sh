@@ -19,7 +19,7 @@ RESP=`curl -s \
     http://api:$PORT_API/healthcheck 2>&1`
 assert "$RESP" '> GET /healthcheck HTTP/1.1'
 assert "$RESP" '< HTTP/1.1 200 OK'
-assert "$RESP" '{"result":"ok"}'
+assert "$RESP" '{"result":"ok"' # and ObjecId ...
 end_case
 
 
@@ -33,8 +33,8 @@ RESP=`cat test-letters/spam-wrong-mail-to.eml | curl -s \
     --header 'Content-Type: text/plain' \
     --data-binary @- \
     --no-buffer \
-    http://api:$PORT_API/checkmail 2>&1`
-assert "$RESP" '> POST /checkmail HTTP/1.1'
+    http://api:$PORT_API/checkmail?mode=MTA 2>&1`
+assert "$RESP" '> POST /checkmail?mode=MTA HTTP/1.1'
 assert "$RESP" '< HTTP/1.1 400 Bad Request'
 assert "$RESP" '< Content-Type: application/json;'
 assert "$RESP" '{"result":"fail","reason":"Wrong fied \"To:\" - use MongoDB ObjectId as user name"}'
@@ -51,11 +51,11 @@ RESP=`cat test-letters/spam-GTUBE.eml | curl -s \
     --header 'Content-Type: text/plain' \
     --data-binary @- \
     --no-buffer \
-    http://api:$PORT_API/checkmail 2>&1`
-assert "$RESP" '> POST /checkmail HTTP/1.1'
+    http://api:$PORT_API/checkmail?mode=MTA 2>&1`
+assert "$RESP" '> POST /checkmail?mode=MTA HTTP/1.1'
 assert "$RESP" '< HTTP/1.1 200 OK'
 assert "$RESP" '< Content-Type: application/json;'
-assert "$RESP" '{"result":"ok"}'
+assert "$RESP" '{"result":"ok"' # and ObjecId ...
 end_case
 
 

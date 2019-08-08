@@ -11,7 +11,7 @@ const
     {
       src: __dirname + "/../../test-letters/ham-speed24.ru.eml",
       name: "ham",
-      expect: { result: 'ham' }
+      expect: { test: 'ham' }
     }
 
 
