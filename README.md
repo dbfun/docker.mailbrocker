@@ -13,7 +13,7 @@ Work in progress
   * [x] Check DMARC
   * [x] Blacklist Check
   * [x] Pyzor Check
-  * [ ] Razor2 Check
+  * [x] Razor2 Check
 * [ ] WIP: Launch Demo Website
 
 # Check your mail for spam

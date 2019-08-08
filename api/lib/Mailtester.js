@@ -11,13 +11,14 @@ const
   { Dmarccheck } = require('../lib/Dmarccheck'),
   { Blacklist } = require('../lib/Blacklist'),
   blacklistDomains = require('../lib/Blacklist/dnsbl-domains'),
-  { Pyzor } = require('../lib/Pyzor')
+  { Pyzor } = require('../lib/Pyzor'),
+  { Razor } = require('../lib/Razor')
   ;
 
 class Mailtester {
 
   constructor() {
-    this.availableTests = [ "spamassassin", "spf", "dkim", "dmarc", "blacklist", "pyzor" ];
+    this.availableTests = [ "spamassassin", "spf", "dkim", "dmarc", "blacklist", "pyzor", "razor" ];
     /*
     check for DNS servers if you got this error:
 
@@ -124,6 +125,9 @@ class Mailtester {
         case "pyzor":
           tests.push(this.checkPyzor());
           break;
+        case "razor":
+          tests.push(this.checkRazor());
+          break;
       }
     }
     return Promise.all(tests);
@@ -168,6 +172,13 @@ class Mailtester {
     let pyzor = new Pyzor;
     return pyzor.check(this.doc.raw).then(async (pz) => {
       await this.saveResults('pyzor', pz);
+    });
+  }
+
+  checkRazor() {
+    let razor = new Razor;
+    return razor.check(this.doc.raw).then(async (rz) => {
+      await this.saveResults('razor', rz);
     });
   }
 

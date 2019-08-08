@@ -22,7 +22,9 @@ RUN \
     # SPF
     apk add libspf2-tools && \
     # Spamassassin client
-    apk add spamassassin-client
+    apk add spamassassin-client && \
+    # Razor
+    apk add razor
 
 # App
 ADD ./package.json /tmp/package.json
