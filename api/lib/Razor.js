@@ -17,15 +17,15 @@ class Razor {
 
   async fetchData(msg) {
     return new Promise((resolve, reject) => {
-      const pyzor = spawn('razor-check');
-      pyzor.stdin.write(msg);
+      const razor = spawn("razor-check", "-home=/tmp");
+      razor.stdin.write(msg);
       let stdout = '';
 
-      pyzor.stdout.on('data', (data) => {
+      razor.stdout.on('data', (data) => {
         stdout += data;
       });
 
-      pyzor.on('close', (code) => {
+      razor.on('close', (code) => {
         if(code > 1) {
           reject(new Error("Razor exit code must be 0 or 1"));
           return;
@@ -40,7 +40,7 @@ class Razor {
         });
       });
 
-      pyzor.stdin.end();
+      razor.stdin.end();
     });
   }
 
