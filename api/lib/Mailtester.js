@@ -79,6 +79,18 @@ class Mailtester {
     return this.ObjectId;
   }
 
+  getFieldTo() {
+    return this.doc.to;
+  }
+
+  getFieldToName() {
+    try {
+      return this.doc.to.match(/^(.*?)@/)[1];
+    } catch (e) {
+      return null;
+    }
+  }
+
   setObjectId(_ObjectId) {
     this.ObjectId = _ObjectId;
   }

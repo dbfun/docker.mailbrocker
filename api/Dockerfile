@@ -47,6 +47,8 @@ ENV PORT_SPAMASSASSIN=783 \
     SPAMASSASSIN_MAX_MSG_SIZE=5000000 \
     MONGO_URI=mongodb://mongo:27017/mailtester \
     MONGO_DB=mailtester \
-    API_MAX_MAIL_COUNT=2000
+    API_MAX_MAIL_COUNT=2000 \
+    API_CATCH_ALL_MTA=off \
+    API_CATCH_ALL_MTA_TO=all,any
 
 CMD [ "pm2-runtime", "--watch", "index.js" ]

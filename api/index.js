@@ -8,6 +8,8 @@ const
   config = {
     incomingMailPort: process.env.PORT_API,
     incomingMailMaxSize: process.env.API_INCOMING_MAIL_MAX_SIZE,
+    catchAllMtaLetters: process.env.API_CATCH_ALL_MTA === "on",
+    catchAllMtaLettersTo: process.env.API_CATCH_ALL_MTA_TO ? process.env.API_CATCH_ALL_MTA_TO.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [],
     maxMailCount: parseInt(process.env.API_MAX_MAIL_COUNT),
     spamassassin: {
       port: process.env.PORT_SPAMASSASSIN,
@@ -117,7 +119,10 @@ class Api {
 
       POST /checkmail
       POST /checkmail?mode=MTA
-        - parse mail header from: for ObjectId (default mode for MTA)
+        => parse mail header "TO:" for ObjectId (default mode for MTA)
+        => if option `config.catchAllMtaLetters` checked, generate ObjectId
+        => looks for a special address "TO:" (`config.catchAllMtaLettersTo`), generate ObjectId
+        => otherwise reject mail saving (a letter is real spam from spammer)
       POST /checkmail?mode=new
         - generate ObjectId
       POST /checkmail?mode=set&ObjectId=...
@@ -137,11 +142,27 @@ class Api {
         if(["MTA", "new", "set"].indexOf(mode) === -1) {
           mode = "MTA";
         }
+
         if(mode === "set") {
           mailtester.setObjectId(req.query.ObjectId);
         }
         if(mode === "new") {
           mailtester.generateObjectId();
+        }
+
+        let emailAddress = mailtester.getFieldTo();
+
+        if(mode === "MTA" && mailtester.getObjectId() === null) {
+          if(config.catchAllMtaLetters) {
+            mailtester.generateObjectId();
+            console.log(`mail catched from MTA with config.catchAllMtaLetters option; TO: ${emailAddress}`);
+          } else if(config.catchAllMtaLettersTo.length) {
+            let name = mailtester.getFieldToName();
+            if(config.catchAllMtaLettersTo.indexOf(name) !== -1) {
+              mailtester.generateObjectId();
+              console.log(`mail catched from MTA with name ${name} and config.catchAllMtaLettersTo option: ${config.catchAllMtaLettersTo}; TO: ${emailAddress}`);
+            }
+          }
         }
 
         try {
@@ -152,7 +173,7 @@ class Api {
         } catch (err) {
           // ... or report about wrong ObjectId in To: field
           if(mailtester.ObjectId === null) {
-            console.log('3');
+            console.log(`mail rejected in ${mode} mode; TO: ${emailAddress}`);
             res.status(400).send(JSON.stringify({result: "fail", reason: "Wrong fied \"To:\" - use MongoDB ObjectId as user name"}));
             return;
           } else {
