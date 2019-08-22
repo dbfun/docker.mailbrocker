@@ -47,3 +47,7 @@ reload:
 	@docker-compose exec spamassassin sh -c 'kill -HUP `cat /var/run/spamd.pid`'
 	@docker-compose exec exim sh -c 'kill -HUP `cat /run/exim.pid`'
 	@docker-compose exec api sh -c 'pm2 restart all'
+
+.PHONY: attach-api
+attach-api:
+	./attach.sh api

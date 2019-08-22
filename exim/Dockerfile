@@ -1,14 +1,12 @@
 FROM alpine:latest
 
-# TODO: minify
-
 RUN apk add --no-cache exim curl
 
-# dev section
+### dev section
 ENV ENV="/etc/profile"
 ADD ./dev.profile.sh /etc/profile.d/dev.profile.sh
 RUN apk add --no-cache busybox-extras exim-scripts tree man
-# end dev section
+### end dev section
 
 RUN mkdir -p        /var/spool/mail /var/mail /var/spool/exim /var/spool/exim/db /var/spool/exim/input /var/spool/exim/msglog && \
     chmod 775       /var/spool/mail /var/mail /var/spool/exim /var/spool/exim/db /var/spool/exim/input /var/spool/exim/msglog && \

@@ -24,18 +24,20 @@ RUN \
     # Spamassassin client
     apk add spamassassin-client && \
     # Razor
-    apk add razor
+    apk add razor && \
+    # NodeJS bundle
+    apk add --no-cache nodejs npm && \
+    npm install --global pm2 mocha
 
 # App
 ADD ./package.json /tmp/package.json
+ADD ./package-lock.json /tmp/package-lock.json
 
-RUN apk add --no-cache nodejs npm && \
-    npm install --global pm2 mocha && \
-    cd /tmp && \
+RUN cd /tmp && \
     npm install
 
-ADD . /srv
 WORKDIR srv
+ADD . /srv
 
 RUN mv /tmp/node_modules /srv
 
