@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# This is the entry point for all tests
+
 if [ "$RUN_TESTS" == "on" ]; then
 
   TESTS_PASSED=1

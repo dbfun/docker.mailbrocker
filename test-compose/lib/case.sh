@@ -1,8 +1,7 @@
 # !/bin/bash
 
 function assert {
-  SUBSTR=`echo "$1" | grep -F "$2"`
-  if [ $? != 0 ]; then
+  if [[ "$1" != *"$2"* ]]; then
     echo -e ${Red}"Expected: $2"${Color_Off}
     TESTS_PASSED=0
     CASE_PASSED=0

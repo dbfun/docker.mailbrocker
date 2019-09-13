@@ -15,7 +15,7 @@ down:
 .PHONY: test-compose
 test-compose:
 	@docker-compose up test-compose
-	@docker-compose logs -tf test-compose
+	@docker-compose logs -tf --tail=0 test-compose
 
 # Runs test container for debug purposes
 .PHONY: debug-compose

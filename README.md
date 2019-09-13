@@ -26,6 +26,14 @@ Modules:
 * Website
 * API with mail tester engine (Spamassassin + ...)
 
+# Features:
+
+[x] Mail data sourses:
+  [x] MTA
+  [x] HTTP API
+[ ] special address for auto reply with spam test score
+
+
 # FAQ
 
 ## How to increase incoming email size
