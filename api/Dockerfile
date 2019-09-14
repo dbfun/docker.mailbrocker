@@ -30,8 +30,7 @@ RUN \
     npm install --global pm2 mocha
 
 # App
-ADD ./package.json /tmp/package.json
-ADD ./package-lock.json /tmp/package-lock.json
+ADD ./package.json ./package-lock.json /tmp/
 
 RUN cd /tmp && \
     npm install
