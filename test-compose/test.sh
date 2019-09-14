@@ -10,6 +10,10 @@ if [ "$RUN_TESTS" == "on" ]; then
   source lib/ui.sh
 
   echo -e ${Green}Run tests at: `date`${Color_Off}
+
+  ./test-dns.sh
+  if [ "$?" -ne "0" ]; then TESTS_PASSED=0; fi
+
   ./test-mail.sh
   if [ "$?" -ne "0" ]; then TESTS_PASSED=0; fi
 

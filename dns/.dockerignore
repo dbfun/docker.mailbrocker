@@ -1,0 +1,4 @@
+/.dockerignore
+/Dockerfile
+/README.md
+/origin.unbound.conf

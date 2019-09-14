@@ -10,7 +10,7 @@ source lib/case.sh
 
 TESTS_PASSED=1
 
-start_case "Healthcheck"
+start_case "API: Healthcheck"
 RESP=`curl -s \
     -H "Connection: close" \
     --max-time 10 \
@@ -23,7 +23,7 @@ assert "$RESP" '{"result":"ok"' # and ObjecId ...
 end_case
 
 
-start_case "Deny wrong mail \"To:\" header"
+start_case "API: Deny wrong mail \"To:\" header"
 RESP=`cat test-letters/spam-wrong-mail-to.eml | curl -s \
     -H "Connection: close" \
     --max-time 10 \
@@ -41,7 +41,7 @@ assert "$RESP" '{"result":"fail","reason":"Wrong fied \"To:\" - use MongoDB Obje
 end_case
 
 
-start_case "Add spam mail into check queue"
+start_case "API: Add spam mail into check queue"
 RESP=`cat test-letters/spam-GTUBE.eml | curl -s \
     -H "Connection: close" \
     --max-time 10 \

@@ -36,6 +36,13 @@ services:
       TZ: "${TZ}"
     depends_on:
       - api
+  dns:
+    build: ./dns
+    environment:
+      PORT_DNS: "${PORT_DNS}"
+      DNS_CACHE_MIN_TTL: "${DNS_CACHE_MIN_TTL}"
+      DNS_CACHE_MAX_NEGATIVE_TTL: "${DNS_CACHE_MAX_NEGATIVE_TTL}"
+    restart: always
   api:
     build: ./api
     volumes:
@@ -59,6 +66,7 @@ services:
     ports:
       - "${PORT_API}:${PORT_API}"
     depends_on:
+      - dns
       - mongo
       - exim
       - spamassassin
