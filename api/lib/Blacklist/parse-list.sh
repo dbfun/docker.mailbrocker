@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo Deprecated
+exit 1
+
 cd "$(dirname "$0")"
 DOMAIN_LIST=
 

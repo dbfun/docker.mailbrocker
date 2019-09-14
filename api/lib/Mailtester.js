@@ -10,27 +10,28 @@ const
   { Dkimverify } = require('../lib/Dkimverify'),
   { Dmarccheck } = require('../lib/Dmarccheck'),
   { Blacklist } = require('../lib/Blacklist'),
+  availableDNS = [ "8.8.8.8", "77.88.8.8", "94.142.137.100", "94.142.136.100" ],
   blacklistDomains = require('../lib/Blacklist/dnsbl-domains'),
   { Pyzor } = require('../lib/Pyzor'),
   { Razor } = require('../lib/Razor')
   ;
 
+/*
+check for DNS servers if you got this error:
+
+  err: Error: queryAny ENOTIMP 181.190.140.37.black.junkemailfilter.com
+      at QueryReqWrap.onresolve [as oncomplete] (dns.js:203:19) {
+    errno: 'ENOTIMP',
+    code: 'ENOTIMP',
+    syscall: 'queryAny',
+    hostname: '181.190.140.37.black.junkemailfilter.com'
+  }
+*/
+
 class Mailtester {
 
   constructor() {
     this.availableTests = [ "spamassassin", "spf", "dkim", "dmarc", "blacklist", "pyzor", "razor" ];
-    /*
-    check for DNS servers if you got this error:
-
-      err: Error: queryAny ENOTIMP 181.190.140.37.black.junkemailfilter.com
-          at QueryReqWrap.onresolve [as oncomplete] (dns.js:203:19) {
-        errno: 'ENOTIMP',
-        code: 'ENOTIMP',
-        syscall: 'queryAny',
-        hostname: '181.190.140.37.black.junkemailfilter.com'
-      }
-    */
-    this.availableDNS = [ "8.8.8.8", "77.88.8.8", "94.142.137.100", "94.142.136.100" ];
     this.ObjectId = null;
     this.doc = {
       created: new Date(),
@@ -182,7 +183,7 @@ class Mailtester {
   }
 
   checkBlacklist() {
-    let blacklist = new Blacklist(this.availableDNS, blacklistDomains);
+    let blacklist = new Blacklist(availableDNS, blacklistDomains);
     return blacklist.check(this.doc.lastMtaIP).then(async (bl) => {
       await this.saveResults('blacklist', bl);
     });

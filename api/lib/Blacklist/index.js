@@ -74,9 +74,9 @@ class Blacklist {
       dns.resolveAny(domain, (err, data) => {
 
         if(err !== null) {
-          // console.log(domainBundle.domain, err);
+          // console.log(domainBundle.domain, err); process.exit(1);
           // not listed
-          if(["ENODATA", "ENOTFOUND"].indexOf(err.code) !== -1) {
+          if(["ENOTIMP", "ENODATA", "ENOTFOUND"].indexOf(err.code) !== -1) {
             ret.success = true;
             ret.listed = false;
             return resolve(ret);

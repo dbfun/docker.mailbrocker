@@ -17,7 +17,7 @@ class Razor {
 
   async fetchData(msg) {
     return new Promise((resolve, reject) => {
-      const razor = spawn("razor-check", "-home=/tmp");
+      const razor = spawn("razor-check", [ "-home=/tmp" ]);
       razor.stdin.write(msg);
       let stdout = '';
 
