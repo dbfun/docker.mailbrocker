@@ -4,6 +4,7 @@ require("core-js"); // for Promise.allSettled
 
 const
   assert = require('assert'),
+  dns = require('dns'),
   Registry = new (require('./lib/Registry').Registry),
   config = {
     incomingMailPort: process.env.PORT_API,
@@ -29,6 +30,7 @@ class Api {
       const init = async () => {
         await this.connectMongo();
         await this.initMongo();
+        this.DNSresolver = await this.getOwnDNSresolver();
 
         Registry.register('mongo', this.mongo);
         Registry.register('spamassassin', new (require('./lib/Spamassassin').Spamassassin)(config.spamassassin));
@@ -68,6 +70,16 @@ class Api {
       }).catch(err => {
         reject(err);
       });
+    });
+  }
+
+  // our own DNS resolver
+  getOwnDNSresolver() {
+    return new Promise((resolve, reject) => {
+      dns.lookup('dns', (err, result) => {
+        assert.equal(null, err);
+        resolve(result);
+      })
     });
   }
 
@@ -135,7 +147,7 @@ class Api {
       // res.send(JSON.stringify({result: "ok"})); return;  // Ok short case
 
       try {
-        let mailtester = new Mailtester();
+        let mailtester = new Mailtester({ availableDNS: [this.DNSresolver] });
         await mailtester.makeFromRaw(req.body);
 
         let mode = req.query.mode ? req.query.mode : 'MTA';
@@ -169,10 +181,11 @@ class Api {
           // Save mail and report about this
           await mailtester.saveRaw();
           let ret = {result: "ok", ObjecId: mailtester.getObjectId()};
+          console.log(`new mail to check: ${ret.ObjecId}`);
           res.send(JSON.stringify(ret));
         } catch (err) {
           // ... or report about wrong ObjectId in To: field
-          if(mailtester.ObjectId === null) {
+          if(mailtester.getObjectId() === null) {
             console.log(`mail rejected in ${mode} mode; TO: ${emailAddress}`);
             res.status(400).send(JSON.stringify({result: "fail", reason: "Wrong fied \"To:\" - use MongoDB ObjectId as user name"}));
             return;
@@ -183,7 +196,7 @@ class Api {
         }
 
         try {
-          await mailtester.checkAll();
+          await mailtester.checkAll(true);
         } catch (err) {
           console.log(err);
         }
@@ -198,7 +211,7 @@ class Api {
         let ObjecId = req.params[0];
         let select = req.params[2];
 
-        let mailtester = new Mailtester();
+        let mailtester = new Mailtester({ availableDNS: [this.DNSresolver] });
         try {
           await mailtester.load(ObjecId);
         } catch (err) {

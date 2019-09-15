@@ -53,12 +53,17 @@ class Spfquery {
   }
 
   parseTest(report) {
-    let ret = {
-      result: null
-    };
+    let ret = {};
 
-    let m = report.match(/^Response result:\s(.*)$/m);
-    ret.result = m ? m[1].trim() : null;
+    let regexp = /^(.*?):\s(.*)$/gm;
+
+    var m;
+    do {
+      m = regexp.exec(report);
+      if (m) {
+        ret[m[1]] = m[2];
+      }
+    } while (m);
 
     return ret;
   }

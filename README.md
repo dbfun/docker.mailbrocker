@@ -14,6 +14,7 @@ Work in progress
   * [x] Blacklist Check
   * [x] Pyzor Check
   * [x] Razor2 Check
+* [x] Self DNS resolving
 * [ ] WIP: Launch Demo Website
 
 # Check your mail for spam
@@ -28,10 +29,10 @@ Modules:
 
 # Features:
 
-[x] Mail data sourses:
-  [x] MTA
-  [x] HTTP API
-[ ] special address for auto reply with spam test score
+* [x] Mail data sourses:
+*   [x] MTA
+*   [x] HTTP API
+* [ ] special address for auto reply with spam test score
 
 
 # FAQ

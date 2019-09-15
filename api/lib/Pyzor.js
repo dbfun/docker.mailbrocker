@@ -51,12 +51,17 @@ class Pyzor {
     do {
       m = regexp.exec(data);
       if (m) {
-        results[m[1].trim()] = m[2].trim();
+        results[m[1].trim()] = this.canonizeVal(m[2]);
       }
     } while (m);
 
-
     return results;
+  }
+
+  canonizeVal(val) {
+    val = val.trim();
+    let num = parseFloat(val);
+    return !isNaN(parseFloat(num)) && num == val && isFinite(num) ? num : val;
   }
 
 }

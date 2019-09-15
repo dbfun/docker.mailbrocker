@@ -3,6 +3,8 @@ FROM alpine
 ADD http://deb.debian.org/debian/pool/main/libm/libmail-dkim-perl/libmail-dkim-perl_0.40.orig.tar.gz /tmp
 
 RUN \
+    # Healthcheck
+    apk add curl && \
     # DKIM
     apk add perl make perl-crypt-openssl-rsa perl-mailtools perl-net-dns && \
     cd /tmp/ && \
@@ -49,5 +51,7 @@ ENV PORT_SPAMASSASSIN=783 \
     API_MAX_MAIL_COUNT=2000 \
     API_CATCH_ALL_MTA=off \
     API_CATCH_ALL_MTA_TO=all,any
+
+HEALTHCHECK --interval=5s --timeout=1s --start-period=5s CMD ./docker-healthcheck.sh || exit 1
 
 CMD [ "pm2-runtime", "--watch", "index.js" ]

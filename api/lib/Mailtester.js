@@ -10,10 +10,13 @@ const
   { Dkimverify } = require('../lib/Dkimverify'),
   { Dmarccheck } = require('../lib/Dmarccheck'),
   { Blacklist } = require('../lib/Blacklist'),
-  availableDNS = [ "8.8.8.8", "77.88.8.8", "94.142.137.100", "94.142.136.100" ],
-  blacklistDomains = require('../lib/Blacklist/dnsbl-domains'),
   { Pyzor } = require('../lib/Pyzor'),
-  { Razor } = require('../lib/Razor')
+  { Razor } = require('../lib/Razor'),
+  defaultConfig = {
+    availableTests: [ "spamassassin", "spf", "dkim", "dmarc", "blacklist", "pyzor", "razor" ],
+    availableDNS: [ "8.8.8.8", "77.88.8.8", "94.142.137.100", "94.142.136.100" ],
+    blacklistDomains: require("../lib/Blacklist/dnsbl-domains")
+  }
   ;
 
 /*
@@ -30,8 +33,8 @@ check for DNS servers if you got this error:
 
 class Mailtester {
 
-  constructor() {
-    this.availableTests = [ "spamassassin", "spf", "dkim", "dmarc", "blacklist", "pyzor", "razor" ];
+  constructor(config) {
+    this.config = {...defaultConfig, ...config};
     this.ObjectId = null;
     this.doc = {
       created: new Date(),
@@ -84,6 +87,19 @@ class Mailtester {
     return this.doc.to;
   }
 
+  getFieldFrom() {
+    return this.doc.from;
+  }
+
+  getFieldLastMtaIP() {
+    return this.doc.lastMtaIP;
+  }
+
+  getResults(name) {
+    if(this.config.availableTests.indexOf(name) === -1) return null;
+    return this.doc[name];
+  }
+
   getFieldToName() {
     try {
       return this.doc.to.match(/^(.*?)@/)[1];
@@ -123,83 +139,90 @@ class Mailtester {
     );
   }
 
-  async checkAll() {
+  async checkAll(isSaveResults) {
     let tests = [];
 
-    for(let testName of this.availableTests) {
+    for(let testName of this.config.availableTests) {
       switch(testName) {
         case "spamassassin":
-          tests.push(this.checkSpamassassin());
+          tests.push(this.checkSpamassassin(isSaveResults));
           break;
         case "spf":
-          tests.push(this.checkSpf());
+          tests.push(this.checkSpf(isSaveResults));
           break;
         case "dkim":
-          tests.push(this.checkDkim());
+          tests.push(this.checkDkim(isSaveResults));
           break;
         case "dmarc":
-          tests.push(this.checkDmarc());
+          tests.push(this.checkDmarc(isSaveResults));
           break;
         case "blacklist":
-          tests.push(this.checkBlacklist());
+          tests.push(this.checkBlacklist(isSaveResults));
           break;
         case "pyzor":
-          tests.push(this.checkPyzor());
+          tests.push(this.checkPyzor(isSaveResults));
           break;
         case "razor":
-          tests.push(this.checkRazor());
+          tests.push(this.checkRazor(isSaveResults));
           break;
       }
     }
     return Promise.allSettled(tests);
   }
 
-  checkSpamassassin() {
+  checkSpamassassin(isSaveResults) {
     let spamassassin = Registry.get('spamassassin');
     return spamassassin.check(this.doc.raw).then(async (spamassassin) => {
-      await this.saveResults('spamassassin', spamassassin);
+      this.doc.spamassassin = spamassassin;
+      if(isSaveResults) await this.saveResults('spamassassin', spamassassin);
     });
   }
 
-  checkSpf() {
+  checkSpf(isSaveResults) {
     let spfquery = new Spfquery;
     return spfquery.check(this.doc.lastMtaIP, this.doc.from).then(async (spf) => {
-      await this.saveResults('spf', spf);
+      this.doc.spf = spf;
+      if(isSaveResults) await this.saveResults('spf', spf);
     });
   }
 
-  checkDkim() {
+  checkDkim(isSaveResults) {
     let dkimverify = new Dkimverify;
     return dkimverify.check(this.doc.raw).then(async (dkim) => {
-      await this.saveResults('dkim', dkim);
+      this.doc.dkim = dkim;
+      if(isSaveResults) await this.saveResults('dkim', dkim);
     });
   }
 
-  checkDmarc() {
+  checkDmarc(isSaveResults) {
     let dmarccheck = new Dmarccheck;
     return dmarccheck.check(this.doc.from).then(async (dmarc) => {
-      await this.saveResults('dmarc', dmarc);
+      this.doc.dmarc = dmarc;
+      if(isSaveResults) await this.saveResults('dmarc', dmarc);
     });
   }
 
-  checkBlacklist() {
-    let blacklist = new Blacklist(availableDNS, blacklistDomains);
+  checkBlacklist(isSaveResults) {
+    let blacklist = new Blacklist(this.config.availableDNS, this.config.blacklistDomains);
     return blacklist.check(this.doc.lastMtaIP).then(async (bl) => {
-      await this.saveResults('blacklist', bl);
+      this.doc.blacklist = bl;
+      if(isSaveResults) await this.saveResults('blacklist', bl);
     });
   }
 
-  checkPyzor() {
+  checkPyzor(isSaveResults) {
     let pyzor = new Pyzor;
     return pyzor.check(this.doc.raw).then(async (pz) => {
-      await this.saveResults('pyzor', pz);
+      this.doc.pyzor = pz;
+      if(isSaveResults) await this.saveResults('pyzor', pz);
     });
   }
 
-  checkRazor() {
+  checkRazor(isSaveResults) {
     let razor = new Razor;
     return razor.check(this.doc.raw).then(async (rz) => {
-      await this.saveResults('razor', rz);
+      this.doc.razor = rz;
+      if(isSaveResults) await this.saveResults('razor', rz);
     });
   }
 

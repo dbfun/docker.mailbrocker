@@ -51,8 +51,8 @@ RESP=`cat test-letters/spam-GTUBE.eml | curl -s \
     --header 'Content-Type: text/plain' \
     --data-binary @- \
     --no-buffer \
-    http://api:$PORT_API/checkmail?mode=MTA 2>&1`
-assert "$RESP" '> POST /checkmail?mode=MTA HTTP/1.1'
+    http://api:$PORT_API/checkmail?mode=new 2>&1`
+assert "$RESP" '> POST /checkmail?mode=new HTTP/1.1'
 assert "$RESP" '< HTTP/1.1 200 OK'
 assert "$RESP" '< Content-Type: application/json;'
 assert "$RESP" '{"result":"ok"' # and ObjecId ...
