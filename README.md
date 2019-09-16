@@ -25,7 +25,9 @@ Modules:
 
 * Exim MTA
 * Website
-* API with mail tester engine (Spamassassin + ...)
+* API with mail tester engine (Spamassassin, SPF checker, DMARC, Blacklist, Pyzor, Razor)
+
+![Scheme](https://github.com/dbfun/docker.mailtester/raw/master/assets/mailtester.png)
 
 # Features:
 
