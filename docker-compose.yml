@@ -33,6 +33,7 @@ services:
       EXIM_DOMAIN: "${EXIM_DOMAIN}"
       PORT_API: "${PORT_API}"
       PORT_EXIM: "${PORT_EXIM}"
+      PORT_SPAMASSASSIN: "${PORT_SPAMASSASSIN}"
       TZ: "${TZ}"
     depends_on:
       - api

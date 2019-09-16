@@ -30,16 +30,24 @@ Modules:
 # Features:
 
 * [x] Mail data sourses:
-*   [x] MTA
-*   [x] HTTP API
+  *   [x] MTA
+  *   [x] HTTP API
 * [ ] special address for auto reply with spam test score
 
 
 # FAQ
 
-## How to increase incoming email size
+## What is the reason for using your own DNS resolver?
 
-Change these settings in `.env` file:
+Some DNSBLs block public DNS due to high volume queries:
+
+> Query Refused. See http://uribl.com/refused.shtml for more information [Your DNS IP: 77.88.56.72]
+
+Own DNS resolver (unbound) used in Spamassassin and Blacklist modules.
+
+## How to increase incoming email size?
+
+Change this settings in `.env` file:
 
 * `EXIM_INCOMING_MAIL_MAX_SIZE=5M`
 * `API_INCOMING_MAIL_MAX_SIZE=5mb`

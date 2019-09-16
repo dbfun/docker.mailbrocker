@@ -23,4 +23,6 @@ ENV EXIM_DOMAIN=your-domain.com \
     PORT_EXIM=25 \
     PORT_API=8080
 
+HEALTHCHECK --interval=60s --timeout=5s --start-period=5s CMD exiwhat | grep -qF "listening for SMTP on port" || exit 1
+
 CMD ["/run.sh"]

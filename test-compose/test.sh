@@ -20,6 +20,9 @@ if [ "$RUN_TESTS" == "on" ]; then
   ./test-api-pipe.sh
   if [ "$?" -ne "0" ]; then TESTS_PASSED=0; fi
 
+  ./test-spamassassin.sh
+  if [ "$?" -ne "0" ]; then TESTS_PASSED=0; fi
+
   if [ $TESTS_PASSED != 1 ]; then
     echo
     echo -e $Red"Test bundle error"$Color_Off
