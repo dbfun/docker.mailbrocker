@@ -29,7 +29,7 @@ chown root.mail /etc/exim/exim.conf
 # `-d` - debug, `-v` - verbose
 # `-oX` - port, but no pid file created => added `-oP`
 
-if [ "$DEBUG_EXIM" == "on" ]; then
+if [ "$EXIM_DEBUG" == "on" ]; then
   exim -bd -q5s -d -oX $PORT_EXIM -oP /run/exim.pid
 else
   # `-v` - verbose mode

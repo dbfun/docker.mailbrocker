@@ -4,7 +4,6 @@ require("core-js"); // for Promise.allSettled
 
 const
   assert = require('assert'),
-  dns = require('dns'),
   Registry = new (require('./lib/Registry').Registry),
   config = {
     incomingMailPort: process.env.PORT_API,
@@ -12,6 +11,7 @@ const
     catchAllMtaLetters: process.env.API_CATCH_ALL_MTA === "on",
     catchAllMtaLettersTo: process.env.API_CATCH_ALL_MTA_TO ? process.env.API_CATCH_ALL_MTA_TO.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [],
     maxMailCount: parseInt(process.env.API_MAX_MAIL_COUNT),
+    DNSresolver: process.env.IP_DNS_RESOLVER ? process.env.IP_DNS_RESOLVER.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [ "10.1.0.105" ],
     spamassassin: {
       port: process.env.PORT_SPAMASSASSIN,
       maxSize: process.env.SPAMASSASSIN_MAX_MSG_SIZE
@@ -30,7 +30,6 @@ class Api {
       const init = async () => {
         await this.connectMongo();
         await this.initMongo();
-        this.DNSresolver = await this.getOwnDNSresolver();
 
         Registry.register('mongo', this.mongo);
         Registry.register('spamassassin', new (require('./lib/Spamassassin').Spamassassin)(config.spamassassin));
@@ -70,16 +69,6 @@ class Api {
       }).catch(err => {
         reject(err);
       });
-    });
-  }
-
-  // our own DNS resolver
-  getOwnDNSresolver() {
-    return new Promise((resolve, reject) => {
-      dns.lookup('dns', (err, result) => {
-        assert.equal(null, err);
-        resolve(result);
-      })
     });
   }
 
@@ -147,7 +136,7 @@ class Api {
       // res.send(JSON.stringify({result: "ok"})); return;  // Ok short case
 
       try {
-        let mailtester = new Mailtester({ availableDNS: [this.DNSresolver] });
+        let mailtester = new Mailtester({ availableDNS: [config.DNSresolver] });
         await mailtester.makeFromRaw(req.body);
 
         let mode = req.query.mode ? req.query.mode : 'MTA';
@@ -211,7 +200,7 @@ class Api {
         let ObjecId = req.params[0];
         let select = req.params[2];
 
-        let mailtester = new Mailtester({ availableDNS: [this.DNSresolver] });
+        let mailtester = new Mailtester({ availableDNS: [config.DNSresolver] });
         try {
           await mailtester.load(ObjecId);
         } catch (err) {

@@ -18,7 +18,7 @@ ADD ./api-pipe.sh /srv/api-pipe.sh
 ADD ./exim.conf /etc/exim/exim.conf
 
 ENV EXIM_DOMAIN=your-domain.com \
-    DEBUG_EXIM=on \
+    EXIM_DEBUG=on \
     EXIM_INCOMING_MAIL_MAX_SIZE=5M \
     PORT_EXIM=25 \
     PORT_API=8080

@@ -6,21 +6,39 @@ services:
       - "${PORT_EXIM}:${PORT_EXIM}"
     environment:
       EXIM_DOMAIN: "${EXIM_DOMAIN}"
-      DEBUG_EXIM: "${DEBUG_EXIM}"
+      EXIM_DEBUG: "${EXIM_DEBUG}"
       EXIM_INCOMING_MAIL_MAX_SIZE: "${EXIM_INCOMING_MAIL_MAX_SIZE}"
       PORT_EXIM: "${PORT_EXIM}"
       PORT_API: "${PORT_API}"
       TZ: "${TZ}"
     restart: always
     hostname: "${EXIM_DOMAIN}"
+    networks:
+      mt:
+        ipv4_address: 10.1.0.101
+    dns: 10.1.0.105
+    depends_on:
+      - dns
   spamassassin:
     build: ./spamassassin
     environment:
       PORT_SPAMASSASSIN: "${PORT_SPAMASSASSIN}"
       TZ: "${TZ}"
     hostname: spamassassin
+    networks:
+      mt:
+        ipv4_address: 10.1.0.102
+    dns: 10.1.0.105
+    depends_on:
+      - dns
   mongo:
     image: "mvertes/alpine-mongo"
+    networks:
+      mt:
+        ipv4_address: 10.1.0.103
+    dns: 10.1.0.105
+    depends_on:
+      - dns
   test-compose:
     build: ./test-compose
     volumes:
@@ -35,15 +53,26 @@ services:
       PORT_EXIM: "${PORT_EXIM}"
       PORT_SPAMASSASSIN: "${PORT_SPAMASSASSIN}"
       TZ: "${TZ}"
+    networks:
+      mt:
+        ipv4_address: 10.1.0.104
+    dns: 10.1.0.105
     depends_on:
       - api
+      - dns
   dns:
     build: ./dns
     environment:
       PORT_DNS: "${PORT_DNS}"
       DNS_CACHE_MIN_TTL: "${DNS_CACHE_MIN_TTL}"
       DNS_CACHE_MAX_NEGATIVE_TTL: "${DNS_CACHE_MAX_NEGATIVE_TTL}"
+      DNS_DEBUG: "${DNS_DEBUG}"
+      DNS_STATISTICS_INTERVAL: "${DNS_STATISTICS_INTERVAL}"
+      TZ: "${TZ}"
     restart: always
+    networks:
+      mt:
+        ipv4_address: 10.1.0.105
   api:
     build: ./api
     volumes:
@@ -63,11 +92,24 @@ services:
       MONGO_URI: "${MONGO_URI}"
       MONGO_DB: "${MONGO_DB}"
       TZ: "${TZ}"
+      IP_DNS_RESOLVER: 10.1.0.105
     restart: always
     ports:
       - "${PORT_API}:${PORT_API}"
+    networks:
+      mt:
+        ipv4_address: 10.1.0.106
+    dns: 10.1.0.105
     depends_on:
       - dns
       - mongo
       - exim
       - spamassassin
+
+networks:
+  mt:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.1.0.0/24
