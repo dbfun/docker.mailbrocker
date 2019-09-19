@@ -3,40 +3,41 @@ services:
   exim:
     build: ./exim
     ports:
-      - "${PORT_EXIM}:${PORT_EXIM}"
+      - ${PORT_EXIM}:${PORT_EXIM}
     environment:
-      EXIM_DOMAIN: "${EXIM_DOMAIN}"
-      EXIM_DEBUG: "${EXIM_DEBUG}"
-      EXIM_INCOMING_MAIL_MAX_SIZE: "${EXIM_INCOMING_MAIL_MAX_SIZE}"
-      PORT_EXIM: "${PORT_EXIM}"
-      PORT_API: "${PORT_API}"
-      TZ: "${TZ}"
+      EXIM_DOMAIN: ${EXIM_DOMAIN}
+      EXIM_DEBUG: ${EXIM_DEBUG}
+      EXIM_INCOMING_MAIL_MAX_SIZE: ${EXIM_INCOMING_MAIL_MAX_SIZE}
+      PORT_EXIM: ${PORT_EXIM}
+      PORT_API: ${PORT_API}
+      TZ: ${TZ}
     restart: always
-    hostname: "${EXIM_DOMAIN}"
+    hostname: ${EXIM_DOMAIN}
     networks:
       mt:
-        ipv4_address: 10.1.0.101
-    dns: 10.1.0.105
+        ipv4_address: ${IP_EXIM}
+    dns: ${IP_DNS_RESOLVER}
     depends_on:
       - dns
   spamassassin:
     build: ./spamassassin
     environment:
-      PORT_SPAMASSASSIN: "${PORT_SPAMASSASSIN}"
-      TZ: "${TZ}"
+      PORT_SPAMASSASSIN: ${PORT_SPAMASSASSIN}
+      TZ: ${TZ}
     hostname: spamassassin
     networks:
       mt:
-        ipv4_address: 10.1.0.102
-    dns: 10.1.0.105
+        ipv4_address: ${IP_SPAMASSASSIN}
+    dns: ${IP_DNS_RESOLVER}
     depends_on:
       - dns
   mongo:
-    image: "mvertes/alpine-mongo"
+    image: mvertes/alpine-mongo
+    hostname: mongo
     networks:
       mt:
-        ipv4_address: 10.1.0.103
-    dns: 10.1.0.105
+        ipv4_address: ${IP_MONGO}
+    dns: ${IP_DNS_RESOLVER}
     depends_on:
       - dns
   test-compose:
@@ -47,32 +48,34 @@ services:
       # test letters
       - ./test-letters:/srv/test-letters
     environment:
-      RUN_TESTS: "${RUN_TESTS}"
-      EXIM_DOMAIN: "${EXIM_DOMAIN}"
-      PORT_API: "${PORT_API}"
-      PORT_EXIM: "${PORT_EXIM}"
-      PORT_SPAMASSASSIN: "${PORT_SPAMASSASSIN}"
-      TZ: "${TZ}"
+      RUN_TESTS: ${RUN_TESTS}
+      EXIM_DOMAIN: ${EXIM_DOMAIN}
+      PORT_API: ${PORT_API}
+      PORT_EXIM: ${PORT_EXIM}
+      PORT_SPAMASSASSIN: ${PORT_SPAMASSASSIN}
+      TZ: ${TZ}
+    hostname: test-compose
     networks:
       mt:
-        ipv4_address: 10.1.0.104
-    dns: 10.1.0.105
+        ipv4_address: ${IP_TEST_COMPOSE}
+    dns: ${IP_DNS_RESOLVER}
     depends_on:
       - api
       - dns
   dns:
     build: ./dns
     environment:
-      PORT_DNS: "${PORT_DNS}"
-      DNS_CACHE_MIN_TTL: "${DNS_CACHE_MIN_TTL}"
-      DNS_CACHE_MAX_NEGATIVE_TTL: "${DNS_CACHE_MAX_NEGATIVE_TTL}"
-      DNS_DEBUG: "${DNS_DEBUG}"
-      DNS_STATISTICS_INTERVAL: "${DNS_STATISTICS_INTERVAL}"
-      TZ: "${TZ}"
+      PORT_DNS: ${PORT_DNS}
+      DNS_CACHE_MIN_TTL: ${DNS_CACHE_MIN_TTL}
+      DNS_CACHE_MAX_NEGATIVE_TTL: ${DNS_CACHE_MAX_NEGATIVE_TTL}
+      DNS_DEBUG: ${DNS_DEBUG}
+      DNS_STATISTICS_INTERVAL: ${DNS_STATISTICS_INTERVAL}
+      TZ: ${TZ}
     restart: always
+    hostname: dns
     networks:
       mt:
-        ipv4_address: 10.1.0.105
+        ipv4_address: ${IP_DNS_RESOLVER}
   api:
     build: ./api
     volumes:
@@ -82,24 +85,25 @@ services:
       # test letters
       - ./test-letters:/srv/test-letters
     environment:
-      PORT_SPAMASSASSIN: "${PORT_SPAMASSASSIN}"
-      PORT_API: "${PORT_API}"
-      API_INCOMING_MAIL_MAX_SIZE: "${API_INCOMING_MAIL_MAX_SIZE}"
-      API_MAX_MAIL_COUNT: "${API_MAX_MAIL_COUNT}"
-      API_CATCH_ALL_MTA: "${API_CATCH_ALL_MTA}"
-      API_CATCH_ALL_MTA_TO: "${API_CATCH_ALL_MTA_TO}"
-      SPAMASSASSIN_MAX_MSG_SIZE: "${SPAMASSASSIN_MAX_MSG_SIZE}"
-      MONGO_URI: "${MONGO_URI}"
-      MONGO_DB: "${MONGO_DB}"
-      TZ: "${TZ}"
-      IP_DNS_RESOLVER: 10.1.0.105
+      PORT_SPAMASSASSIN: ${PORT_SPAMASSASSIN}
+      PORT_API: ${PORT_API}
+      API_INCOMING_MAIL_MAX_SIZE: ${API_INCOMING_MAIL_MAX_SIZE}
+      API_MAX_MAIL_COUNT: ${API_MAX_MAIL_COUNT}
+      API_CATCH_ALL_MTA: ${API_CATCH_ALL_MTA}
+      API_CATCH_ALL_MTA_TO: ${API_CATCH_ALL_MTA_TO}
+      SPAMASSASSIN_MAX_MSG_SIZE: ${SPAMASSASSIN_MAX_MSG_SIZE}
+      MONGO_URI: ${MONGO_URI}
+      MONGO_DB: ${MONGO_DB}
+      TZ: ${TZ}
+      IP_DNS_RESOLVER: ${IP_DNS_RESOLVER}
     restart: always
     ports:
-      - "${PORT_API}:${PORT_API}"
+      - ${PORT_API}:${PORT_API}
+    hostname: api
     networks:
       mt:
-        ipv4_address: 10.1.0.106
-    dns: 10.1.0.105
+        ipv4_address: ${IP_API}
+    dns: ${IP_DNS_RESOLVER}
     depends_on:
       - dns
       - mongo
@@ -112,4 +116,4 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 10.1.0.0/24
+        - subnet: ${IP_SUBNET}

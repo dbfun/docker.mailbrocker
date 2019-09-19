@@ -14,7 +14,7 @@ down:
 # Runs test container separately
 .PHONY: test-compose
 test-compose:
-	@docker-compose up test-compose
+	@RUN_TESTS=on docker-compose up test-compose
 	@docker-compose logs -tf --tail=0 test-compose
 
 # Runs test container for debug purposes
@@ -22,22 +22,22 @@ test-compose:
 debug-compose:
 	@docker-compose run test-compose sh
 
-# Shows exim status
-.PHONY: exim
-exim: exim-bp
-
 # Shows exim queue
-.PHONY: exim-bp
+.PHONY: exim-stats
 exim-bp:
 	@echo Queue:
 	@docker-compose exec exim exim -bp
 
-# Shows mails status
-.PHONY: mail
-mail:	mail-count
+.PHONY: dns-stats
+dns:
+	@docker-compose exec dns sh -c 'unbound-control stats_noreset; echo; unbound-control status'
+
+.PHONY: dns-cache
+dns-cache:
+	@docker-compose exec dns unbound-control dump_cache
 
 # Shows mail count
-.PHONY: mail-count
+.PHONY: mail-stats
 mail-count:
 	@echo Num mails: `docker-compose exec mongo mongo mailtester --quiet --eval 'db.mails.count({});'`
 
@@ -47,6 +47,7 @@ reload:
 	@docker-compose exec spamassassin sh -c 'kill -HUP `cat /var/run/spamd.pid`'
 	@docker-compose exec exim sh -c 'kill -HUP `cat /run/exim.pid`'
 	@docker-compose exec api sh -c 'pm2 restart all'
+	@docker-compose exec dns sh -c 'unbound-control reload'
 
 .PHONY: attach-api
 attach-api:
