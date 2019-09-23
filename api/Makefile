@@ -29,14 +29,17 @@ IMAGE_NAME_VERSION="${HUB_NAMESPACE}/${IMAGE_NAME}:${VERSION}"
 # Install targets
 #################################
 
+.PHONY: install-test
+install-test: install-prerequirements install-npm
+
 .PHONY: install-prerequirements
 install-prerequirements:
 	@sudo npm install --global pm2 mocha
 	@sudo apt install -y spfquery dkimproxy opendmarc python3 python3-pip razor
 	@sudo pip3 install pyzor
 
-.PHONY: install-dev
-install-dev:
+.PHONY: install-npm
+install-npm:
 	@echo "+ $@"
 	@npm install
 

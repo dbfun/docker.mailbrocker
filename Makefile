@@ -11,7 +11,16 @@ up:
 down:
 	@docker-compose down
 
-# Runs test container separately
+# Runs all tests
+.PHONY: test
+test: test-unit-mocha test-compose
+
+# Runs unit test
+test-unit-mocha:
+	@docker-compose up -d
+	@docker-compose exec api mocha
+
+# Runs integration test
 .PHONY: test-compose
 test-compose:
 	@RUN_TESTS=on docker-compose up test-compose
@@ -29,7 +38,7 @@ exim-bp:
 	@docker-compose exec exim exim -bp
 
 .PHONY: dns-stats
-dns:
+dns-stats:
 	@docker-compose exec dns sh -c 'unbound-control stats_noreset; echo; unbound-control status'
 
 .PHONY: dns-cache

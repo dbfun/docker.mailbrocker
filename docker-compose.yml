@@ -70,6 +70,9 @@ services:
       DNS_CACHE_MAX_NEGATIVE_TTL: ${DNS_CACHE_MAX_NEGATIVE_TTL}
       DNS_DEBUG: ${DNS_DEBUG}
       DNS_STATISTICS_INTERVAL: ${DNS_STATISTICS_INTERVAL}
+      DNS_LOG_QUERIES: ${DNS_LOG_QUERIES}
+      DNS_LOG_REPLIES: ${DNS_LOG_REPLIES}
+      DNS_LOG_SERVFAIL: ${DNS_LOG_SERVFAIL}
       TZ: ${TZ}
     restart: always
     hostname: dns
@@ -83,7 +86,7 @@ services:
       - ./api/index.js:/srv/index.js
       - ./api/lib:/srv/lib
       # test letters
-      - ./test-letters:/srv/test-letters
+      - ./test-letters:/test-letters
     environment:
       PORT_SPAMASSASSIN: ${PORT_SPAMASSASSIN}
       PORT_API: ${PORT_API}
