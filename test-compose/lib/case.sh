@@ -10,6 +10,14 @@ function assert {
   fi
 }
 
+function assert_eq {
+  if [[ "$1" != "$2" ]]; then
+    echo -e ${Red}"Expected: $2"${Color_Off}
+    TESTS_PASSED=0
+    CASE_PASSED=0
+  fi
+}
+
 function assert_regexp {
   if ! [[ "$1" =~ $2 ]]; then
     echo -e ${Red}"Expected: $2"${Color_Off}

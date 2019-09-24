@@ -10,11 +10,27 @@ source lib/case.sh
 
 TESTS_PASSED=1
 
-start_case "DNS: Check DNSSEC"
-RESP=`dig com. SOA +dnssec @dns`
+# @see http://dnssec.vs.uni-due.de/
+
+start_case "DNS: Check DNSSEC positive"
+RESP=`dig sigok.verteiltesysteme.net @dns`
+# check for status
+assert "$RESP" "status: NOERROR"
 FLAGS=`echo "$RESP" | grep ";; flags"`
 # check for "ad" flag
 assert_regexp "$FLAGS" "^;; flags:.* ad[ ;].*$"
+# check for ANSWER
+assert_regexp "$FLAGS" "^.*ANSWER: 1.*$"
+# check for A record
+_str=`echo "$RESP" | grep -q "^sigok.verteiltesysteme.net" && echo "A record"`
+assert_eq "$_str" "A record"
+end_case
+
+start_case "DNS: Check DNSSEC negative"
+RESP=`dig sigfail.verteiltesysteme.net @dns`
+assert "$RESP" "status: SERVFAIL"
+FLAGS=`echo "$RESP" | grep ";; flags"`
+assert_regexp "$FLAGS" "^.*ANSWER: 0.*$"
 end_case
 
 start_case "DNS: Check IPv6"
