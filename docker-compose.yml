@@ -32,7 +32,7 @@ services:
     depends_on:
       - dns
   mongo:
-    image: mvertes/alpine-mongo
+    image: mongo
     hostname: mongo
     networks:
       mt:

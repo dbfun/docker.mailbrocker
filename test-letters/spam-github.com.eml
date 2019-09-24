@@ -1,0 +1,115 @@
+Delivered-To: negativehero@gmail.com
+Received: by 2002:ac8:2bc8:0:0:0:0:0 with SMTP id n8csp7590520qtn;
+        Wed, 7 Aug 2019 13:50:59 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqxnKKAw48LjsTN4ziCilbBVBee6NRHtyLJI/byZ7Rg4SdI4pAoUj2snamcYbduJmVvr58Kt
+X-Received: by 2002:a37:ef02:: with SMTP id j2mr5887655qkk.140.1565211059616;
+        Wed, 07 Aug 2019 13:50:59 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1565211059; cv=none;
+        d=google.com; s=arc-20160816;
+        b=n7heFi49dWAgoBCBjiyMyu7GpmY6zApgmx1tYcsiiY30FaDXyI4De1r0vnAvwQ04TZ
+         QsJHgRa4R2KwmCzBh63Q43ymahJQEAdzdwBsLycyuKW5P1wvywH8zkbpBsYRi2kk0pP6
+         BJkmcFyj7aTtSX176rG4ROodlY+vzy602cr8iUpnXxmcDc0UFw6iqoLZ5t5IgQA4zbS/
+         yPw0PSreU8UFzstoHiKhYK04169S7BLdHpTb0k1cse6Nt6bb7ZblPhqJoRzQb6kY4Cjq
+         GMigdcFkyMc0qz5tgy8fsNUk/Vidlro6fcI2EXpCgnNMzl3Io+Pu5gGrXfYbF3bBlDC5
+         7owQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-post:list-archive:list-id:precedence
+         :content-transfer-encoding:mime-version:subject:references
+         :in-reply-to:message-id:cc:to:reply-to:from:dkim-signature:date;
+        bh=ubd9+YrMjm5NI8mKA/rHm8syc04hDRBMVBYQeBLkfHk=;
+        b=vJIZwFIjsSpRlvePjfaroKaD0XY79T+m/WCuOnqvBjSbtsSAu0UHko98gLCzVMvtJq
+         NDWXK+3PpSlX6EQ26fe15OADVm/NDChkqznbCS3q+zRFHj3bYBW0WzFit9qn7MKQWed6
+         2O/x/V67ikgudcniT9oBcA9JdKJ2pdXE8ho2po6C2P+eowfjRRfYC7SPuhPrHIFF/ew/
+         zlNmGJcz5i3L0rEguKA/JFr0CaKXKygxuUBUh7Sq61KBe6C8zB30nCXJyMAxxc3K7mwl
+         wY8xijPr1Ohis8/CmiKPV9w/8UsLveAMsgPf70SDLy5HlZWJou7x3g+1DlM8lz2Y8ljR
+         mZ9A==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass (test mode) header.i=@github.com header.s=pf2014 header.b=doDbluMg;
+       spf=pass (google.com: domain of noreply@github.com designates 192.30.252.205 as permitted sender) smtp.mailfrom=noreply@github.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=github.com
+Return-Path: <noreply@github.com>
+Received: from out-22.smtp.github.com (out-22.smtp.github.com. [192.30.252.205])
+        by mx.google.com with ESMTPS id t5si15254585qkm.234.2019.08.07.13.50.59
+        for <negativehero@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 07 Aug 2019 13:50:59 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@github.com designates 192.30.252.205 as permitted sender) client-ip=192.30.252.205;
+Authentication-Results: mx.google.com;
+       dkim=pass (test mode) header.i=@github.com header.s=pf2014 header.b=doDbluMg;
+       spf=pass (google.com: domain of noreply@github.com designates 192.30.252.205 as permitted sender) smtp.mailfrom=noreply@github.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=github.com
+Date: Wed, 07 Aug 2019 13:50:59 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=github.com;
+	s=pf2014; t=1565211059;
+	bh=ubd9+YrMjm5NI8mKA/rHm8syc04hDRBMVBYQeBLkfHk=;
+	h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:List-ID:
+	 List-Archive:List-Post:List-Unsubscribe:From;
+	b=doDbluMg75MyJlPvxKvqcQQ42gLF6JjrRAEeBC+ds55ycWNNEJxv5eYaWeqPKG26G
+	 Qes4bKWRD5yTAHFiRiqfwqMzfetzmGpgZbWsNw9cX3iSBScLmGM7FxK3+07rwhp5lZ
+	 IsW7Djgc+vWWXUuRRSE9gC7zjAcQ4hQe5XGvpYuE=
+From: Mamadou Cisse <notifications@github.com>
+Reply-To: PremierLangage/premierlangage <reply+AALKEPPBNDTWLQSVDHOAZS53LBWDHEVBNHHBVVOE5Q@reply.github.com>
+To: PremierLangage/premierlangage <premierlangage@noreply.github.com>
+Cc: mycomponent <negativehero@gmail.com>, 
+ Mention <mention@noreply.github.com>
+Message-ID: <PremierLangage/premierlangage/issue/270/issue_event/2541370297@github.com>
+In-Reply-To: <PremierLangage/premierlangage/issues/270@github.com>
+References: <PremierLangage/premierlangage/issues/270@github.com>
+Subject: Re: [PremierLangage/premierlangage] Input Tags (#270)
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5d4b39b3312af_7f613fdbff0cd9681593ce";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Precedence: list
+X-GitHub-Sender: mciissee
+X-GitHub-Recipient: mycomponent
+X-GitHub-Reason: mention
+List-ID: PremierLangage/premierlangage
+ <premierlangage.PremierLangage.github.com>
+List-Archive: https://github.com/PremierLangage/premierlangage
+List-Post: <mailto:reply+AALKEPPBNDTWLQSVDHOAZS53LBWDHEVBNHHBVVOE5Q@reply.github.com>
+List-Unsubscribe: <mailto:unsub+AALKEPPBNDTWLQSVDHOAZS53LBWDHEVBNHHBVVOE5Q@reply.github.com>,
+ <https://github.com/notifications/unsubscribe/AALKEPLXL5GYFDX23ZVHNGTQDMYTHANCNFSM4HRBUJFQ>
+X-Auto-Response-Suppress: All
+X-GitHub-Recipient-Address: negativehero@gmail.com
+
+
+----==_mimepart_5d4b39b3312af_7f613fdbff0cd9681593ce
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Closed #270.
+
+-- 
+You are receiving this because you were mentioned.
+Reply to this email directly or view it on GitHub:
+https://github.com/PremierLangage/premierlangage/issues/270#event-2541370297
+----==_mimepart_5d4b39b3312af_7f613fdbff0cd9681593ce
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Closed <a class="issue-link js-issue-link" data-error-text="Failed to load issue title" data-id="450217196" data-permission-text="Issue title is private" data-url="https://github.com/PremierLangage/premierlangage/issues/270" data-hovercard-type="issue" data-hovercard-url="/PremierLangage/premierlangage/issues/270/hovercard" href="https://github.com/PremierLangage/premierlangage/issues/270">#270</a>.</p>
+
+<p style="font-size:small;-webkit-text-size-adjust:none;color:#666;">&mdash;<br />You are receiving this because you were mentioned.<br />Reply to this email directly, <a href="https://github.com/PremierLangage/premierlangage/issues/270?email_source=notifications&amp;email_token=AALKEPICWNH4UJMYOP5RH4DQDMYTHA5CNFSM4HRBUJF2YY3PNVWWK3TUL52HS4DFWZEXG43VMVCXMZLOORHG65DJMZUWGYLUNFXW5KTDN5WW2ZLOORPWSZGOS55DXOI#event-2541370297">view it on GitHub</a>, or <a href="https://github.com/notifications/unsubscribe-auth/AALKEPOU7HCYGLAEMFYEH7TQDMYTHANCNFSM4HRBUJFQ">mute the thread</a>.<img src="https://github.com/notifications/beacon/AALKEPIZRYI2CGDOQAG6EYDQDMYTHA5CNFSM4HRBUJF2YY3PNVWWK3TUL52HS4DFWZEXG43VMVCXMZLOORHG65DJMZUWGYLUNFXW5KTDN5WW2ZLOORPWSZGOS55DXOI.gif" height="1" width="1" alt="" /></p>
+<script type="application/ld+json">[
+{
+"@context": "http://schema.org",
+"@type": "EmailMessage",
+"potentialAction": {
+"@type": "ViewAction",
+"target": "https://github.com/PremierLangage/premierlangage/issues/270?email_source=notifications\u0026email_token=AALKEPICWNH4UJMYOP5RH4DQDMYTHA5CNFSM4HRBUJF2YY3PNVWWK3TUL52HS4DFWZEXG43VMVCXMZLOORHG65DJMZUWGYLUNFXW5KTDN5WW2ZLOORPWSZGOS55DXOI#event-2541370297",
+"url": "https://github.com/PremierLangage/premierlangage/issues/270?email_source=notifications\u0026email_token=AALKEPICWNH4UJMYOP5RH4DQDMYTHA5CNFSM4HRBUJF2YY3PNVWWK3TUL52HS4DFWZEXG43VMVCXMZLOORHG65DJMZUWGYLUNFXW5KTDN5WW2ZLOORPWSZGOS55DXOI#event-2541370297",
+"name": "View Issue"
+},
+"description": "View this Issue on GitHub",
+"publisher": {
+"@type": "Organization",
+"name": "GitHub",
+"url": "https://github.com"
+}
+}
+]</script>
+----==_mimepart_5d4b39b3312af_7f613fdbff0cd9681593ce--
