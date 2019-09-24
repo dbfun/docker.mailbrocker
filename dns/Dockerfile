@@ -14,6 +14,11 @@ ENV PORT_DNS=53 \
 WORKDIR srv
 ADD ./ /srv
 
+RUN \
+  unbound-anchor -a /usr/share/dnssec-root/trusted-key.key && \
+  chown -R root.unbound /usr/share/dnssec-root && \
+  chmod -R g+w /usr/share/dnssec-root
+
 HEALTHCHECK --interval=60s --timeout=3s --start-period=5s CMD drill @127.0.0.1 cloudflare.com || exit 1
 
 CMD ["./run.sh"]
