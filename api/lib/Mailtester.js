@@ -41,7 +41,7 @@ class Mailtester {
       done: false,
       to: null,
       from: null,
-      lastMtaIP: null,
+      lastMtaIP: null, // ipv4 / ipv6
       raw: null
     };
   }

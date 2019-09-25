@@ -15,6 +15,11 @@ Work in progress
   * [x] Pyzor Check
   * [x] Razor2 Check
 * [x] Self DNS resolving
+* [ ] IPv6 support
+  * [+] Spf
+  * [ ] DKIM ?
+  * [ ] DMARC ?
+  * [ ] Blacklist
 * [ ] WIP: Launch Demo Website
 
 # Check your mail for spam
