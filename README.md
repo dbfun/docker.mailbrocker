@@ -19,7 +19,7 @@ Work in progress
   * [+] Spf
   * [ ] DKIM ?
   * [ ] DMARC ?
-  * [ ] Blacklist
+  * [+] Blacklist
 * [ ] WIP: Launch Demo Website
 
 # Check your mail for spam

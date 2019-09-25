@@ -11,6 +11,17 @@ const
   blacklistDomains = require('../lib/Blacklist/dnsbl-domains'),
   testCases = [
     {
+      ip: '2a01:4f8:140:302e::2',
+      expect: {
+        ip: '2a01:4f8:140:302e::2',
+        reverseIP: '2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.e.2.0.3.0.4.1.0.8.f.4.0.1.0.a.2',
+        blackListed: [],
+        notListed: [ 'sbl.spamhaus.org' ],
+        failListed: [],
+        list: [ { domain: 'sbl.spamhaus.org', listed: false, success: true } ]
+      }
+    },
+    {
       ip: '127.0.0.2',
       expect: {
         ip: '127.0.0.2',

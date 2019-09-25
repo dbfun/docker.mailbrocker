@@ -1,26 +1,26 @@
 [
   {
     "domain": "bl.mailspike.net",
-    "ipv4": true
+    "ipv": ["4"]
   },
   {
     "domain": "dnsbl.sorbs.net",
-    "ipv4": true
+    "ipv": ["4"]
   },
   {
     "domain": "bl.spamcop.net",
-    "ipv4": true
+    "ipv": ["4"]
   },
   {
     "domain": "sbl.spamhaus.org",
-    "ipv4": true
+    "ipv": ["4", "6"]
   },
   {
     "domain": "multi.surbl.org",
-    "ipv4": true
+    "ipv": ["4"]
   },
   {
     "domain": "black.uribl.com",
-    "ipv4": true
+    "ipv": ["4"]
   }
 ]

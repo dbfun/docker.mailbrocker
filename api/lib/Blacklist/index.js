@@ -2,7 +2,8 @@
 
 const
   dns = require('dns'),
-  assert = require('assert')
+  assert = require('assert'),
+  padIpv6 = require("../node-pad-ipv6") // @see https://github.com/fc00/node-pad-ipv6
   ;
 
 class Blacklist {
@@ -17,10 +18,14 @@ class Blacklist {
   async check(ip) {
     return new Promise(async (resolve, reject) => {
 
-      let reverseIP = this.reverseIP(ip);
+      let IPver = this.IPver(ip);
+
+      let reverseIP = IPver === 4 ? this.reverseIPv4(ip) : this.reverseIPv6(ip);
       let dnsLookups = [];
 
-      for (let domainBundle of this.domains) {
+      let domains = this.domainsByIpVer(this.domains, IPver);
+
+      for (let domainBundle of domains) {
         dnsLookups.push(this.dnsLookup(reverseIP, domainBundle));
       }
 
@@ -53,13 +58,25 @@ class Blacklist {
     });
   }
 
-  reverseIP(ip) {
-    return this.reverseIPv4(ip);
+  domainsByIpVer(domains, IPver) {
+    let IPverStr = IPver.toString();
+    return domains.filter((it) => {
+      return it.ipv.indexOf(IPverStr) !== -1;
+    });
+  }
+
+  IPver(ip) {
+    return ip.match(/[0-9a-f:]{8,}/) ? 6 : 4;
   }
 
   reverseIPv4(ip) {
     assert.ok(typeof ip === "string");
     return ip.split(".").reverse().join(".");
+  }
+
+  reverseIPv6(ip) {
+    let ipV6Expanded = padIpv6(ip);
+    return ipV6Expanded.replace(/:/g, "").split("").reverse().join(".");
   }
 
   dnsLookup(reverseIP, domainBundle) {
