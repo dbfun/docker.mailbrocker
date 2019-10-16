@@ -15,11 +15,12 @@ Work in progress
   * [x] Pyzor Check
   * [x] Razor2 Check
 * [x] Self DNS resolving
+* [ ] Mail test queue
 * [ ] IPv6 support
-  * [+] Spf
+  * [x] Spf
   * [ ] DKIM ?
   * [ ] DMARC ?
-  * [+] Blacklist
+  * [x] Blacklist
 * [ ] WIP: Launch Demo Website
 
 # Check your mail for spam
