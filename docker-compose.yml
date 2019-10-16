@@ -114,6 +114,29 @@ services:
       - exim
       - spamassassin
 
+  website:
+    image: "nginx:alpine"
+    environment:
+      WEB_DOMAIN: "${WEB_DOMAIN}"
+      PORT_WEBSITE: "${PORT_WEBSITE}"
+    # dev volumes
+    volumes:
+      - ./website/nginx.conf:/etc/nginx/conf.d/mysite.template
+      - ./website/www:/srv
+    ports:
+      - "${PORT_WEBSITE}:${PORT_WEBSITE}"
+    command: /bin/sh -c "envsubst < /etc/nginx/conf.d/mysite.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"
+    hostname: website
+    networks:
+      mt:
+        ipv4_address: ${IP_WEBSITE}
+    dns: ${IP_DNS_RESOLVER}
+    depends_on:
+      - dns
+      - mongo
+      - exim
+      - spamassassin
+
 networks:
   mt:
     driver: bridge
