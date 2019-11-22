@@ -136,7 +136,7 @@ class Api {
       // res.send(JSON.stringify({result: "ok"})); return;  // Ok short case
 
       try {
-        let mailtester = new Mailtester({ availableDNS: [config.DNSresolver] });
+        let mailtester = new Mailtester({ availableDNS: config.DNSresolver });
         await mailtester.makeFromRaw(req.body);
 
         let mode = req.query.mode ? req.query.mode : 'MTA';
@@ -200,7 +200,7 @@ class Api {
         let ObjecId = req.params[0];
         let select = req.params[2];
 
-        let mailtester = new Mailtester({ availableDNS: [config.DNSresolver] });
+        let mailtester = new Mailtester({ availableDNS: config.DNSresolver });
         try {
           await mailtester.load(ObjecId);
         } catch (err) {
