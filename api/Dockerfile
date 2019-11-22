@@ -55,4 +55,4 @@ ENV PORT_SPAMASSASSIN=783 \
 
 HEALTHCHECK --interval=5s --timeout=1s --start-period=5s CMD ./docker-healthcheck.sh || exit 1
 
-CMD [ "pm2-runtime", "--watch", "index.js" ]
+CMD [ "pm2-runtime", "start", "ecosystem.config.js" ]
