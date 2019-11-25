@@ -50,8 +50,15 @@ ENV PORT_SPAMASSASSIN=783 \
     MONGO_URI=mongodb://mongo:27017/mailtester \
     MONGO_DB=mailtester \
     API_MAX_MAIL_COUNT=2000 \
-    API_CATCH_ALL_MTA=off \
-    API_CATCH_ALL_MTA_TO=all,any
+    API_CATCH_MTA_ALL=off \
+    API_CATCH_MTA_TO=all,any,reply,autoreply \
+    API_REPLY_MTA_REPORT_ALL=off \
+    API_REPLY_MTA_REPORT_TO=reply,autoreply \
+    EXIM_DOMAIN=your-domain.com \
+    EXIM_MAIL_USER=noreply \
+    EXIM_MAIL_PASS=exim_mail_password \
+    EXIM_MAIL_FROM=noreply@your-domain.com \
+    ADMIN_EMAIL=your-mail@gmail.com
 
 HEALTHCHECK --interval=5s --timeout=1s --start-period=5s CMD ./docker-healthcheck.sh || exit 1
 

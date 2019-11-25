@@ -40,7 +40,7 @@ Modules:
 * [x] Mail data sourses:
   *   [x] MTA
   *   [x] HTTP API
-* [ ] special address for auto reply with spam test score
+* [x] special address for auto reply with spam test score
 
 
 # FAQ

@@ -5,11 +5,16 @@ require("core-js"); // for Promise.allSettled
 const
   assert = require('assert'),
   Registry = new (require('./lib/Registry').Registry),
+  sendmail = new (require('./lib/Sendmail').Sendmail),
+  { Report } = require('./lib/Report'),
   config = {
     incomingMailPort: process.env.PORT_API,
     incomingMailMaxSize: process.env.API_INCOMING_MAIL_MAX_SIZE,
-    catchAllMtaLetters: process.env.API_CATCH_ALL_MTA === "on",
-    catchAllMtaLettersTo: process.env.API_CATCH_ALL_MTA_TO ? process.env.API_CATCH_ALL_MTA_TO.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [],
+    catchMtaLettersAll: process.env.API_CATCH_MTA_ALL === "on",
+    catchMtaLettersTo: process.env.API_CATCH_MTA_TO ? process.env.API_CATCH_MTA_TO.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [],
+    replyMtaLettersAll: process.env.API_REPLY_MTA_REPORT_ALL === "on",
+    replyMtaLettersTo: process.env.API_REPLY_MTA_REPORT_TO ? process.env.API_REPLY_MTA_REPORT_TO.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [],
+    mailFrom: process.env.EXIM_MAIL_FROM,
     maxMailCount: parseInt(process.env.API_MAX_MAIL_COUNT),
     DNSresolver: process.env.IP_DNS_RESOLVER ? process.env.IP_DNS_RESOLVER.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [ "10.1.0.105" ],
     spamassassin: {
@@ -121,8 +126,8 @@ class Api {
       POST /checkmail
       POST /checkmail?mode=MTA
         => parse mail header "TO:" for ObjectId (default mode for MTA)
-        => if option `config.catchAllMtaLetters` checked, generate ObjectId
-        => looks for a special address "TO:" (`config.catchAllMtaLettersTo`), generate ObjectId
+        => if option `config.catchMtaLettersAll` checked, generate ObjectId
+        => looks for a special address "TO:" (`config.catchMtaLettersTo`), generate ObjectId
         => otherwise reject mail saving (a letter is real spam from spammer)
       POST /checkmail?mode=new
         - generate ObjectId
@@ -154,14 +159,14 @@ class Api {
         let emailAddress = mailtester.getFieldTo();
 
         if(mode === "MTA" && mailtester.getObjectId() === null) {
-          if(config.catchAllMtaLetters) {
+          if(config.catchMtaLettersAll) {
             mailtester.generateObjectId();
-            console.log(`mail catched from MTA with config.catchAllMtaLetters option; TO: ${emailAddress}`);
-          } else if(config.catchAllMtaLettersTo.length) {
+            console.log(`mail catched from MTA with config.catchMtaLettersAll option; TO: ${emailAddress}`);
+          } else if(config.catchMtaLettersTo.length) {
             let name = mailtester.getFieldToName();
-            if(config.catchAllMtaLettersTo.indexOf(name) !== -1) {
+            if(config.catchMtaLettersTo.indexOf(name) !== -1) {
               mailtester.generateObjectId();
-              console.log(`mail catched from MTA with name ${name} and config.catchAllMtaLettersTo option: ${config.catchAllMtaLettersTo}; TO: ${emailAddress}`);
+              console.log(`mail catched from MTA with name ${name} and config.catchMtaLettersTo option: ${config.catchMtaLettersTo}; TO: ${emailAddress}`);
             }
           }
         }
@@ -186,6 +191,10 @@ class Api {
 
         try {
           await mailtester.checkAll(true);
+          if(mode === "MTA") {
+            this.autoReply(mailtester);
+          }
+
         } catch (err) {
           console.log(err);
         }
@@ -237,6 +246,43 @@ class Api {
     api.listen(config.incomingMailPort);
     console.log(`API is listening port ${config.incomingMailPort}`);
   }
+
+  autoReply(mailtester) {
+    let fromEmail = mailtester.getFieldFrom();
+
+    if(config.replyMtaLettersAll) {
+      console.log(`reply mail with spam report in MTA mode with config.replyMtaLettersAll option; TO: ${fromEmail}`);
+      return this.replyReport(mailtester, fromEmail);
+    }
+
+    if(config.replyMtaLettersTo.includes( mailtester.getFieldToName() )) {
+      console.log(`reply mail with spam report in MTA mode with config.replyMtaLettersTo option: ${config.replyMtaLettersTo}; TO: ${fromEmail}`);
+      return this.replyReport(mailtester, fromEmail);
+    }
+  }
+
+  async replyReport(mailtester, mailTo) {
+    if(mailTo.toLowerCase() === config.mailFrom.toLowerCase()) {
+      console.log("Anti loop condition")
+      return;
+    }
+
+    try {
+      let report = new Report(mailtester);
+      let plain = report.mailPlain();
+      let info = await sendmail.mail({
+        from: config.mailFrom,
+        to: mailTo,
+        subject: 'Mail test results',
+        text: plain
+      });
+      assert.ok(/^250 OK id=/.test(info.response));
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
 }
 
 var api = new Api();

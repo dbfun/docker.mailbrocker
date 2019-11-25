@@ -8,6 +8,8 @@ services:
       EXIM_DOMAIN: ${EXIM_DOMAIN}
       EXIM_DEBUG: ${EXIM_DEBUG}
       EXIM_INCOMING_MAIL_MAX_SIZE: ${EXIM_INCOMING_MAIL_MAX_SIZE}
+      EXIM_MAIL_USER: ${EXIM_MAIL_USER}
+      EXIM_MAIL_PASS: ${EXIM_MAIL_PASS}
       PORT_EXIM: ${PORT_EXIM}
       PORT_API: ${PORT_API}
       TZ: ${TZ}
@@ -84,6 +86,7 @@ services:
     volumes:
       # dev volumes for hot reload
       - ./api/index.js:/srv/index.js
+      - ./api/mail.js:/srv/mail.js
       - ./api/lib:/srv/lib
       - ./api/test:/srv/test
       # test letters
@@ -93,11 +96,18 @@ services:
       PORT_API: ${PORT_API}
       API_INCOMING_MAIL_MAX_SIZE: ${API_INCOMING_MAIL_MAX_SIZE}
       API_MAX_MAIL_COUNT: ${API_MAX_MAIL_COUNT}
-      API_CATCH_ALL_MTA: ${API_CATCH_ALL_MTA}
-      API_CATCH_ALL_MTA_TO: ${API_CATCH_ALL_MTA_TO}
+      API_CATCH_MTA_ALL: ${API_CATCH_MTA_ALL}
+      API_CATCH_MTA_TO: ${API_CATCH_MTA_TO}
+      API_REPLY_MTA_REPORT_ALL: ${API_REPLY_MTA_REPORT_ALL}
+      API_REPLY_MTA_REPORT_TO: ${API_REPLY_MTA_REPORT_TO}
+      EXIM_MAIL_FROM: ${EXIM_MAIL_FROM}
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
       SPAMASSASSIN_MAX_MSG_SIZE: ${SPAMASSASSIN_MAX_MSG_SIZE}
       MONGO_URI: ${MONGO_URI}
       MONGO_DB: ${MONGO_DB}
+      EXIM_DOMAIN: ${EXIM_DOMAIN}
+      EXIM_MAIL_USER: ${EXIM_MAIL_USER}
+      EXIM_MAIL_PASS: ${EXIM_MAIL_PASS}
       TZ: ${TZ}
       IP_DNS_RESOLVER: ${IP_DNS_RESOLVER}
     restart: always
