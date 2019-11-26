@@ -65,7 +65,6 @@ class Mailtester {
     let parsed = await simpleParser(this.doc.raw);
     try {
       this.doc.to = parsed.to.value[0].address;
-      this.ObjectId = this.getMailObjectId(this.doc.to);
     } catch (e) { }
     try {
       this.doc.from = parsed.from.value[0].address;
@@ -100,7 +99,7 @@ class Mailtester {
     return this.doc[name];
   }
 
-  getFieldToName() {
+  getFieldToUsername() {
     try {
       return this.doc.to.match(/^(.*?)@/)[1];
     } catch (e) {
@@ -113,7 +112,11 @@ class Mailtester {
   }
 
   generateObjectId() {
-    this.ObjectId = ObjectId().valueOf();
+    return ObjectId().valueOf();
+  }
+
+  validateObjectId(_ObjectId) {
+    ObjectId(_ObjectId);
   }
 
   getMailObjectId(to) {

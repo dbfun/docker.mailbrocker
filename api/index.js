@@ -145,60 +145,73 @@ class Api {
         await mailtester.makeFromRaw(req.body);
 
         let mode = req.query.mode ? req.query.mode : 'MTA';
+        let mailTo = mailtester.getFieldTo();
+        let mailToUsername = mailtester.getFieldToUsername();
+        let ObjectId = null;
+
         if(["MTA", "new", "set"].indexOf(mode) === -1) {
           mode = "MTA";
         }
 
-        if(mode === "set") {
-          mailtester.setObjectId(req.query.ObjectId);
-        }
-        if(mode === "new") {
-          mailtester.generateObjectId();
-        }
-
-        let emailAddress = mailtester.getFieldTo();
-
-        if(mode === "MTA" && mailtester.getObjectId() === null) {
-          if(config.catchMtaLettersAll) {
-            mailtester.generateObjectId();
-            console.log(`mail catched from MTA with config.catchMtaLettersAll option; TO: ${emailAddress}`);
-          } else if(config.catchMtaLettersTo.length) {
-            let name = mailtester.getFieldToName();
-            if(config.catchMtaLettersTo.indexOf(name) !== -1) {
-              mailtester.generateObjectId();
-              console.log(`mail catched from MTA with name ${name} and config.catchMtaLettersTo option: ${config.catchMtaLettersTo}; TO: ${emailAddress}`);
+        switch(mode) {
+          case "set":
+            ObjectId = req.query.ObjectId;
+            break;
+          case "new":
+            ObjectId = mailtester.generateObjectId();
+            break;
+          case "MTA":
+            if(config.mailFrom.toLowerCase() === mailTo.toLowerCase()) {
+              let msg = `Mail rejected in MTA mode: anti loop condition. FROM: "${config.mailFrom}" TO: "${mailTo}"`;
+              console.log(msg);
+              res.status(400).send(JSON.stringify({result: "fail", reason: msg}));
+              return;
             }
-          }
+
+            ObjectId = mailtester.getMailObjectId(mailtester.getFieldTo());
+            if(ObjectId === null) {
+              if(config.catchMtaLettersAll) {
+                ObjectId = mailtester.generateObjectId();
+                console.log(`Mail catched from MTA with config.catchMtaLettersAll option; TO: "${mailTo}"`);
+              } else if(config.catchMtaLettersTo.indexOf(mailToUsername) !== -1) {
+                ObjectId = mailtester.generateObjectId();
+                console.log(`Mail catched from MTA with username ${mailToUsername} and config.catchMtaLettersTo option: ${config.catchMtaLettersTo}; TO: "${mailTo}"`);
+              } else {
+                let msg = `Mail rejected in MTA mode: wrong fied TO: "${mailTo}". Use MongoDB ObjectId as user name`;
+                console.log(msg);
+                res.status(400).send(JSON.stringify({result: "fail", reason: msg}));
+                return;
+              }
+            }
+            break;
         }
 
         try {
-          // Save mail and report about this
-          await mailtester.saveRaw();
-          let ret = {result: "ok", ObjecId: mailtester.getObjectId()};
-          console.log(`new mail to check: ${ret.ObjecId}`);
-          res.send(JSON.stringify(ret));
-        } catch (err) {
-          // ... or report about wrong ObjectId in To: field
-          if(mailtester.getObjectId() === null) {
-            console.log(`mail rejected in ${mode} mode; TO: ${emailAddress}`);
-            res.status(400).send(JSON.stringify({result: "fail", reason: "Wrong fied \"To:\" - use MongoDB ObjectId as user name"}));
-            return;
-          } else {
-            // ... or report about server fault, and MTA will retry
-            throw err;
-          }
+          mailtester.validateObjectId(ObjectId);
+        } catch (e) {
+          res.status(400).send(JSON.stringify({result: "fail", reason: "Wrong ObjectId"}));
+          return;
         }
+
+        mailtester.setObjectId(ObjectId);
+
+        // Save mail and report about this
+        await mailtester.saveRaw();
+        let ret = {result: "ok", ObjecId: mailtester.getObjectId()};
+        console.log(`new mail to check: ${ret.ObjecId}`);
+        res.send(JSON.stringify(ret));
 
         try {
           await mailtester.checkAll(true);
           if(mode === "MTA") {
             this.autoReply(mailtester);
           }
-
         } catch (err) {
           console.log(err);
         }
+
       } catch (err) {
+        // 5xx errors
         console.log(err);
         next(err);
       }
@@ -252,21 +265,16 @@ class Api {
 
     if(config.replyMtaLettersAll) {
       console.log(`reply mail with spam report in MTA mode with config.replyMtaLettersAll option; TO: ${fromEmail}`);
-      return this.replyReport(mailtester, fromEmail);
+      return this.mailReport(mailtester, fromEmail);
     }
 
-    if(config.replyMtaLettersTo.includes( mailtester.getFieldToName() )) {
+    if(config.replyMtaLettersTo.includes( mailtester.getFieldToUsername() )) {
       console.log(`reply mail with spam report in MTA mode with config.replyMtaLettersTo option: ${config.replyMtaLettersTo}; TO: ${fromEmail}`);
-      return this.replyReport(mailtester, fromEmail);
+      return this.mailReport(mailtester, fromEmail);
     }
   }
 
-  async replyReport(mailtester, mailTo) {
-    if(mailTo.toLowerCase() === config.mailFrom.toLowerCase()) {
-      console.log("Anti loop condition")
-      return;
-    }
-
+  async mailReport(mailtester, mailTo) {
     try {
       let report = new Report(mailtester);
       let plain = report.mailPlain();
