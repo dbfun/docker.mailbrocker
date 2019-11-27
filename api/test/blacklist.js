@@ -7,7 +7,7 @@
 const
   assert = require('assert'),
   _ = require('lodash'),
-  availableDNS = [ "8.8.8.8", "77.88.8.8", "94.142.137.100", "94.142.136.100" ],
+  availableDNS = process.env.IP_DNS_RESOLVER ? process.env.IP_DNS_RESOLVER.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [ "94.142.137.100", "94.142.136.100" ],
   blacklistDomains = require('../lib/Blacklist/dnsbl-domains'),
   testCases = [
     {
@@ -99,7 +99,7 @@ describe('blacklist', () => {
 
         // console.log(blShallow); process.exit(1);
 
-        assert.deepStrictEqual(blShallow, testCase.expect);
+        assert.deepStrictEqual(blShallow, testCase.expect, `If test is not pass, may be one of this DNS servers has been blocked on Blacklist servers: ${availableDNS.join(", ")}`);
       });
     }
   });
