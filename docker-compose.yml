@@ -2,6 +2,9 @@ version: '3'
 services:
   exim:
     build: ./exim
+    volumes:
+      # volume for store DKIM keys
+      - ./exim/dkim-keys:/etc/exim/dkim
     ports:
       - ${PORT_EXIM}:${PORT_EXIM}
     environment:
@@ -10,6 +13,7 @@ services:
       EXIM_INCOMING_MAIL_MAX_SIZE: ${EXIM_INCOMING_MAIL_MAX_SIZE}
       EXIM_MAIL_USER: ${EXIM_MAIL_USER}
       EXIM_MAIL_PASS: ${EXIM_MAIL_PASS}
+      EXIM_DKIM_SELECTOR: ${EXIM_DKIM_SELECTOR}
       PORT_EXIM: ${PORT_EXIM}
       PORT_API: ${PORT_API}
       TZ: ${TZ}

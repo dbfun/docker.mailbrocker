@@ -37,6 +37,11 @@ exim-bp:
 	@echo Queue:
 	@docker-compose exec exim exim -bp
 
+# Shows DKIM public key
+.PHONY: exim-dkim
+exim-dkim:
+	@docker-compose exec exim sh /srv/dkim-show-public-key.sh
+
 .PHONY: dns-stats
 dns-stats:
 	@docker-compose exec dns sh -c 'unbound-control stats_noreset; echo; unbound-control status'

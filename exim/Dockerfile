@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk add --no-cache exim curl
+RUN apk add --no-cache exim curl openssl
 
 ### dev section
 ENV ENV="/etc/profile"
@@ -13,8 +13,9 @@ RUN mkdir -p        /var/spool/mail /var/mail /var/spool/exim /var/spool/exim/db
     chown exim.mail /var/spool/mail /var/mail /var/spool/exim /var/spool/exim/db /var/spool/exim/input /var/spool/exim/msglog && \
     adduser -D -G mail mailtester
 
-ADD ./run.sh /run.sh
-ADD ./api-pipe.sh /srv/api-pipe.sh
+WORKDIR srv
+ADD ./srv /srv
+
 ADD ./exim.conf /etc/exim/exim.conf
 
 ENV EXIM_DOMAIN=your-domain.com \
@@ -23,8 +24,9 @@ ENV EXIM_DOMAIN=your-domain.com \
     PORT_EXIM=25 \
     PORT_API=8080 \
     EXIM_MAIL_USER=noreply \
-    EXIM_MAIL_PASS=exim_mail_password
+    EXIM_MAIL_PASS=exim_mail_password \
+    EXIM_DKIM_SELECTOR=mailtester
 
 HEALTHCHECK --interval=60s --timeout=5s --start-period=5s CMD exiwhat | grep -qF "listening for SMTP on port" || exit 1
 
-CMD ["/run.sh"]
+CMD ["/srv/run.sh"]

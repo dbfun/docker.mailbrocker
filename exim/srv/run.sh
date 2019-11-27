@@ -1,10 +1,23 @@
 #!/bin/sh
 
-echo $PRIMARY_HOST > /etc/exim/primary_host
+# This script runs Exim in Docker container
+# @see Dockerfile
+
+echo "$EXIM_DOMAIN" > /etc/exim/primary_host
 
 # Against error "Exim configuration file /etc/exim/exim.conf has the wrong owner, group, or mode"
 chmod 640 /etc/exim/exim.conf
 chown root.mail /etc/exim/exim.conf
+
+# Make new DKIM keys
+
+if [[ ! -f "/etc/exim/dkim/private.key" ]]; then
+  /srv/dkim-make-keys.sh
+fi
+
+chown -R mail.mail /etc/exim/dkim
+
+# Run
 
 # From man:
 # -q<qflags><time>

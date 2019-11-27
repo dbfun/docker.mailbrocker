@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# This script sends email from Exim to API
+# @see exim.conf
+
 # API must return
 # * 201 Created - all is fine
 # * 400 Bad Request - wrong field "To:"
