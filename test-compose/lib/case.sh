@@ -42,6 +42,21 @@ function assert_not_empty {
   fi
 }
 
+function assert_file_exists {
+  if [[ ! -f "$1" ]]; then
+    echo -e ${Red}"File not exists: $1"${Color_Off}
+    TESTS_PASSED=0
+    CASE_PASSED=0
+  fi
+}
+
+function assert_file_not_exists {
+  if [[ -f "$1" ]]; then
+    echo -e ${Red}"File must not exists: $1"${Color_Off}
+    TESTS_PASSED=0
+    CASE_PASSED=0
+  fi
+}
 
 function start_case {
   CASE_NAME="$1"

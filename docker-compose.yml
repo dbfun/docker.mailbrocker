@@ -44,6 +44,8 @@ services:
       - ./test-compose:/srv/
       # test letters
       - ./test-letters:/srv/test-letters
+      # volume for store DKIM keys
+      - ./exim/dkim-keys:/etc/exim/dkim
     env_file:
       - .env
     environment:

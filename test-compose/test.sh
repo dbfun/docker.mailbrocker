@@ -14,7 +14,10 @@ if [ "$RUN_TESTS" == "on" ]; then
   ./test-dns.sh
   if [ "$?" -ne "0" ]; then TESTS_PASSED=0; fi
 
-  ./test-mail.sh
+  ./test-mta.sh
+  if [ "$?" -ne "0" ]; then TESTS_PASSED=0; fi
+
+  ./test-mail-send.sh
   if [ "$?" -ne "0" ]; then TESTS_PASSED=0; fi
 
   ./test-api-pipe.sh
