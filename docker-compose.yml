@@ -7,16 +7,8 @@ services:
       - ./exim/dkim-keys:/etc/exim/dkim
     ports:
       - ${PORT_EXIM}:${PORT_EXIM}
-    environment:
-      EXIM_DOMAIN: ${EXIM_DOMAIN}
-      EXIM_DEBUG: ${EXIM_DEBUG}
-      EXIM_INCOMING_MAIL_MAX_SIZE: ${EXIM_INCOMING_MAIL_MAX_SIZE}
-      EXIM_MAIL_USER: ${EXIM_MAIL_USER}
-      EXIM_MAIL_PASS: ${EXIM_MAIL_PASS}
-      EXIM_DKIM_SELECTOR: ${EXIM_DKIM_SELECTOR}
-      PORT_EXIM: ${PORT_EXIM}
-      PORT_API: ${PORT_API}
-      TZ: ${TZ}
+    env_file:
+      - .env
     restart: always
     hostname: ${EXIM_DOMAIN}
     networks:
@@ -27,9 +19,8 @@ services:
       - dns
   spamassassin:
     build: ./spamassassin
-    environment:
-      PORT_SPAMASSASSIN: ${PORT_SPAMASSASSIN}
-      TZ: ${TZ}
+    env_file:
+      - .env
     hostname: spamassassin
     networks:
       mt:
@@ -53,13 +44,10 @@ services:
       - ./test-compose:/srv/
       # test letters
       - ./test-letters:/srv/test-letters
+    env_file:
+      - .env
     environment:
       RUN_TESTS: ${RUN_TESTS}
-      EXIM_DOMAIN: ${EXIM_DOMAIN}
-      PORT_API: ${PORT_API}
-      PORT_EXIM: ${PORT_EXIM}
-      PORT_SPAMASSASSIN: ${PORT_SPAMASSASSIN}
-      TZ: ${TZ}
     hostname: test-compose
     networks:
       mt:
@@ -70,16 +58,8 @@ services:
       - dns
   dns:
     build: ./dns
-    environment:
-      PORT_DNS: ${PORT_DNS}
-      DNS_CACHE_MIN_TTL: ${DNS_CACHE_MIN_TTL}
-      DNS_CACHE_MAX_NEGATIVE_TTL: ${DNS_CACHE_MAX_NEGATIVE_TTL}
-      DNS_DEBUG: ${DNS_DEBUG}
-      DNS_STATISTICS_INTERVAL: ${DNS_STATISTICS_INTERVAL}
-      DNS_LOG_QUERIES: ${DNS_LOG_QUERIES}
-      DNS_LOG_REPLIES: ${DNS_LOG_REPLIES}
-      DNS_LOG_SERVFAIL: ${DNS_LOG_SERVFAIL}
-      TZ: ${TZ}
+    env_file:
+      - .env
     restart: always
     hostname: dns
     networks:
@@ -95,25 +75,8 @@ services:
       - ./api/test:/srv/test
       # test letters
       - ./test-letters:/test-letters
-    environment:
-      PORT_SPAMASSASSIN: ${PORT_SPAMASSASSIN}
-      PORT_API: ${PORT_API}
-      API_INCOMING_MAIL_MAX_SIZE: ${API_INCOMING_MAIL_MAX_SIZE}
-      API_MAX_MAIL_COUNT: ${API_MAX_MAIL_COUNT}
-      API_CATCH_MTA_ALL: ${API_CATCH_MTA_ALL}
-      API_CATCH_MTA_TO: ${API_CATCH_MTA_TO}
-      API_REPLY_MTA_REPORT_ALL: ${API_REPLY_MTA_REPORT_ALL}
-      API_REPLY_MTA_REPORT_TO: ${API_REPLY_MTA_REPORT_TO}
-      EXIM_MAIL_FROM: ${EXIM_MAIL_FROM}
-      ADMIN_EMAIL: ${ADMIN_EMAIL}
-      SPAMASSASSIN_MAX_MSG_SIZE: ${SPAMASSASSIN_MAX_MSG_SIZE}
-      MONGO_URI: ${MONGO_URI}
-      MONGO_DB: ${MONGO_DB}
-      EXIM_DOMAIN: ${EXIM_DOMAIN}
-      EXIM_MAIL_USER: ${EXIM_MAIL_USER}
-      EXIM_MAIL_PASS: ${EXIM_MAIL_PASS}
-      TZ: ${TZ}
-      IP_DNS_RESOLVER: ${IP_DNS_RESOLVER}
+    env_file:
+      - .env
     restart: always
     ports:
       - ${PORT_API}:${PORT_API}
@@ -130,9 +93,8 @@ services:
 
   website:
     image: "nginx:alpine"
-    environment:
-      WEB_DOMAIN: "${WEB_DOMAIN}"
-      PORT_WEBSITE: "${PORT_WEBSITE}"
+    env_file:
+      - .env
     # dev volumes
     volumes:
       - ./website/nginx.conf:/etc/nginx/conf.d/mysite.template
