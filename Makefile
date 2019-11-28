@@ -55,6 +55,11 @@ dns-cache:
 mail-count:
 	@echo Num mails: `docker-compose exec mongo mongo mailtester --quiet --eval 'db.mails.count({});'`
 
+# Check Blacklists
+.PHONY: tools-blacklist
+tools-blacklist:
+	@docker-compose exec api node tools/blacklist.js ${IP}
+
 # Reload all services
 .PHONY: reload
 reload:

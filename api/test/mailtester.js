@@ -1,6 +1,10 @@
 /*
 @see https://mochajs.org/
 @see https://nodejs.org/api/assert.html
+
+run one case bundle:
+  mocha test/mailtester.js -g "pyzor"
+  mocha test/mailtester.js -g "case 0"
 */
 "use strict";
 
@@ -9,6 +13,7 @@ require("core-js");
 const
   assert = require('assert'),
   fs=require('fs'),
+  availableDNS = process.env.IP_DNS_RESOLVER ? process.env.IP_DNS_RESOLVER.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [ "94.142.137.100", "94.142.136.100" ],
   testCasesCheckPreparation = [
     {
       src: __dirname + "/../../test-letters/ham-spf-rebus3d.ru.eml",
@@ -21,11 +26,12 @@ const
         blacklist: {
           ip: '94.100.179.3',
           reverseIP: '3.179.100.94',
-          blackListed: [ 'sbl.spamhaus.org' ],
+          blackListed: [ ],
           notListed: [
             'bl.mailspike.net',
             'dnsbl.sorbs.net',
             'bl.spamcop.net',
+            'sbl.spamhaus.org',
             'multi.surbl.org',
             'black.uribl.com'
           ],
@@ -34,7 +40,7 @@ const
             { domain: 'bl.mailspike.net', listed: false, success: true },
             { domain: 'dnsbl.sorbs.net', listed: false, success: true },
             { domain: 'bl.spamcop.net', listed: false, success: true },
-            { domain: 'sbl.spamhaus.org', listed: true, success: true },
+            { domain: 'sbl.spamhaus.org', listed: false, success: true },
             { domain: 'multi.surbl.org', listed: false, success: true },
             { domain: 'black.uribl.com', listed: false, success: true }
           ]
@@ -248,56 +254,80 @@ describe('mailtester', () => {
   const
     { Mailtester } = require('../lib/Mailtester');
 
-  describe('parse', function() {
+  describe('check', function() {
     this.timeout(15000);
-    for(let testCase of testCasesCheckPreparation) {
 
-      it('Mail check', async () => {
-        let raw = fs.readFileSync(testCase.src);
+    let tests = [ "spf", "dkim", "blacklist", "pyzor", "razor" ];
+    for(let testName of tests) {
 
-        /*
-        // TODO: "dmarc"
-        let dmarc = mailtester.getResults('dmarc');
-        assert.deepEqual(dmarc.test, testCase.expect.dmarc);
-        */
+      describe(`${testName}`, () => {
 
-        let availableTests = [ "spf", "dkim", "blacklist", "pyzor", "razor" ];
-        let mailtester = new Mailtester({ availableTests: availableTests });
-        await mailtester.makeFromRaw(raw);
+        for(let idx in testCasesCheckPreparation) {
+          let testCase = testCasesCheckPreparation[idx];
 
-        assert.equal(mailtester.getObjectId(), testCase.expect.ObjecId);
-        assert.equal(mailtester.getFieldFrom(), testCase.expect.from);
-        assert.equal(mailtester.getFieldTo(), testCase.expect.to);
-        assert.equal(mailtester.getFieldLastMtaIP(), testCase.expect.lastMtaIP);
+          it(`case ${idx}`, async () => {
+            let raw = fs.readFileSync(testCase.src);
 
-        await mailtester.checkAll(false);
+            /*
+            // TODO: "dmarc"
+            let dmarc = mailtester.getResults('dmarc');
+            assert.deepStrictEqual(dmarc.test, testCase.expect.dmarc);
+            */
 
-        if(availableTests.indexOf('spf') !== -1) {
-          let spf = mailtester.getResults('spf');
-          assert.deepEqual(spf.test, testCase.expect.spf);
-        }
+            let availableTests = [ testName ];
 
-        if(availableTests.indexOf('dkim') !== -1) {
-          let dkim = mailtester.getResults('dkim');
-          assert.deepEqual(dkim.test, testCase.expect.dkim);
-        }
 
-        if(availableTests.indexOf('blacklist') !== -1) {
-          let blacklist = mailtester.getResults('blacklist');
-          assert.deepEqual(blacklist, testCase.expect.blacklist);
-        }
 
-        if(availableTests.indexOf('pyzor') !== -1) {
-          let pyzor = mailtester.getResults('pyzor');
-          assert.ok(pyzor.test.Count >= 0);
-        }
+            let mailtester = new Mailtester({ availableDNS: availableDNS, availableTests: availableTests });
+            await mailtester.makeFromRaw(raw);
 
-        if(availableTests.indexOf('razor') !== -1) {
-          let razor = mailtester.getResults('razor');
-          assert.equal(razor.test, testCase.expect.razor);
+            let ObjectId = mailtester.getMailObjectId(mailtester.getFieldTo());
+            assert.doesNotThrow(() => {
+              mailtester.validateObjectId(ObjectId);
+            });
+
+            mailtester.setObjectId(ObjectId);
+
+            assert.equal(mailtester.getObjectId(), testCase.expect.ObjecId);
+            assert.equal(mailtester.getFieldFrom(), testCase.expect.from);
+            assert.equal(mailtester.getFieldTo(), testCase.expect.to);
+            assert.equal(mailtester.getFieldLastMtaIP(), testCase.expect.lastMtaIP);
+
+            await mailtester.checkAll(false);
+
+
+            if(availableTests.indexOf('spf') !== -1) {
+              let spf = mailtester.getResults('spf');
+              assert.deepStrictEqual(spf.test, testCase.expect.spf);
+            }
+
+            if(availableTests.indexOf('dkim') !== -1) {
+              let dkim = mailtester.getResults('dkim');
+              assert.deepStrictEqual(dkim.test, testCase.expect.dkim);
+            }
+
+            if(availableTests.indexOf('blacklist') !== -1) {
+              let blacklist = mailtester.getResults('blacklist');
+              assert.deepStrictEqual(blacklist, testCase.expect.blacklist);
+            }
+
+            if(availableTests.indexOf('pyzor') !== -1) {
+              let pyzor = mailtester.getResults('pyzor');
+              console.log(pyzor.test.Count);
+              assert.ok(typeof pyzor.test.Count !== "undefined", "Count is undefined");
+              assert.ok(pyzor.test.Count >= 0);
+            }
+
+            if(availableTests.indexOf('razor') !== -1) {
+              let razor = mailtester.getResults('razor');
+              assert.equal(razor.test, testCase.expect.razor);
+            }
+
+          });
         }
 
       });
+
     }
 
 

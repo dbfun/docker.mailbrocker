@@ -19,10 +19,10 @@ const
 	WL-Updated: Thu Jan  1 00:00:00 1970
 `,
       expect: {
-        Count: '0',
+        Count: 0,
         Entered: 'Thu Jan  1 00:00:00 1970',
         Updated: 'Thu Jan  1 00:00:00 1970',
-        'WL-Count': '0',
+        'WL-Count': 0,
         'WL-Entered': 'Thu Jan  1 00:00:00 1970',
         'WL-Updated': 'Thu Jan  1 00:00:00 1970'
       }
