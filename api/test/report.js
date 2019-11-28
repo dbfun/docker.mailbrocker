@@ -6,40 +6,18 @@
 
 const
   assert = require('assert'),
-  { Report } = require('../lib/Report')
+  { Report } = require('../lib/Report'),
+  fs=require('fs')
   ;
 
 describe('report', () => {
 
-  // GTUBE test
-  const mailtester = {
-    doc: {
-      "spamassassin": {
-        "test": {
-          "score": 1000,
-          "rules": {
-            "GTUBE": {
-              "score": 1000,
-              "name": "GTUBE",
-              "description": "BODY: Generic Test for Unsolicited Bulk Email"
-            }
-          }
-        }
-      }
-    }
-  };
-
-let expect = `Hello, your spam score is 1000.
-
-Spamassassin rules:
-
-score: 1000
-name: GTUBE
-description: BODY: Generic Test for Unsolicited Bulk Email`;
+const mailtester = require("./data/mailtester/case-0");
+const expect = fs.readFileSync("./test/data/mailtester/case-0.txt").toString().trim();
 
   it("Plain report", () => {
     let report = new Report(mailtester);
-    let plain = report.mailPlain();
+    let plain = report.mailPlain().trim();
 
     // console.log(plain); process.exit();
     assert.equal(plain, expect);

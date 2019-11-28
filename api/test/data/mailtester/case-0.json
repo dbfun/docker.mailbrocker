@@ -1,0 +1,142 @@
+{
+  "doc": {
+    "_id": "5ddf860007e6da349d3fe6bb",
+    "created": "2019-11-28T08:32:00.231Z",
+    "to": "reply@spam24.ru",
+    "from": "test@gmail.com",
+    "subject": "😍 test subject",
+    "spf": {
+      "test": {
+        "Context": "Main query",
+        "Response result": "pass",
+        "Response reason": "mechanism",
+        "Response err": "No errors",
+        "spfquery": "domain of gmail.com designates 209.85.222.45 as permitted sender",
+        "Received-SPF": "pass (spfquery: domain of gmail.com designates 209.85.222.45 as permitted sender) client-ip=209.85.222.45; envelope-from=test@gmail.com;"
+      }
+    },
+    "dkim": {
+      "test": {
+        "originator address": "test@gmail.com",
+        "sender policy result": "accept",
+        "author policy result": "accept",
+        "ADSP policy result": "accept",
+        "verify result": "pass"
+      }
+    },
+    "blacklist": {
+      "ip": "209.85.222.45",
+      "reverseIP": "45.222.85.209",
+      "blackListed": [
+        "bl.mailspike.net"
+      ],
+      "notListed": [
+        "dnsbl.sorbs.net",
+        "bl.spamcop.net",
+        "sbl.spamhaus.org",
+        "multi.surbl.org",
+        "black.uribl.com"
+      ],
+      "failListed": [],
+      "list": [
+        {
+          "domain": "bl.mailspike.net",
+          "listed": false,
+          "success": true
+        },
+        {
+          "domain": "dnsbl.sorbs.net",
+          "listed": false,
+          "success": true
+        },
+        {
+          "domain": "bl.spamcop.net",
+          "listed": false,
+          "success": true
+        },
+        {
+          "domain": "sbl.spamhaus.org",
+          "listed": false,
+          "success": true
+        },
+        {
+          "domain": "multi.surbl.org",
+          "listed": false,
+          "success": true
+        },
+        {
+          "domain": "black.uribl.com",
+          "listed": false,
+          "success": true
+        }
+      ]
+    },
+    "spamassassin": {
+      "test": {
+        "score": 2.2,
+        "rules": {
+          "HTML_MESSAGE": {
+            "score": 0,
+            "name": "HTML_MESSAGE",
+            "description": "BODY: HTML included in message"
+          },
+          "FREEMAIL_FROM": {
+            "score": 0,
+            "name": "FREEMAIL_FROM",
+            "description": "Sender email is commonly abused enduser mail"
+          },
+          "DKIM_SIGNED": {
+            "score": 0.1,
+            "name": "DKIM_SIGNED",
+            "description": "Message has a DKIM or DK signature, not necessarily"
+          },
+          "MIXED_ES": {
+            "score": 2.4,
+            "name": "MIXED_ES",
+            "description": "Too many es are not es"
+          },
+          "T_REMOTE_IMAGE": {
+            "score": 0,
+            "name": "T_REMOTE_IMAGE",
+            "description": "Message contains an external image"
+          },
+          "URIBL_SBL": {
+            "score": 0.6,
+            "name": "URIBL_SBL",
+            "description": "Contains an URL's NS IP listed in the Spamhaus SBL"
+          }
+        }
+      }
+    },
+    "pyzor": {
+      "test": {
+        "Count": 0,
+        "Entered": "Thu Jan  1 00:00:00 1970",
+        "Updated": "Thu Jan  1 00:00:00 1970",
+        "WL-Count": 0,
+        "WL-Entered": "Thu Jan  1 00:00:00 1970",
+        "WL-Updated": "Thu Jan  1 00:00:00 1970"
+      }
+    },
+    "razor": {
+      "test": "ham"
+    },
+    "done": false,
+    "lastMtaIP": "209.85.222.45",
+    "dmarc": {
+      "test": {
+        "Sample percentage": 100,
+        "DKIM alignment": "relaxed",
+        "SPF alignment": "relaxed",
+        "Domain policy": "none",
+        "Subdomain policy": "quarantine",
+        "Aggregate report URIs": [
+          "mailto:mailauth-reports@google.com"
+        ],
+        "Failure report URIs": [
+          "(none)"
+        ]
+      }
+    }
+  }
+}

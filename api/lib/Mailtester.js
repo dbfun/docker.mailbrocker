@@ -76,6 +76,9 @@ class Mailtester {
       let m = Received.line.match(/(\[([0-9a-f:]{8,}|[0-9.]{7,})\])/);
       this.doc.lastMtaIP = m[2];
     } catch (e) { }
+    try {
+      this.doc.subject = parsed.subject;
+    } catch (e) { }
   }
 
   getObjectId() {
@@ -129,8 +132,13 @@ class Mailtester {
   }
 
   async saveRaw() {
-    if(!this.ObjectId) throw new Error("No ObjectId specified");
+    try {
+      this.validateObjectId(this.ObjectId);
+    } catch (e) {
+      throw new Error("No ObjectId specified");
+    }
     let collectionMails = Registry.get('mongo').collection('mails');
+    this.doc._id = this.ObjectId;
     return collectionMails.replaceOne(
       {
         _id: ObjectId(this.ObjectId)

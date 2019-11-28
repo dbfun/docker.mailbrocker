@@ -1,0 +1,50 @@
+=================
+Your mail results
+=================
+
+Hello, you recently sent a email for spam test, below are the test results.
+
+FROM: test@gmail.com
+TO: reply@spam24.ru
+SUBJ: 😍 test subject
+
+============
+SPF
+============
+
+Result: pass
+Description: domain of gmail.com designates 209.85.222.45 as permitted sender
+
+============
+DKIM
+============
+
+Originator address: test@gmail.com
+Verify result: pass
+
+============
+Blacklist
+============
+
+Your IP is blacklisted: 209.85.222.45
+
+* bl.mailspike.net
+
+============
+Spamassassin
+============
+
+Score: 2.2
+Rules:
+
+0    HTML_MESSAGE    BODY: HTML included in message
+0    FREEMAIL_FROM   Sender email is commonly abused enduser mail
+0.1  DKIM_SIGNED     Message has a DKIM or DK signature, not necessarily
+2.4  MIXED_ES        Too many es are not es
+0    T_REMOTE_IMAGE  Message contains an external image
+0.6  URIBL_SBL       Contains an URL's NS IP listed in the Spamhaus SBL
+
+--------------------
+Test id: 5ddf860007e6da349d3fe6bb
+
+This is an automatically generated email
