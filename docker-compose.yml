@@ -72,7 +72,6 @@ services:
     volumes:
       # dev volumes for hot reload
       - ./api/index.js:/srv/index.js
-      - ./api/mail.js:/srv/mail.js
       - ./api/lib:/srv/lib
       - ./api/tools:/srv/tools
       - ./api/test:/srv/test

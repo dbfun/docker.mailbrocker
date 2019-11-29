@@ -8,11 +8,12 @@ const
 
 class Report {
 
-  constructor(mailtester) {
+  constructor(mailtester, security) {
     this.mailtester = mailtester;
+    this.security = security;
   }
 
-  mailPlain() {
+  mailPlain(config) {
     Handlebars.registerPartial("spf", `
 {{#this}}
 
@@ -93,7 +94,7 @@ Rules:
 Your mail results
 =================
 
-Hello, you recently sent a email for spam test, below are the test results.
+Hello! Recently you sent an email for spam test, the test results are given below
 
 FROM: {{doc.from}}
 TO: {{doc.to}}
@@ -107,6 +108,7 @@ SUBJ: {{doc.subject}}
 Test id: {{doc._id}}
 
 This is an automatically generated email
+To unsubscribe from any emails click here: {{{unsubscribe doc._id}}}
 `;
 
     Handlebars.registerHelper('plaintable', rules => {
@@ -117,6 +119,12 @@ This is an automatically generated email
         }));
       } catch (e) { }
       return table(data);
+    });
+
+    Handlebars.registerHelper('unsubscribe', _id => {
+      let uri = `${config.baseHref}/unsubscribe?type=mongo&collection=mails&_id=${_id}`;
+      uri = this.security.signUri(uri);
+      return uri;
     });
 
     let template = Handlebars.compile(source);

@@ -12,12 +12,13 @@ const
 
 describe('report', () => {
 
-const mailtester = require("./data/mailtester/case-0");
-const expect = fs.readFileSync("./test/data/mailtester/case-0.txt").toString().trim();
+  const mailtester = require("./data/mailtester/case-0");
+  const expect = fs.readFileSync("./test/data/mailtester/case-0.txt").toString().trim();
 
   it("Plain report", () => {
-    let report = new Report(mailtester);
-    let plain = report.mailPlain().trim();
+    let security = new(require("../lib/Security").Security)("salt_lake_city");
+    let report = new Report(mailtester, security);
+    let plain = report.mailPlain({ baseHref: "http://your-domain.com" }).trim();
 
     // console.log(plain); process.exit();
     assert.equal(plain, expect);

@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:edge
 
 ADD http://deb.debian.org/debian/pool/main/libm/libmail-dkim-perl/libmail-dkim-perl_0.40.orig.tar.gz /tmp
 
@@ -58,7 +58,9 @@ ENV PORT_SPAMASSASSIN=783 \
     EXIM_MAIL_USER=noreply \
     EXIM_MAIL_PASS=exim_mail_password \
     EXIM_MAIL_FROM=noreply@your-domain.com \
-    ADMIN_EMAIL=your-mail@gmail.com
+    ADMIN_EMAIL=your-mail@gmail.com \
+    API_DOMAIN=your-domain.com \
+    API_DOMAIN_PROTOCOL=http
 
 HEALTHCHECK --interval=5s --timeout=1s --start-period=5s CMD ./docker-healthcheck.sh || exit 1
 

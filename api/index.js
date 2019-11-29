@@ -7,8 +7,12 @@ const
   Registry = new (require('./lib/Registry').Registry),
   sendmail = new (require('./lib/Sendmail').Sendmail),
   { Report } = require('./lib/Report'),
+  security = new(require("./lib/Security").Security)(process.env.SECURITY_SALT),
   config = {
-    incomingMailPort: process.env.PORT_API,
+    apiDomain: process.env.API_DOMAIN,
+    apiDomainProtocol: process.env.API_DOMAIN_PROTOCOL,
+    apiPort: process.env.PORT_API,
+    apiBaseHref: null,
     incomingMailMaxSize: process.env.API_INCOMING_MAIL_MAX_SIZE,
     catchMtaLettersAll: process.env.API_CATCH_MTA_ALL === "on",
     catchMtaLettersTo: process.env.API_CATCH_MTA_TO ? process.env.API_CATCH_MTA_TO.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [],
@@ -39,6 +43,8 @@ class Api {
         Registry.register('mongo', this.mongo);
         Registry.register('spamassassin', new (require('./lib/Spamassassin').Spamassassin)(config.spamassassin));
 
+        config.apiBaseHref = `${config.apiDomainProtocol}://${config.apiDomain}${config.apiPort == 80 ? "" : ":" + config.apiPort}`;
+
         appResolve(this);
         setInterval(this.clearMongo, 3600 * 1000);
         this.clearMongo();
@@ -67,14 +73,9 @@ class Api {
     });
   }
 
-  initMongo() {
-    return new Promise((resolve, reject) => {
-      this.mongo.createCollection("mails").then(() => {
-        resolve();
-      }).catch(err => {
-        reject(err);
-      });
-    });
+  async initMongo() {
+    await this.mongo.createCollection("mails");
+    await this.mongo.collection("mailblocker").createIndex( { "email": 1 }, { unique: true } );
   }
 
   async clearMongo() {
@@ -99,10 +100,11 @@ class Api {
       express = require('express'),
       bodyParser = require('body-parser'),
       api = express(),
-      { Mailtester } = require('./lib/Mailtester')
+      { Mailtester } = require("./lib/Mailtester"),
+      { Mailblocker } = require("./lib/Mailblocker")
       ;
 
-    api.use(bodyParser.text({limit: config.incomingMailMaxSize, type: 'text/plain'}));
+    api.use(bodyParser.text({limit: config.incomingMailMaxSize, type: () => { return true; }}));
 
     api.use(function(req, res, next) {
       res.setHeader('Content-Type', 'application/json');
@@ -118,7 +120,7 @@ class Api {
 
       API must return
       * 201 Created - all is fine
-      * 400 Bad Request - wrong field "To:"
+      * 403 Forbidden - wrong field "To:"
       * 500 Internal Server Error - for server errors
 
       MTA will be retry delivery via API for 5xx HTTP codes and "Connection refused" (exit code 7)
@@ -136,13 +138,24 @@ class Api {
     */
 
     api.post('/checkmail', async (req, res, next) => {
-      // res.status(400).send('Temp error'); return;        // Error test case
+      // res.status(403).send('Temp error'); return;        // Error test case
       // res.status(503).send('Server error'); return;      // Error test case
       // res.send(JSON.stringify({result: "ok"})); return;  // Ok short case
 
       try {
         let mailtester = new Mailtester({ availableDNS: config.DNSresolver });
         await mailtester.makeFromRaw(req.body);
+
+        let mailFrom = mailtester.getFieldFrom();
+
+        let mailblocker = new Mailblocker;
+        let doc = await mailblocker.get(mailFrom);
+        if(doc) {
+          let msg = `Mail rejected from ${doc.email}, reason: ${doc.reason}`;
+          console.log(msg);
+          res.status(403).send(JSON.stringify({result: "fail", reason: doc.reason, mailFrom: mailFrom, description: msg}));
+          return;
+        }
 
         let mode = req.query.mode ? req.query.mode : 'MTA';
         let mailTo = mailtester.getFieldTo();
@@ -164,7 +177,7 @@ class Api {
             if(config.mailFrom.toLowerCase() === mailTo.toLowerCase()) {
               let msg = `Mail rejected in MTA mode: anti loop condition. FROM: "${config.mailFrom}" TO: "${mailTo}"`;
               console.log(msg);
-              res.status(400).send(JSON.stringify({result: "fail", reason: msg}));
+              res.status(403).send(JSON.stringify({result: "fail", reason: msg}));
               return;
             }
 
@@ -179,7 +192,7 @@ class Api {
               } else {
                 let msg = `Mail rejected in MTA mode: wrong fied TO: "${mailTo}". Use MongoDB ObjectId as user name`;
                 console.log(msg);
-                res.status(400).send(JSON.stringify({result: "fail", reason: msg}));
+                res.status(403).send(JSON.stringify({result: "fail", reason: msg}));
                 return;
               }
             }
@@ -189,7 +202,7 @@ class Api {
         try {
           mailtester.validateObjectId(ObjectId);
         } catch (e) {
-          res.status(400).send(JSON.stringify({result: "fail", reason: "Wrong ObjectId"}));
+          res.status(403).send(JSON.stringify({result: "fail", reason: "Wrong ObjectId"}));
           return;
         }
 
@@ -241,6 +254,26 @@ class Api {
       }
     });
 
+    api.get('/unsubscribe', async (req, res, next) => {
+      let mailblocker = new Mailblocker;
+      if(!security.isUriValid(req.originalUrl)) {
+        return res.status(404).send(JSON.stringify({result: "fail", reason: "Security: wrong url sign"}));
+      }
+
+      try {
+        assert.equal(req.query.type, "mongo", "Unknown type");
+        await mailblocker.addFromMongo(req.query.collection, req.query._id, "from");
+      } catch (e) {
+        return res.status(404).send(JSON.stringify({result: "fail", reason: e.message}));
+      }
+      try {
+        await mailblocker.block("unsubscribe");
+        res.send(JSON.stringify({result: "ok"}));
+      } catch (e) {
+        return res.status(503).send(JSON.stringify({result: "fail", reason: e.message}));
+      }
+    });
+
     // 404 error handler
     api.use(function(req, res, next) {
       res.status(404).send(JSON.stringify({ error: "Wrong API URI" }));
@@ -256,8 +289,8 @@ class Api {
       }
     });
 
-    api.listen(config.incomingMailPort);
-    console.log(`API is listening port ${config.incomingMailPort}`);
+    api.listen(config.apiPort);
+    console.log(`API is listening port ${config.apiPort}`);
   }
 
   autoReply(mailtester) {
@@ -276,8 +309,8 @@ class Api {
 
   async mailReport(mailtester, mailTo) {
     try {
-      let report = new Report(mailtester);
-      let plain = report.mailPlain();
+      let report = new Report(mailtester, security);
+      let plain = report.mailPlain({ baseHref: config.apiBaseHref });
       let info = await sendmail.mail({
         from: config.mailFrom,
         to: mailTo,
@@ -289,7 +322,6 @@ class Api {
       console.log(e);
     }
   }
-
 
 }
 

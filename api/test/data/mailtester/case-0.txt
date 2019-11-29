@@ -2,7 +2,7 @@
 Your mail results
 =================
 
-Hello, you recently sent a email for spam test, below are the test results.
+Hello! Recently you sent an email for spam test, the test results are given below
 
 FROM: test@gmail.com
 TO: reply@spam24.ru
@@ -48,3 +48,4 @@ Rules:
 Test id: 5ddf860007e6da349d3fe6bb
 
 This is an automatically generated email
+To unsubscribe from any emails click here: http://your-domain.com/unsubscribe?type=mongo&collection=mails&_id=5ddf860007e6da349d3fe6bb&sign=afd9edddf5cd5beee53d9d067c76e117eac6eceb
