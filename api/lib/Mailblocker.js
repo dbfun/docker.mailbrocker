@@ -13,6 +13,7 @@ class Mailblocker {
   }
 
   async addFromMongo(collectionName, _id, fieldName) {
+    assert.ok(typeof collectionName === "string", "Collection not found");
     let collection = Registry.get('mongo').collection(collectionName);
     let doc = await collection.findOne({_id: ObjectId(_id)});
     assert.notEqual(doc, undefined, "Record not found");
@@ -40,6 +41,7 @@ class Mailblocker {
   }
 
   async get(email) {
+    if(typeof email !== "string") return null;
     let collection = Registry.get('mongo').collection("mailblocker");
     return await collection.findOne({email: email.trim().toLowerCase()});
   }
