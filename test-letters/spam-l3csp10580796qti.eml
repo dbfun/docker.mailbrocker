@@ -1,0 +1,734 @@
+Delivered-To: mail@gmail.com
+Received: by 2002:ac8:c43:0:0:0:0:0 with SMTP id l3csp10580796qti;
+        Wed, 13 Nov 2019 21:42:17 -0800 (PST)
+X-Google-Smtp-Source: APXvYqz1VTTO3QFcTgYBo0efr8rTzekVU/YEjN8mmHlS2H+xxdoANS+JC8+OFtrCCDSTpbJztnrx
+X-Received: by 2002:a5d:5411:: with SMTP id g17mr6162761wrv.360.1573710137016;
+        Wed, 13 Nov 2019 21:42:17 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1573710137; cv=none;
+        d=google.com; s=arc-20160816;
+        b=dh6OjKDzfuzL0y6EPRhB8GNlRWtMrwMkU5h4xrIxHDIgsJdaDl7RGIe0MfjGO3Johx
+         LwEqA8MzyemvOmR5rnDQAY+ReSuMFjLvAaUADx1QlQBiHHkVXYMfMXJdNcBZFiXdveRr
+         UkkpSpHVRxKad2br/v7YHg154xiA8sZiv65K1IciYZ47TOqUVtYwQd5jT1dGcHNcVrx6
+         ZzqymoIY/EbHcezFtKV8Lp+SoK5HjaSA7ZShXHx/Zy9ElKNivlnU52r0/tUByzg8sH5W
+         Vee71OVMJkkRO+hBenGTuY8+nqVSSVGUgHTQ36uj798peYnnYHU+OV9Ca0W1aenMnrG4
+         6BNQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:mime-version:subject:message-id:to:from
+         :date;
+        bh=iKYeycxhoLd1NQHhAW9DwKIS+ylx4hN3aI98mhzNZbk=;
+        b=rccTxxb3cuF21/YzXFCOCXGUsuVS6xt9PnG3DbckZKgwKXe0C77qv28POJPeGj/x1D
+         BuxZVakx9ZD8Y+TsuDIZmTGe8lYnexMnzlFu2ooz/05U6ZiTXzDdmXq9BE3fnqtGheny
+         9E8FXpKYbFOmRGnEp4M9+CYvBeub2OfMK13quYAz7OidEGbbT5aBFQvxffHxjp+ZfMLr
+         K3AIfldOTnVc1YdrGZNWIaBl6iUuwf4D+NJS6j7yGfMkwfZ3eZ8p9qBhBpyIA7AYQUDR
+         XWOd61/F6S39C70zIhfQwl5NHv3E/i11bawdsBzKs4SAeudrR0+y51aAHMSAs0bJHFwX
+         sAqQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: best guess record for domain of uurragerp@dolff---dolff----ap-southeast-2.compute.amazonaws.com designates 34.247.94.156 as permitted sender) smtp.mailfrom=UurrAgErP@dolff---dolff----ap-southeast-2.compute.amazonaws.com
+Return-Path: <UurrAgErP@dolff---dolff----ap-southeast-2.compute.amazonaws.com>
+Received: from cwu.edu (ec2-34-247-94-156.eu-west-1.compute.amazonaws.com. [34.247.94.156])
+        by mx.google.com with ESMTP id i184si4271086wmi.187.2019.11.13.21.42.16
+        for <mail@gmail.com>;
+        Wed, 13 Nov 2019 21:42:16 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of uurragerp@dolff---dolff----ap-southeast-2.compute.amazonaws.com designates 34.247.94.156 as permitted sender) client-ip=34.247.94.156;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of uurragerp@dolff---dolff----ap-southeast-2.compute.amazonaws.com designates 34.247.94.156 as permitted sender) smtp.mailfrom=UurrAgErP@dolff---dolff----ap-southeast-2.compute.amazonaws.com
+Return-Path: <V9L4Ul1p_oGSITittv@HduYZypEV2.org>
+Date: Thu, 14 Nov 2019 05:18:32 +0000
+From: Congratulations<Costco@IDy.affpartners.com>
+To: mail@gmail.com
+Message-ID: <V9L4Ul1p.55889.417.264680.51605b8381a10f1b1aef7237865014c1.javamail.tomcat@pdr8-services-05v.prod.affpartners.com>
+Subject: Costco has a BIG surprise for you
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:AllowPNG></o:AllowPNG>
+            <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+    </xml>
+    <!--><title></title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><style type="text/css">
+        @media only screen and (max-width: 500px) {
+            .flexible {
+                width: 100% !important;
+            }
+            .img-flex img {
+                width: 100% !important;
+                height: auto !important;
+            }
+            .hide {
+                display: none !important;
+                width: 0 !important;
+                height: 0 !important;
+                padding: 0 !important;
+                font-size: 0 !important;
+                line-height: 0 !important;
+            }
+            .plr-15 {
+                padding-left: 10px !important;
+                padding-right: 10px !important;
+            }
+        }
+    </style>
+
+
+
+
+<!DOCTYPE HTml PUBLIC "-//W3C//DTD XHTml 1.0 Transitional//EN" "http://www.w3.org/TR/xHTml1/DTD/xHTml1-transitional.dtd">
+<HTml xmlns="http://www.w3.org/1999/xHTml">
+<head>
+<meta http-equiv="Content-Type" content="text/HTml; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+<meta name="viewport" content="width=device-width">
+<meta http-equiv="x-ua-compatible" content="IE=edge">
+<meta http-equiv="content-type" content="text/HTml; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="css/app-Dating-10.css">
+<title></title>
+</head><div style="font-family: calibri;"><CentEr>
+
+
+<head><style type="text/css">
+  .Div {color: white;font-size: 30px;font-weight: 100;background-color: #71b31a;width: 250px;border: 2px solid white;border-radius: 4px;}
+  .H1{color: white;font-size: 30px;width: 600px;text-align: left;}
+  .p{text-align: left;color: white;font-family: calibri;font-size: 20px;}
+</style></head>
+
+
+
+
+  <table style="width:100%;padding-top:20px;
+font-family:tahoma;
+font-size:12pt;"><tr><td>
+
+
+<!DOCTYPE HTml PUBLIC "-//W3C//DTD XHTml 1.0 Transitional//EN" "http://www.w3.org/TR/xHTml1/DTD/xHTml1-transitional.dtd">
+<HTml xmlns="http://www.w3.org/1999/xHTml">
+<head>
+<meta http-equiv="Content-Type" content="text/HTml; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+<meta name="viewport" content="width=device-width">
+<meta http-equiv="x-ua-compatible" content="IE=edge">
+<meta http-equiv="content-type" content="text/HTml; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="css/app-Dating-10.css">
+<title></title>
+</head><div style="font-family: calibri;"><CentEr>
+
+
+<head><style type="text/css">
+  .Div {color: white;font-size: 30px;font-weight: 100;background-color: #71b31a;width: 250px;border: 2px solid white;border-radius: 4px;}
+  .H1{color: white;font-size: 30px;width: 600px;text-align: left;}
+  .p{text-align: left;color: white;font-family: calibri;font-size: 20px;}
+</style></head>
+
+
+
+
+  <table style="width:100%;padding-top:20px;
+font-family:tahoma;
+font-size:12pt;"><tr><td>
+
+
+  <!DOCTYPE HTml PUBLIC "-//W3C//DTD XHTml 1.0 Transitional//EN" "http://www.w3.org/TR/xHTml1/DTD/xHTml1-transitional.dtd">
+<HTml xmlns="http://www.w3.org/1999/xHTml">
+<head>
+<meta http-equiv="Content-Type" content="text/HTml; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+<meta name="viewport" content="width=device-width">
+<meta http-equiv="x-ua-compatible" content="IE=edge">
+<meta http-equiv="content-type" content="text/HTml; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="css/app-Dating-10.css">
+<title></title>
+</head><div style="font-family: calibri;"><CentEr>
+
+
+<head><style type="text/css">
+  .Div {color: white;font-size: 30px;font-weight: 100;background-color: #71b31a;width: 250px;border: 2px solid white;border-radius: 4px;}
+  .H1{color: white;font-size: 30px;width: 600px;text-align: left;}
+  .p{text-align: left;color: white;font-family: calibri;font-size: 20px;}
+</style></head>
+
+
+
+  <table style="width:100%;padding-top:20px;
+font-family:tahoma;
+font-size:12pt;"><tr><td>
+
+
+  <CEntEr style="font-family: calibri;">
+<a HRef="https://storage.googleapis.com/apiapi/gdfgdfgdf6s4dLK_sppm_mm.html" style="text-decoration: none;">
+  <h1 style="font: 35px Impact, Charcoal, sans-serif;
+    margin: auto;
+    color: #ffffff;
+    background-color: #004080;
+    width: 603px;
+    text-align: left;
+    padding-left: 20px;">Congratulations! <span style=""></span></h1>
+  <h1 style="border: 1px solid #c1c1c1;
+    width: 600px;
+    padding: 10px;
+    font-family: Segoe UI;
+    font-size: 25px;
+    font-weight: 100;
+    color: black;
+             text-align: center;"> <span style="text-decoration: underline;"> We have a surprise  <br> for Costco Shoppers ( reward worth at least $80 ) <span style="font-weight: 600;
+    text-decoration: underline;"></span></h1>
+
+<br/>
+<p><a href="https://storage.googleapis.com/apiapi/gdfgdfgdf6s4dLK_sppm_mm.html"><img src="https://storage.googleapis.com/zmalito/ayugb.png" width="700" height="900" /></a></p>
+<p><a href="https://storage.googleapis.com/apiapi/Ujdhsjgfdgdfgdf_gp5.html#mbzu.mbzu?OQODQNDPYBMWO=P2YDGXB1POSNYJIFKROLKLT93HRRFTMJCF6ZEUI2CB01HP1YFD"><img style="display: block; margin-left: auto; margin-right: auto;" src="https://storage.googleapis.com/zmalito/ytguhj.png" width="600" height="80" /></a></p>
+<span style="color:#000000;font-size:11px;font-family:verdana;display:block;text-align:center;margin-top:10px">click <a href="https://storage.googleapis.com/apiapi/OPfsdlkhfksldhf4_gp5.html">here</a> to unsubscribe out from our emails list</span></center>
+
+</center>
+<object >
+
+
+
+
+
+
+This is an Advertisement. Click here to unsubscribe from future mailings
+1090 King Georges Post Road, Edison NJ 08837.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dear YYANARBK YYANARBK,
+
+Welcome to the Enterprise Plus? membership experience.
+
+Your Enterprise Plus member number and user name is HYFYF4W.
+
+Your membership delivers faster reservations and rentals, a special members-only line at major airport locations and exclusive discounts.
+
+In addition, you'll be able to start earning points you can redeem for Free Rental Days after you activate your rewards. Please allow 24 hours for system updates before activating.
+
+To get the most from your next rental, simply go to http:// and log in with your member number.
+
+Thank you for choosing Enterprise. We look forward to making your next rental experience more rewarding.
+
+
+</title>
+<!--
+
+                /                                /
+       ___    _     ___   _   ____        _
+ /'/' _   /'_   / /'/',  /' /'_`
+/  // / / L / L   /, `/  // L
+ ____ _ _ ___,_ ____/ _/____/ ____ ___,_
+ /____//_//_//,_ //___/  /_//___/  /____//__,_ /
+
+
+
+-->
+<emd
+added
+to
+newsletterGet
+and
+ask
+childrenShare
+this
+ExperimentSegregation
+Americaxs
+report
+United
+May
+ETPerhaps
+going
+wants
+In
+federal
+that
+says
+plan
+boasted
+unemployment
+lowest
+everSo
+rightWhile
+down
+remained
+last
+this
+does
+communities
+to
+land
+opportunityOne
+Americans
+suffer
+opposed
+white
+inequality
+in
+while
+step
+inequality
+will
+that
+looks
+housing
+disparities
+on
+For
+more
+of
+on
+resources
+their
+childrens
+care
+going
+on
+cities
+on
+nation
+Shortly
+still
+have
+evidence
+doesnt
+decades
+expanding
+emerged
+of
+failed
+laws
+about
+and
+people
+housewives
+at
+Franz
+in
+New
+Orleans
+poverty
+public
+which
+to
+of
+we
+has
+failed
+chronicled
+deregulation
+Who
+children
+has
+work
+direct
+former
+have
+has
+of
+And
+as
+Professor
+documented
+more
+than
+problem
+Commission
+commission
+there
+with
+this
+was
+urban
+ideology
+without
+policy
+resulted
+be
+has
+hard
+students
+provides
+model
+graders
+salute
+flag
+of
+school
+atrisk
+will
+to
+of
+creates
+race
+to
+Brookings
+or
+integrate
+government
+to
+for
+potential
+enforcement
+The
+privatesector
+effect
+intentional
+with
+racial
+and
+make
+housing
+will
+access
+housing
+access
+Act
+making
+and
+integration
+poor
+developers
+lowincome
+lower
+half
+and
+by
+University
+college
+than
+children
+had
+and
+We
+need
+that
+but
+living
+Robert
+observed
+Bernard
+Why
+never
+ask
+and
+America
+Eisenhower
+Foundation
+Kerner
+Commission
+Violence
+senator
+at
+Healing
+America
+Years
+After
+newsletterSUBSCRIBEMORE>
+<html>
+<body>
+<center>
+
+
+
+
+<table style="display:none;"><HEaD >
+
+ Hi dhg,
+
+My name's Dylan Basile and I work at Event Temple. Nice to meet you and
+thanks for requesting a demo.
+
+Joining me for a quick demo will be the fastest and most efficient way for
+you to see what the software is capable of.
+
+
+Did any of the times on our website work for you and if so, were you able
+to schedule a demo okay?
+Here they are again: https://calendly.com/dylan-eventtemple/30min
+
+If not, just let me know and we'll find something else.
+
+
+--
+*Dylan Basile*
+
+
+
+*Book a demo with me here:*
+
+Hi dfdh,
+
+Thanks for signing up, and congratulations
+on your new iDLfIfgGkW account! You'll find
+everything you need to get started below, and
+if you need additional help there's a link to
+our support forum at the bottom.
+
+=== Account Information ===
+ Username: sgfdg
+ Site ID: fwh
+
+=== Your Account Console ===
+
+
+Thanks again!
+Team iDLfIfgGkW
+
+Powered by iDLfIfgGkW
+
+</title>
+
+ Dear lcTychll rGhEG,
+
+Welcome to the Enterprise Plus? membership experience.
+
+Your Enterprise Plus member number and user name is HYFYF4W.
+
+Your membership delivers faster reservations and rentals, a special members-only line at major airport locations and exclusive discounts.
+
+In addition, you'll be able to start earning points you can redeem for Free Rental Days after you activate your rewards. Please allow 24 hours for system updates before activating.
+
+To get the most from your next rental, simply go to http:// and log in with your member number.
+
+Thank you for choosing Enterprise. We look forward to making your next rental experience more rewarding.
+
+== You need a budget, and your email needs confirmation. ==
+
+ Hello! Quick note to let you know that your email needs to be confirmed
+before all sorts of great things happen. Like your being able to use YNAB
+all along your road to budgeting glory. Please confirm by clicking the link
+below:
+
+ Confirm your email
+
+
+ Thank you!
+
+ And we're serious about budgeting glory. It's a real thing, and you will
+bask in it.
+
+ Regards,
+
+ The YNAB Team
+
+
+<
+
+ Dear hm.anouarr doquj,
+
+Welcome to the Enterprise Plus? membership experience.
+
+Your Enterprise Plus member number and user name is HYFYF4W.
+
+Your membership delivers faster reservations and rentals, a special members-only line at major airport locations and exclusive discounts.
+
+In addition, you'll be able to start earning points you can redeem for Free Rental Days after you activate your rewards. Please allow 24 hours for system updates before activating.
+
+To get the most from your next rental, simply go to http:// and log in with your member number.
+
+Thank you for choosing Enterprise. We look forward to making your next rental experience more rewarding.
+
+
+>
+
+
+
+
+
+ Hi hrgferavjccvo,
+
+My name's Dylan Basile and I work at Event Temple. Nice to meet you and
+thanks for requesting a demo.
+
+Joining me for a quick demo will be the fastest and most efficient way for
+you to see what the software is capable of.
+
+Did any of the times on our website work for you and if so, were you able
+to schedule a demo okay?
+Here they are again: https://calendly.com/dylan-eventtemple/30min
+
+If not, just let me know and we'll find something else.
+
+
+--
+*Dylan Basile*
+
+
+
+*Book a demo with me here:*
+
+Hi dfdh,
+
+Thanks for signing up, and congratulations
+on your new iDLfIfgGkW account! You'll find
+everything you need to get started below, and
+if you need additional help there's a link to
+our support forum at the bottom.
+
+=== Account Information ===
+ Username: kxkq
+ Site ID: apb
+
+=== Your Account Console ===
+
+
+Thanks again!
+Team iDLfIfgGkW
+
+Powered by iDLfIfgGkW
+<table height=4125>
+<table height=4125>
+<table height=4125>
+
+Login Name: gorjeiublp
+Password: iDLfIfgGkW
+
+How do I become a tester for the XT 808 flashlight?
+
+
+
+Login Name: vvnaulcklw
+Password: iDLfIfgGkW
+
+More than a quarter of Europeans surveyed believe Jews have too much influence in business and finance. One in five say they have too much influence in media and politics. In individual countries the numbers are often higher: 42% of Hungarians think Jews have too much influence in finance and business across the world
+
+
+iDLfIfgGkW
+iDLfIfgGkW
+iDLfIfgGkW
+iDLfIfgGkW
+iDLfIfgGkW
+iDLfIfgGkW
+ZSNAFKFASQTHEHWUVCHWAVWIWALZWSLRGOICHUKPMFPTTUOHKC
+ZSNAFKFASQTHEHWUVCHWAVWIWALZWSLRGOICHUKPMFPTTUOHKC
+ZSNAFKFASQTHEHWUVCHWAVWIWALZWSLRGOICHUKPMFPTTUOHKC
+ZSNAFKFASQTHEHWUVCHWAVWIWALZWSLRGOICHUKPMFPTTUOHKC
+ZSNAFKFASQTHEHWUVCHWAVWIWALZWSLRGOICHUKPMFPTTUOHKC
+ZSNAFKFASQTHEHWUVCHWAVWIWALZWSLRGOICHUKPMFPTTUOHKC
+ZSNAFKFASQTHEHWUVCHWAVWIWALZWSLRGOICHUKPMFPTTUOHKC
+ZSNAFKFASQTHEHWUVCHWAVWIWALZWSLRGOICHUKPMFPTTUOHKC
+ZSNAFKFASQTHEHWUVCHWAVWIWALZWSLRGOICHUKPMFPTTUOHKC
+ZSNAFKFASQTHEHWUVCHWAVWIWALZWSLRGOICHUKPMFPTTUOHKC
+
+It's a 17-year-old boy, too frightened to wear a kippa (a religious skullcap) on the streets of Paris. It's an Israeli restaurant owner in Berlin who is told that he will end up in the gas chambers. It's a 24-year-old Austrian who knows nothing about the Holocaust. It's the armed guards outside synagogues and Jewish schools across much of Europe. It's the online chat rooms where people peddle conspiracy theories that Jewish "globalists" run the world.
+It can be violent or subtle. Overt or insidious. Political or personal. It can come from the right or the left. It exists in countries that have large Jewish populations, like France, and it also flourishes in places with smaller Jewish communities, like Poland
++
+IBM Cloud
+
+
+Hello Nancy,
+
+Thank you for signing up for IBM Cloud! Confirm your account to get started.
+
+Confirm Account
+
+By confirming your account, you accept the Terms of Use
+
+Welcome and happy building!
+
+_
+
+Thank you,
+
+IBM Cloud
+Visit the IBM Cloud console.
+
+? Copyright IBM Corporation 2014, 2018.
+
+IBM
++
++
+V?rification du compte
+
+Confirmez votre adresse e-mail afin d'activer votre compte
+
+Confirmer
+
+
+Merci de votre inscription. Cliquez sur le bouton vert pour confirmer que arthurcdumas010+58zer4gq@gmail.com est bien votre adresse e-mail. Vous pourrez ensuite vous lancer sur Podio.
+
+
+
+Vous n'arrivez pas ? cliquer sur les liens contenus dans cet e-mail ? Copiez-collez ce lien dans votre navigateur afin d'effectuer la v?rification :
+
+https://podio.com/signup/setup?activation_code=68cd78b9a87946d0ab65f81138426ed9&utm_nooverride=1
+
+
+
+Une question ? Contactez-nous : support@podio.com
+Citrix - 120 S West St - Raleigh, NC 27603 - US
++
+
+our wonderful wistia logo
+Welcome to Wistia!
+You're five minutes away from adding beautiful video to your site!
+
+Activate your account
++
+Hi Nancy,
+
+Your Fastly account is almost ready. We just need to verify that you?re human.
+
+Please confirm your email here: https://manage.fastly.com/confirm/aeca002368c9f9ae6c565b7a65b1f623
+
+Thanks. We?re glad you?re here.
+
+The Fastly Team support@fastly.com www.twitter.com/fastly
+
++
+Thanks for joining the Parsec community!
+But before you become a full fledged member of this community, can you please confirm your email.
+
+  CONFIRM YOUR EMAIL?
+From the very beginning, our goal has been to develop the lowest latency, 60 FPS game streaming software possible so you can play your games from anywhere. We're excited to welcome you to Parsec!
+
+Helpful Links
+1. Download Parsec for your device
+
+2. Set up Parsec on your PC to invite friends to game with you or to play from anywhere
+
+3. Connect with your friends on Parsec
+
+4. If you don't have a gaming PC to co-op with friends, build one on Parsec
+
+5. Join our Discord for support, updates, and finding friends to game with
+
+
+
+Parsec Cloud, Inc.
+115 Broadway, Fifth Floor, New York, NY 10006, USA
+
+</object>
