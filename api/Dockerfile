@@ -60,7 +60,8 @@ ENV PORT_SPAMASSASSIN=783 \
     EXIM_MAIL_FROM=noreply@your-domain.com \
     ADMIN_EMAIL=your-mail@gmail.com \
     API_DOMAIN=your-domain.com \
-    API_DOMAIN_PROTOCOL=http
+    API_DOMAIN_PROTOCOL=http \
+    API_AVAILABLE_TESTS=spamassassin,spf,dkim,dmarc,blacklist,pyzor,razor
 
 HEALTHCHECK --interval=5s --timeout=1s --start-period=5s CMD ./docker-healthcheck.sh || exit 1
 

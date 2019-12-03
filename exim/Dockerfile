@@ -25,7 +25,8 @@ ENV EXIM_DOMAIN=your-domain.com \
     PORT_API=8080 \
     EXIM_MAIL_USER=noreply \
     EXIM_MAIL_PASS=exim_mail_password \
-    EXIM_DKIM_SELECTOR=mailtester
+    EXIM_DKIM_SELECTOR=mailtester \
+    EXIM_MAX_PARALLEL=2
 
 HEALTHCHECK --interval=60s --timeout=5s --start-period=5s CMD exiwhat | grep -qF "listening for SMTP on port" || exit 1
 

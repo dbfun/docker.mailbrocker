@@ -13,6 +13,7 @@ const
     apiDomainProtocol: process.env.API_DOMAIN_PROTOCOL,
     apiPort: process.env.PORT_API,
     apiBaseHref: null,
+    apiAvailableTests: process.env.API_AVAILABLE_TESTS ? process.env.API_AVAILABLE_TESTS.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [],
     incomingMailMaxSize: process.env.API_INCOMING_MAIL_MAX_SIZE,
     catchMtaLettersAll: process.env.API_CATCH_MTA_ALL === "on",
     catchMtaLettersTo: process.env.API_CATCH_MTA_TO ? process.env.API_CATCH_MTA_TO.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [],
@@ -143,7 +144,7 @@ class Api {
       // res.send(JSON.stringify({result: "ok"})); return;  // Ok short case
 
       try {
-        let mailtester = new Mailtester({ availableDNS: config.DNSresolver });
+        let mailtester = new Mailtester({ availableDNS: config.DNSresolver, availableTests: config.apiAvailableTests });
         await mailtester.makeFromRaw(req.body);
 
         let mailFrom = mailtester.getFieldFrom();

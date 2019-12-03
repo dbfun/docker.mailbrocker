@@ -37,8 +37,10 @@ class Mailtester {
     this.config = {...defaultConfig, ...config};
     this.ObjectId = null;
     this.doc = {
-      created: new Date(),
+      createdAt: new Date(),
       done: false,
+      doneTest: [],
+      doneAt: null,
       to: null,
       from: null,
       lastMtaIP: null, // ipv4 / ipv6
@@ -178,7 +180,9 @@ class Mailtester {
           break;
       }
     }
-    return Promise.allSettled(tests);
+    return Promise.allSettled(tests).then(async () => {
+      if(isSaveResults) await this.saveDone();
+    });
   }
 
   checkSpamassassin(isSaveResults) {
@@ -249,7 +253,35 @@ class Mailtester {
       {
         _id: ObjectId(this.ObjectId)
       },
-      { $set: update },
+      {
+        $set: update,
+        $push: {
+          doneTest: {
+            name: section,
+            doneAt: new Date()
+          }
+        }
+      },
+      {
+        upsert: false
+      }
+    );
+  }
+
+  async saveDone() {
+    if(!this.ObjectId) throw new Error("No ObjectId specified");
+    let collectionMails = Registry.get('mongo').collection('mails');
+    let update = {
+      done: true,
+      doneAt: new Date()
+    };
+    return collectionMails.updateOne(
+      {
+        _id: ObjectId(this.ObjectId)
+      },
+      {
+        $set: update
+      },
       {
         upsert: false
       }

@@ -31,11 +31,13 @@ test-compose:
 debug-compose:
 	@docker-compose run test-compose sh
 
-# Shows exim queue
+# Shows exim stats
 .PHONY: exim-stats
-exim-bp:
-	@echo Queue:
+exim-stats:
+	@echo mail queue:
 	@docker-compose exec exim exim -bp
+	@echo exiwhat:
+	@docker-compose exec exim exiwhat
 
 # Shows DKIM public key
 .PHONY: exim-dkim
@@ -55,7 +57,7 @@ dns-cache:
 mail-count:
 	@echo Num mails: `docker-compose exec mongo mongo mailtester --quiet --eval 'db.mails.count({});'`
 
-# Check Blacklists
+# Check Blacklists (make tools-blacklist IP=127.0.0.2)
 .PHONY: tools-blacklist
 tools-blacklist:
 	@docker-compose exec api node tools/blacklist.js ${IP}

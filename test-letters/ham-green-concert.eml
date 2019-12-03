@@ -1,0 +1,2694 @@
+Received: from mxfront3q.mail.yandex.net (localhost [127.0.0.1])
+	by mxfront3q.mail.yandex.net with LMTP id hjem9177u9-0iu6qjZz
+	for <mail@yandex.ru>; Tue, 26 Nov 2019 07:57:38 +0300
+Received: from 176147.simplecloud.ru (176147.simplecloud.ru [85.143.216.132])
+	by mxfront3q.mail.yandex.net (mxfront/Yandex) with ESMTP id NqorZasIiC-vbv8Aue2;
+	Tue, 26 Nov 2019 07:57:37 +0300
+Return-Path: noreply@glavclub.com
+X-Yandex-Front: mxfront3q.mail.yandex.net
+X-Yandex-TimeMark: 1574744257.898
+Authentication-Results: mxfront3q.mail.yandex.net; spf=pass (mxfront3q.mail.yandex.net: domain of glavclub.com designates 85.143.216.132 as permitted sender, rule=[ip4:85.143.216.132]) smtp.mail=noreply@glavclub.com; dkim=pass header.i=@glavclub.com
+X-Yandex-Suid-Status: 4 1130000036839323
+X-Yandex-Spam: 4
+X-Yandex-Envelope: aGVsbz1nbGF2Y2x1Yi5jb20KbWFpbF9mcm9tPW5vcmVwbHlAZ2xhdmNsdWIuY29tCnJjcHRfdG89aWx5YUB2YWd1bi5ydQpyZW1vdGVfaG9zdD0xNzYxNDcuc2ltcGxlY2xvdWQucnUKcmVtb3RlX2lwPTg1LjE0My4yMTYuMTMyCg==
+X-Yandex-Fwd: NTg2MTU2ODAyNTI1NjQ5OTAwMCwxNjM4MDk1NDU5NjczNDYwOTEyMg==
+Received: from [127.0.0.1] (localhost [IPv6:::1])
+	by glavclub.com (Postfix) with ESMTP id 8ED22B8EA2
+	for <mail@yandex.ru>; Tue, 26 Nov 2019 07:57:37 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=glavclub.com; s=mail;
+	t=1574744257; bh=Urhu/itwzgJr0WJddK2VUHtNEzicJOq8OnRwDcMynwU=;
+	h=Date:Subject:From:To:From;
+	b=BREY01F/1F8Grt8LU8BA1lNsOficws8z+dmOEoWYmSjOjVBm2BNhlclGdIOd3wbvo
+	 Di+Ao6rjT1FDCuvUT3nLz0myOwMnt9MRi/wv4Tp+j6sSrxX5HfV3xhOqxQpd3Jx5GO
+	 jXJJ+W+z01WR1jZG32gkMeDMIN2YRTkUIY2e7Gdc=
+Message-ID: <20316b394b5907b461a726b0c20bdab2@swift.generated>
+Date: Tue, 26 Nov 2019 04:57:37 +0000
+Subject: =?utf-8?Q?=E2=9A=A1Black?= Friday Sale
+ =?utf-8?Q?=D0=B4=D0=BE_50=25=E2=9A=A1=D0=9D=D0=B0_=D0=BD=D0=B5?=
+ =?utf-8?Q?=D0=B4=D0=B5=D0=BB=D0=B5=3A?= The Tiger Lillies, FEVER 333,
+ =?utf-8?Q?=D0=91=D0=B8=D0=BB=D0=BB=D0=B8_=D0=9D=D0=BE?=
+ =?utf-8?Q?=D0=B2=D0=B8=D0=BA=2C_=D0=91=D1=80=D0=B0=D0=B2=D0=BE=2C_?=
+ =?utf-8?Q?=D0=A5=D0=B0=D1=81=D0=BA=D0=B8?=
+From: =?utf-8?Q?=D0=93=D0=9B=D0=90=D0=92CLUB?= GREEN CONCERT
+ <noreply@glavclub.com>
+To: mail@yandex.ru
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Yandex-Forward: 9256388b351e43cfae1f9a97bba9c72e
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.=
+w3.org/TR/html4/loose.dtd">
+<html lang=3D"en">
+
+<head>
+    <meta ht=
+tp-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8">
+    <me=
+ta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1">=
+
+    <meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">
+    <m=
+eta name=3D"format-detection" content=3D"telephone=3Dno">
+    <title>Thre=
+e columns with images</title>
+    <style type=3D"text/css">
+        bod=
+y {
+            margin: 0;
+            padding: 0;
+            -ms-te=
+xt-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+     =
+   }
+
+        table {
+            border-spacing: 0;
+        }
+=
+
+        table td {
+            border-collapse: collapse;
+        }=
+
+
+        .ExternalClass {
+            width: 100%;
+        }
+
+=
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClas=
+s span,
+        .ExternalClass font,
+        .ExternalClass td,
+     =
+   .ExternalClass div {
+            line-height: 100%;
+        }
+
+ =
+       .ReadMsgBody {
+            width: 100%;
+            background-c=
+olor: #ebebeb;
+        }
+
+        ._link:hover {
+            text-d=
+ecoration: underline !important;
+        }
+
+        table {
+       =
+     mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        =
+}
+
+        img {
+            -ms-interpolation-mode: bicubic;
+     =
+   }
+
+        .yshortcuts a {
+            border-bottom: none !import=
+ant;
+        }
+
+        .date a {
+            color: inherit !impor=
+tant;
+            text-decoration: none !important;
+        }
+
+    =
+    @media  screen and (max-width: 599px) {
+            .force-row,
+   =
+         .container {
+                width: 100% !important;
+         =
+       max-width: 100% !important;
+                padding-left: 0 !impor=
+tant;
+            }
+            .width-container {
+                di=
+splay: none !important;
+                letter-spacing: 0 !important;
+ =
+           }
+        }
+
+        @media  screen and (max-width: 400px)=
+ {
+            .container-padding {
+                padding-left: 12px =
+!important;
+                padding-right: 12px !important;
+           =
+ }
+        }
+
+        .ios-footer a {
+            color: #aaaaaa !i=
+mportant;
+            text-decoration: underline;
+        }
+
+      =
+  @media  screen and (max-width: 599px) {
+            .col {
+          =
+      width: 100% !important;
+                border-top: 1px solid #eee;=
+
+                padding-bottom: 0 !important;
+            }
+        =
+    .cols-wrapper {
+                padding-top: 18px;
+            }
+=
+            .img-wrapper {
+                float: right;
+              =
+  max-width: 40% !important;
+                height: auto !important;
+ =
+               margin-left: 12px;
+            }
+            .subtitle {=
+
+                margin-top: 0 !important;
+            }
+            =
+.cols-rd {
+                padding-top: 0 !important;
+            }
+ =
+           .cols-rd td,
+            .cols-rd table {
+                he=
+ight: auto !important;
+            }
+            .cols-wrapper-margin t=
+able table {
+                margin-bottom: 15px;
+            }
+     =
+       .instaimage .force-row td {
+                background-size: 180px=
+ auto !important;
+                background-color: transparent;
+      =
+      }
+        }
+
+        @media  screen and (max-width: 400px) {
+=
+            .cols-wrapper {
+                padding-left: 10px !important=
+;
+                padding-right: 10px !important;
+            }
+     =
+       .content-wrapper {
+                padding-left: 12px !important;=
+
+                padding-right: 12px !important;
+            }
+      =
+  }
+    </style>
+</head>
+
+<body style=3D"margin:0; padding:0;" bgco=
+lor=3D"#ebeaea" leftmargin=3D"0" topmargin=3D"0" marginwidth=3D"0" marginhe=
+ight=3D"0">
+<div class=3D"width-container" style=3D"letter-spacing: 596px=
+; line-height: 0; mso-hide: all">&nbsp;</div>
+<table border=3D"0" width=
+=3D"100%" height=3D"100%" cellpadding=3D"0" cellspacing=3D"0" bgcolor=3D"#e=
+beaea">
+    <tr>
+        <td align=3D"center" valign=3D"top" bgcolor=3D=
+"#ebeaea" style=3D"background-color: #ebeaea;">
+            <table border=
+=3D"0" width=3D"600" cellpadding=3D"0" cellspacing=3D"0" class=3D"container=
+" style=3D"width:600px;max-width:600px">                <tr>
+            =
+        <td class=3D"container-padding header" align=3D"center" bgcolor=3D"=
+#64A70B" style=3D"font-family:Helvetica, Arial, sans-serif;font-size:24px;f=
+ont-weight:bold;padding-bottom:10px;padding-top:11px;color:#64A70B;padding-=
+left:24px;padding-right:24px"> <img src=3D"http://glavclub.com/mails/image/=
+MzAwMjQxLDIxMyw4MmE4MWY0OGQyZGYzMzFjODlmZmQ5Njc0ZDg2NDJiOA=3D=3D" width=3D"=
+95" height=3D"50" border=3D"0" alt=3D"=D0=93=D0=9B=D0=90=D0=92CLUB GREEN CO=
+NCERT" /> </td>
+                </tr>                     <tr>
+        =
+                <td class=3D"header" align=3D"center" valign=3D"bottom" bac=
+kground=3D"http://glavclub.com//images/artists/photos/566.jpg/?261120190129=
+46" style=3D"background-position:top center;background-size:cover;height:32=
+7px;background-repeat:no-repeat;">
+                            <table bor=
+der=3D"0" width=3D"100%" height=3D"100%" cellpadding=3D"0" cellspacing=3D"0=
+">
+                                <tr>
+                               =
+     <td class=3D"container-padding header" align=3D"center" valign=3D"bott=
+om" style=3D"padding-bottom:33px;background-color:rgba(0,0,0,0.3);">
+    =
+                                    <!--[if gte mso]> <img src=3D"http://gl=
+avclub.com//images/artists/photos/566.jpg/?26112019012946" alt=3D"" width=
+=3D"600"/><![endif]-->
+                                        <div style=
+=3D"font-family:Helvetica, Arial, sans-serif;font-size:50px;/*text-transfor=
+m:uppercase;*/color:#ffffff;font-weight:700;line-height:1.2;position:relati=
+ve;" align=3D"center">
+                                            <!--[i=
+f gte mso]> <div style=3D"color:#323d46;padding-top:20px;"><![endif]-->=
+=D0=93=D0=BB=D0=B0=D0=B2=D0=BD=D0=B0=D1=8F Metal-=D0=81=D0=BB=D0=BA=D0=
+=B0 =D1=81=D1=82=D1=80=D0=B0=D0=BD=D1=8B</div>
+                          =
+              <div class=3D"date" style=3D"font-family:Helvetica, Arial, sa=
+ns-serif;font-size:16px;color:#ffffff;line-height:1.2;position:relative;" a=
+lign=3D"center">
+                                            <!--[if gte =
+mso]> <div style=3D"color:#323d46;"><![endif]-->1&nbsp;=D1=8F=D0=BD=D0=
+=B2=D0=B0=D1=80=D1=8F&nbsp;=D0=A1=D0=A0&nbsp;18:00
+                      =
+                      <!--[if gte mso]></div><![endif]-->
+               =
+                         </div>
+                                        <=
+div style=3D"margin-top:44px;">
+                                         =
+   <div style=3D"position:relative;">
+                                   =
+             <!--[if mso]> <v:roundrect xmlns:v=3D"urn:schemas-microsoft-co=
+m:vml" xmlns:w=3D"urn:schemas-microsoft-com:office:word" href=3D"#" style=
+=3D"height:36px;v-text-anchor:middle;width:176px;" arcsize=3D"9%" stroke=3D=
+"f" fillcolor=3D"#FF4800"> <w:anchorlock/> <center><![endif]--><a href=3D"h=
+ttp://glavclub.com/metal-elka/? utm_source=3Demail&utm_medium=3Ddigest&utm_=
+term=3Dmetal-elka&utm_campaign=3Demail|senddate:26112019&utm_content=3Deven=
+t:metal-elka|host:moscow|eventdate:01012020|" style=3D"background-color:#FF=
+4800;border-radius:3px;color:#ffffff;display:inline-block;font-family:Helve=
+tica, Arial, sans-serif;font-size:16px;line-height:36px;height:36px;text-al=
+ign:center;text-decoration:none;width:176px;-webkit-text-size-adjust:none;"=
+>=D0=9A=D1=83=D0=BF=D0=B8=D1=82=D1=8C =D0=B1=D0=B8=D0=BB=D0=B5=D1=82</a>
+=
+                                                <!--[if mso]> </center> </v=
+:roundrect><![endif]-->
+                                            </div=
+>
+                                        </div>
+                      =
+              </td>
+                                </tr>
+             =
+               </table>
+                        </td>
+                 =
+   </tr> </table>
+        </td>
+    </tr>                     <tr>
+  =
+              <td align=3D"center" style=3D"padding-top:37px;">
+         =
+           <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D=
+"100%">
+                        <tr>
+                            <td ba=
+ckground=3D"http://glavclub.com/client2/images/mails/line.png" width=3D"100=
+%" align=3D"center" style=3D"background-position:center;background-repeat:r=
+epeat-x;text-align:center;">
+                                <!--[if gte =
+mso 9]> <v:rect xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=3D"true" str=
+oke=3D"false" style=3D"width:600px;height:58px;"> <v:fill type=3D"tile" src=
+=3D"http://glavclub.com/client2/images/mails/line.png" stroke=3D"false" col=
+or=3D"#ebeaea"/> <v:textbox inset=3D"0,0,0,0"><![endif]-->
+              =
+                  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" w=
+idth=3D"100%">
+                                    <tbody>
+            =
+                        <tr>
+                                        <td =
+align=3D"center" width=3D"100%" style=3D"width:100%;text-align:center;"><im=
+g src=3D"http://glavclub.com/client2/images/mails/email_yotaspace_news.png"=
+ alt=3D"=D0=9D=D0=9E=D0=92=D0=9E=D0=A1=D0=A2=D0=98" border=3D"0" width=3D"5=
+8" height=3D"58" align=3D"center"></td>
+                                 =
+   </tr>
+                                    </tbody>
+                 =
+               </table>
+                                <!--[if gte mso]>=
+ </v:textbox> </v:rect><![endif]-->
+                            </td>
+ =
+                       </tr>
+                    </table>
+             =
+   </td>
+            </tr>
+                <tr>
+            <td align=
+=3D"center" valign=3D"top" bgcolor=3D"#ebeaea" style=3D"background-color: #=
+ebeaea;">
+                <table border=3D"0" width=3D"600" cellpadding=
+=3D"0" cellspacing=3D"0" class=3D"container" style=3D"width:600px;max-width=
+:600px">
+                    <tr>
+                        <td align=3D"=
+center" style=3D"font-size:16px;color:#323d46;padding-top:13px;text-transfo=
+rm:uppercase;font-family:Helvetica, Arial, sans-serif;text-decoration:none;=
+">BLACK FRIDAY</td>
+                    </tr>                        <tr>=
+
+                            <td align=3D"center" style=3D"padding-top: 2=
+5px;">  <img src=3D"http://glavclub.com/images/mails/news/213.jpg?261120190=
+12946" alt=3D"" width=3D"600px" style=3D"width:600px;max-width:100%;"/>  </=
+td>
+                        </tr>                         <tr>
+        =
+                    <td align=3D"center" style=3D"padding-top:46px;padding-=
+left:10px;padding-right:10px;">
+                                <table bo=
+rder=3D"0" width=3D"470" cellpadding=3D"0" cellspacing=3D"0" class=3D"conta=
+iner" style=3D"width:470px;max-width:470px">
+                            =
+        <tr>
+                                        <td class=3D"contain=
+er-padding" align=3D"left" style=3D"font-family:Helvetica, Arial, sans-seri=
+f;color:#323d46;font-size:16px;line-height:23px;">Black Friday =D0=B2 =
+=D0=93=D0=BB=D0=B0=D0=B2=D0=BA=D0=BB=D1=83=D0=B1=D0=B5!
+<br/>=D0=A1=D0=
+=BA=D0=B8=D0=B4=D0=BA=D0=B8 50%, 30%, 20% =D0=BF=D0=BE =D0=BF=D1=80=D0=
+=BE=D0=BC=D0=BE=D0=BA=D0=BE=D0=B4=D0=B0=D0=BC =D0=BD=D0=B0 =D0=B1=D0=B8=
+=D0=BB=D0=B5=D1=82=D1=8B =D0=B2 =D1=82=D0=B0=D0=BD=D1=86=D0=B5=D0=B2=D0=
+=B0=D0=BB=D1=8C=D0=BD=D1=8B=D0=B9 =D0=BF=D0=B0=D1=80=D1=82=D0=B5=D1=80 =
+=D0=BD=D0=B0 =D0=B7=D0=B8=D0=BC=D0=BD=D0=B8=D0=B5 =D0=BA=D0=BE=D0=BD=D1=
+=86=D0=B5=D1=80=D1=82=D1=8B.
+<br/>
+<br/>=D0=A1=D0=BF=D0=B5=D1=88=D0=
+=B8=D1=82=D0=B5! =D0=90=D0=BA=D1=86=D0=B8=D1=8F =D0=B4=D0=B5=D0=B9=D1=81=
+=D1=82=D0=B2=D1=83=D0=B5=D1=82 =D1=82=D0=BE=D0=BB=D1=8C=D0=BA=D0=BE =D1=
+=81 26 =D0=BF=D0=BE 29 =D0=BD=D0=BE=D1=8F=D0=B1=D1=80=D1=8F!</td>
+       =
+                             </tr>                                        <=
+tr>
+                                            <td align=3D"center" styl=
+e=3D"padding-top:15px;">
+                                                =
+<div>
+                                                    <!--[if mso]> <=
+v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:w=3D"urn:schema=
+s-microsoft-com:office:word" href=3D"#" style=3D"height:36px;v-text-anchor:=
+middle;width:176px;" arcsize=3D"9%" stroke=3D"f" fillcolor=3D"#64A70B"> <w:=
+anchorlock/> <center><![endif]--><a href=3D"https://glavclub.com?%20utm_sou=
+rce=3Demail&amp;utm_medium=3Ddigest&amp;&amp;utm_campaign=3Demail%7Csenddat=
+e:25112019" style=3D"background-color:#64A70B;border-radius:3px;color:#ffff=
+ff;display:inline-block;font-family:Helvetica, Arial, sans-serif;font-size:=
+16px;line-height:36px;height:36px;text-align:center;text-decoration:none;wi=
+dth:176px;-webkit-text-size-adjust:none;">=D0=9A=D1=83=D0=BF=D0=B8=D1=82=
+=D1=8C =D0=B1=D0=B8=D0=BB=D0=B5=D1=82</a>
+                               =
+                     <!--[if mso]> </center> </v:roundrect><![endif]-->
+ =
+                                               </div>
+                   =
+                         </td>
+                                        </=
+tr> </table>
+                            </td>
+                        =
+</tr> </table>
+            </td>
+        </tr>         <tr>
+         =
+   <td align=3D"center" style=3D"padding-top:37px;">
+                <tab=
+le border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+     =
+               <tr>
+                        <td background=3D"http://glav=
+club.com/client2/images/mails/line.png" width=3D"100%" align=3D"center" sty=
+le=3D"background-position:center;background-repeat:repeat-x;text-align:cent=
+er;">
+                            <!--[if gte mso 9]> <v:rect xmlns:v=3D"=
+urn:schemas-microsoft-com:vml" fill=3D"true" stroke=3D"false" style=3D"widt=
+h:600px;height:58px;"> <v:fill type=3D"tile" src=3D"http://glavclub.com/cli=
+ent2/images/mails/line.png" stroke=3D"false" color=3D"#ebeaea"/> <v:textbox=
+ inset=3D"0,0,0,0"><![endif]-->
+                            <table border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+              =
+                  <tr>
+                                    <td align=3D"c=
+enter" width=3D"100%" style=3D"width:100%;text-align:center;"><img src=3D"h=
+ttp://glavclub.com/client2/images/mails/icon-1.png" alt=3D"=D0=90=D0=A4=
+=D0=98=D0=A8=D0=90 =D0=9D=D0=95=D0=94=D0=95=D0=9B=D0=98" border=3D"0" width=
+=3D"58" height=3D"58" align=3D"center" /> </td>
+                         =
+       </tr>
+                            </table>
+                     =
+       <!--[if gte mso]> </v:textbox> </v:rect><![endif]-->
+             =
+           </td>
+                    </tr>
+                </table>
+ =
+           </td>
+        </tr>
+        <tr>
+            <td align=3D"=
+center" valign=3D"top" bgcolor=3D"#ebeaea" style=3D"background-color:#ebeae=
+a;">
+                <table border=3D"0" width=3D"600" cellpadding=3D"0" =
+cellspacing=3D"0" class=3D"container" style=3D"width:600px;max-width:600px"=
+>
+                    <tr>
+                        <td align=3D"center"=
+ style=3D"font-size:16px;color:#323d46;padding-top:13px;text-transform:uppe=
+rcase;font-family:Helvetica, Arial, sans-serif;text-decoration:none;"> =
+=D0=90=D0=A4=D0=98=D0=A8=D0=90 =D0=9D=D0=95=D0=94=D0=95=D0=9B=D0=98: </td>=
+
+                    </tr>                        <tr>
+                =
+            <td class=3D"cols-wrapper" style=3D"padding-top:25px;padding-le=
+ft:10px;padding-right:10px;">
+                                <table bord=
+er=3D"0" width=3D"100%" cellpadding=3D"0" cellspacing=3D"0">
+            =
+                        <tr>
+                                        <td =
+bgcolor=3D"#ffffff" style=3D"background:#ffffff;padding:20px;padding-bottom=
+:0;">
+                                            <!--[if mso]> <table bo=
+rder=3D"0" width=3D"580" cellpadding=3D"0" cellspacing=3D"0" style=3D"width=
+: 580px;"> <tr> <td width=3D"200" style=3D"width: 200px;" valign=3D"top"><!=
+[endif]-->
+                                            <table width=3D"20=
+0" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" class=3D=
+"force-row" style=3D"width: 200px;">
+                                    =
+            <tr>
+                                                    <td =
+align=3D"left" style=3D"padding-bottom:20px;">
+                          =
+                              <a href=3D"http://glavclub.com/the-tiger-lill=
+ies/?utm_source=3Demail&utm_medium=3Ddigest&utm_term=3Dthe-tiger-lillies&ut=
+m_campaign=3Demail|senddate:26112019&utm_content=3Devent:the-tiger-lillies|=
+host:moscow|eventdate:26112019|"><img src=3D"http://glavclub.com//images/ar=
+tists/photos/735.jpg" width=3D"100%" alt=3D"The Tiger Lillies" /></a>
+   =
+                                                 </td>
+                  =
+                              </tr>
+                                     =
+       </table>
+                                            <!--[if mso]>=
+</td><td width=3D"230" style=3D"width: 230px;" valign=3D"top"><![endif]-->=
+
+                                            <table width=3D"230" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" class=3D"force-ro=
+w" style=3D"width:230px;">
+                                              =
+  <tr>
+                                                    <td align=3D"l=
+eft" class=3D"force-row container-padding date" style=3D"font-size:16px;col=
+or:#323d46;font-family:Helvetica, Arial, sans-serif;padding-left:30px;">26&=
+nbsp;=D0=BD=D0=BE=D1=8F=D0=B1=D1=80=D1=8F&nbsp;=D0=92=D0=A2&nbsp;20:00</td>=
+
+                                                </tr>
+                =
+                                <tr>
+                                    =
+                <td align=3D"left" class=3D"force-row container-padding" st=
+yle=3D"font-size:21px;color:#323d46;font-family:Helvetica, Arial, sans-seri=
+f;font-weight:700;padding-top:16px;line-height:25px;padding-left:30px;"> <a=
+ href=3D"http://glavclub.com/the-tiger-lillies/?utm_source=3Demail&utm_medi=
+um=3Ddigest&utm_term=3Dthe-tiger-lillies&utm_campaign=3Demail|senddate:2611=
+2019&utm_content=3Devent:the-tiger-lillies|host:moscow|eventdate:26112019|"=
+ class=3D"_link" style=3D"color:#323d46;text-decoration:none;">The Tiger Li=
+llies</a> </td>
+                                                </tr>
+ =
+                                               <tr>
+                     =
+                               <td align=3D"left" class=3D"force-row contai=
+ner-padding" style=3D"font-size:16px;color:#323d46;font-family:Helvetica, A=
+rial, sans-serif;padding-top:17px;padding-bottom:20px;padding-left:30px;">3=
+0 Years Anniversary</td>
+                                                =
+</tr>
+                                            </table>
+            =
+                                <!--[if mso]></td><td width=3D"110" style=
+=3D"width: 110px;" valign=3D"top"><![endif]-->
+                          =
+                  <table width=3D"110" border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0" align=3D"left" class=3D"force-row" style=3D"width:110px;">    =
+                                                 <tr>
+                   =
+                                     <td align=3D"left" class=3D"force-row =
+container-padding" style=3D"font-size:14px;font-family:Helvetica, Arial, sa=
+ns-serif;padding-left:15px;"> <a href=3D"http://glavclub.com/the-tiger-lill=
+ies/?utm_source=3Demail&utm_medium=3Ddigest&utm_term=3Dthe-tiger-lillies&ut=
+m_campaign=3Demail|senddate:26112019&utm_content=3Devent:the-tiger-lillies|=
+host:moscow|eventdate:26112019|" style=3D"color:#FF4800;">=D0=9A=D1=83=
+=D0=BF=D0=B8=D1=82=D1=8C =D0=B1=D0=B8=D0=BB=D0=B5=D1=82</a></td>
+        =
+                                            </tr>
+                       =
+                             <tr>
+                                       =
+                 <td align=3D"left" class=3D"force-row container-padding" s=
+tyle=3D"font-size:14px;color:#88979d;font-family:Helvetica, Arial, sans-ser=
+if;padding-bottom:20px;padding-top:10px;padding-left:15px;"> =D0=BE=D1=
+=82 500 =D1=80=D1=83=D0=B1.</td>
+                                        =
+            </tr>  </table>
+                                        </td>=
+
+                                    </tr>
+                            =
+    </table>
+                            </td>
+                        =
+</tr>                        <tr>
+                            <td class=
+=3D"cols-wrapper" style=3D"padding-top:25px;padding-left:10px;padding-right=
+:10px;">
+                                <table border=3D"0" width=3D"100=
+%" cellpadding=3D"0" cellspacing=3D"0">
+                                 =
+   <tr>
+                                        <td bgcolor=3D"#ffffff" s=
+tyle=3D"background:#ffffff;padding:20px;padding-bottom:0;">
+             =
+                               <!--[if mso]> <table border=3D"0" width=3D"5=
+80" cellpadding=3D"0" cellspacing=3D"0" style=3D"width: 580px;"> <tr> <td w=
+idth=3D"200" style=3D"width: 200px;" valign=3D"top"><![endif]-->
+        =
+                                    <table width=3D"200" border=3D"0" cellp=
+adding=3D"0" cellspacing=3D"0" align=3D"left" class=3D"force-row" style=3D"=
+width: 200px;">
+                                                <tr>
+  =
+                                                  <td align=3D"left" style=
+=3D"padding-bottom:20px;">
+                                              =
+          <a href=3D"http://glavclub.com/fever-333/?utm_source=3Demail&utm_=
+medium=3Ddigest&utm_term=3Dfever-333&utm_campaign=3Demail|senddate:26112019=
+&utm_content=3Devent:fever-333|host:moscow|eventdate:27112019|"><img src=3D=
+"http://glavclub.com//images/artists/photos/960.jpg" width=3D"100%" alt=3D"=
+FEVER 333" /></a>
+                                                    </t=
+d>
+                                                </tr>
+              =
+                              </table>
+                                  =
+          <!--[if mso]></td><td width=3D"230" style=3D"width: 230px;" valig=
+n=3D"top"><![endif]-->
+                                            <table=
+ width=3D"230" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"le=
+ft" class=3D"force-row" style=3D"width:230px;">
+                         =
+                       <tr>
+                                             =
+       <td align=3D"left" class=3D"force-row container-padding date" style=
+=3D"font-size:16px;color:#323d46;font-family:Helvetica, Arial, sans-serif;p=
+adding-left:30px;">27&nbsp;=D0=BD=D0=BE=D1=8F=D0=B1=D1=80=D1=8F&nbsp;=D0=
+=A1=D0=A0&nbsp;20:00</td>
+                                               =
+ </tr>
+                                                <tr>
+           =
+                                         <td align=3D"left" class=3D"force-=
+row container-padding" style=3D"font-size:21px;color:#323d46;font-family:He=
+lvetica, Arial, sans-serif;font-weight:700;padding-top:16px;line-height:25p=
+x;padding-left:30px;"> <a href=3D"http://glavclub.com/fever-333/?utm_source=
+=3Demail&utm_medium=3Ddigest&utm_term=3Dfever-333&utm_campaign=3Demail|send=
+date:26112019&utm_content=3Devent:fever-333|host:moscow|eventdate:27112019|=
+" class=3D"_link" style=3D"color:#323d46;text-decoration:none;">FEVER 333</=
+a> </td>
+                                                </tr>
+        =
+                                        <tr>
+                            =
+                        <td align=3D"left" class=3D"force-row container-pad=
+ding" style=3D"font-size:16px;color:#323d46;font-family:Helvetica, Arial, s=
+ans-serif;padding-top:17px;padding-bottom:20px;padding-left:30px;"></td>
+=
+                                                </tr>
+                   =
+                         </table>
+                                       =
+     <!--[if mso]></td><td width=3D"110" style=3D"width: 110px;" valign=3D"=
+top"><![endif]-->
+                                            <table widt=
+h=3D"110" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" c=
+lass=3D"force-row" style=3D"width:110px;">                                 =
+                    <tr>
+                                                =
+        <td align=3D"left" class=3D"force-row container-padding" style=3D"f=
+ont-size:14px;font-family:Helvetica, Arial, sans-serif;padding-left:15px;">=
+ <a href=3D"http://glavclub.com/fever-333/?utm_source=3Demail&utm_medium=3D=
+digest&utm_term=3Dfever-333&utm_campaign=3Demail|senddate:26112019&utm_cont=
+ent=3Devent:fever-333|host:moscow|eventdate:27112019|" style=3D"color:#FF48=
+00;">=D0=9A=D1=83=D0=BF=D0=B8=D1=82=D1=8C =D0=B1=D0=B8=D0=BB=D0=B5=D1=82</a=
+></td>
+                                                    </tr>
+      =
+                                              <tr>
+                      =
+                                  <td align=3D"left" class=3D"force-row con=
+tainer-padding" style=3D"font-size:14px;color:#88979d;font-family:Helvetica=
+, Arial, sans-serif;padding-bottom:20px;padding-top:10px;padding-left:15px;=
+"> =D0=BE=D1=82 2000 =D1=80=D1=83=D0=B1.</td>
+                           =
+                         </tr>  </table>
+                                =
+        </td>
+                                    </tr>
+               =
+                 </table>
+                            </td>
+           =
+             </tr>                        <tr>
+                          =
+  <td class=3D"cols-wrapper" style=3D"padding-top:25px;padding-left:10px;pa=
+dding-right:10px;">
+                                <table border=3D"0" w=
+idth=3D"100%" cellpadding=3D"0" cellspacing=3D"0">
+                      =
+              <tr>
+                                        <td bgcolor=3D=
+"#ffffff" style=3D"background:#ffffff;padding:20px;padding-bottom:0;">
+  =
+                                          <!--[if mso]> <table border=3D"0"=
+ width=3D"580" cellpadding=3D"0" cellspacing=3D"0" style=3D"width: 580px;">=
+ <tr> <td width=3D"200" style=3D"width: 200px;" valign=3D"top"><![endif]-->=
+
+                                            <table width=3D"200" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" class=3D"force-ro=
+w" style=3D"width: 200px;">
+                                             =
+   <tr>
+                                                    <td align=3D"=
+left" style=3D"padding-bottom:20px;">
+                                   =
+                     <a href=3D"http://glavclub.com/billy-novik/?utm_source=
+=3Demail&utm_medium=3Ddigest&utm_term=3Dbilly-novik&utm_campaign=3Demail|se=
+nddate:26112019&utm_content=3Devent:billy-novik|host:moscow|eventdate:28112=
+019|"><img src=3D"http://glavclub.com//images/artists/photos/965.jpg" width=
+=3D"100%" alt=3D"=D0=91=D0=B8=D0=BB=D0=BB=D0=B8 =D0=9D=D0=BE=D0=B2=D0=B8=
+=D0=BA" /></a>
+                                                    </td>=
+
+                                                </tr>
+                =
+                            </table>
+                                    =
+        <!--[if mso]></td><td width=3D"230" style=3D"width: 230px;" valign=
+=3D"top"><![endif]-->
+                                            <table =
+width=3D"230" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"lef=
+t" class=3D"force-row" style=3D"width:230px;">
+                          =
+                      <tr>
+                                              =
+      <td align=3D"left" class=3D"force-row container-padding date" style=
+=3D"font-size:16px;color:#323d46;font-family:Helvetica, Arial, sans-serif;p=
+adding-left:30px;">28&nbsp;=D0=BD=D0=BE=D1=8F=D0=B1=D1=80=D1=8F&nbsp;=D0=
+=A7=D0=A2&nbsp;20:00</td>
+                                               =
+ </tr>
+                                                <tr>
+           =
+                                         <td align=3D"left" class=3D"force-=
+row container-padding" style=3D"font-size:21px;color:#323d46;font-family:He=
+lvetica, Arial, sans-serif;font-weight:700;padding-top:16px;line-height:25p=
+x;padding-left:30px;"> <a href=3D"http://glavclub.com/billy-novik/?utm_sour=
+ce=3Demail&utm_medium=3Ddigest&utm_term=3Dbilly-novik&utm_campaign=3Demail|=
+senddate:26112019&utm_content=3Devent:billy-novik|host:moscow|eventdate:281=
+12019|" class=3D"_link" style=3D"color:#323d46;text-decoration:none;">=
+=D0=91=D0=B8=D0=BB=D0=BB=D0=B8 =D0=9D=D0=BE=D0=B2=D0=B8=D0=BA</a> </td>
+ =
+                                               </tr>
+                    =
+                            <tr>
+                                        =
+            <td align=3D"left" class=3D"force-row container-padding" style=
+=3D"font-size:16px;color:#323d46;font-family:Helvetica, Arial, sans-serif;p=
+adding-top:17px;padding-bottom:20px;padding-left:30px;">=D0=9F=D0=B5=D1=
+=81=D0=BD=D0=B8 =D0=95=D0=B3=D0=BE=D1=80=D0=B0 =D0=9B=D0=B5=D1=82=D0=BE=
+=D0=B2=D0=B0</td>
+                                                </tr>=
+
+                                            </table>
+                 =
+                           <!--[if mso]></td><td width=3D"110" style=3D"wid=
+th: 110px;" valign=3D"top"><![endif]-->
+                                 =
+           <table width=3D"110" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" align=3D"left" class=3D"force-row" style=3D"width:110px;">          =
+                                           <tr>
+                         =
+                               <td align=3D"left" class=3D"force-row contai=
+ner-padding" style=3D"font-size:14px;font-family:Helvetica, Arial, sans-ser=
+if;padding-left:15px;"> <a href=3D"http://glavclub.com/billy-novik/?utm_sou=
+rce=3Demail&utm_medium=3Ddigest&utm_term=3Dbilly-novik&utm_campaign=3Demail=
+|senddate:26112019&utm_content=3Devent:billy-novik|host:moscow|eventdate:28=
+112019|" style=3D"color:#FF4800;">=D0=9A=D1=83=D0=BF=D0=B8=D1=82=D1=8C =
+=D0=B1=D0=B8=D0=BB=D0=B5=D1=82</a></td>
+                                 =
+                   </tr>
+                                                =
+    <tr>
+                                                        <td alig=
+n=3D"left" class=3D"force-row container-padding" style=3D"font-size:14px;co=
+lor:#88979d;font-family:Helvetica, Arial, sans-serif;padding-bottom:20px;pa=
+dding-top:10px;padding-left:15px;"> =D0=BE=D1=82 500 =D1=80=D1=83=D0=B1.</t=
+d>
+                                                    </tr>  </table>
+=
+                                        </td>
+                           =
+         </tr>
+                                </table>
+               =
+             </td>
+                        </tr>                        <=
+tr>
+                            <td class=3D"cols-wrapper" style=3D"paddi=
+ng-top:25px;padding-left:10px;padding-right:10px;">
+                     =
+           <table border=3D"0" width=3D"100%" cellpadding=3D"0" cellspacing=
+=3D"0">
+                                    <tr>
+                      =
+                  <td bgcolor=3D"#ffffff" style=3D"background:#ffffff;paddi=
+ng:20px;padding-bottom:0;">
+                                            <=
+!--[if mso]> <table border=3D"0" width=3D"580" cellpadding=3D"0" cellspacin=
+g=3D"0" style=3D"width: 580px;"> <tr> <td width=3D"200" style=3D"width: 200=
+px;" valign=3D"top"><![endif]-->
+                                        =
+    <table width=3D"200" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" a=
+lign=3D"left" class=3D"force-row" style=3D"width: 200px;">
+              =
+                                  <tr>
+                                  =
+                  <td align=3D"left" style=3D"padding-bottom:20px;">
+    =
+                                                    <a href=3D"http://glavc=
+lub.com/bravo/?utm_source=3Demail&utm_medium=3Ddigest&utm_term=3Dbravo&utm_=
+campaign=3Demail|senddate:26112019&utm_content=3Devent:bravo|host:moscow|ev=
+entdate:29112019|"><img src=3D"http://glavclub.com//images/artists/photos/3=
+89.jpg" width=3D"100%" alt=3D"=D0=91=D1=80=D0=B0=D0=B2=D0=BE" /></a>
+    =
+                                                </td>
+                   =
+                             </tr>
+                                      =
+      </table>
+                                            <!--[if mso]><=
+/td><td width=3D"230" style=3D"width: 230px;" valign=3D"top"><![endif]-->=
+
+                                            <table width=3D"230" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" class=3D"force-ro=
+w" style=3D"width:230px;">
+                                              =
+  <tr>
+                                                    <td align=3D"l=
+eft" class=3D"force-row container-padding date" style=3D"font-size:16px;col=
+or:#323d46;font-family:Helvetica, Arial, sans-serif;padding-left:30px;">29&=
+nbsp;=D0=BD=D0=BE=D1=8F=D0=B1=D1=80=D1=8F&nbsp;=D0=9F=D0=A2&nbsp;20:00</td>=
+
+                                                </tr>
+                =
+                                <tr>
+                                    =
+                <td align=3D"left" class=3D"force-row container-padding" st=
+yle=3D"font-size:21px;color:#323d46;font-family:Helvetica, Arial, sans-seri=
+f;font-weight:700;padding-top:16px;line-height:25px;padding-left:30px;"> <a=
+ href=3D"http://glavclub.com/bravo/?utm_source=3Demail&utm_medium=3Ddigest&=
+utm_term=3Dbravo&utm_campaign=3Demail|senddate:26112019&utm_content=3Devent=
+:bravo|host:moscow|eventdate:29112019|" class=3D"_link" style=3D"color:#323=
+d46;text-decoration:none;">=D0=91=D1=80=D0=B0=D0=B2=D0=BE</a> </td>
+     =
+                                           </tr>
+                        =
+                        <tr>
+                                            =
+        <td align=3D"left" class=3D"force-row container-padding" style=3D"f=
+ont-size:16px;color:#323d46;font-family:Helvetica, Arial, sans-serif;paddin=
+g-top:17px;padding-bottom:20px;padding-left:30px;"></td>
+                =
+                                </tr>
+                                   =
+         </table>
+                                            <!--[if mso=
+]></td><td width=3D"110" style=3D"width: 110px;" valign=3D"top"><![endif]--=
+>
+                                            <table width=3D"110" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" class=3D"force-ro=
+w" style=3D"width:110px;">                                                 =
+    <tr>
+                                                        <td alig=
+n=3D"left" class=3D"force-row container-padding" style=3D"font-size:14px;fo=
+nt-family:Helvetica, Arial, sans-serif;padding-left:15px;"> <a href=3D"http=
+://glavclub.com/bravo/?utm_source=3Demail&utm_medium=3Ddigest&utm_term=3Dbr=
+avo&utm_campaign=3Demail|senddate:26112019&utm_content=3Devent:bravo|host:m=
+oscow|eventdate:29112019|" style=3D"color:#FF4800;">=D0=9A=D1=83=D0=BF=
+=D0=B8=D1=82=D1=8C =D0=B1=D0=B8=D0=BB=D0=B5=D1=82</a></td>
+              =
+                                      </tr>
+                             =
+                       <tr>
+                                             =
+           <td align=3D"left" class=3D"force-row container-padding" style=
+=3D"font-size:14px;color:#88979d;font-family:Helvetica, Arial, sans-serif;p=
+adding-bottom:20px;padding-top:10px;padding-left:15px;"> =D0=BE=D1=82 2000 =
+=D1=80=D1=83=D0=B1.</td>
+                                                =
+    </tr>  </table>
+                                        </td>
+     =
+                               </tr>
+                                </ta=
+ble>
+                            </td>
+                        </tr>   =
+                     <tr>
+                            <td class=3D"cols-w=
+rapper" style=3D"padding-top:25px;padding-left:10px;padding-right:10px;">=
+
+                                <table border=3D"0" width=3D"100%" cellp=
+adding=3D"0" cellspacing=3D"0">
+                                    <tr>=
+
+                                        <td bgcolor=3D"#ffffff" style=3D=
+"background:#ffffff;padding:20px;padding-bottom:0;">
+                    =
+                        <!--[if mso]> <table border=3D"0" width=3D"580" cel=
+lpadding=3D"0" cellspacing=3D"0" style=3D"width: 580px;"> <tr> <td width=3D=
+"200" style=3D"width: 200px;" valign=3D"top"><![endif]-->
+               =
+                             <table width=3D"200" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" align=3D"left" class=3D"force-row" style=3D"width:=
+ 200px;">
+                                                <tr>
+        =
+                                            <td align=3D"left" style=3D"pad=
+ding-bottom:20px;">
+                                                     =
+   <a href=3D"http://glavclub.com/svik/?utm_source=3Demail&utm_medium=3Ddig=
+est&utm_term=3Dsvik&utm_campaign=3Demail|senddate:26112019&utm_content=3Dev=
+ent:svik|host:moscow|eventdate:30112019|"><img src=3D"http://glavclub.com//=
+images/artists/photos/923.jpg" width=3D"100%" alt=3D"=D0=9B=D0=B5=D1=88=
+=D0=B0 =D0=A1=D0=B2=D0=B8=D0=BA" /></a>
+                                 =
+                   </td>
+                                                =
+</tr>
+                                            </table>
+            =
+                                <!--[if mso]></td><td width=3D"230" style=
+=3D"width: 230px;" valign=3D"top"><![endif]-->
+                          =
+                  <table width=3D"230" border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0" align=3D"left" class=3D"force-row" style=3D"width:230px;">
+ =
+                                               <tr>
+                     =
+                               <td align=3D"left" class=3D"force-row contai=
+ner-padding date" style=3D"font-size:16px;color:#323d46;font-family:Helveti=
+ca, Arial, sans-serif;padding-left:30px;">30&nbsp;=D0=BD=D0=BE=D1=8F=D0=
+=B1=D1=80=D1=8F&nbsp;=D0=A1=D0=91&nbsp;20:00</td>
+                       =
+                         </tr>
+                                          =
+      <tr>
+                                                    <td align=
+=3D"left" class=3D"force-row container-padding" style=3D"font-size:21px;col=
+or:#323d46;font-family:Helvetica, Arial, sans-serif;font-weight:700;padding=
+-top:16px;line-height:25px;padding-left:30px;"> <a href=3D"http://glavclub.=
+com/svik/?utm_source=3Demail&utm_medium=3Ddigest&utm_term=3Dsvik&utm_campai=
+gn=3Demail|senddate:26112019&utm_content=3Devent:svik|host:moscow|eventdate=
+:30112019|" class=3D"_link" style=3D"color:#323d46;text-decoration:none;">=
+=D0=9B=D0=B5=D1=88=D0=B0 =D0=A1=D0=B2=D0=B8=D0=BA</a> </td>
+             =
+                                   </tr>
+                                =
+                <tr>
+                                                    =
+<td align=3D"left" class=3D"force-row container-padding" style=3D"font-size=
+:16px;color:#323d46;font-family:Helvetica, Arial, sans-serif;padding-top:17=
+px;padding-bottom:20px;padding-left:30px;"></td>
+                        =
+                        </tr>
+                                           =
+ </table>
+                                            <!--[if mso]></td><=
+td width=3D"110" style=3D"width: 110px;" valign=3D"top"><![endif]-->
+    =
+                                        <table width=3D"110" border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" align=3D"left" class=3D"force-row" style=
+=3D"width:110px;">                                                     <tr>=
+
+                                                        <td align=3D"lef=
+t" class=3D"force-row container-padding" style=3D"font-size:14px;color:#323=
+d46;font-family:Helvetica, Arial, sans-serif;padding-bottom:20px;padding-to=
+p:10px;padding-left:15px;"> =D0=92=D1=81=D0=B5 =D0=B1=D0=B8=D0=BB=D0=B5=
+=D1=82=D1=8B =D0=BF=D1=80=D0=BE=D0=B4=D0=B0=D0=BD=D1=8B </td>
+           =
+                                         </tr> </table>
+                 =
+                       </td>
+                                    </tr>
+=
+                                </table>
+                            </td=
+>
+                        </tr>                        <tr>
+           =
+                 <td class=3D"cols-wrapper" style=3D"padding-top:25px;paddi=
+ng-left:10px;padding-right:10px;">
+                                <table=
+ border=3D"0" width=3D"100%" cellpadding=3D"0" cellspacing=3D"0">
+       =
+                             <tr>
+                                       =
+ <td bgcolor=3D"#ffffff" style=3D"background:#ffffff;padding:20px;padding-b=
+ottom:0;">
+                                            <!--[if mso]> <tab=
+le border=3D"0" width=3D"580" cellpadding=3D"0" cellspacing=3D"0" style=3D"=
+width: 580px;"> <tr> <td width=3D"200" style=3D"width: 200px;" valign=3D"to=
+p"><![endif]-->
+                                            <table width=
+=3D"200" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" cl=
+ass=3D"force-row" style=3D"width: 200px;">
+                              =
+                  <tr>
+                                                  =
+  <td align=3D"left" style=3D"padding-bottom:20px;">
+                    =
+                                    <a href=3D"http://glavclub.com/husky/?u=
+tm_source=3Demail&utm_medium=3Ddigest&utm_term=3Dhusky&utm_campaign=3Demail=
+|senddate:26112019&utm_content=3Devent:husky|host:moscow|eventdate:01122019=
+|"><img src=3D"http://glavclub.com//images/artists/photos/838.jpg" width=3D=
+"100%" alt=3D"=D0=A5=D0=B0=D1=81=D0=BA=D0=B8" /></a>
+                    =
+                                </td>
+                                   =
+             </tr>
+                                            </table>=
+
+                                            <!--[if mso]></td><td width=
+=3D"230" style=3D"width: 230px;" valign=3D"top"><![endif]-->
+            =
+                                <table width=3D"230" border=3D"0" cellpaddi=
+ng=3D"0" cellspacing=3D"0" align=3D"left" class=3D"force-row" style=3D"widt=
+h:230px;">
+                                                <tr>
+       =
+                                             <td align=3D"left" class=3D"fo=
+rce-row container-padding date" style=3D"font-size:16px;color:#323d46;font-=
+family:Helvetica, Arial, sans-serif;padding-left:30px;">1&nbsp;=D0=B4=D0=
+=B5=D0=BA=D0=B0=D0=B1=D1=80=D1=8F&nbsp;=D0=92=D0=A1&nbsp;20:00</td>
+     =
+                                           </tr>
+                        =
+                        <tr>
+                                            =
+        <td align=3D"left" class=3D"force-row container-padding" style=3D"f=
+ont-size:21px;color:#323d46;font-family:Helvetica, Arial, sans-serif;font-w=
+eight:700;padding-top:16px;line-height:25px;padding-left:30px;"> <a href=3D=
+"http://glavclub.com/husky/?utm_source=3Demail&utm_medium=3Ddigest&utm_term=
+=3Dhusky&utm_campaign=3Demail|senddate:26112019&utm_content=3Devent:husky|h=
+ost:moscow|eventdate:01122019|" class=3D"_link" style=3D"color:#323d46;text=
+-decoration:none;">=D0=A5=D0=B0=D1=81=D0=BA=D0=B8</a> </td>
+             =
+                                   </tr>
+                                =
+                <tr>
+                                                    =
+<td align=3D"left" class=3D"force-row container-padding" style=3D"font-size=
+:16px;color:#323d46;font-family:Helvetica, Arial, sans-serif;padding-top:17=
+px;padding-bottom:20px;padding-left:30px;"></td>
+                        =
+                        </tr>
+                                           =
+ </table>
+                                            <!--[if mso]></td><=
+td width=3D"110" style=3D"width: 110px;" valign=3D"top"><![endif]-->
+    =
+                                        <table width=3D"110" border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" align=3D"left" class=3D"force-row" style=
+=3D"width:110px;">                                                     <tr>=
+
+                                                        <td align=3D"lef=
+t" class=3D"force-row container-padding" style=3D"font-size:14px;font-famil=
+y:Helvetica, Arial, sans-serif;padding-left:15px;"> <a href=3D"http://glavc=
+lub.com/husky/?utm_source=3Demail&utm_medium=3Ddigest&utm_term=3Dhusky&utm_=
+campaign=3Demail|senddate:26112019&utm_content=3Devent:husky|host:moscow|ev=
+entdate:01122019|" style=3D"color:#FF4800;">=D0=9A=D1=83=D0=BF=D0=B8=D1=
+=82=D1=8C =D0=B1=D0=B8=D0=BB=D0=B5=D1=82</a></td>
+                       =
+                             </tr>
+                                      =
+              <tr>
+                                                      =
+  <td align=3D"left" class=3D"force-row container-padding" style=3D"font-si=
+ze:14px;color:#88979d;font-family:Helvetica, Arial, sans-serif;padding-bott=
+om:20px;padding-top:10px;padding-left:15px;"> =D0=BE=D1=82 1500 =D1=80=
+=D1=83=D0=B1.</td>
+                                                    </=
+tr>  </table>
+                                        </td>
+           =
+                         </tr>
+                                </table>=
+
+                            </td>
+                        </tr>       =
+             <tr>
+                        <td align=3D"center" style=3D"p=
+adding-top:42px;">
+                            <div>
+                  =
+              <!--[if mso]> <v:roundrect xmlns:v=3D"urn:schemas-microsoft-c=
+om:vml" xmlns:w=3D"urn:schemas-microsoft-com:office:word" href=3D"#" style=
+=3D"height:36px;v-text-anchor:middle;width:208px;" arcsize=3D"9%" stroke=3D=
+"f" fillcolor=3D"#64A70B"> <w:anchorlock/> <center><![endif]--><a href=3D"h=
+ttp://glavclub.com//?utm_source=3Demail&utm_medium=3Ddigest&utm_term=3Dafis=
+hacomplete&utm_campaign=3Demail|senddate:26112019&utm_content=3Devent:afish=
+acomplete|host:moscow|" style=3D"background-color:#64A70B;border-radius:3px=
+;color:#ffffff;display:inline-block;font-family:Helvetica, Arial, sans-seri=
+f;font-size:16px;line-height:36px;height:36px;text-align:center;text-decora=
+tion:none;width:208px;-webkit-text-size-adjust:none;">=D0=A1=D0=BC=D0=BE=
+=D1=82=D1=80=D0=B5=D1=82=D1=8C =D0=B2=D1=81=D1=8E =D0=B0=D1=84=D0=B8=D1=
+=88=D1=83</a>
+                                <!--[if mso]> </center> </v=
+:roundrect><![endif]-->
+                            </div>
+            =
+            </td>
+                    </tr>
+                </table>
+=
+            </td>
+        </tr>         <tr>
+            <td align=3D"c=
+enter" style=3D"padding-top:40px;">
+                <table border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+                    <t=
+r>
+                        <td background=3D"http://glavclub.com/client2/=
+images/mails/line.png" width=3D"100%" align=3D"center" style=3D"background-=
+position:center;background-repeat:repeat-x;">
+                           =
+ <!--[if gte mso 9]> <v:rect xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=
+=3D"true" stroke=3D"false" style=3D"width:600px;height:58px;"> <v:fill type=
+=3D"tile" src=3D"http://glavclub.com/client2/images/mails/line.png" stroke=
+=3D"false" color=3D"#ebeaea"/> <v:textbox inset=3D"0,0,0,0"><![endif]-->
+=
+                            <table border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0" width=3D"100%">
+                                <tr>
+         =
+                           <td align=3D"center" width=3D"100%" style=3D"wid=
+th:100%;text-align:center;"><img src=3D"http://glavclub.com/client2/images/=
+mails/icon-2.png" alt=3D"=D0=A3=D0=A1=D0=9F=D0=95=D0=99=D0=A2=D0=95 =D0=
+=9A=D0=A3=D0=9F=D0=98=D0=A2=D0=AC" border=3D"0" width=3D"58" height=3D"58" =
+align=3D"center" /> </td>
+                                </tr>
+       =
+                     </table>
+                            <!--[if gte mso=
+]> </v:textbox> </v:rect><![endif]-->
+                        </td>
+   =
+                 </tr>
+                </table>
+            </td>
+   =
+     </tr>
+        <tr>
+            <td align=3D"center" valign=3D"top"=
+ bgcolor=3D"#ebeaea" style=3D"background-color:#ebeaea;">
+               =
+ <table border=3D"0" width=3D"600" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"container" style=3D"width:600px;max-width:600px">
+                  =
+  <tr>
+                        <td align=3D"center" style=3D"font-size:16=
+px;color:#323d46;padding-top:13px;text-transform:uppercase;font-family:Helv=
+etica, Arial, sans-serif;text-decoration:none;"> =D0=A3=D0=A1=D0=9F=D0=
+=95=D0=99=D0=A2=D0=95 =D0=9A=D0=A3=D0=9F=D0=98=D0=A2=D0=AC: </td>
+       =
+             </tr>
+                    <tr>
+                        <td=
+ class=3D"cols-wrapper-margin" style=3D"padding-top:25px;">
+             =
+               <table border=3D"0" width=3D"100%" cellpadding=3D"0" cellspa=
+cing=3D"0">                                     <tr>
+                    =
+                    <td style=3D"padding-left:10px;padding-right:10px;">
+=
+                                            <!--[if mso]> <table border=3D"=
+0" width=3D"576" cellpadding=3D"0" cellspacing=3D"0" style=3D"width: 576px;=
+"> <tr> <td width=3D"200" style=3D"width: 192px;" valign=3D"top"><![endif]-=
+->                                                <table width=3D"282" heig=
+ht=3D"260" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" =
+valign=3D"top" class=3D"force-row" bgcolor=3D"#ffffff" style=3D"width:282px=
+;background:#ffffff;">
+                                                  =
+  <tr>
+                                                        <td valign=
+=3D"top" align=3D"left" class=3D"date" style=3D"font-size:16px;color:#323d4=
+6;font-family:Helvetica, Arial, sans-serif;padding-top:25px;padding-left:25=
+px;padding-right:25px;">31&nbsp;=D0=B4=D0=B5=D0=BA=D0=B0=D0=B1=D1=80=D1=
+=8F&nbsp;=D0=92=D0=A2&nbsp;18:00</td>
+                                   =
+                 </tr>
+                                                  =
+  <tr>
+                                                        <td valign=
+=3D"top" align=3D"left" height=3D"100" style=3D"font-family:Helvetica, Aria=
+l, sans-serif;padding-top:12px;padding-left:25px;padding-right:25px;height:=
+100px;">
+                                                            <div=
+ style=3D"font-size:21px;color:#323d46;font-weight:700;line-height:25px;"> =
+<a href=3D"http://glavclub.com/splean/?utm_source=3Demail&utm_medium=3Ddige=
+st&utm_term=3Dsplean&utm_campaign=3Demail|senddate:26112019&utm_content=3De=
+vent:splean|host:moscow|eventdate:31122019|" class=3D"_link" style=3D"color=
+:#323d46;text-decoration:none;">=D0=A1=D0=BF=D0=BB=D0=B8=D0=BD</a> </div>=
+
+                                                            <div style=
+=3D"font-size:14px;color:#88979d;padding-top:15px;">=D0=9D=D0=BE=D0=B2=
+=D0=BE=D0=B3=D0=BE=D0=B4=D0=BD=D0=B8=D0=B9 =D0=BA=D0=BE=D0=BD=D1=86=D0=
+=B5=D1=80=D1=82</div>
+                                                   =
+     </td>
+                                                    </tr>
+  =
+                                                  <tr>
+                  =
+                                      <td valign=3D"top" align=3D"left" sty=
+le=3D"font-size:16px;font-family:Helvetica, Arial, sans-serif;padding-left:=
+25px;padding-right:25px;"> <a href=3D"http://glavclub.com/splean/?utm_sourc=
+e=3Demail&utm_medium=3Ddigest&utm_term=3Dsplean&utm_campaign=3Demail|sendda=
+te:26112019&utm_content=3Devent:splean|host:moscow|eventdate:31122019|" sty=
+le=3D"color:#FF4800;">=D0=9A=D1=83=D0=BF=D0=B8=D1=82=D1=8C =D0=B1=D0=B8=
+=D0=BB=D0=B5=D1=82 =D0=BE=D1=82&nbsp;3000&nbsp;=D1=80=D1=83=D0=B1.</a></td>=
+
+                                                    </tr></table>       =
+                                  <!--[if mso]></td><td width=3D"50%" valig=
+n=3D"top"><![endif]-->                                                    <=
+table width=3D"282" height=3D"260" border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0" align=3D"right" valign=3D"top" class=3D"force-row" bgcolor=3D"#fff=
+fff" style=3D"width:282px;background:#ffffff;">
+                         =
+                               <tr>
+                                     =
+                       <td valign=3D"top" align=3D"left" class=3D"date" sty=
+le=3D"font-size:16px;color:#323d46;font-family:Helvetica, Arial, sans-serif=
+;padding-top:25px;padding-left:25px;padding-right:25px;">2&nbsp;=D1=8F=
+=D0=BD=D0=B2=D0=B0=D1=80=D1=8F&nbsp;=D0=A7=D0=A2&nbsp;20:00</td>
+        =
+                                                </tr>
+                   =
+                                     <tr>
+                               =
+                             <td valign=3D"top" align=3D"left" height=3D"10=
+0" style=3D"font-family:Helvetica, Arial, sans-serif;padding-top:12px;paddi=
+ng-left:25px;padding-right:25px;height:100px;">
+                         =
+                                       <div style=3D"font-size:21px;color:#=
+323d46;font-weight:700;line-height:25px;"> <a href=3D"http://glavclub.com/i=
+lwt/?utm_source=3Demail&utm_medium=3Ddigest&utm_term=3Dilwt&utm_campaign=3D=
+email|senddate:26112019&utm_content=3Devent:ilwt|host:moscow|eventdate:0201=
+2020|" class=3D"_link" style=3D"color:#323d46;text-decoration:none;">ILWT</=
+a> </div>
+                                                               =
+ <div style=3D"font-size:14px;color:#88979d;padding-top:15px;">=D0=A2=D1=
+=80=D0=B0=D0=B4=D0=B8=D1=86=D0=B8=D0=BE=D0=BD=D0=BD=D1=8B=D0=B9 =D0=BD=
+=D0=BE=D0=B2=D0=BE=D0=B3=D0=BE=D0=B4=D0=BD=D0=B8=D0=B9 =D0=B1=D0=B0=D0=
+=BB</div>
+                                                            </t=
+d>
+                                                        </tr>
+      =
+                                                  <tr>
+                  =
+                                          <td valign=3D"top" align=3D"left"=
+ style=3D"font-size:16px;font-family:Helvetica, Arial, sans-serif;padding-l=
+eft:25px;padding-right:25px;"> <a href=3D"http://glavclub.com/ilwt/?utm_sou=
+rce=3Demail&utm_medium=3Ddigest&utm_term=3Dilwt&utm_campaign=3Demail|sendda=
+te:26112019&utm_content=3Devent:ilwt|host:moscow|eventdate:02012020|" style=
+=3D"color:#FF4800;">=D0=9A=D1=83=D0=BF=D0=B8=D1=82=D1=8C =D0=B1=D0=B8=D0=
+=BB=D0=B5=D1=82 =D0=BE=D1=82&nbsp;500&nbsp;=D1=80=D1=83=D0=B1.</a></td>
+ =
+                                                       </tr></table>  </td>=
+
+                                    </tr>
+                            =
+        <tr>
+                                        <td class=3D"cols-rd=
+" style=3D"padding-top:15px;padding-left:10px;padding-right:10px;">
+     =
+                                       <!--[if mso]> <table border=3D"0" wi=
+dth=3D"576" cellpadding=3D"0" cellspacing=3D"0" style=3D"width: 576px;"> <t=
+r> <td width=3D"200" style=3D"width: 192px;" valign=3D"top"><![endif]-->   =
+                                             <table width=3D"282" height=3D=
+"260" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" valig=
+n=3D"top" class=3D"force-row" bgcolor=3D"#ffffff" style=3D"width:282px;back=
+ground:#ffffff;">
+                                                    <tr=
+>
+                                                        <td valign=3D"t=
+op" align=3D"left" class=3D"date" style=3D"font-size:16px;color:#323d46;fon=
+t-family:Helvetica, Arial, sans-serif;padding-top:25px;padding-left:25px;pa=
+dding-right:25px;">4&nbsp;=D1=8F=D0=BD=D0=B2=D0=B0=D1=80=D1=8F&nbsp;=D0=
+=A1=D0=91&nbsp;20:00</td>
+                                               =
+     </tr>
+                                                    <tr>
+   =
+                                                     <td valign=3D"top" ali=
+gn=3D"left" height=3D"100" style=3D"font-family:Helvetica, Arial, sans-seri=
+f;padding-top:12px;padding-left:25px;padding-right:25px;height:100px;">
+ =
+                                                           <div style=3D"fo=
+nt-size:21px;color:#323d46;font-weight:700;line-height:25px;"> <a href=3D"h=
+ttp://glavclub.com/kirpichi/?utm_source=3Demail&utm_medium=3Ddigest&utm_ter=
+m=3Dkirpichi&utm_campaign=3Demail|senddate:26112019&utm_content=3Devent:kir=
+pichi|host:moscow|eventdate:04012020|" class=3D"_link" style=3D"color:#323d=
+46;text-decoration:none;">=D0=9A=D0=B8=D1=80=D0=BF=D0=B8=D1=87=D0=B8</a> </=
+div>
+                                                            <div sty=
+le=3D"font-size:14px;color:#88979d;padding-top:15px;">Greatest Hits</div>=
+
+                                                        </td>
+        =
+                                            </tr>
+                       =
+                             <tr>
+                                       =
+                 <td valign=3D"top" align=3D"left" style=3D"font-size:16px;=
+font-family:Helvetica, Arial, sans-serif;padding-left:25px;padding-right:25=
+px;"> <a href=3D"http://glavclub.com/kirpichi/?utm_source=3Demail&utm_mediu=
+m=3Ddigest&utm_term=3Dkirpichi&utm_campaign=3Demail|senddate:26112019&utm_c=
+ontent=3Devent:kirpichi|host:moscow|eventdate:04012020|" style=3D"color:#FF=
+4800;">=D0=9A=D1=83=D0=BF=D0=B8=D1=82=D1=8C =D0=B1=D0=B8=D0=BB=D0=B5=D1=
+=82 =D0=BE=D1=82&nbsp;500&nbsp;=D1=80=D1=83=D0=B1.</a></td>
+             =
+                                       </tr></table>                       =
+                  <!--[if mso]></td><td width=3D"50%" valign=3D"top"><![end=
+if]-->                                                    <table width=3D"2=
+82" height=3D"260" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=
+=3D"right" valign=3D"top" class=3D"force-row" bgcolor=3D"#ffffff" style=3D"=
+width:282px;background:#ffffff;">
+                                       =
+                 <tr>
+                                                   =
+         <td valign=3D"top" align=3D"left" class=3D"date" style=3D"font-siz=
+e:16px;color:#323d46;font-family:Helvetica, Arial, sans-serif;padding-top:2=
+5px;padding-left:25px;padding-right:25px;">5&nbsp;=D1=8F=D0=BD=D0=B2=D0=
+=B0=D1=80=D1=8F&nbsp;=D0=92=D0=A1&nbsp;20:00</td>
+                       =
+                                 </tr>
+                                  =
+                      <tr>
+                                              =
+              <td valign=3D"top" align=3D"left" height=3D"100" style=3D"fon=
+t-family:Helvetica, Arial, sans-serif;padding-top:12px;padding-left:25px;pa=
+dding-right:25px;height:100px;">
+                                        =
+                        <div style=3D"font-size:21px;color:#323d46;font-wei=
+ght:700;line-height:25px;"> <a href=3D"http://glavclub.com/mongol-shuudan/?=
+utm_source=3Demail&utm_medium=3Ddigest&utm_term=3Dmongol-shuudan&utm_campai=
+gn=3Demail|senddate:26112019&utm_content=3Devent:mongol-shuudan|host:moscow=
+|eventdate:05012020|" class=3D"_link" style=3D"color:#323d46;text-decoratio=
+n:none;">=D0=9C=D0=BE=D0=BD=D0=B3=D0=BE=D0=BB =D0=A8=D1=83=D1=83=D0=B4=
+=D0=B0=D0=BD</a> </div>
+                                                 =
+               <div style=3D"font-size:14px;color:#88979d;padding-top:15px;=
+">=D0=9F=D1=80=D0=B5=D0=B7=D0=B5=D0=BD=D1=82=D0=B0=D1=86=D0=B8=D1=8F =D0=
+=B0=D0=BB=D1=8C=D0=B1=D0=BE=D0=BC=D0=B0 &laquo;=D0=93=D1=83=D0=BB=D1=8F=
+=D0=B9 =D0=9F=D0=BE=D0=BB=D0=B5 =D0=A0=D0=B5=D0=B0=D0=BD=D0=B8=D0=BC=D0=
+=B0=D1=86=D0=B8=D1=8F&raquo;</div>
+                                      =
+                      </td>
+                                             =
+           </tr>
+                                                        =
+<tr>
+                                                            <td vali=
+gn=3D"top" align=3D"left" style=3D"font-size:16px;font-family:Helvetica, Ar=
+ial, sans-serif;padding-left:25px;padding-right:25px;"> <a href=3D"http://g=
+lavclub.com/mongol-shuudan/?utm_source=3Demail&utm_medium=3Ddigest&utm_term=
+=3Dmongol-shuudan&utm_campaign=3Demail|senddate:26112019&utm_content=3Deven=
+t:mongol-shuudan|host:moscow|eventdate:05012020|" style=3D"color:#FF4800;">=
+=D0=9A=D1=83=D0=BF=D0=B8=D1=82=D1=8C =D0=B1=D0=B8=D0=BB=D0=B5=D1=82 =D0=
+=BE=D1=82&nbsp;500&nbsp;=D1=80=D1=83=D0=B1.</a></td>
+                    =
+                                    </tr></table>  </td>
+                =
+                    </tr> </table>
+                        </td>
+      =
+              </tr>
+                </table>
+            </td>
+      =
+  </tr>         <tr>
+            <td align=3D"center" style=3D"padding-to=
+p:37px;">
+                <table border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0" width=3D"100%">
+                    <tr>
+                     =
+   <td background=3D"http://glavclub.com/client2/images/mails/line.png" wid=
+th=3D"100%" align=3D"center" style=3D"background-position:center;background=
+-repeat:repeat-x;">
+                            <!--[if gte mso 9]> <v:re=
+ct xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=3D"true" stroke=3D"false"=
+ style=3D"width:600px;height:58px;"> <v:fill type=3D"tile" src=3D"http://gl=
+avclub.com/client2/images/mails/line.png" stroke=3D"false" color=3D"#ebeaea=
+"/> <v:textbox inset=3D"0,0,0,0"><![endif]-->
+                           =
+ <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+=
+                                <tr>
+                                    =
+<td align=3D"center" width=3D"100%" style=3D"width:100%;text-align:center;"=
+><img src=3D"http://glavclub.com/client2/images/mails/icon-3.png" alt=3D"=
+=D0=9F=D0=9E=D0=AF=D0=92=D0=98=D0=9B=D0=98=D0=A1=D0=AC =D0=92 =D0=9F=D0=
+=A0=D0=9E=D0=94=D0=90=D0=96=D0=95" border=3D"0" width=3D"58" height=3D"58" =
+align=3D"center" /></td>
+                                </tr>
+        =
+                    </table>
+                            <!--[if gte mso]=
+> </v:textbox> </v:rect><![endif]-->
+                        </td>
+    =
+                </tr>
+                </table>
+            </td>
+    =
+    </tr>
+        <tr>
+            <td align=3D"center" valign=3D"top" =
+bgcolor=3D"#ebeaea" style=3D"background-color:#ebeaea;">
+                =
+<table border=3D"0" width=3D"600px" cellpadding=3D"0" cellspacing=3D"0" cla=
+ss=3D"container" style=3D"width:600px;max-width:600px">
+                 =
+   <tr>
+                        <td align=3D"center" style=3D"font-size:1=
+6px;color:#323d46;padding-top:13px;text-transform:uppercase;font-family:Hel=
+vetica, Arial, sans-serif;text-decoration:none;"> =D0=9F=D0=9E=D0=AF=D0=
+=92=D0=98=D0=9B=D0=98=D0=A1=D0=AC =D0=92 =D0=9F=D0=A0=D0=9E=D0=94=D0=90=
+=D0=96=D0=95: </td>
+                    </tr>                        <tr>=
+
+                            <td class=3D"cols-wrapper" style=3D"padding-=
+top:25px;padding-left:10px;padding-right:10px;">
+                        =
+        <table border=3D"0" width=3D"100%" cellpadding=3D"0" cellspacing=3D=
+"0">
+                                    <tr>
+                         =
+               <td bgcolor=3D"#ffffff" style=3D"background:#ffffff;padding:=
+20px;padding-bottom:0;">
+                                            <!--=
+[if mso]> <table border=3D"0" width=3D"580" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"width: 580px;"> <tr> <td width=3D"200" style=3D"width: 200p=
+x;" valign=3D"top"><![endif]-->
+                                         =
+   <table width=3D"200" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" al=
+ign=3D"left" class=3D"force-row" style=3D"width: 200px;">
+               =
+                                 <tr>
+                                   =
+                 <td align=3D"left" style=3D"padding-bottom:20px;">
+     =
+                                                   <a href=3D"http://glavcl=
+ub.com/oligarkh/?utm_source=3Demail&utm_medium=3Ddigest&utm_term=3Doligarkh=
+&utm_campaign=3Demail|senddate:26112019&utm_content=3Devent:oligarkh|host:m=
+oscow|eventdate:11012020|"><img src=3D"http://glavclub.com//images/artists/=
+photos/711.jpg" width=3D"100%" alt=3D"Oligarkh" /></a>
+                  =
+                                  </td>
+                                 =
+               </tr>
+                                            </table>=
+
+                                            <!--[if mso]></td><td width=
+=3D"230" style=3D"width: 230px;" valign=3D"top"><![endif]-->
+            =
+                                <table width=3D"230" border=3D"0" cellpaddi=
+ng=3D"0" cellspacing=3D"0" align=3D"left" class=3D"force-row" style=3D"widt=
+h:230px;">
+                                                <tr>
+       =
+                                             <td align=3D"left" class=3D"fo=
+rce-row container-padding date" style=3D"font-size:16px;color:#323d46;font-=
+family:Helvetica, Arial, sans-serif;padding-left:30px;">11&nbsp;=D1=8F=
+=D0=BD=D0=B2=D0=B0=D1=80=D1=8F&nbsp;=D0=A1=D0=91&nbsp;20:00</td>
+        =
+                                        </tr>
+                           =
+                     <tr>
+                                               =
+     <td align=3D"left" class=3D"force-row container-padding" style=3D"font=
+-size:21px;color:#323d46;font-family:Helvetica, Arial, sans-serif;font-weig=
+ht:700;padding-top:16px;line-height:25px;padding-left:30px;"> <a href=3D"ht=
+tp://glavclub.com/oligarkh/?utm_source=3Demail&utm_medium=3Ddigest&utm_term=
+=3Doligarkh&utm_campaign=3Demail|senddate:26112019&utm_content=3Devent:olig=
+arkh|host:moscow|eventdate:11012020|" class=3D"_link" style=3D"color:#323d4=
+6;text-decoration:none;">Oligarkh</a> </td>
+                             =
+                   </tr>
+                                                =
+<tr>
+                                                    <td align=3D"lef=
+t" class=3D"force-row container-padding" style=3D"font-size:16px;color:#323=
+d46;font-family:Helvetica, Arial, sans-serif;padding-top:17px;padding-botto=
+m:20px;padding-left:30px;">=D0=A0=D0=BE=D0=B6=D0=B4=D0=B5=D1=81=D1=82=D0=
+=B2=D0=B5=D0=BD=D1=81=D0=BA=D0=B8=D0=B9 =D1=80=D0=B5=D0=B9=D0=B2</td>
+   =
+                                             </tr>
+                      =
+                      </table>
+                                          =
+  <!--[if mso]></td><td width=3D"110" style=3D"width: 110px;" valign=3D"top=
+"><![endif]-->
+                                            <table width=
+=3D"110" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" cl=
+ass=3D"force-row" style=3D"width:110px;">
+                               =
+                 <tr>
+                                                   =
+ <td align=3D"left" class=3D"force-row container-padding" style=3D"font-siz=
+e:14px;font-family:Helvetica, Arial, sans-serif;padding-left:15px;"> <a hre=
+f=3D"http://glavclub.com/oligarkh/?utm_source=3Demail&utm_medium=3Ddigest&u=
+tm_term=3Doligarkh&utm_campaign=3Demail|senddate:26112019&utm_content=3Deve=
+nt:oligarkh|host:moscow|eventdate:11012020|" style=3D"color:#FF4800;">=
+=D0=9A=D1=83=D0=BF=D0=B8=D1=82=D1=8C =D0=B1=D0=B8=D0=BB=D0=B5=D1=82</a></td=
+>
+                                                </tr>
+               =
+                                 <tr>
+                                   =
+                 <td align=3D"left" class=3D"force-row container-padding" s=
+tyle=3D"font-size:14px;color:#88979d;font-family:Helvetica, Arial, sans-ser=
+if;padding-bottom:20px;padding-top:10px;padding-left:15px;"> =D0=BE=D1=
+=82&nbsp;500&nbsp;=D1=80=D1=83=D0=B1. </td>
+                             =
+                   </tr>
+                                            </ta=
+ble>
+                                        </td>
+                    =
+                </tr>
+                                </table>
+        =
+                    </td>
+                        </tr>                  =
+      <tr>
+                            <td class=3D"cols-wrapper" style=
+=3D"padding-top:25px;padding-left:10px;padding-right:10px;">
+            =
+                    <table border=3D"0" width=3D"100%" cellpadding=3D"0" ce=
+llspacing=3D"0">
+                                    <tr>
+             =
+                           <td bgcolor=3D"#ffffff" style=3D"background:#fff=
+fff;padding:20px;padding-bottom:0;">
+                                    =
+        <!--[if mso]> <table border=3D"0" width=3D"580" cellpadding=3D"0" c=
+ellspacing=3D"0" style=3D"width: 580px;"> <tr> <td width=3D"200" style=3D"w=
+idth: 200px;" valign=3D"top"><![endif]-->
+                               =
+             <table width=3D"200" border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" align=3D"left" class=3D"force-row" style=3D"width: 200px;">
+     =
+                                           <tr>
+                         =
+                           <td align=3D"left" style=3D"padding-bottom:20px;=
+">
+                                                        <a href=3D"htt=
+p://glavclub.com/sadwave-fest/?utm_source=3Demail&utm_medium=3Ddigest&utm_t=
+erm=3Dsadwave-fest&utm_campaign=3Demail|senddate:26112019&utm_content=3Deve=
+nt:sadwave-fest|host:moscow|eventdate:12012020|"><img src=3D"http://glavclu=
+b.com/" width=3D"100%" alt=3D"Sadwave Fest II" /></a>
+                   =
+                                 </td>
+                                  =
+              </tr>
+                                            </table>=
+
+                                            <!--[if mso]></td><td width=
+=3D"230" style=3D"width: 230px;" valign=3D"top"><![endif]-->
+            =
+                                <table width=3D"230" border=3D"0" cellpaddi=
+ng=3D"0" cellspacing=3D"0" align=3D"left" class=3D"force-row" style=3D"widt=
+h:230px;">
+                                                <tr>
+       =
+                                             <td align=3D"left" class=3D"fo=
+rce-row container-padding date" style=3D"font-size:16px;color:#323d46;font-=
+family:Helvetica, Arial, sans-serif;padding-left:30px;">12&nbsp;=D1=8F=
+=D0=BD=D0=B2=D0=B0=D1=80=D1=8F&nbsp;=D0=92=D0=A1&nbsp;18:30</td>
+        =
+                                        </tr>
+                           =
+                     <tr>
+                                               =
+     <td align=3D"left" class=3D"force-row container-padding" style=3D"font=
+-size:21px;color:#323d46;font-family:Helvetica, Arial, sans-serif;font-weig=
+ht:700;padding-top:16px;line-height:25px;padding-left:30px;"> <a href=3D"ht=
+tp://glavclub.com/sadwave-fest/?utm_source=3Demail&utm_medium=3Ddigest&utm_=
+term=3Dsadwave-fest&utm_campaign=3Demail|senddate:26112019&utm_content=3Dev=
+ent:sadwave-fest|host:moscow|eventdate:12012020|" class=3D"_link" style=3D"=
+color:#323d46;text-decoration:none;">Sadwave Fest II</a> </td>
+          =
+                                      </tr>
+                             =
+                   <tr>
+                                                 =
+   <td align=3D"left" class=3D"force-row container-padding" style=3D"font-s=
+ize:16px;color:#323d46;font-family:Helvetica, Arial, sans-serif;padding-top=
+:17px;padding-bottom:20px;padding-left:30px;">=D0=9F=D0=B5=D1=82=D0=BB=
+=D1=8F =D0=9F=D1=80=D0=B8=D1=81=D1=82=D1=80=D0=B0=D1=81=D1=82=D0=B8=D1=
+=8F, =D0=9F=D0=BE=D1=81=D0=BF=D0=B8=D1=88=D1=8C =D0=9F=D0=BE=D1=82=D0=BE=
+=D0=BC, Tsygun, Botanichesky Sad</td>
+                                   =
+             </tr>
+                                            </table>=
+
+                                            <!--[if mso]></td><td width=
+=3D"110" style=3D"width: 110px;" valign=3D"top"><![endif]-->
+            =
+                                <table width=3D"110" border=3D"0" cellpaddi=
+ng=3D"0" cellspacing=3D"0" align=3D"left" class=3D"force-row" style=3D"widt=
+h:110px;">
+                                                <tr>
+       =
+                                             <td align=3D"left" class=3D"fo=
+rce-row container-padding" style=3D"font-size:14px;font-family:Helvetica, A=
+rial, sans-serif;padding-left:15px;"> <a href=3D"http://glavclub.com/sadwav=
+e-fest/?utm_source=3Demail&utm_medium=3Ddigest&utm_term=3Dsadwave-fest&utm_=
+campaign=3Demail|senddate:26112019&utm_content=3Devent:sadwave-fest|host:mo=
+scow|eventdate:12012020|" style=3D"color:#FF4800;">=D0=9A=D1=83=D0=BF=D0=
+=B8=D1=82=D1=8C =D0=B1=D0=B8=D0=BB=D0=B5=D1=82</a></td>
+                 =
+                               </tr>
+                                    =
+            <tr>
+                                                    <td =
+align=3D"left" class=3D"force-row container-padding" style=3D"font-size:14p=
+x;color:#88979d;font-family:Helvetica, Arial, sans-serif;padding-bottom:20p=
+x;padding-top:10px;padding-left:15px;"> =D0=BE=D1=82&nbsp;300&nbsp;=D1=
+=80=D1=83=D0=B1. </td>
+                                                </=
+tr>
+                                            </table>
+              =
+                          </td>
+                                    </tr>=
+
+                                </table>
+                            <=
+/td>
+                        </tr>                        <tr>
+        =
+                    <td class=3D"cols-wrapper" style=3D"padding-top:25px;pa=
+dding-left:10px;padding-right:10px;">
+                                <ta=
+ble border=3D"0" width=3D"100%" cellpadding=3D"0" cellspacing=3D"0">
+    =
+                                <tr>
+                                    =
+    <td bgcolor=3D"#ffffff" style=3D"background:#ffffff;padding:20px;paddin=
+g-bottom:0;">
+                                            <!--[if mso]> <=
+table border=3D"0" width=3D"580" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"width: 580px;"> <tr> <td width=3D"200" style=3D"width: 200px;" valign=
+=3D"top"><![endif]-->
+                                            <table =
+width=3D"200" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"lef=
+t" class=3D"force-row" style=3D"width: 200px;">
+                         =
+                       <tr>
+                                             =
+       <td align=3D"left" style=3D"padding-bottom:20px;">
+               =
+                                         <a href=3D"http://glavclub.com/man=
+tra-fest/?utm_source=3Demail&utm_medium=3Ddigest&utm_term=3Dmantra-fest&utm=
+_campaign=3Demail|senddate:26112019&utm_content=3Devent:mantra-fest|host:mo=
+scow|eventdate:01022020|"><img src=3D"http://glavclub.com//images/artists/p=
+hotos/929.jpg" width=3D"100%" alt=3D"=D0=9C=D0=B5=D0=B6=D0=B4=D1=83=D0=
+=BD=D0=B0=D1=80=D0=BE=D0=B4=D0=BD=D1=8B=D0=B9 =D1=84=D0=B5=D1=81=D1=82=
+=D0=B8=D0=B2=D0=B0=D0=BB=D1=8C &laquo;=D0=9C=D0=90=D0=9D=D0=A2=D0=A0=D0=
+=90 &mdash; =D0=BF=D1=80=D0=B5=D0=BE=D0=B1=D1=80=D0=B0=D0=B6=D0=B5=D0=BD=
+=D0=B8=D0=B5 =D1=81=D0=BE =D0=B7=D0=B2=D1=83=D0=BA=D0=9E=D0=9C&raquo;" /></=
+a>
+                                                    </td>
+          =
+                                      </tr>
+                             =
+               </table>
+                                            <!--[=
+if mso]></td><td width=3D"230" style=3D"width: 230px;" valign=3D"top"><![en=
+dif]-->
+                                            <table width=3D"230" =
+border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" class=3D"fo=
+rce-row" style=3D"width:230px;">
+                                        =
+        <tr>
+                                                    <td alig=
+n=3D"left" class=3D"force-row container-padding date" style=3D"font-size:16=
+px;color:#323d46;font-family:Helvetica, Arial, sans-serif;padding-left:30px=
+;">1&nbsp;=D1=84=D0=B5=D0=B2=D1=80=D0=B0=D0=BB=D1=8F&nbsp;=D0=A1=D0=91&nbsp=
+;18:00</td>
+                                                </tr>
+     =
+                                           <tr>
+                         =
+                           <td align=3D"left" class=3D"force-row container-=
+padding" style=3D"font-size:21px;color:#323d46;font-family:Helvetica, Arial=
+, sans-serif;font-weight:700;padding-top:16px;line-height:25px;padding-left=
+:30px;"> <a href=3D"http://glavclub.com/mantra-fest/?utm_source=3Demail&utm=
+_medium=3Ddigest&utm_term=3Dmantra-fest&utm_campaign=3Demail|senddate:26112=
+019&utm_content=3Devent:mantra-fest|host:moscow|eventdate:01022020|" class=
+=3D"_link" style=3D"color:#323d46;text-decoration:none;">=D0=9C=D0=B5=D0=
+=B6=D0=B4=D1=83=D0=BD=D0=B0=D1=80=D0=BE=D0=B4=D0=BD=D1=8B=D0=B9 =D1=84=
+=D0=B5=D1=81=D1=82=D0=B8=D0=B2=D0=B0=D0=BB=D1=8C &laquo;=D0=9C=D0=90=D0=
+=9D=D0=A2=D0=A0=D0=90 &mdash; =D0=BF=D1=80=D0=B5=D0=BE=D0=B1=D1=80=D0=B0=
+=D0=B6=D0=B5=D0=BD=D0=B8=D0=B5 =D1=81=D0=BE =D0=B7=D0=B2=D1=83=D0=BA=D0=
+=9E=D0=9C&raquo;</a> </td>
+                                              =
+  </tr>
+                                                <tr>
+          =
+                                          <td align=3D"left" class=3D"force=
+-row container-padding" style=3D"font-size:16px;color:#323d46;font-family:H=
+elvetica, Arial, sans-serif;padding-top:17px;padding-bottom:20px;padding-le=
+ft:30px;">Gaura Vani (USA), Mayapuris (USA), Sati Ethnica, Bittu Malick (Vr=
+indavan), MAMAKAM, Irina Nelson</td>
+                                    =
+            </tr>
+                                            </table>
+=
+                                            <!--[if mso]></td><td width=3D"=
+110" style=3D"width: 110px;" valign=3D"top"><![endif]-->
+                =
+                            <table width=3D"110" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" align=3D"left" class=3D"force-row" style=3D"width:=
+110px;">
+                                                <tr>
+         =
+                                           <td align=3D"left" class=3D"forc=
+e-row container-padding" style=3D"font-size:14px;font-family:Helvetica, Ari=
+al, sans-serif;padding-left:15px;"> <a href=3D"http://glavclub.com/mantra-f=
+est/?utm_source=3Demail&utm_medium=3Ddigest&utm_term=3Dmantra-fest&utm_camp=
+aign=3Demail|senddate:26112019&utm_content=3Devent:mantra-fest|host:moscow|=
+eventdate:01022020|" style=3D"color:#FF4800;">=D0=9A=D1=83=D0=BF=D0=B8=
+=D1=82=D1=8C =D0=B1=D0=B8=D0=BB=D0=B5=D1=82</a></td>
+                    =
+                            </tr>
+                                       =
+         <tr>
+                                                    <td ali=
+gn=3D"left" class=3D"force-row container-padding" style=3D"font-size:14px;c=
+olor:#88979d;font-family:Helvetica, Arial, sans-serif;padding-bottom:20px;p=
+adding-top:10px;padding-left:15px;"> =D0=BE=D1=82&nbsp;1200&nbsp;=D1=80=
+=D1=83=D0=B1. </td>
+                                                </tr>=
+
+                                            </table>
+                 =
+                       </td>
+                                    </tr>
+=
+                                </table>
+                            </td=
+>
+                        </tr>                        <tr>
+           =
+                 <td class=3D"cols-wrapper" style=3D"padding-top:25px;paddi=
+ng-left:10px;padding-right:10px;">
+                                <table=
+ border=3D"0" width=3D"100%" cellpadding=3D"0" cellspacing=3D"0">
+       =
+                             <tr>
+                                       =
+ <td bgcolor=3D"#ffffff" style=3D"background:#ffffff;padding:20px;padding-b=
+ottom:0;">
+                                            <!--[if mso]> <tab=
+le border=3D"0" width=3D"580" cellpadding=3D"0" cellspacing=3D"0" style=3D"=
+width: 580px;"> <tr> <td width=3D"200" style=3D"width: 200px;" valign=3D"to=
+p"><![endif]-->
+                                            <table width=
+=3D"200" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" cl=
+ass=3D"force-row" style=3D"width: 200px;">
+                              =
+                  <tr>
+                                                  =
+  <td align=3D"left" style=3D"padding-bottom:20px;">
+                    =
+                                    <a href=3D"http://glavclub.com/chizh-i-=
+co/?utm_source=3Demail&utm_medium=3Ddigest&utm_term=3Dchizh-i-co&utm_campai=
+gn=3Demail|senddate:26112019&utm_content=3Devent:chizh-i-co|host:moscow|eve=
+ntdate:23022020|"><img src=3D"http://glavclub.com//images/artists/photos/73=
+3.jpg" width=3D"100%" alt=3D"=D0=A7=D0=B8=D0=B6 &amp; Co" /></a>
+        =
+                                            </td>
+                       =
+                         </tr>
+                                          =
+  </table>
+                                            <!--[if mso]></td>=
+<td width=3D"230" style=3D"width: 230px;" valign=3D"top"><![endif]-->
+   =
+                                         <table width=3D"230" border=3D"0" =
+cellpadding=3D"0" cellspacing=3D"0" align=3D"left" class=3D"force-row" styl=
+e=3D"width:230px;">
+                                                <tr>=
+
+                                                    <td align=3D"left" c=
+lass=3D"force-row container-padding date" style=3D"font-size:16px;color:#32=
+3d46;font-family:Helvetica, Arial, sans-serif;padding-left:30px;">23&nbsp;=
+=D1=84=D0=B5=D0=B2=D1=80=D0=B0=D0=BB=D1=8F&nbsp;=D0=92=D0=A1&nbsp;20:00</td=
+>
+                                                </tr>
+               =
+                                 <tr>
+                                   =
+                 <td align=3D"left" class=3D"force-row container-padding" s=
+tyle=3D"font-size:21px;color:#323d46;font-family:Helvetica, Arial, sans-ser=
+if;font-weight:700;padding-top:16px;line-height:25px;padding-left:30px;"> <=
+a href=3D"http://glavclub.com/chizh-i-co/?utm_source=3Demail&utm_medium=3Dd=
+igest&utm_term=3Dchizh-i-co&utm_campaign=3Demail|senddate:26112019&utm_cont=
+ent=3Devent:chizh-i-co|host:moscow|eventdate:23022020|" class=3D"_link" sty=
+le=3D"color:#323d46;text-decoration:none;">=D0=A7=D0=B8=D0=B6 &amp; Co</a> =
+</td>
+                                                </tr>
+           =
+                                     <tr>
+                               =
+                     <td align=3D"left" class=3D"force-row container-paddin=
+g" style=3D"font-size:16px;color:#323d46;font-family:Helvetica, Arial, sans=
+-serif;padding-top:17px;padding-bottom:20px;padding-left:30px;"></td>
+   =
+                                             </tr>
+                      =
+                      </table>
+                                          =
+  <!--[if mso]></td><td width=3D"110" style=3D"width: 110px;" valign=3D"top=
+"><![endif]-->
+                                            <table width=
+=3D"110" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" cl=
+ass=3D"force-row" style=3D"width:110px;">
+                               =
+                 <tr>
+                                                   =
+ <td align=3D"left" class=3D"force-row container-padding" style=3D"font-siz=
+e:14px;font-family:Helvetica, Arial, sans-serif;padding-left:15px;"> <a hre=
+f=3D"http://glavclub.com/chizh-i-co/?utm_source=3Demail&utm_medium=3Ddigest=
+&utm_term=3Dchizh-i-co&utm_campaign=3Demail|senddate:26112019&utm_content=
+=3Devent:chizh-i-co|host:moscow|eventdate:23022020|" style=3D"color:#FF4800=
+;">=D0=9A=D1=83=D0=BF=D0=B8=D1=82=D1=8C =D0=B1=D0=B8=D0=BB=D0=B5=D1=82</a><=
+/td>
+                                                </tr>
+            =
+                                    <tr>
+                                =
+                    <td align=3D"left" class=3D"force-row container-padding=
+" style=3D"font-size:14px;color:#88979d;font-family:Helvetica, Arial, sans-=
+serif;padding-bottom:20px;padding-top:10px;padding-left:15px;"> =D0=BE=
+=D1=82&nbsp;1800&nbsp;=D1=80=D1=83=D0=B1. </td>
+                         =
+                       </tr>
+                                            =
+</table>
+                                        </td>
+                =
+                    </tr>
+                                </table>
+    =
+                        </td>
+                        </tr>              =
+          <tr>
+                            <td class=3D"cols-wrapper" sty=
+le=3D"padding-top:25px;padding-left:10px;padding-right:10px;">
+          =
+                      <table border=3D"0" width=3D"100%" cellpadding=3D"0" =
+cellspacing=3D"0">
+                                    <tr>
+           =
+                             <td bgcolor=3D"#ffffff" style=3D"background:#f=
+fffff;padding:20px;padding-bottom:0;">
+                                  =
+          <!--[if mso]> <table border=3D"0" width=3D"580" cellpadding=3D"0"=
+ cellspacing=3D"0" style=3D"width: 580px;"> <tr> <td width=3D"200" style=3D=
+"width: 200px;" valign=3D"top"><![endif]-->
+                             =
+               <table width=3D"200" border=3D"0" cellpadding=3D"0" cellspac=
+ing=3D"0" align=3D"left" class=3D"force-row" style=3D"width: 200px;">
+   =
+                                             <tr>
+                       =
+                             <td align=3D"left" style=3D"padding-bottom:20p=
+x;">
+                                                        <a href=3D"h=
+ttp://glavclub.com/hammerfall/?utm_source=3Demail&utm_medium=3Ddigest&utm_t=
+erm=3Dhammerfall&utm_campaign=3Demail|senddate:26112019&utm_content=3Devent=
+:hammerfall|host:moscow|eventdate:26022020|"><img src=3D"http://glavclub.co=
+m//images/artists/photos/975.jpg" width=3D"100%" alt=3D"HammerFall" /></a>=
+
+                                                    </td>
+            =
+                                    </tr>
+                               =
+             </table>
+                                            <!--[if=
+ mso]></td><td width=3D"230" style=3D"width: 230px;" valign=3D"top"><![endi=
+f]-->
+                                            <table width=3D"230" bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" class=3D"forc=
+e-row" style=3D"width:230px;">
+                                          =
+      <tr>
+                                                    <td align=
+=3D"left" class=3D"force-row container-padding date" style=3D"font-size:16p=
+x;color:#323d46;font-family:Helvetica, Arial, sans-serif;padding-left:30px;=
+">26&nbsp;=D1=84=D0=B5=D0=B2=D1=80=D0=B0=D0=BB=D1=8F&nbsp;=D0=A1=D0=A0&nbsp=
+;20:00</td>
+                                                </tr>
+     =
+                                           <tr>
+                         =
+                           <td align=3D"left" class=3D"force-row container-=
+padding" style=3D"font-size:21px;color:#323d46;font-family:Helvetica, Arial=
+, sans-serif;font-weight:700;padding-top:16px;line-height:25px;padding-left=
+:30px;"> <a href=3D"http://glavclub.com/hammerfall/?utm_source=3Demail&utm_=
+medium=3Ddigest&utm_term=3Dhammerfall&utm_campaign=3Demail|senddate:2611201=
+9&utm_content=3Devent:hammerfall|host:moscow|eventdate:26022020|" class=3D"=
+_link" style=3D"color:#323d46;text-decoration:none;">HammerFall</a> </td>=
+
+                                                </tr>
+                =
+                                <tr>
+                                    =
+                <td align=3D"left" class=3D"force-row container-padding" st=
+yle=3D"font-size:16px;color:#323d46;font-family:Helvetica, Arial, sans-seri=
+f;padding-top:17px;padding-bottom:20px;padding-left:30px;"></td>
+        =
+                                        </tr>
+                           =
+                 </table>
+                                            <!-=
+-[if mso]></td><td width=3D"110" style=3D"width: 110px;" valign=3D"top"><![=
+endif]-->
+                                            <table width=3D"110=
+" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" class=3D"=
+force-row" style=3D"width:110px;">
+                                      =
+          <tr>
+                                                    <td al=
+ign=3D"left" class=3D"force-row container-padding" style=3D"font-size:14px;=
+font-family:Helvetica, Arial, sans-serif;padding-left:15px;"> <a href=3D"ht=
+tp://glavclub.com/hammerfall/?utm_source=3Demail&utm_medium=3Ddigest&utm_te=
+rm=3Dhammerfall&utm_campaign=3Demail|senddate:26112019&utm_content=3Devent:=
+hammerfall|host:moscow|eventdate:26022020|" style=3D"color:#FF4800;">=D0=
+=9A=D1=83=D0=BF=D0=B8=D1=82=D1=8C =D0=B1=D0=B8=D0=BB=D0=B5=D1=82</a></td>=
+
+                                                </tr>
+                =
+                                <tr>
+                                    =
+                <td align=3D"left" class=3D"force-row container-padding" st=
+yle=3D"font-size:14px;color:#88979d;font-family:Helvetica, Arial, sans-seri=
+f;padding-bottom:20px;padding-top:10px;padding-left:15px;"> =D0=BE=D1=82&nb=
+sp;2200&nbsp;=D1=80=D1=83=D0=B1. </td>
+                                  =
+              </tr>
+                                            </table>=
+
+                                        </td>
+                        =
+            </tr>
+                                </table>
+            =
+                </td>
+                        </tr>                      =
+  <tr>
+                            <td class=3D"cols-wrapper" style=3D"pa=
+dding-top:25px;padding-left:10px;padding-right:10px;">
+                  =
+              <table border=3D"0" width=3D"100%" cellpadding=3D"0" cellspac=
+ing=3D"0">
+                                    <tr>
+                   =
+                     <td bgcolor=3D"#ffffff" style=3D"background:#ffffff;pa=
+dding:20px;padding-bottom:0;">
+                                          =
+  <!--[if mso]> <table border=3D"0" width=3D"580" cellpadding=3D"0" cellspa=
+cing=3D"0" style=3D"width: 580px;"> <tr> <td width=3D"200" style=3D"width: =
+200px;" valign=3D"top"><![endif]-->
+                                     =
+       <table width=3D"200" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" align=3D"left" class=3D"force-row" style=3D"width: 200px;">
+           =
+                                     <tr>
+                               =
+                     <td align=3D"left" style=3D"padding-bottom:20px;">
+ =
+                                                       <a href=3D"http://gl=
+avclub.com/eskimo-callboy/?utm_source=3Demail&utm_medium=3Ddigest&utm_term=
+=3Deskimo-callboy&utm_campaign=3Demail|senddate:26112019&utm_content=3Deven=
+t:eskimo-callboy|host:moscow|eventdate:04042020|"><img src=3D"http://glavcl=
+ub.com//images/artists/photos/33.jpg" width=3D"100%" alt=3D"Eskimo Callboy"=
+ /></a>
+                                                    </td>
+     =
+                                           </tr>
+                        =
+                    </table>
+                                            =
+<!--[if mso]></td><td width=3D"230" style=3D"width: 230px;" valign=3D"top">=
+<![endif]-->
+                                            <table width=3D"=
+230" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" class=
+=3D"force-row" style=3D"width:230px;">
+                                  =
+              <tr>
+                                                    <t=
+d align=3D"left" class=3D"force-row container-padding date" style=3D"font-s=
+ize:16px;color:#323d46;font-family:Helvetica, Arial, sans-serif;padding-lef=
+t:30px;">4&nbsp;=D0=B0=D0=BF=D1=80=D0=B5=D0=BB=D1=8F&nbsp;=D0=A1=D0=91&nbsp=
+;20:00</td>
+                                                </tr>
+     =
+                                           <tr>
+                         =
+                           <td align=3D"left" class=3D"force-row container-=
+padding" style=3D"font-size:21px;color:#323d46;font-family:Helvetica, Arial=
+, sans-serif;font-weight:700;padding-top:16px;line-height:25px;padding-left=
+:30px;"> <a href=3D"http://glavclub.com/eskimo-callboy/?utm_source=3Demail&=
+utm_medium=3Ddigest&utm_term=3Deskimo-callboy&utm_campaign=3Demail|senddate=
+:26112019&utm_content=3Devent:eskimo-callboy|host:moscow|eventdate:04042020=
+|" class=3D"_link" style=3D"color:#323d46;text-decoration:none;">Eskimo Cal=
+lboy</a> </td>
+                                                </tr>
+  =
+                                              <tr>
+                      =
+                              <td align=3D"left" class=3D"force-row contain=
+er-padding" style=3D"font-size:16px;color:#323d46;font-family:Helvetica, Ar=
+ial, sans-serif;padding-top:17px;padding-bottom:20px;padding-left:30px;"></=
+td>
+                                                </tr>
+             =
+                               </table>
+                                 =
+           <!--[if mso]></td><td width=3D"110" style=3D"width: 110px;" vali=
+gn=3D"top"><![endif]-->
+                                            <tabl=
+e width=3D"110" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"l=
+eft" class=3D"force-row" style=3D"width:110px;">
+                        =
+                        <tr>
+                                            =
+        <td align=3D"left" class=3D"force-row container-padding" style=3D"f=
+ont-size:14px;font-family:Helvetica, Arial, sans-serif;padding-left:15px;">=
+ <a href=3D"http://glavclub.com/eskimo-callboy/?utm_source=3Demail&utm_medi=
+um=3Ddigest&utm_term=3Deskimo-callboy&utm_campaign=3Demail|senddate:2611201=
+9&utm_content=3Devent:eskimo-callboy|host:moscow|eventdate:04042020|" style=
+=3D"color:#FF4800;">=D0=9A=D1=83=D0=BF=D0=B8=D1=82=D1=8C =D0=B1=D0=B8=D0=
+=BB=D0=B5=D1=82</a></td>
+                                                =
+</tr>
+                                                <tr>
+            =
+                                        <td align=3D"left" class=3D"force-r=
+ow container-padding" style=3D"font-size:14px;color:#88979d;font-family:Hel=
+vetica, Arial, sans-serif;padding-bottom:20px;padding-top:10px;padding-left=
+:15px;"> =D0=BE=D1=82&nbsp;2200&nbsp;=D1=80=D1=83=D0=B1. </td>
+          =
+                                      </tr>
+                             =
+               </table>
+                                        </td>
+ =
+                                   </tr>
+                                =
+</table>
+                            </td>
+                        </tr=
+>                        <tr>
+                            <td class=3D"co=
+ls-wrapper" style=3D"padding-top:25px;padding-left:10px;padding-right:10px;=
+">
+                                <table border=3D"0" width=3D"100%" cel=
+lpadding=3D"0" cellspacing=3D"0">
+                                    <tr=
+>
+                                        <td bgcolor=3D"#ffffff" style=
+=3D"background:#ffffff;padding:20px;padding-bottom:0;">
+                 =
+                           <!--[if mso]> <table border=3D"0" width=3D"580" =
+cellpadding=3D"0" cellspacing=3D"0" style=3D"width: 580px;"> <tr> <td width=
+=3D"200" style=3D"width: 200px;" valign=3D"top"><![endif]-->
+            =
+                                <table width=3D"200" border=3D"0" cellpaddi=
+ng=3D"0" cellspacing=3D"0" align=3D"left" class=3D"force-row" style=3D"widt=
+h: 200px;">
+                                                <tr>
+      =
+                                              <td align=3D"left" style=3D"p=
+adding-bottom:20px;">
+                                                   =
+     <a href=3D"http://glavclub.com/naive/?utm_source=3Demail&utm_medium=3D=
+digest&utm_term=3Dnaive&utm_campaign=3Demail|senddate:26112019&utm_content=
+=3Devent:naive|host:moscow|eventdate:17042020|"><img src=3D"http://glavclub=
+.com//images/artists/photos/656.jpg" width=3D"100%" alt=3D"=D0=9D=D0=90=
+=D0=98=D0=92" /></a>
+                                                    =
+</td>
+                                                </tr>
+           =
+                                 </table>
+                               =
+             <!--[if mso]></td><td width=3D"230" style=3D"width: 230px;" va=
+lign=3D"top"><![endif]-->
+                                            <ta=
+ble width=3D"230" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D=
+"left" class=3D"force-row" style=3D"width:230px;">
+                      =
+                          <tr>
+                                          =
+          <td align=3D"left" class=3D"force-row container-padding date" sty=
+le=3D"font-size:16px;color:#323d46;font-family:Helvetica, Arial, sans-serif=
+;padding-left:30px;">17&nbsp;=D0=B0=D0=BF=D1=80=D0=B5=D0=BB=D1=8F&nbsp;=
+=D0=9F=D0=A2&nbsp;20:00</td>
+                                            =
+    </tr>
+                                                <tr>
+        =
+                                            <td align=3D"left" class=3D"for=
+ce-row container-padding" style=3D"font-size:21px;color:#323d46;font-family=
+:Helvetica, Arial, sans-serif;font-weight:700;padding-top:16px;line-height:=
+25px;padding-left:30px;"> <a href=3D"http://glavclub.com/naive/?utm_source=
+=3Demail&utm_medium=3Ddigest&utm_term=3Dnaive&utm_campaign=3Demail|senddate=
+:26112019&utm_content=3Devent:naive|host:moscow|eventdate:17042020|" class=
+=3D"_link" style=3D"color:#323d46;text-decoration:none;">=D0=9D=D0=90=D0=
+=98=D0=92</a> </td>
+                                                </tr>=
+
+                                                <tr>
+                 =
+                                   <td align=3D"left" class=3D"force-row co=
+ntainer-padding" style=3D"font-size:16px;color:#323d46;font-family:Helvetic=
+a, Arial, sans-serif;padding-top:17px;padding-bottom:20px;padding-left:30px=
+;">All f*cking hits and great new shit</td>
+                             =
+                   </tr>
+                                            </ta=
+ble>
+                                            <!--[if mso]></td><td wi=
+dth=3D"110" style=3D"width: 110px;" valign=3D"top"><![endif]-->
+         =
+                                   <table width=3D"110" border=3D"0" cellpa=
+dding=3D"0" cellspacing=3D"0" align=3D"left" class=3D"force-row" style=3D"w=
+idth:110px;">
+                                                <tr>
+    =
+                                                <td align=3D"left" class=3D=
+"force-row container-padding" style=3D"font-size:14px;font-family:Helvetica=
+, Arial, sans-serif;padding-left:15px;"> <a href=3D"http://glavclub.com/nai=
+ve/?utm_source=3Demail&utm_medium=3Ddigest&utm_term=3Dnaive&utm_campaign=3D=
+email|senddate:26112019&utm_content=3Devent:naive|host:moscow|eventdate:170=
+42020|" style=3D"color:#FF4800;">=D0=9A=D1=83=D0=BF=D0=B8=D1=82=D1=8C =
+=D0=B1=D0=B8=D0=BB=D0=B5=D1=82</a></td>
+                                 =
+               </tr>
+                                                <tr>=
+
+                                                    <td align=3D"left" c=
+lass=3D"force-row container-padding" style=3D"font-size:14px;color:#88979d;=
+font-family:Helvetica, Arial, sans-serif;padding-bottom:20px;padding-top:10=
+px;padding-left:15px;"> =D0=BE=D1=82&nbsp;1200&nbsp;=D1=80=D1=83=D0=B1. </t=
+d>
+                                                </tr>
+              =
+                              </table>
+                                  =
+      </td>
+                                    </tr>
+                 =
+               </table>
+                            </td>
+             =
+           </tr>                        <tr>
+                            =
+<td class=3D"cols-wrapper" style=3D"padding-top:25px;padding-left:10px;padd=
+ing-right:10px;">
+                                <table border=3D"0" wid=
+th=3D"100%" cellpadding=3D"0" cellspacing=3D"0">
+                        =
+            <tr>
+                                        <td bgcolor=3D"#=
+ffffff" style=3D"background:#ffffff;padding:20px;padding-bottom:0;">
+    =
+                                        <!--[if mso]> <table border=3D"0" w=
+idth=3D"580" cellpadding=3D"0" cellspacing=3D"0" style=3D"width: 580px;"> <=
+tr> <td width=3D"200" style=3D"width: 200px;" valign=3D"top"><![endif]-->=
+
+                                            <table width=3D"200" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" class=3D"force-ro=
+w" style=3D"width: 200px;">
+                                             =
+   <tr>
+                                                    <td align=3D"=
+left" style=3D"padding-bottom:20px;">
+                                   =
+                     <a href=3D"http://glavclub.com/annenmaykantereit/?utm_=
+source=3Demail&utm_medium=3Ddigest&utm_term=3Dannenmaykantereit&utm_campaig=
+n=3Demail|senddate:26112019&utm_content=3Devent:annenmaykantereit|host:mosc=
+ow|eventdate:09072020|"><img src=3D"http://glavclub.com//images/artists/pho=
+tos/966.jpg" width=3D"100%" alt=3D"AnnenMayKantereit" /></a>
+            =
+                                        </td>
+                           =
+                     </tr>
+                                            </=
+table>
+                                            <!--[if mso]></td><td =
+width=3D"230" style=3D"width: 230px;" valign=3D"top"><![endif]-->
+       =
+                                     <table width=3D"230" border=3D"0" cell=
+padding=3D"0" cellspacing=3D"0" align=3D"left" class=3D"force-row" style=3D=
+"width:230px;">
+                                                <tr>
+  =
+                                                  <td align=3D"left" class=
+=3D"force-row container-padding date" style=3D"font-size:16px;color:#323d46=
+;font-family:Helvetica, Arial, sans-serif;padding-left:30px;">9&nbsp;=D0=
+=B8=D1=8E=D0=BB=D1=8F&nbsp;=D0=A7=D0=A2&nbsp;20:00</td>
+                 =
+                               </tr>
+                                    =
+            <tr>
+                                                    <td =
+align=3D"left" class=3D"force-row container-padding" style=3D"font-size:21p=
+x;color:#323d46;font-family:Helvetica, Arial, sans-serif;font-weight:700;pa=
+dding-top:16px;line-height:25px;padding-left:30px;"> <a href=3D"http://glav=
+club.com/annenmaykantereit/?utm_source=3Demail&utm_medium=3Ddigest&utm_term=
+=3Dannenmaykantereit&utm_campaign=3Demail|senddate:26112019&utm_content=3De=
+vent:annenmaykantereit|host:moscow|eventdate:09072020|" class=3D"_link" sty=
+le=3D"color:#323d46;text-decoration:none;">AnnenMayKantereit</a> </td>
+  =
+                                              </tr>
+                     =
+                           <tr>
+                                         =
+           <td align=3D"left" class=3D"force-row container-padding" style=
+=3D"font-size:16px;color:#323d46;font-family:Helvetica, Arial, sans-serif;p=
+adding-top:17px;padding-bottom:20px;padding-left:30px;"></td>
+           =
+                                     </tr>
+                              =
+              </table>
+                                            <!--[i=
+f mso]></td><td width=3D"110" style=3D"width: 110px;" valign=3D"top"><![end=
+if]-->
+                                            <table width=3D"110" b=
+order=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" class=3D"for=
+ce-row" style=3D"width:110px;">
+                                         =
+       <tr>
+                                                    <td align=
+=3D"left" class=3D"force-row container-padding" style=3D"font-size:14px;fon=
+t-family:Helvetica, Arial, sans-serif;padding-left:15px;"> <a href=3D"http:=
+//glavclub.com/annenmaykantereit/?utm_source=3Demail&utm_medium=3Ddigest&ut=
+m_term=3Dannenmaykantereit&utm_campaign=3Demail|senddate:26112019&utm_conte=
+nt=3Devent:annenmaykantereit|host:moscow|eventdate:09072020|" style=3D"colo=
+r:#FF4800;">=D0=9A=D1=83=D0=BF=D0=B8=D1=82=D1=8C =D0=B1=D0=B8=D0=BB=D0=
+=B5=D1=82</a></td>
+                                                </tr>=
+
+                                                <tr>
+                 =
+                                   <td align=3D"left" class=3D"force-row co=
+ntainer-padding" style=3D"font-size:14px;color:#88979d;font-family:Helvetic=
+a, Arial, sans-serif;padding-bottom:20px;padding-top:10px;padding-left:15px=
+;"> =D0=BE=D1=82&nbsp;2000&nbsp;=D1=80=D1=83=D0=B1. </td>
+               =
+                                 </tr>
+                                  =
+          </table>
+                                        </td>
+      =
+                              </tr>
+                                </tab=
+le>
+                            </td>
+                        </tr> </t=
+able>
+            </td>
+        </tr>         <tr>
+            <td al=
+ign=3D"center" style=3D"padding-top:40px;">
+                <table border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+              =
+      <tr>
+                        <td background=3D"http://glavclub.com/=
+client2/images/mails/line.png" width=3D"100%" align=3D"center" style=3D"bac=
+kground-position:center;background-repeat:repeat-x;">
+                   =
+         <!--[if gte mso 9]> <v:rect xmlns:v=3D"urn:schemas-microsoft-com:v=
+ml" fill=3D"true" stroke=3D"false" style=3D"width:600px;height:58px;"> <v:f=
+ill type=3D"tile" src=3D"http://glavclub.com/client2/images/mails/line.png"=
+ stroke=3D"false" color=3D"#ebeaea"/> <v:textbox inset=3D"0,0,0,0"><![endif=
+]-->
+                            <table border=3D"0" cellpadding=3D"0" ce=
+llspacing=3D"0" width=3D"100%">
+                                <tr>
+  =
+                                  <td align=3D"center" width=3D"100%" style=
+=3D"width:100%;text-align:center;"><img src=3D"http://glavclub.com/client2/=
+images/mails/icon-4.png" alt=3D"INSTAGRAM GLAVCLUB" border=3D"0" width=3D"5=
+8" height=3D"58" align=3D"center" /></td>
+                               =
+ </tr>
+                            </table>
+                           =
+ <!--[if gte mso]> </v:textbox> </v:rect><![endif]-->
+                   =
+     </td>
+                    </tr>
+                </table>
+       =
+     </td>
+        </tr>
+        <tr>
+            <td align=3D"center=
+" valign=3D"top" bgcolor=3D"#ebeaea" style=3D"background-color:#ebeaea;">=
+
+                <table border=3D"0" width=3D"600" cellpadding=3D"0" cell=
+spacing=3D"0" class=3D"container" style=3D"width:600px;max-width:600px">
+=
+                    <tr>
+                        <td align=3D"center" sty=
+le=3D"font-size:16px;color:#323d46;padding-top:13px;text-transform:uppercas=
+e;font-family:Helvetica, Arial, sans-serif;text-decoration:none;"> INSTAGRA=
+M GLAVCLUB: </td>
+                    </tr>
+                    <tr>
+=
+                        <td class=3D"cols-wrapper" style=3D"padding-top:25p=
+x;padding-left:10px;padding-right:10px;">
+                            <ta=
+ble border=3D"0" width=3D"100%" cellpadding=3D"0" cellspacing=3D"0">
+    =
+                            <tr>
+                                    <td =
+style=3D"width:100%;" align=3D"justify">
+                                =
+        <!--[if mso]> <table border=3D"0" width=3D"580" cellpadding=3D"0" c=
+ellspacing=3D"0" style=3D"width: 580px;"> <tr> <td width=3D"33.3%" valign=
+=3D"top" align=3D"left"><![endif]-->                                       =
+     <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"left"=
+ valign=3D"top" class=3D"force-row">
+                                    =
+            <tr>
+                                                    <td =
+style=3D"padding-left:10px;padding-right:0px;padding-bottom:10px;">
+     =
+                                                   <table border=3D"0" cell=
+padding=3D"0" cellspacing=3D"0" align=3D"center" valign=3D"top" class=3D"fo=
+rce-row">
+                                                            <tr=
+>
+                                                                <td wid=
+th=3D"180" height=3D"180" valign=3D"top" align=3D"center">
+              =
+                                                      <a href=3D"https://ww=
+w.instagram.com/glavclubgreenconcert/"><img src=3D"http://glavclub.com/imag=
+es/mails/instagram/image1.jpg" alt=3D"" width=3D"180" height=3D"180" /></a>=
+
+                                                                </td>
+=
+                                                            </tr>
+       =
+                                                 </table>
+               =
+                                     </td>
+                              =
+                  </tr>
+                                            </tab=
+le>                                         <!--[if mso]></td><td width=3D"=
+33.3%" valign=3D"top" align=3D"center"><![endif]-->                        =
+                        <table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" align=3D"left" valign=3D"top" class=3D"force-row">
+               =
+                                     <tr>
+                               =
+                         <td style=3D"padding-left:10px;padding-right:0px;p=
+adding-bottom:10px;">
+                                                   =
+         <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"c=
+enter" valign=3D"top" class=3D"force-row">
+                              =
+                                  <tr>
+                                  =
+                                  <td width=3D"180" height=3D"180" valign=
+=3D"top" align=3D"center">
+                                              =
+                          <a href=3D"https://www.instagram.com/glavclubgree=
+nconcert/"><img src=3D"http://glavclub.com/images/mails/instagram/image3.jp=
+g" alt=3D"" width=3D"180" height=3D"180" /></a>
+                         =
+                                           </td>
+                        =
+                                        </tr>
+                           =
+                                 </table>
+                               =
+                         </td>
+                                          =
+          </tr>
+                                                </table> =
+                                        <!--[if mso]></td><td width=3D"33.3=
+%" valign=3D"top" align=3D"right"><![endif]-->                             =
+                       <table border=3D"0" cellpadding=3D"0" cellspacing=3D=
+"0" align=3D"left" valign=3D"top" class=3D"force-row">
+                  =
+                                      <tr>
+                              =
+                              <td style=3D"padding-left:10px;padding-right:=
+0px;padding-bottom:10px;">
+                                              =
+                  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" a=
+lign=3D"center" valign=3D"top" class=3D"force-row">
+                     =
+                                               <tr>
+                     =
+                                                   <td width=3D"180" height=
+=3D"180" valign=3D"top" align=3D"center">
+                               =
+                                             <a href=3D"https://www.instagr=
+am.com/glavclubgreenconcert/"><img src=3D"http://glavclub.com/images/mails/=
+instagram/image2.jpg" alt=3D"" width=3D"180" height=3D"180" /></a>
+      =
+                                                                  </td>
+ =
+                                                                   </tr>
+=
+                                                                </table>
+=
+                                                            </td>
+       =
+                                                 </tr>
+                  =
+                                  </table>  </td>
+                       =
+         </tr>
+                            </table>
+                   =
+     </td>
+                    </tr>
+                    <tr>
+       =
+                 <td align=3D"center" style=3D"padding-top:25px;">
+      =
+                      <div>
+                                <!--[if mso]>=
+ <v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:w=3D"urn:sche=
+mas-microsoft-com:office:word" href=3D"#" style=3D"height:36px;v-text-ancho=
+r:middle;width:176px;" arcsize=3D"9%" stroke=3D"f" fillcolor=3D"#64A70B"> <=
+w:anchorlock/> <center><![endif]--><a href=3D"https://www.instagram.com/gla=
+vclubgreenconcert/" style=3D"background-color:#64A70B;border-radius:3px;col=
+or:#ffffff;display:inline-block;font-family:Helvetica, Arial, sans-serif;fo=
+nt-size:16px;line-height:36px;height:36px;text-align:center;text-decoration=
+:none;width:176px;-webkit-text-size-adjust:none;">=D0=9F=D0=BE=D0=B4=D0=
+=BF=D0=B8=D1=81=D0=B0=D1=82=D1=8C=D1=81=D1=8F</a>
+                       =
+         <!--[if mso]> </center> </v:roundrect><![endif]-->
+             =
+               </div>
+                        </td>
+                   =
+ </tr>
+                </table>
+            </td>
+        </tr>    <t=
+r>
+        <td style=3D"padding-top:40px;">
+            <table border=
+=3D"0" width=3D"100%" height=3D"100%" cellpadding=3D"0" cellspacing=3D"0">=
+
+                <tr>
+                    <td align=3D"center" valign=
+=3D"top" bgcolor=3D"#323d46" style=3D"background-color:#323d46;padding-top:=
+40px;">
+                        <table border=3D"0" width=3D"600" cellpad=
+ding=3D"0" cellspacing=3D"0" class=3D"container" style=3D"width:600px;max-w=
+idth:600px">
+                            <tr>
+                         =
+       <td class=3D"container-padding footer" style=3D"padding-left:10px;pa=
+dding-right:10px;">
+                                    <!--[if mso]> <ta=
+ble border=3D"0" width=3D"576" cellpadding=3D"0" cellspacing=3D"0" style=3D=
+"width: 576px;"> <tr> <td width=3D"200" style=3D"width: 192px;" valign=3D"t=
+op"><![endif]-->
+                                    <table border=3D"0" =
+cellpadding=3D"0" cellspacing=3D"0" align=3D"left" valign=3D"top" class=3D"=
+force-row">
+                                        <tr>
+              =
+                              <td style=3D"padding-bottom:20px;">
+       =
+                                         <table border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" align=3D"left" valign=3D"top" class=3D"force-row">
+=
+                                                    <tr>
+                =
+                                        <td style=3D"font-size:12px;color:#=
+88979d;font-family:Helvetica, Arial, sans-serif;text-decoration:none;"> =
+=D0=A1=D0=BA=D0=B0=D1=87=D0=B0=D0=B9=D1=82=D0=B5 =D0=BF=D1=80=D0=B8=D0=
+=BB=D0=BE=D0=B6=D0=B5=D0=BD=D0=B8=D0=B5: </td>
+                          =
+                          </tr>
+                                         =
+           <tr>
+                                                        <=
+td style=3D"padding-top:15px;">
+                                         =
+                   <a href=3D"https://itunes.apple.com/us/app/klub-glavclub=
+/id794310888"><img src=3D"http://glavclub.com/client2/images/mails/apple-st=
+rore.png" alt=3D"apple" border=3D"0" width=3D"45" height=3D"41" /></a>&nbsp=
+;
+                                                            <a href=3D"=
+https://play.google.com/store/apps/details?id=3Dru.digipeople.greenconcert"=
+><img src=3D"http://glavclub.com/client2/images/mails/play-market.png" alt=
+=3D"play" border=3D"0" width=3D"45" height=3D"41" /></a>
+                =
+                                        </td>
+                           =
+                         </tr>
+                                          =
+          <tr>
+                                                        <t=
+d style=3D"font-size:12px;color:#88979d;font-family:Helvetica, Arial, sans-=
+serif;text-decoration:none;padding-top:24px;"> GLAVCLUB GREEN CONCERT =
+=D0=B2 =D1=81=D0=BE=D1=86=D1=81=D0=B5=D1=82=D1=8F=D1=85: </td>
+          =
+                                          </tr>
+                         =
+                           <tr>
+                                         =
+               <td style=3D"padding-top:15px;">
+                         =
+                                   <a href=3D"https://www.facebook.com/glav=
+clubgreenconcert"><img src=3D"http://glavclub.com/client2/images/mails/fb.p=
+ng" alt=3D"" border=3D"0" width=3D"45" height=3D"41" /></a>&nbsp;
+       =
+                                                     <a href=3D"https://vk.=
+com/glavclubgreenconcert"><img src=3D"http://glavclub.com/client2/images/ma=
+ils/vk.png" alt=3D"" border=3D"0" width=3D"45" height=3D"41" /></a>&nbsp;=
+
+                                                            <a href=3D"h=
+ttps://www.instagram.com/glavclubgreenconcert/"><img src=3D"http://glavclub=
+.com/client2/images/mails/in.png" alt=3D"" border=3D"0" width=3D"45" height=
+=3D"41" /></a>
+                                                        </=
+td>
+                                                    </tr>
+         =
+                                       </table>
+                         =
+                   </td>
+                                        </tr>
+=
+                                    </table>
+                            =
+        <!--[if mso]></td><td width=3D"50%" valign=3D"top"><![endif]-->
+ =
+                                   <table border=3D"0" cellpadding=3D"0" ce=
+llspacing=3D"0" align=3D"right" valign=3D"top" class=3D"force-row">
+     =
+                                   <tr>
+                                 =
+           <td valign=3D"top" width=3D"45"><img src=3D"http://glavclub.com/=
+client2/images/mails/icon-5.png" alt=3D"" border=3D"0" width=3D"22" height=
+=3D"23" /></td>
+                                            <td>
+      =
+                                          <div style=3D"color:#ffffff;font-=
+size:14px;font-family:Helvetica, Arial, sans-serif;line-height:19px;padding=
+-bottom:5px;"> <a style=3D"color:inherit;text-decoration:none;">+7 (495) 23=
+0 10 30</a></div>
+                                                <hr bor=
+der=3D"0" style=3D"border:0;height:1px;background:#7c8b91;" /> </td>
+    =
+                                    </tr>
+                               =
+         <tr>
+                                            <td valign=3D"t=
+op" style=3D"padding-top:5px;"><img src=3D"http://glavclub.com/client2/imag=
+es/mails/icon-6.png" alt=3D"" border=3D"0" width=3D"20" height=3D"29" /></t=
+d>
+                                            <td style=3D"padding-top:5=
+px;">
+                                                <div style=3D"color=
+:#ffffff;font-size:14px;font-family:Helvetica, Arial, sans-serif;line-heigh=
+t:19px;padding-bottom:5px;"> =D1=83=D0=BB. =D0=9E=D1=80=D0=B4=D0=B6=D0=
+=BE=D0=BD=D0=B8=D0=BA=D0=B8=D0=B4=D0=B7=D0=B5, 11
+                       =
+                             <br/>=D0=BC. =C2=AB=D0=9B=D0=B5=D0=BD=D0=B8=
+=D0=BD=D1=81=D0=BA=D0=B8=D0=B9 =D0=BF=D1=80=D0=BE=D1=81=D0=BF=D0=B5=D0=
+=BA=D1=82=C2=BB </div>
+                                                <h=
+r border=3D"0" style=3D"border:0;height:1px;background:#7c8b91;" /> </td>=
+
+                                        </tr>
+                        =
+                <tr>
+                                            <td vali=
+gn=3D"top" style=3D"padding-top:5px;"><img src=3D"http://glavclub.com/clien=
+t2/images/mails/icon-7.png" alt=3D"" border=3D"0" width=3D"25" height=3D"25=
+" /></td>
+                                            <td style=3D"paddin=
+g-top:5px;">
+                                                <div style=
+=3D"color:#ffffff;font-size:14px;font-family:Helvetica, Arial, sans-serif;l=
+ine-height:19px;"> =D0=9A=D0=B0=D1=81=D1=81=D0=B0 =D0=BA=D0=BB=D1=83=D0=
+=B1=D0=B0 =D1=80=D0=B0=D0=B1=D0=BE=D1=82=D0=B0=D0=B5=D1=82 =D1=81 12 =D0=
+=B4=D0=BE 21 =D1=87=D0=B0=D1=81=D0=B0
+                                   =
+                 <br/> =D0=B5=D0=B6=D0=B5=D0=B4=D0=BD=D0=B5=D0=B2=D0=BD=
+=D0=BE. =D0=97=D0=B4=D0=B5=D1=81=D1=8C =D0=B1=D0=B8=D0=BB=D0=B5=D1=82=D1=
+=8B =D0=B1=D0=B5=D0=B7 =D0=BD=D0=B0=D1=86=D0=B5=D0=BD=D0=BA=D0=B8
+       =
+                                             <br/> =D0=B8 =D1=85=D0=BE=
+=D1=80=D0=BE=D1=88=D0=B8=D0=B9 =D0=B2=D1=8B=D0=B1=D0=BE=D1=80 VIP-=D0=BC=
+=D0=B5=D1=81=D1=82. </div>
+                                            </=
+td>
+                                        </tr>
+                     =
+               </table>
+                                </td>
+         =
+                   </tr>
+                            <tr>
+             =
+                   <td align=3D"center" style=3D"padding-top:45px;">
+    =
+                                <div>
+                                   =
+     <!--[if mso]> <v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:vml" x=
+mlns:w=3D"urn:schemas-microsoft-com:office:word" href=3D"#" style=3D"height=
+:36px;v-text-anchor:middle;width:176px;" arcsize=3D"9%" stroke=3D"f" fillco=
+lor=3D"#64A70B"> <w:anchorlock/> <center><![endif]--><a href=3D"http://glav=
+club.com//?utm_source=3Demail&utm_medium=3Ddigest&utm_term=3Dwebsitelink&ut=
+m_campaign=3Demail|senddate:26112019&utm_content=3Devent:websitelink|host:m=
+oscow|" style=3D"background-color:#64A70B;border-radius:3px;color:#ffffff;d=
+isplay:inline-block;font-family:Helvetica, Arial, sans-serif;font-size:16px=
+;line-height:36px;height:36px;text-align:center;text-decoration:none;width:=
+176px;-webkit-text-size-adjust:none;">www.glavclub.com</a>
+              =
+                          <!--[if mso]> </center> </v:roundrect><![endif]--=
+>
+                                    </div>
+                          =
+      </td>
+                            </tr>
+                         =
+   <tr>
+                                <td align=3D"center" class=3D"con=
+tainer-padding" style=3D"padding-top:40px;padding-bottom:30px;padding-left:=
+10px;padding-right:10px;">
+                                    <div style=
+=3D"font-size:12px;color:#88979d;line-height:19px;font-family:Helvetica, Ar=
+ial, sans-serif;padding-left:10px;"> =D0=92=D1=8B =D0=BF=D0=BE=D0=BB=D1=
+=83=D1=87=D0=B8=D0=BB=D0=B8 =D1=8D=D1=82=D0=BE =D0=BF=D0=B8=D1=81=D1=8C=
+=D0=BC=D0=BE, =D0=BF=D0=BE=D1=82=D0=BE=D0=BC=D1=83 =D1=87=D1=82=D0=BE =
+=D0=BF=D0=BE=D0=B4=D0=BF=D0=B8=D1=81=D0=B0=D0=BB=D0=B8=D1=81=D1=8C =D0=
+=BD=D0=B0 =D1=80=D0=B0=D1=81=D1=81=D1=8B=D0=BB=D0=BA=D1=83 =D0=B8=D0=BB=
+=D0=B8 =D0=B7=D0=B0=D0=BA=D0=B0=D0=B7=D1=8B=D0=B2=D0=B0=D0=BB=D0=B8 =D0=
+=B1=D0=B8=D0=BB=D0=B5=D1=82=D1=8B =D0=BD=D0=B0 <a style=3D"color:inherit;te=
+xt-decoration:none;">glavclub.com</a> =D0=95=D1=81=D0=BB=D0=B8 =D0=92=D1=
+=8B =D1=85=D0=BE=D1=82=D0=B8=D1=82=D0=B5 =D0=BE=D1=82=D0=BA=D0=B0=D0=B7=
+=D0=B0=D1=82=D1=8C=D1=81=D1=8F =D0=BE=D1=82 =D1=80=D0=B0=D1=81=D1=81=D1=
+=8B=D0=BB=D0=BA=D0=B8, =D1=82=D0=BE =D0=BF=D1=80=D0=BE=D0=B9=D0=B4=D0=B8=
+=D1=82=D0=B5 =D0=BF=D0=BE =D1=81=D0=BB=D0=B5=D0=B4=D1=83=D1=8E=D1=89=D0=
+=B5=D0=B9 =D1=81=D1=81=D1=8B=D0=BB=D0=BA=D0=B5:
+                         =
+               <br/><a href=3D"http://glavclub.com/unsubscribe/MzAwMjQxLDIx=
+Myw4MmE4MWY0OGQyZGYzMzFjODlmZmQ5Njc0ZDg2NDJiOA=3D=3D" style=3D"color:#64A70=
+B;text-decoration:none;">=D0=BE=D1=82=D0=BA=D0=B0=D0=B7=D0=B0=D1=82=D1=
+=8C=D1=81=D1=8F =D0=BE=D1=82 =D1=80=D0=B0=D1=81=D1=81=D1=8B=D0=BB=D0=BA=
+=D0=B8</a>.
+                                        <br/> =D0=A1 =D1=
+=83=D0=B2=D0=B0=D0=B6=D0=B5=D0=BD=D0=B8=D0=B5=D0=BC,
+                    =
+                    <br/> GLAVCLUB GREEN CONCERT </div>
+                 =
+               </td>
+                            </tr>
+                =
+        </table>
+                    </td>
+                </tr>
+    =
+        </table>
+        </td>
+    </tr>
+</table>
+</body>
+
+</ht=
+ml>
