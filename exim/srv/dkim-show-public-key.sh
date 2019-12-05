@@ -2,7 +2,7 @@
 
 # This script shows DKIM public key
 
-PUBLIC_KEY_FILE="/etc/exim/dkim/public.key"
+PUBLIC_KEY_FILE="/etc/ssl/certs/dkim/public.key"
 
 if [[ -f "$PUBLIC_KEY_FILE" ]]; then
   PUBLIC_KEY=`tail -n +2 "$PUBLIC_KEY_FILE" | head -n -1 | tr -d '\n'`

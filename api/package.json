@@ -1,17 +1,22 @@
 {
   "name": "mailtester-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "API for mailtester",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
   "author": "Ilya Vagun",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dbfun/docker.mailtester.git"
+  },
   "dependencies": {
     "core-js": "^3.1.4",
     "express": "^4.17.1",
     "handlebars": "^4.5.3",
+    "imap-simple": "^4.3.0",
     "lodash": "^4.17.15",
     "mailparser": "^2.7.1",
     "mongodb": "^3.3.0-beta2",

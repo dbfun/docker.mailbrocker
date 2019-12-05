@@ -1,3 +1,5 @@
 /.env
 node_modules
-/exim/dkim-keys/
+/config.api.checkdelivery.json
+/api/lib/Checkdelivery/config.json
+/ssl/

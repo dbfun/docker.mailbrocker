@@ -4,7 +4,7 @@ services:
     build: ./exim
     volumes:
       # volume for store DKIM keys
-      - ./exim/dkim-keys:/etc/exim/dkim
+      - ./ssl/dkim:/etc/ssl/certs/dkim
     ports:
       - ${PORT_EXIM}:${PORT_EXIM}
     env_file:
@@ -45,7 +45,7 @@ services:
       # test letters
       - ./test-letters:/srv/test-letters
       # volume for store DKIM keys
-      - ./exim/dkim-keys:/etc/exim/dkim
+      - ./ssl/dkim:/etc/ssl/certs/dkim
     env_file:
       - .env
     environment:
@@ -70,6 +70,10 @@ services:
   api:
     build: ./api
     volumes:
+      # config for checkdelivery
+      - ./config.api.checkdelivery.json:/srv/lib/Checkdelivery/config.json
+      # SSL certificate
+      - ./ssl/api/private.key:/etc/ssl/certs/api-private.key
       # dev volumes for hot reload
       - ./api/index.js:/srv/index.js
       - ./api/lib:/srv/lib
