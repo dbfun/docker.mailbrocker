@@ -24,12 +24,21 @@ You need to install [docker-compose](https://docs.docker.com/compose/) then conf
 
 ## Configuration
 
-Copy file `.env.dist` to `.env` then edit `.env`:
+1. Copy file `.env.dist` to `.env` then edit `.env`:
 
-```sh
-cp .env.dist .env
-vim .env
-```
+    ```sh
+    -cp .env.dist .env
+    -vim .env
+    ```
+
+2. Copy directory `config.dist` to `config` then edit files in it:
+
+    ```sh
+    cp -R config.dist config
+    vim config/api.checkdelivery.json
+    vim config/dnsbl-domains.json
+    ```
+
 
 ## Run
 
@@ -78,7 +87,7 @@ Work in progress
 
 ## How to enable DKIM for outgoing messages from API
 
-Public and private keys are created when the service starts. They are stored in `exim/dkim-keys` and are saved when the service is restarted.
+Public and private keys are created when the service starts. They are stored in `ssl/dkim` and are saved when the service is restarted.
 
 Run:
 
@@ -130,7 +139,7 @@ Own DNS resolver (unbound) used in Spamassassin and Blacklist modules.
 
 ## How to increase incoming email size?
 
-Default email size is 5 Mb. Change this settings in `.env` file:
+Default email size is 5 Mb. Change this settings in `config/.env` file:
 
 * `EXIM_INCOMING_MAIL_MAX_SIZE=5M`
 * `API_INCOMING_MAIL_MAX_SIZE=5mb`

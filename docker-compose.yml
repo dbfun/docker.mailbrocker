@@ -70,8 +70,9 @@ services:
   api:
     build: ./api
     volumes:
-      # config for checkdelivery
-      - ./config.api.checkdelivery.json:/srv/lib/Checkdelivery/config.json
+      # configs
+      - ./config/checkdelivery-mails.json:/srv/lib/Checkdelivery/checkdelivery-mails.json
+      - ./config/dnsbl-domains.json:/srv/lib/Blacklist/dnsbl-domains.json
       # SSL certificate
       - ./ssl/api/private.key:/etc/ssl/certs/api-private.key
       # dev volumes for hot reload

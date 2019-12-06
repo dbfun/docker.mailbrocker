@@ -10,7 +10,7 @@ describe('checkdelivery', function() {
 
   const
     { Checkdelivery } = require('../lib/Checkdelivery'),
-    config = require('../lib/Checkdelivery/config')
+    config = require('../lib/Checkdelivery/checkdelivery-mails')
     ;
 
   let mailboxes = config.mailboxes.filter((o) => {

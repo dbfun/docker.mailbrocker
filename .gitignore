@@ -1,5 +1,4 @@
+/config
+/ssl
 /.env
 node_modules
-/config.api.checkdelivery.json
-/api/lib/Checkdelivery/config.json
-/ssl/
