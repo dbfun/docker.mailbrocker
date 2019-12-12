@@ -8,6 +8,8 @@ cd "$(dirname "$0")"
 source lib/ui.sh
 source lib/case.sh
 
+TESTS_PASSED=1
+
 start_case "Mail send: DNS TXT record for DKIM ($EXIM_DKIM_SELECTOR._domainkey.$EXIM_DOMAIN)"
 PUBLIC_KEY_FILE="/etc/ssl/certs/dkim/public.key"
 assert_file_exists "$PUBLIC_KEY_FILE"
@@ -18,7 +20,6 @@ assert_not_empty "$TXT_DNS"
 assert "$TXT_DNS" "$PUBLIC_KEY"
 end_case
 
-TESTS_PASSED=1
 
 if [ $TESTS_PASSED != 1 ]; then
   echo -e $Red"Tests error"$Color_Off

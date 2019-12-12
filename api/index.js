@@ -66,7 +66,11 @@ class Api {
       ;
 
     return new Promise((resolve, reject) => {
-      MongoClient.connect(config.mongo.uri, { useNewUrlParser: true }, (err, db) => {
+      MongoClient.connect(config.mongo.uri, {
+          useNewUrlParser: true,
+          keepAlive: 1,
+          connectTimeoutMS: 5000
+        }, (err, db) => {
         assert.equal(null, err);
         this.mongo = db.db(config.mongo.db);
         resolve();

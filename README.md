@@ -85,6 +85,12 @@ Work in progress
 
 # FAQ
 
+## How to enable IMAP on Gmail
+
+* enable IMAP access in [Settings > Forwarding and POP/IMAP](https://mail.google.com/mail/u/0/#settings/fwdandpop)
+* set "show" for "Spam" on [Settings > Labels](https://mail.google.com/mail/u/0/#settings/labels)
+* enable "Allow less secure apps" in [Security > Less secure app access](https://myaccount.google.com/lesssecureapps)
+
 ## How to enable DKIM for outgoing messages from API
 
 Public and private keys are created when the service starts. They are stored in `ssl/dkim` and are saved when the service is restarted.

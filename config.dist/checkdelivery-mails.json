@@ -2,6 +2,7 @@
   "mailboxes": [
     {
       "active": true,
+      "email": "******@yandex.ru",
       "info": {
         "name": "Yandex",
         "type": "yandex"
@@ -15,7 +16,7 @@
         "password": "******",
         "host": "imap.yandex.ru",
         "port": "993",
-        "tls": "true",
+        "tls": true,
         "authTimeout": "5000"
       }
     }

@@ -13,9 +13,6 @@ class Checkdelivery {
 
   static watchAll(mailboxes) {
     return new Promise(async (resolve, reject) => {
-      mailboxes = mailboxes.filter((o) => {
-        return o.active === true;
-      });
       if(!mailboxes.length) {
         reject("No active mails");
         return;
@@ -43,8 +40,10 @@ class Checkdelivery {
 
       generalEmitter.on("stopWatch", () => {
         for(let checkdelivery of checkdeliveryList) {
-          checkdelivery.stopWatch();
-          checkdelivery.disconnect();
+          try {
+            checkdelivery.stopWatch();
+            checkdelivery.disconnect();
+          } catch (e) { }
         }
       });
 
@@ -120,13 +119,13 @@ class Checkdelivery {
       try {
         await this.ckeckBox(boxName, boxType, sinceDate);
       } catch (e) {
-        if(/SELECT No such folder/.test(e.message)) {
+        if(/(SELECT No such folder|Unknown Mailbox)/.test(e.message)) {
           try {
             let boxes = await this.connection.getBoxes();
             console.log(`${e.message}\nError box: "${boxName}"\nNotice: available boxes: ${Object.keys(boxes)}`);
           } catch (e) { }
         } else {
-          console.log(e.message);
+          console.log(`${e.message}\nError box: "${boxName}"`);
         }
 
       }

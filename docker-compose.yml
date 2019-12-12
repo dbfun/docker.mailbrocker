@@ -46,6 +46,9 @@ services:
       - ./test-letters:/srv/test-letters
       # volume for store DKIM keys
       - ./ssl/dkim:/etc/ssl/certs/dkim
+      # configs
+      - ./config/checkdelivery-mails.json:/etc/checkdelivery-mails.json
+      - ./config/dnsbl-domains.json:/etc/dnsbl-domains.json
     env_file:
       - .env
     environment:
@@ -74,7 +77,7 @@ services:
       - ./config/checkdelivery-mails.json:/srv/lib/Checkdelivery/checkdelivery-mails.json
       - ./config/dnsbl-domains.json:/srv/lib/Blacklist/dnsbl-domains.json
       # SSL certificate
-      - ./ssl/api/private.key:/etc/ssl/certs/api-private.key
+      - ./ssl/api/node.pem:/etc/ssl/certs/node.pem
       # dev volumes for hot reload
       - ./api/index.js:/srv/index.js
       - ./api/lib:/srv/lib

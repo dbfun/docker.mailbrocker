@@ -20,12 +20,12 @@ EMAIL_TO=$USERNAME@$EXIM_DOMAIN
 end_case
 
 function mail_once {
-  swaks -S --body test-letters/text/so.html --add-header "MIME-Version: 1.0" --add-header "Content-Type: text/html" --to "$EMAIL_TO" --from junk@gmail.com
+  swaks -S --body test-letters/text/so.html --header "MIME-Version: 1.0" --header "Content-Type: text/html" --to "$EMAIL_TO" --from junk@gmail.com
 }
 
 function mail1 {
   echo "Start 1"
-  swaks -S --body test-letters/text/so.html --add-header "MIME-Version: 1.0" --add-header "Content-Type: text/html" --to "$EMAIL_TO" --from junk@gmail.com
+  swaks -S --body test-letters/text/so.html --header "MIME-Version: 1.0" --header "Content-Type: text/html" --to "$EMAIL_TO" --from junk@gmail.com
   echo "Done 1"
   mail1
 }

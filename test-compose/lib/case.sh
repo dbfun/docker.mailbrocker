@@ -58,6 +58,14 @@ function assert_file_not_exists {
   fi
 }
 
+function assert_exit_ok {
+  if [[ "$1" -ne "0" ]]; then
+    echo -e ${Red}"Exit code must be 0: $1"${Color_Off}
+    TESTS_PASSED=0
+    CASE_PASSED=0
+  fi
+}
+
 function start_case {
   CASE_NAME="$1"
   CASE_PASSED=1
