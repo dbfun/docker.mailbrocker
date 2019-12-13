@@ -11,11 +11,11 @@ chown root.mail /etc/exim/exim.conf
 
 # Make new DKIM keys
 
-if [[ ! -f "/etc/exim/dkim/private.key" ]]; then
+if [[ ! -f "/etc/ssl/certs/dkim/private.key" ]]; then
   /srv/dkim-make-keys.sh
 fi
 
-chown -R mail.mail /etc/exim/dkim
+chown -R mail.mail /etc/ssl/certs/dkim
 
 # Run
 

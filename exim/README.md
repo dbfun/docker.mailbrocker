@@ -82,7 +82,7 @@ Use `^D` when end typing.
 ## Check for Open Relay `check-relay.com`
 
 ```sh
-echo "This is the message body" | swaks --to somebody@gmail.com --from "somebody@gmail.com" --auth LOGIN --auth-user "you@example.com" --auth-password "abc123" --server check-relay.com -tls
+echo "This is the message body" | swaks -g --to somebody@gmail.com --from "somebody@gmail.com" --auth LOGIN --auth-user "you@example.com" --auth-password "abc123" --server check-relay.com -tls
 ```
 
 ## Other
