@@ -12,8 +12,9 @@ const
   { Blacklist } = require('../lib/Blacklist'),
   { Pyzor } = require('../lib/Pyzor'),
   { Razor } = require('../lib/Razor'),
+  { CheckdeliverySender } = require("../lib/Checkdelivery/Sender"),
   defaultConfig = {
-    availableTests: [ "spamassassin", "spf", "dkim", "dmarc", "blacklist", "pyzor", "razor" ],
+    availableTests: [ "spamassassin", "spf", "dkim", "dmarc", "blacklist", "pyzor", "razor", "checkdelivery" ],
     availableDNS: [ "8.8.8.8", "77.88.8.8", "94.142.137.100", "94.142.136.100" ],
     blacklistDomains: require("../lib/Blacklist/dnsbl-domains")
   }
@@ -41,8 +42,8 @@ class Mailtester {
       done: false,
       doneTest: [],
       doneAt: null,
-      to: null,
-      from: null,
+      to: "",
+      from: "",
       lastMtaIP: null, // ipv4 / ipv6
       raw: null
     };
@@ -140,7 +141,7 @@ class Mailtester {
       throw new Error("No ObjectId specified");
     }
     let collectionMails = Registry.get('mongo').collection('mails');
-    this.doc._id = this.ObjectId;
+    this.doc._ObjectId = this.ObjectId;
     return collectionMails.replaceOne(
       {
         _id: ObjectId(this.ObjectId)
@@ -177,6 +178,10 @@ class Mailtester {
           break;
         case "razor":
           tests.push(this.checkRazor(isSaveResults));
+          break;
+        case "checkdelivery":
+          let checkdeliverySender = new CheckdeliverySender(this.config.checkdeliveryConfig);
+          tests.push(checkdeliverySender.sendAll(this.ObjectId, this.doc.raw));
           break;
       }
     }

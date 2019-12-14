@@ -3,6 +3,7 @@ FROM alpine:edge
 ADD http://deb.debian.org/debian/pool/main/libm/libmail-dkim-perl/libmail-dkim-perl_0.40.orig.tar.gz /tmp
 
 RUN \
+    apk add swaks --repository http://nl.alpinelinux.org/alpine/edge/testing && \
     # Healthcheck
     apk add curl && \
     # DKIM

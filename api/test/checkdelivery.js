@@ -1,5 +1,7 @@
 "use strict";
 
+if(!process.env.EXIM_MAIL_FROM) return;
+
 /*
 mocha test/checkdelivery.js -g "checkdelivery watcher"
 
@@ -9,7 +11,7 @@ To break imap run:
 
 const
   assert = require("assert"),
-  { Checkdelivery } = require('../lib/Checkdelivery'),
+  { CheckdeliveryWatcher } = require("../lib/Checkdelivery/Watcher.js"),
   config = require('../lib/Checkdelivery/checkdelivery-mails'),
   mailboxes = config.mailboxes.filter((o) => {
     return o.active === true;
@@ -30,7 +32,7 @@ describe("checkdelivery", function() {
   });
 
   it("check imap", async () => {
-    checkdelivery = new Checkdelivery(firstMailbox);
+    checkdelivery = new CheckdeliveryWatcher(firstMailbox);
     let connection, results;
 
     let delay = 24 * 3600 * 1000 * 30;
@@ -49,7 +51,7 @@ describe("checkdelivery", function() {
 
   it("check spam one", async () => {
     let ObjectId = "5d443c9882cd8e56734b18e9";
-    checkdelivery = new Checkdelivery(firstMailbox);
+    checkdelivery = new CheckdeliveryWatcher(firstMailbox);
     let emitter = checkdelivery.emitter;
 
     await checkdelivery.connect();
@@ -85,7 +87,7 @@ describe("checkdelivery watcher", function() {
   });
 
   it("check spam all", async () => {
-    emitter = await Checkdelivery.watchAll(mailboxes);
+    emitter = await CheckdeliveryWatcher.watchAll(mailboxes);
     await new Promise((resolve, reject) => {
 
       let cnt = 0;

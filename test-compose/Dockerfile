@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:edge
 
 ENV EXIM_DOMAIN=your-domain.com \
     RUN_TESTS=on \

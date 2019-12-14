@@ -21,6 +21,7 @@ end_case
 
 function mail_once {
   swaks -S --body test-letters/text/so.html --header "MIME-Version: 1.0" --header "Content-Type: text/html" --to "$EMAIL_TO" --from junk@gmail.com
+  swaks -S --body test-letters/spam-APXvYqyVUhTnI3.eml --header "MIME-Version: 1.0" --header "Content-Type: text/html" --to "$EMAIL_TO" --from junk@gmail.com
 }
 
 function mail1 {
@@ -38,7 +39,7 @@ function mail2 {
 }
 
 date
-for run in {1..50}
+for run in {1..25}
 do
   mail_once
 done

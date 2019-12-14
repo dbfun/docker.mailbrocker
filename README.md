@@ -6,7 +6,7 @@ Mailtester is an open source mail spam testing service. Send email to a special 
 
 * Exim MTA
 * Website
-* API with mail tester engine (Spamassassin, SPF checker, DMARC, Blacklist, Pyzor, Razor)
+* API with mail tester engine (Spamassassin, SPF checker, DMARC, Blacklist, Pyzor, Razor, Checkdelivery)
 * DNS resolver Unbound
 
 ![Scheme](https://github.com/dbfun/docker.mailtester/raw/master/assets/mailtester.png)
@@ -74,6 +74,7 @@ Work in progress
   * [x] Blacklist Check
   * [x] Pyzor Check
   * [x] Razor2 Check
+  * [x] Checkdelivery
 * [x] Self DNS resolving
 * [ ] Mail test queue
 * [ ] IPv6 support
@@ -105,7 +106,7 @@ you will see something like this:
 
 ```
 Add this record to your DNS server:
-        Host: mailtester._domainkey.site.ru
+        Host: mailtester._domainkey.site.com
         Type: TXT
         Value: v=DKIM1; k=rsa; t=s; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5rN8Sk4i7yRDntB4j+AG3EeBXQppIrGi5Nd20n16/j6u3N7UGlsYKZQqILL8P3KVMVBR8YSdCGHICmkeInKBoZR1VdC5HrWDf4YoykLwScGIx5c7Q1AhCyWpMxPLqOlcztXF0fw8Ue9VXRt01PZstS9PYwiwUjAiDa5O5ZjX7xJ1cKQuiDhE1rhFZ7kurMFbWc//4UFJiEy2TmzpKVSEoBNKa6SuC59T/2ecSGAos1X9j4xZ9P4UxDOP92b7swVRevT7BpwN/Qp8WnQmy5UvP67W7/M4lBRTdQntSif/f/IdwTiA9KIko3++7nBDr0OUsws8p+9wOi8HnuCowOkDAQIDAQAB
 
@@ -121,7 +122,7 @@ AQIDAQAB
 -----END PUBLIC KEY-----
 ```
 
-You will need to create a new TXT record in your DNS server (`mailtester._domainkey.site.ru`).
+You will need to create a new TXT record in your DNS server (`mailtester._domainkey.site.com`).
 
 After that send a test letter to the dedicated address (see `API_REPLY_MTA_REPORT_TO` in config file) and wait for a response. The reply letter must be signed and verified.
 

@@ -43,6 +43,11 @@ test-compose:
 debug-compose:
 	@docker-compose run test-compose sh
 
+# Runs api pipe test
+.PHONY: test-api-pipe
+test-api-pipe:
+	@docker-compose run test-compose sh -c "/srv/test-api-pipe.sh"
+
 # Attach to api container (or run: `docker-compose exec api sh`)
 .PHONY: attach-api
 attach-api:

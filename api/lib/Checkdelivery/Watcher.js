@@ -2,14 +2,16 @@
 
 const
   assert = require("assert"),
+  _ = require("lodash"),
   imaps = require("imap-simple"),
   EventEmitter = require("events"),
+  sendmail = new (require('../Sendmail').Sendmail),
   maxDelayMs = 1 * 3600 * 1000
   ;
 
 assert.ok(process.env.NODE_TLS_REJECT_UNAUTHORIZED === "0" || process.env.NODE_EXTRA_CA_CERTS !== "", "Specify NodeJS env variables: `NODE_TLS_REJECT_UNAUTHORIZED` or `NODE_EXTRA_CA_CERTS`");
 
-class Checkdelivery {
+class CheckdeliveryWatcher {
 
   static watchAll(mailboxes) {
     return new Promise(async (resolve, reject) => {
@@ -18,33 +20,35 @@ class Checkdelivery {
         return;
       }
       let generalEmitter = new EventEmitter;
-      let checkdeliveryList = [];
+      let checkdeliveryListByEmail = {};
 
       for(let mailbox of mailboxes) {
-        try {
-          let checkdelivery = new Checkdelivery(mailbox);
-          let emitter = checkdelivery.emitter;
+        let checkdelivery = new CheckdeliveryWatcher(mailbox);
+        let emitter = checkdelivery.emitter;
 
-          await checkdelivery.connect();
-          checkdelivery.startWatch();
-          checkdeliveryList.push(checkdelivery);
-          emitter.on("result", (data) => {
-            data.mailbox = mailbox.info;
-            generalEmitter.emit("result", data);
-          });
-
-        } catch (e) {
-          console.log(e);
-        }
+        await checkdelivery.connect();
+        checkdelivery.startWatch();
+        checkdeliveryListByEmail[mailbox.email] = checkdelivery;
+        emitter.on("result", (checkedLetters) => {
+          let data = {
+            mailbox: mailbox.info,
+            checkedLetters: checkedLetters
+          };
+          generalEmitter.emit("result", data);
+        });
       }
 
       generalEmitter.on("stopWatch", () => {
-        for(let checkdelivery of checkdeliveryList) {
-          try {
-            checkdelivery.stopWatch();
-            checkdelivery.disconnect();
-          } catch (e) { }
+        for(let email in checkdeliveryListByEmail) {
+          let checkdelivery = checkdeliveryListByEmail[email];
+          checkdelivery.stopWatch();
+          checkdelivery.disconnect();
         }
+      });
+
+      generalEmitter.on("markSeen", (data) => {
+        let checkdelivery = checkdeliveryListByEmail[ data.email ];
+        checkdelivery.emitter.emit("markSeen", data.uidByBox);
       });
 
       resolve(generalEmitter);
@@ -56,16 +60,20 @@ class Checkdelivery {
     this.connection = null;
     this.emitter = new EventEmitter;
     this.loopCnt = 0;
-    this.lettersById = {};
     this.isWatching = false;
     this.test = {
       result: null,
       report: {
         spam: null,
         ham: null
-      },
-      errors: []
+      }
     };
+    this.markSeenByBox = {};
+    this.emitter.on("markSeen", (uidByBox) => {
+      for(let box in uidByBox) {
+        this.markSeenByBox[box] = _.union(uidByBox[box], this.markSeenByBox[box]);
+      }
+    });
   }
 
   async connect() {
@@ -98,13 +106,20 @@ class Checkdelivery {
     if(!this.isWatching) return;
     this.loopCnt++;
     // console.log(`watch... ${this.loopCnt}`);
-    await this.getLast();
+    await this.processLast();
+    await this.markSeen();
     await this.sleep(1000);
     this.watch();
   }
 
-  async getLast() {
-    this.lettersById = {};
+  async processLast() {
+    this.checkedLetters = {
+      checked: {
+        email: this.mailbox.email,
+        uidByBox: {}
+      },
+      byObjectId: {}
+    };
     let sinceDate = new Date();
     sinceDate.setTime(Date.now() - maxDelayMs);
     sinceDate = sinceDate.toISOString();
@@ -130,26 +145,6 @@ class Checkdelivery {
 
       }
     }
-
-  }
-
-  processResults() {
-    for(let _id in this.lettersById) {
-      let report = this.lettersById[_id];
-
-      switch(true) {
-        case report.spam >= 1 && report.ham === 0:
-          this.emitter.emit("result", { _id: _id, result: "spam", report: report });
-          break;
-        case report.ham >= 1 && report.spam === 0:
-          this.emitter.emit("result", { _id: _id, result: "ham", report: report });
-          break;
-        case report.spam >= 1 && report.ham >= 1:
-          this.emitter.emit("result", { _id: _id, result: "few mails", report: report });
-          break;
-      }
-    }
-
   }
 
   async ckeckBox(boxName, boxType, sinceDate) {
@@ -159,25 +154,63 @@ class Checkdelivery {
       [
         'UNSEEN', ['SINCE', sinceDate]
       ],
-      { bodies: ['HEADER'], markSeen: true }
+      { bodies: ['HEADER'], markSeen: false }
     );
+
+    this.checkedLetters.checked.uidByBox[boxName] = [];
 
     results.forEach((o) => {
       try {
+        // console.log(this.mailbox.email, o);
         let headers = o.parts.filter((o) => {
           return o.which === "HEADER";
         });
         let _id = headers[0].body["x-mailtester"]
         if(!_id) return;
-        if(!this.lettersById.hasOwnProperty(_id)) {
-          this.lettersById[_id] = {
+        if(!this.checkedLetters.byObjectId.hasOwnProperty(_id)) {
+          this.checkedLetters.byObjectId[_id] = {
             ham: 0,
             spam: 0
           };
         }
-        this.lettersById[_id][boxType]++;
+        this.checkedLetters.byObjectId[_id][boxType]++;
+        this.checkedLetters.checked.uidByBox[boxName].push(o.attributes.uid);
       } catch (e) { }
     });
+  }
+
+  processResults() {
+    if(_.isEmpty(this.checkedLetters.byObjectId)) return;
+    for(let _id in this.checkedLetters.byObjectId) {
+      let report = this.checkedLetters.byObjectId[_id];
+
+      switch(true) {
+        case report.spam >= 1 && report.ham === 0:
+          report.result = "spam";
+          break;
+        case report.ham >= 1 && report.spam === 0:
+          report.result = "ham";
+          break;
+        case report.spam >= 1 && report.ham >= 1:
+          report.result = "few mails";
+          break;
+        default:
+          report.result = "unknown";
+      }
+    }
+    this.emitter.emit("result", this.checkedLetters);
+  }
+
+  async markSeen() {
+    for(let boxName in this.markSeenByBox) {
+      // this.markSeenByBox may change due to API request /checkdelivery
+      let uidList = _.clone(this.markSeenByBox[boxName]);
+      if(!uidList.length) continue;
+      console.log("markSeen", this.mailbox.email, boxName, uidList);
+      await this.connection.openBox(boxName);
+      await this.connection.addFlags(uidList, "SEEN");
+      this.markSeenByBox[boxName] = _.difference(this.markSeenByBox[boxName], uidList);
+    }
   }
 
   sleep(ms) {
@@ -186,5 +219,4 @@ class Checkdelivery {
 
 }
 
-
-module.exports.Checkdelivery = Checkdelivery;
+module.exports.CheckdeliveryWatcher = CheckdeliveryWatcher;

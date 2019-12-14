@@ -105,10 +105,10 @@ SUBJ: {{doc.subject}}
 {{> spamassassin doc.spamassassin }}
 
 --------------------
-Test id: {{doc._id}}
+Test id: {{doc._ObjectId}}
 
 This is an automatically generated email
-To unsubscribe from any emails click here: {{{unsubscribe doc._id}}}
+To unsubscribe from any emails click here: {{{unsubscribe doc._ObjectId}}}
 `;
 
     Handlebars.registerHelper('plaintable', rules => {

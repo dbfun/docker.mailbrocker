@@ -33,6 +33,13 @@ const
   }
   ;
 
+config.checkdelivery = {
+  mailFrom: config.mailFrom,
+  mailboxes: require("./lib/Checkdelivery/checkdelivery-mails").mailboxes.filter((o) => {
+    return o.active === true;
+  })
+};
+
 class Api {
   constructor() {
     return new Promise((appResolve, appReject) => {
@@ -109,6 +116,7 @@ class Api {
       { Mailblocker } = require("./lib/Mailblocker")
       ;
 
+    api.use(bodyParser.json({limit: config.incomingMailMaxSize, type: "application/json"}));
     api.use(bodyParser.text({limit: config.incomingMailMaxSize, type: () => { return true; }}));
 
     api.use(function(req, res, next) {
@@ -148,7 +156,7 @@ class Api {
       // res.send(JSON.stringify({result: "ok"})); return;  // Ok short case
 
       try {
-        let mailtester = new Mailtester({ availableDNS: config.DNSresolver, availableTests: config.apiAvailableTests });
+        let mailtester = new Mailtester({ availableDNS: config.DNSresolver, availableTests: config.apiAvailableTests, checkdeliveryConfig: config.checkdelivery });
         await mailtester.makeFromRaw(req.body);
 
         let mailFrom = mailtester.getFieldFrom();
@@ -235,7 +243,7 @@ class Api {
       }
     });
 
-    api.get(/^\/mail\/([0-9a-f]{24})(\/(raw|spamassassin|spf|dkim|dmarc|blacklist|pyzor|razor)?)?$/, async (req, res, next) => {
+    api.get(/^\/mail\/([0-9a-f]{24})(\/(raw|spamassassin|spf|dkim|dmarc|blacklist|pyzor|razor|checkdelivery)?)?$/, async (req, res, next) => {
       try {
         let ObjecId = req.params[0];
         let select = req.params[2];
@@ -330,7 +338,7 @@ class Api {
 
 }
 
-var api = new Api();
+let api = new Api();
 api.then((api) => {
   api.run();
 });

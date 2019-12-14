@@ -80,6 +80,7 @@ services:
       - ./ssl/api/node.pem:/etc/ssl/certs/node.pem
       # dev volumes for hot reload
       - ./api/index.js:/srv/index.js
+      - ./api/process-checkdelivery.js:/srv/process-checkdelivery.js
       - ./api/lib:/srv/lib
       - ./api/tools:/srv/tools
       - ./api/test:/srv/test
