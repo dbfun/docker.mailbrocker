@@ -101,6 +101,21 @@ services:
       - mongo
       - exim
       - spamassassin
+      - rabbitmq
+
+  rabbitmq:
+    image: rabbitmq:management
+    hostname: rabbitmq
+    restart: always
+    networks:
+      mt:
+        ipv4_address: ${IP_RABBIT_MQ}
+    ports:
+      - ${PORT_RABBIT_MQ_HTTP}:15672
+    volumes:
+      - ./rabbitmq-mnesia/:/var/lib/rabbitmq/mnesia
+    env_file:
+      - .env
 
 networks:
   mt:

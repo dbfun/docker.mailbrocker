@@ -1,4 +1,5 @@
 /config
 /ssl
 /.env
+/rabbitmq-mnesia
 node_modules
