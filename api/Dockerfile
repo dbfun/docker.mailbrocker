@@ -2,6 +2,28 @@ FROM alpine:edge
 
 ADD http://deb.debian.org/debian/pool/main/libm/libmail-dkim-perl/libmail-dkim-perl_0.40.orig.tar.gz /tmp
 
+ENV PORT_SPAMASSASSIN=783 \
+    PORT_API=8080 \
+    IP_DNS_RESOLVER="10.1.0.105" \
+    API_INCOMING_MAIL_MAX_SIZE=5mb \
+    SPAMASSASSIN_MAX_MSG_SIZE=5000000 \
+    MONGO_URI=mongodb://mongo:27017/mailtester \
+    MONGO_DB=mailtester \
+    API_MAX_MAIL_COUNT=2000 \
+    API_CATCH_MTA_ALL=off \
+    API_CATCH_MTA_TO=all,any,reply,autoreply \
+    API_REPLY_MTA_REPORT_ALL=off \
+    API_REPLY_MTA_REPORT_TO=reply,autoreply \
+    EXIM_DOMAIN=your-domain.com \
+    EXIM_MAIL_USER=noreply \
+    EXIM_MAIL_PASS=exim_mail_password \
+    EXIM_MAIL_FROM=noreply@your-domain.com \
+    ADMIN_EMAIL=your-mail@gmail.com \
+    API_DOMAIN=your-domain.com \
+    API_DOMAIN_PROTOCOL=http \
+    API_AVAILABLE_TESTS=spamassassin,spf,dkim,dmarc,blacklist,pyzor,razor \
+    TZ=Europe/Moscow
+
 RUN \
     apk add swaks --repository http://nl.alpinelinux.org/alpine/edge/testing && \
     # Healthcheck
@@ -30,7 +52,11 @@ RUN \
     apk add razor && \
     # NodeJS bundle
     apk add --no-cache nodejs npm && \
-    npm install --global pm2 mocha
+    npm install --global pm2 mocha && \
+    # Timezone
+    apk add tzdata && \
+    cp /usr/share/zoneinfo/$TZ /etc/localtime && \
+    echo "$TZ" >  /etc/timezone
 
 # App
 ADD ./package.json ./package-lock.json /tmp/
@@ -43,26 +69,7 @@ ADD . /srv
 
 RUN mv /tmp/node_modules /srv
 
-ENV PORT_SPAMASSASSIN=783 \
-    PORT_API=8080 \
-    IP_DNS_RESOLVER="10.1.0.105" \
-    API_INCOMING_MAIL_MAX_SIZE=5mb \
-    SPAMASSASSIN_MAX_MSG_SIZE=5000000 \
-    MONGO_URI=mongodb://mongo:27017/mailtester \
-    MONGO_DB=mailtester \
-    API_MAX_MAIL_COUNT=2000 \
-    API_CATCH_MTA_ALL=off \
-    API_CATCH_MTA_TO=all,any,reply,autoreply \
-    API_REPLY_MTA_REPORT_ALL=off \
-    API_REPLY_MTA_REPORT_TO=reply,autoreply \
-    EXIM_DOMAIN=your-domain.com \
-    EXIM_MAIL_USER=noreply \
-    EXIM_MAIL_PASS=exim_mail_password \
-    EXIM_MAIL_FROM=noreply@your-domain.com \
-    ADMIN_EMAIL=your-mail@gmail.com \
-    API_DOMAIN=your-domain.com \
-    API_DOMAIN_PROTOCOL=http \
-    API_AVAILABLE_TESTS=spamassassin,spf,dkim,dmarc,blacklist,pyzor,razor
+
 
 HEALTHCHECK --interval=5s --timeout=1s --start-period=5s CMD ./docker-healthcheck.sh || exit 1
 

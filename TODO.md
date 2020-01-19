@@ -1,6 +1,9 @@
 [ ] `lastMtaIP` bad works with `ham-green-concert.eml` (127.0.0.1)
 [ ] Check Spamassassin and others waiting for the whole letter (with headers) or only "body"
 [ ] mail.ru reject spam letters, see below. How about use it?
+[ ] Exim warning: `Suggested action: either install a certificate or change tls_advertise_hosts option`
+[ ] Exim: make `/var/spool/exim/` as volume
+[ ] Mongo: make `/var/...` as volume
 
 
 ```

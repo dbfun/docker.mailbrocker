@@ -80,6 +80,7 @@ services:
       - ./ssl/api/node.pem:/etc/ssl/certs/node.pem
       # dev volumes for hot reload
       - ./api/index.js:/srv/index.js
+      - ./api/worker.js:/srv/worker.js
       - ./api/process-checkdelivery.js:/srv/process-checkdelivery.js
       - ./api/lib:/srv/lib
       - ./api/tools:/srv/tools
@@ -113,7 +114,7 @@ services:
     ports:
       - ${PORT_RABBIT_MQ_HTTP}:15672
     volumes:
-      - ./rabbitmq-mnesia/:/var/lib/rabbitmq/mnesia
+      - ./var/rabbitmq-mnesia/:/var/lib/rabbitmq/mnesia
     env_file:
       - .env
 

@@ -13,6 +13,7 @@
     "url": "git://github.com/dbfun/docker.mailtester.git"
   },
   "dependencies": {
+    "amqplib": "^0.5.5",
     "core-js": "^3.1.4",
     "express": "^4.17.1",
     "handlebars": "^4.5.3",

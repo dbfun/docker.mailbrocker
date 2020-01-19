@@ -11,6 +11,8 @@ up:
 down:
 	@docker-compose down
 
+restart: down up
+
 # Reload all services
 .PHONY: reload
 reload:

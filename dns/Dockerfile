@@ -1,7 +1,5 @@
 FROM alpine:latest
 
-RUN apk add unbound gettext drill --no-cache
-
 ENV PORT_DNS=53 \
     DNS_CACHE_MIN_TTL=60 \
     DNS_CACHE_MAX_NEGATIVE_TTL=900 \
@@ -9,7 +7,14 @@ ENV PORT_DNS=53 \
     DNS_STATISTICS_INTERVAL=60 \
     DNS_LOG_QUERIES=yes \
     DNS_LOG_REPLIES=yes \
-    DNS_LOG_SERVFAIL=yes
+    DNS_LOG_SERVFAIL=yes \
+    TZ=Europe/Moscow
+
+RUN apk add unbound gettext drill --no-cache && \
+    # Timezone
+    apk add tzdata && \
+    cp /usr/share/zoneinfo/$TZ /etc/localtime && \
+    echo "$TZ" >  /etc/timezone
 
 WORKDIR srv
 ADD ./ /srv

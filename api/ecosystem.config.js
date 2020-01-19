@@ -8,7 +8,15 @@ let apps = [
     instances: 1,
     autorestart: true,
     watch: [ "index.js", "lib" ],
-    max_memory_restart: '1G'
+    max_memory_restart: '512M'
+  },
+  {
+    name: 'Worker',
+    script: 'worker.js',
+    instances: 1,
+    autorestart: true,
+    watch: [ "worker.js", "lib" ],
+    max_memory_restart: '512M'
   }
 ];
 

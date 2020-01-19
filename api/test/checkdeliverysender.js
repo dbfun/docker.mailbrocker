@@ -29,7 +29,7 @@ describe('checkdeliverysender', () => {
   const rawBody = fs.readFileSync("/test-letters/ham-stepic.org.eml").toString().trim();
 
   it("send", async () => {
+    console.log("check for email:", firstMailbox.email);
     let resp = await checkdeliverySender.send(firstMailbox.email, ObjectId, rawBody);
-    // console.log(resp);
   });
 });

@@ -16,7 +16,11 @@ const
   defaultConfig = {
     availableTests: [ "spamassassin", "spf", "dkim", "dmarc", "blacklist", "pyzor", "razor", "checkdelivery" ],
     availableDNS: [ "8.8.8.8", "77.88.8.8", "94.142.137.100", "94.142.136.100" ],
-    blacklistDomains: require("../lib/Blacklist/dnsbl-domains")
+    blacklistDomains: require("../lib/Blacklist/dnsbl-domains"),
+    checkdeliveryConfig: {
+      mailFrom: "noreply@site.com",
+      mailboxes: []
+    }
   }
   ;
 

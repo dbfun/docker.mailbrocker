@@ -1,87 +1,44 @@
 "use strict";
 
-require("core-js"); // for Promise.allSettled
-
 const
-  assert = require('assert'),
-  Registry = new (require('./lib/Registry').Registry),
-  sendmail = new (require('./lib/Sendmail').Sendmail),
-  { Report } = require('./lib/Report'),
+  assert = require("assert"),
+  { App } = require("./lib/App"),
+  Registry = new (require("./lib/Registry").Registry),
   security = new(require("./lib/Security").Security)(process.env.SECURITY_SALT),
   config = {
-    apiDomain: process.env.API_DOMAIN,
-    apiDomainProtocol: process.env.API_DOMAIN_PROTOCOL,
     apiPort: process.env.PORT_API,
-    apiBaseHref: null,
-    apiAvailableTests: process.env.API_AVAILABLE_TESTS ? process.env.API_AVAILABLE_TESTS.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [],
     incomingMailMaxSize: process.env.API_INCOMING_MAIL_MAX_SIZE,
     catchMtaLettersAll: process.env.API_CATCH_MTA_ALL === "on",
     catchMtaLettersTo: process.env.API_CATCH_MTA_TO ? process.env.API_CATCH_MTA_TO.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [],
-    replyMtaLettersAll: process.env.API_REPLY_MTA_REPORT_ALL === "on",
-    replyMtaLettersTo: process.env.API_REPLY_MTA_REPORT_TO ? process.env.API_REPLY_MTA_REPORT_TO.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [],
     mailFrom: process.env.EXIM_MAIL_FROM,
     maxMailCount: parseInt(process.env.API_MAX_MAIL_COUNT),
-    DNSresolver: process.env.IP_DNS_RESOLVER ? process.env.IP_DNS_RESOLVER.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [ "10.1.0.105" ],
-    spamassassin: {
-      port: process.env.PORT_SPAMASSASSIN,
-      maxSize: process.env.SPAMASSASSIN_MAX_MSG_SIZE
-    },
     mongo: {
       uri: process.env.MONGO_URI,
       db: process.env.MONGO_DB,
-    }
+    },
+    rabbitMQuri: `amqp://${process.env.RABBITMQ_DEFAULT_USER}:${process.env.RABBITMQ_DEFAULT_PASS}@rabbitmq/${process.env.RABBITMQ_DEFAULT_VHOST}?heartbeat=60`
   }
   ;
 
-config.checkdelivery = {
-  mailFrom: config.mailFrom,
-  mailboxes: require("./lib/Checkdelivery/checkdelivery-mails").mailboxes.filter((o) => {
-    return o.active === true;
-  })
-};
+class Api extends App {
+  constructor(config) {
+    super(config);
+    return new Promise(async (appResolve, appReject) => {
 
-class Api {
-  constructor() {
-    return new Promise((appResolve, appReject) => {
-
-      const init = async () => {
+      try {
         await this.connectMongo();
         await this.initMongo();
 
-        Registry.register('mongo', this.mongo);
-        Registry.register('spamassassin', new (require('./lib/Spamassassin').Spamassassin)(config.spamassassin));
-
-        config.apiBaseHref = `${config.apiDomainProtocol}://${config.apiDomain}${config.apiPort == 80 ? "" : ":" + config.apiPort}`;
+        await this.connectRabbitMQ();
+        Registry.register("mongo", this.mongo);
 
         appResolve(this);
         setInterval(this.clearMongo, 3600 * 1000);
         this.clearMongo();
+      } catch (err) {
+        appReject(err);
       }
 
-      init().catch(err => {
-        console.log(err);
-        appReject(err);
-      });
-
-    });
-  }
-
-  connectMongo() {
-    const
-      mongodb = require('mongodb'),
-      MongoClient = mongodb.MongoClient
-      ;
-
-    return new Promise((resolve, reject) => {
-      MongoClient.connect(config.mongo.uri, {
-          useNewUrlParser: true,
-          keepAlive: 1,
-          connectTimeoutMS: 5000
-        }, (err, db) => {
-        assert.equal(null, err);
-        this.mongo = db.db(config.mongo.db);
-        resolve();
-      });
     });
   }
 
@@ -92,44 +49,63 @@ class Api {
 
   async clearMongo() {
     try {
-      let collectionMails = Registry.get('mongo').collection('mails');
+      let collectionMails = Registry.get("mongo").collection("mails");
       let stats = await collectionMails.stats();
-      console.log(`Mails count: ${stats['count']}`);
-      let removeBorder = stats['count'] - config.maxMailCount;
+      console.log(`API: mails count: ${stats["count"]}`);
+      let removeBorder = stats["count"] - this.config.maxMailCount;
       if(removeBorder <= 0) return;
       // `sort({_id: 1})` is not used because sometimes _id order may be random
       let borderDoc = await collectionMails.find().sort({created: 1}).skip(removeBorder).limit(1).next();
 
       collectionMails.deleteMany({created: { $lt: new Date(borderDoc.created) }});
-      console.log(`Removed ${removeBorder} mails`);
+      console.log(`API: removed ${removeBorder} mails`);
     } catch (err) {
-      console.log(err);
+      console.log("API:", err);
     }
+  }
+
+  async addMailToQueue(params) {
+    let exchange = "";
+    let routingKey = "checkAll";
+    let content = Buffer.from(JSON.stringify(params));
+    return new Promise((resolve, reject) => {
+      this.amqpChannel.publish(exchange, routingKey, content, { persistent: true },
+        (err, ok) => {
+          if (err) {
+            console.error("[AMQP] publish", err);
+            this.amqpChannel.connection.close();
+            reject(err);
+            return;
+          }
+          resolve();
+        }
+      );
+    });
   }
 
   run() {
     const
-      express = require('express'),
-      bodyParser = require('body-parser'),
+      express = require("express"),
+      bodyParser = require("body-parser"),
       api = express(),
       { Mailtester } = require("./lib/Mailtester"),
       { Mailblocker } = require("./lib/Mailblocker")
       ;
 
-    api.use(bodyParser.json({limit: config.incomingMailMaxSize, type: "application/json"}));
-    api.use(bodyParser.text({limit: config.incomingMailMaxSize, type: () => { return true; }}));
+    api.use(bodyParser.json({limit: this.config.incomingMailMaxSize, type: "application/json"}));
+    api.use(bodyParser.text({limit: this.config.incomingMailMaxSize, type: () => { return true; }}));
 
-    api.use(function(req, res, next) {
-      res.setHeader('Content-Type', 'application/json');
+    api.use((req, res, next) => {
+      res.setHeader("Content-Type", "application/json");
       next();
     });
 
-    api.get('/healthcheck', async (req, res) => {
+    api.get("/healthcheck", async (req, res) => {
       res.send(JSON.stringify({result: "ok"}));
     });
 
     /*
-      This endpoint serve web and MTA incoming messages
+      This endpoint serves incoming web and MTA messages
 
       API must return
       * 201 Created - all is fine
@@ -141,8 +117,8 @@ class Api {
       POST /checkmail
       POST /checkmail?mode=MTA
         => parse mail header "TO:" for ObjectId (default mode for MTA)
-        => if option `config.catchMtaLettersAll` checked, generate ObjectId
-        => looks for a special address "TO:" (`config.catchMtaLettersTo`), generate ObjectId
+        => if option `this.config.catchMtaLettersAll` checked, generate ObjectId
+        => looks for a special address "TO:" (`this.config.catchMtaLettersTo`), generate ObjectId
         => otherwise reject mail saving (a letter is real spam from spammer)
       POST /checkmail?mode=new
         - generate ObjectId
@@ -150,13 +126,13 @@ class Api {
         - set ObjectId from URI query string
     */
 
-    api.post('/checkmail', async (req, res, next) => {
-      // res.status(403).send('Temp error'); return;        // Error test case
-      // res.status(503).send('Server error'); return;      // Error test case
+    api.post("/checkmail", async (req, res, next) => {
+      // res.status(403).send("Temp error"); return;        // Error test case
+      // res.status(503).send("Server error"); return;      // Error test case
       // res.send(JSON.stringify({result: "ok"})); return;  // Ok short case
 
       try {
-        let mailtester = new Mailtester({ availableDNS: config.DNSresolver, availableTests: config.apiAvailableTests, checkdeliveryConfig: config.checkdelivery });
+        let mailtester = new Mailtester({});
         await mailtester.makeFromRaw(req.body);
 
         let mailFrom = mailtester.getFieldFrom();
@@ -164,13 +140,13 @@ class Api {
         let mailblocker = new Mailblocker;
         let doc = await mailblocker.get(mailFrom);
         if(doc) {
-          let msg = `Mail rejected from ${doc.email}, reason: ${doc.reason}`;
+          let msg = `API: mail rejected from ${doc.email}, reason: ${doc.reason}`;
           console.log(msg);
           res.status(403).send(JSON.stringify({result: "fail", reason: doc.reason, mailFrom: mailFrom, description: msg}));
           return;
         }
 
-        let mode = req.query.mode ? req.query.mode : 'MTA';
+        let mode = req.query.mode ? req.query.mode : "MTA";
         let mailTo = mailtester.getFieldTo();
         let mailToUsername = mailtester.getFieldToUsername();
         let ObjectId = null;
@@ -187,8 +163,8 @@ class Api {
             ObjectId = mailtester.generateObjectId();
             break;
           case "MTA":
-            if(config.mailFrom.toLowerCase() === mailTo.toLowerCase()) {
-              let msg = `Mail rejected in MTA mode: anti loop condition. FROM: "${config.mailFrom}" TO: "${mailTo}"`;
+            if(this.config.mailFrom.toLowerCase() === mailTo.toLowerCase()) {
+              let msg = `API: mail rejected in MTA mode: anti loop condition. FROM: "${this.config.mailFrom}" TO: "${mailTo}"`;
               console.log(msg);
               res.status(403).send(JSON.stringify({result: "fail", reason: msg}));
               return;
@@ -196,14 +172,14 @@ class Api {
 
             ObjectId = mailtester.getMailObjectId(mailtester.getFieldTo());
             if(ObjectId === null) {
-              if(config.catchMtaLettersAll) {
+              if(this.config.catchMtaLettersAll) {
                 ObjectId = mailtester.generateObjectId();
-                console.log(`Mail catched from MTA with config.catchMtaLettersAll option; TO: "${mailTo}"`);
-              } else if(config.catchMtaLettersTo.indexOf(mailToUsername) !== -1) {
+                console.log(`API: mail catched from MTA with this.config.catchMtaLettersAll option; TO: "${mailTo}"`);
+              } else if(this.config.catchMtaLettersTo.indexOf(mailToUsername) !== -1) {
                 ObjectId = mailtester.generateObjectId();
-                console.log(`Mail catched from MTA with username ${mailToUsername} and config.catchMtaLettersTo option: ${config.catchMtaLettersTo}; TO: "${mailTo}"`);
+                console.log(`API: mail catched from MTA with username ${mailToUsername} and this.config.catchMtaLettersTo option: ${this.config.catchMtaLettersTo}; TO: "${mailTo}"`);
               } else {
-                let msg = `Mail rejected in MTA mode: wrong fied TO: "${mailTo}". Use MongoDB ObjectId as user name`;
+                let msg = `API: mail rejected in MTA mode: wrong fied TO: "${mailTo}". Use MongoDB ObjectId as user name`;
                 console.log(msg);
                 res.status(403).send(JSON.stringify({result: "fail", reason: msg}));
                 return;
@@ -224,21 +200,15 @@ class Api {
         // Save mail and report about this
         await mailtester.saveRaw();
         let ret = {result: "ok", ObjecId: mailtester.getObjectId()};
-        console.log(`new mail to check: ${ret.ObjecId}`);
-        res.send(JSON.stringify(ret));
 
-        try {
-          await mailtester.checkAll(true);
-          if(mode === "MTA") {
-            this.autoReply(mailtester);
-          }
-        } catch (err) {
-          console.log(err);
-        }
+        await this.addMailToQueue({ObjecId: ret.ObjecId, mode});
+
+        console.log(`API: new mail to check: ${ret.ObjecId}`);
+        res.send(JSON.stringify(ret));
 
       } catch (err) {
         // 5xx errors
-        console.log(err);
+        console.log("API:", err);
         next(err);
       }
     });
@@ -248,7 +218,7 @@ class Api {
         let ObjecId = req.params[0];
         let select = req.params[2];
 
-        let mailtester = new Mailtester({ availableDNS: config.DNSresolver });
+        let mailtester = new Mailtester({ availableDNS: this.config.DNSresolver });
         try {
           await mailtester.load(ObjecId);
         } catch (err) {
@@ -256,7 +226,7 @@ class Api {
           return;
         }
         if(select === "raw") {
-          res.setHeader('Content-Type', 'text/plain');
+          res.setHeader("Content-Type", "text/plain");
           res.send(mailtester.doc.raw);
           return;
         }
@@ -267,7 +237,7 @@ class Api {
       }
     });
 
-    api.get('/unsubscribe', async (req, res, next) => {
+    api.get("/unsubscribe", async (req, res, next) => {
       let mailblocker = new Mailblocker;
       if(!security.isUriValid(req.originalUrl)) {
         return res.status(404).send(JSON.stringify({result: "fail", reason: "Security: wrong url sign"}));
@@ -288,13 +258,13 @@ class Api {
     });
 
     // 404 error handler
-    api.use(function(req, res, next) {
+    api.use((req, res, next) => {
       res.status(404).send(JSON.stringify({ error: "Wrong API URI" }));
     });
 
     // Final error handler
-    api.use(function(err, req, res, next) {
-      console.log(err);
+    api.use((err, req, res, next) => {
+      console.log("API:", err);
       if (req.xhr) {
         res.status(500).send(JSON.stringify({ error: err.message ? err.message : "Internal Server Error" }));
       } else {
@@ -302,43 +272,16 @@ class Api {
       }
     });
 
-    api.listen(config.apiPort);
-    console.log(`API is listening port ${config.apiPort}`);
-  }
-
-  autoReply(mailtester) {
-    let fromEmail = mailtester.getFieldFrom();
-
-    if(config.replyMtaLettersAll) {
-      console.log(`reply mail with spam report in MTA mode with config.replyMtaLettersAll option; TO: ${fromEmail}`);
-      return this.mailReport(mailtester, fromEmail);
-    }
-
-    if(config.replyMtaLettersTo.includes( mailtester.getFieldToUsername() )) {
-      console.log(`reply mail with spam report in MTA mode with config.replyMtaLettersTo option: ${config.replyMtaLettersTo}; TO: ${fromEmail}`);
-      return this.mailReport(mailtester, fromEmail);
-    }
-  }
-
-  async mailReport(mailtester, mailTo) {
-    try {
-      let report = new Report(mailtester, security);
-      let plain = report.mailPlain({ baseHref: config.apiBaseHref });
-      let info = await sendmail.mail({
-        from: config.mailFrom,
-        to: mailTo,
-        subject: 'Mail test results',
-        text: plain
-      });
-      assert.ok(/^250 OK id=/.test(info.response));
-    } catch (e) {
-      console.log(e);
-    }
+    api.listen(this.config.apiPort);
+    console.log(`API is listening port ${this.config.apiPort}`);
   }
 
 }
 
-let api = new Api();
+let api = new Api(config);
 api.then((api) => {
   api.run();
+}).catch(err => {
+  console.log("API fatal error:", err);
+  process.exit(1);
 });
