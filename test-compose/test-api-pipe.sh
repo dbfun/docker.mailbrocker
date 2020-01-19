@@ -38,9 +38,8 @@ RESP=`cat test-letters/spam-wrong-mail-to.eml | curl -s \
 assert "$RESP" '> POST /checkmail?mode=MTA HTTP/1.1'
 assert "$RESP" '< HTTP/1.1 403 Forbidden'
 assert "$RESP" '< Content-Type: application/json;'
-assert "$RESP" '{"result":"fail","reason":"Mail rejected in MTA mode: wrong fied TO: \"info@spam24.ru\". Use MongoDB ObjectId as user name"}'
+assert "$RESP" '{"result":"fail","reason":"API: mail rejected in MTA mode: wrong fied TO: \"info@spam24.ru\". Use MongoDB ObjectId as user name"}'
 end_case
-
 
 start_case "API: Add spam mail into check queue"
 RESP=`cat test-letters/spam-GTUBE.eml | curl -s \

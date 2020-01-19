@@ -13,8 +13,6 @@ RandomObjectId
 
 TESTS_PASSED=1
 
-RESP="<~  250 2.0.0 Ok: queued on mxfront1q.mail.yandex.net as 1576091234-Teu3FZYboG-7Ek4cBum"
-
 while read EMAIL; do
   start_case "Send letter for \"checkdelivery\" TO: $EMAIL"
     RESP=`swaks --to ${EMAIL} --from junk@gmail.com --header "Subject: Test _id: ${ObjectId}" --header "X-Mailtester: ${ObjectId}" -tls`
