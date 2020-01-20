@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:edge
 
 ENV PORT_DNS=53 \
     DNS_CACHE_MIN_TTL=60 \
