@@ -12,9 +12,10 @@
 
 # Exim does not pass environment
 PORT_API="$1"
+ENDPOINT="$2"
 
 HTTP_CODE=`cat - | curl -s -o /dev/null --max-time 10 -w "%{http_code}" --request POST --include --header 'Content-Type: text/plain' --data-binary @- --no-buffer \
-http://api:$PORT_API/checkmail?mode=MTA`;
+http://api:$PORT_API/$ENDPOINT?mode=MTA`;
 
 # Curl error codes: @see https://cdcvs.fnal.gov/redmine/projects/simons-dm/wiki/Curl_Error_Codes
 if [ "$?" -eq "7" -o "$HTTP_CODE" -ge "500" ]; then

@@ -3,6 +3,10 @@
 # This script runs Exim in Docker container
 # @see Dockerfile
 
+mkdir -p        /var/spool/mail /var/mail /var/spool/exim /var/spool/exim/db /var/spool/exim/input /var/spool/exim/msglog && \
+chmod 775       /var/spool/mail /var/mail /var/spool/exim /var/spool/exim/db /var/spool/exim/input /var/spool/exim/msglog && \
+chown exim.mail /var/spool/mail /var/mail /var/spool/exim /var/spool/exim/db /var/spool/exim/input /var/spool/exim/msglog
+
 echo "$EXIM_DOMAIN" > /etc/exim/primary_host
 
 # Against error "Exim configuration file /etc/exim/exim.conf has the wrong owner, group, or mode"

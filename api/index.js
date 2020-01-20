@@ -33,7 +33,7 @@ class Api extends App {
         Registry.register("mongo", this.mongo);
 
         appResolve(this);
-        setInterval(this.clearMongo, 3600 * 1000);
+        setInterval(this.clearMongo.bind(this), 3600 * 1000);
         this.clearMongo();
       } catch (err) {
         appReject(err);
@@ -102,6 +102,32 @@ class Api extends App {
 
     api.get("/healthcheck", async (req, res) => {
       res.send(JSON.stringify({result: "ok"}));
+    });
+
+    /*
+      This endpoint serves Mailer-Daemon reports
+    */
+    api.post("/mailerdaemon", async (req, res, next) => {
+      try {
+        let mailtester = new Mailtester({});
+        await mailtester.makeFromRaw(req.body);
+
+        let failedRecipients;
+        try {
+          failedRecipients = mailtester.findHeader(mailtester.parsed.headerLines, "x-failed-recipients").line;
+        } catch (e) { }
+
+        let msg = `API: Exim Mailer-Daemon report. Subj: ${mailtester.doc.subject}`;
+        if(failedRecipients) {
+          msg += `. Headers: ${failedRecipients}`;
+        }
+        console.log(msg);
+        res.status(403).send(JSON.stringify({result: "fail", reason: msg}));
+      } catch (err) {
+        // 5xx errors
+        console.log("API:", err);
+        next(err);
+      }
     });
 
     /*

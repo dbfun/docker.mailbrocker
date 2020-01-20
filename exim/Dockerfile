@@ -19,12 +19,8 @@ ENV EXIM_DOMAIN=your-domain.com \
     EXIM_MAX_PARALLEL=2 \
     TZ=Europe/Moscow
 
-RUN mkdir -p        /var/spool/mail /var/mail /var/spool/exim /var/spool/exim/db /var/spool/exim/input /var/spool/exim/msglog && \
-    chmod 775       /var/spool/mail /var/mail /var/spool/exim /var/spool/exim/db /var/spool/exim/input /var/spool/exim/msglog && \
-    chown exim.mail /var/spool/mail /var/mail /var/spool/exim /var/spool/exim/db /var/spool/exim/input /var/spool/exim/msglog && \
-    adduser -D -G mail mailtester && \
-    # Timezone
-    apk add tzdata && \
+# Timezone
+RUN apk add tzdata && \
     cp /usr/share/zoneinfo/$TZ /etc/localtime && \
     echo "$TZ" >  /etc/timezone
 

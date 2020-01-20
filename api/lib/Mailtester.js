@@ -69,22 +69,22 @@ class Mailtester {
 
   async parseMail() {
     // @see https://nodemailer.com/extras/mailparser/
-    let parsed = await simpleParser(this.doc.raw);
+    this.parsed = await simpleParser(this.doc.raw);
     try {
-      this.doc.to = parsed.to.value[0].address;
+      this.doc.to = this.parsed.to.value[0].address;
     } catch (e) { }
     try {
-      this.doc.from = parsed.from.value[0].address;
+      this.doc.from = this.parsed.from.value[0].address;
     } catch (e) { }
     try {
-      let Received = _.find(parsed.headerLines, (o) => {
+      let Received = _.find(this.parsed.headerLines, (o) => {
         return o.key === "received" && o.line.match(/^Received: from/);
       });
       let m = Received.line.match(/(\[([0-9a-f:]{8,}|[0-9.]{7,})\])/);
       this.doc.lastMtaIP = m[2];
     } catch (e) { }
     try {
-      this.doc.subject = parsed.subject;
+      this.doc.subject = this.parsed.subject;
     } catch (e) { }
   }
 
@@ -136,6 +136,16 @@ class Mailtester {
     } catch (e) {
       return null;
     }
+  }
+
+  findHeader(headerLines, header) {
+    let ret;
+    try {
+      ret = _.find(headerLines, (o) => {
+        return o.key === header;
+      });
+    } catch (e) { }
+    return ret;
   }
 
   async saveRaw() {

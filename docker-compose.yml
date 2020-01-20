@@ -5,6 +5,9 @@ services:
     volumes:
       # volume for store DKIM keys
       - ./ssl/dkim:/etc/ssl/certs/dkim
+      # mails
+      - ./var/exim/spool:/var/spool
+      - ./var/exim/mail:/var/mail
     ports:
       - ${PORT_EXIM}:${PORT_EXIM}
     env_file:
@@ -35,6 +38,9 @@ services:
       mt:
         ipv4_address: ${IP_MONGO}
     dns: ${IP_DNS_RESOLVER}
+    volumes:
+      # DB
+      - ./var/mongo:/data/db
     depends_on:
       - dns
   test-compose:

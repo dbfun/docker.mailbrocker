@@ -16,6 +16,7 @@ describe('sendmail', function() {
 
   const sendmail = new Sendmail;
   const mailTo = process.env.ADMIN_EMAIL;
+  // const mailTo = "nobody@site-not-exists.com";
 
   it(`mail FROM ${process.env.EXIM_MAIL_FROM} TO ${mailTo}`, async () => {
 
