@@ -76,7 +76,7 @@ Work in progress
   * [x] Razor2 Check
   * [x] Checkdelivery
 * [x] Self DNS resolving
-* [ ] Mail test queue
+* [x] Mail test queue
 * [ ] IPv6 support
   * [x] Spf
   * [ ] DKIM ?

@@ -15,10 +15,18 @@ restart: down up
 
 # Reload all services
 .PHONY: reload
-reload:
+reload: reload-spamassassin reload-exim reload-api reload-dns
+
+reload-spamassassin:
 	@docker-compose exec spamassassin sh -c 'kill -HUP `cat /var/run/spamd.pid`'
+
+reload-exim:
 	@docker-compose exec exim sh -c 'kill -HUP `cat /run/exim.pid`'
+
+reload-api:
 	@docker-compose exec api sh -c 'pm2 restart all'
+
+reload-dns:
 	@docker-compose exec dns sh -c 'unbound-control reload'
 
 #################################
@@ -102,4 +110,3 @@ dns-cache:
 .PHONY: mail-stats
 mail-count:
 	@echo Num mails: `docker-compose exec mongo mongo mailtester --quiet --eval 'db.mails.count({});'`
-
