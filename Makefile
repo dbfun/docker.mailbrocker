@@ -83,6 +83,9 @@ tools-blacklist:
 swaks-checkdelivery:
 	@docker-compose run test-compose sh -c "/srv/checkdelivery-send.sh"
 
+.PHONY: dns-clear-cache
+dns-clear-cache:
+	@docker-compose exec dns sh -c "unbound-control flush_zone ."
 
 #################################
 # Stats

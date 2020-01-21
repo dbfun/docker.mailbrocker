@@ -128,14 +128,6 @@ After that send a test letter to the dedicated address (see `API_REPLY_MTA_REPOR
 
 `make test-unit-mocha` also sends test email on `ADMIN_EMAIL`.
 
-### Troubleshooting
-
-```sh
-docker-compose exec exim sh -c "exim -bP transports | grep dkim"
-docker-compose exec exim hostname
-docker-compose exec exim env
-```
-
 ## What is the reason for using your own DNS resolver?
 
 Some DNSBLs block public DNS due to high volume queries:
