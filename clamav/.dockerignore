@@ -1,0 +1,5 @@
+/.dockerignore
+/Dockerfile
+/README.md
+/clamd.origin.conf
+/freshclam.origin.conf

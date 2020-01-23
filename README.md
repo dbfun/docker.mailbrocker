@@ -75,6 +75,7 @@ Work in progress
   * [x] Pyzor Check
   * [x] Razor2 Check
   * [x] Checkdelivery
+  * [ ] Clamav
 * [x] Self DNS resolving
 * [x] Mail test queue
 * [ ] IPv6 support
@@ -143,3 +144,4 @@ Default email size is 5 Mb. Change this settings in `config/.env` file:
 * `EXIM_INCOMING_MAIL_MAX_SIZE=5M`
 * `API_INCOMING_MAIL_MAX_SIZE=5mb`
 * `SPAMASSASSIN_MAX_MSG_SIZE=5000000`
+* `CLAMAV_STREAM_MAX_LENGTH=5M`

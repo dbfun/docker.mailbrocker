@@ -31,3 +31,9 @@ exim_1    == info@site.com R=dnslookup defer (-1): host lookup did not complete
 ```
 2020-01-20T13:48:31.555661554Z [1579528111] unbound[10:3] error: SERVFAIL <site.com. MX IN>: all servers for this domain failed, at zone site.com.
 ```
+
+## Clamav
+
+Show config: `docker-compose exec clamav clamconf`
+
+Top: `docker-compose exec clamav clamdtop`

@@ -124,6 +124,21 @@ services:
     env_file:
       - .env
 
+  clamav:
+    build: ./clamav
+    env_file:
+      - .env
+    restart: always
+    hostname: clamav
+    volumes:
+      - ./var/clamav/data:/var/lib/clamav
+      - ./var/clamav/log:/var/log/clamav
+    dns: ${IP_DNS_RESOLVER}
+    networks:
+      mt:
+        ipv4_address: ${IP_CLAMAV}
+
+
 networks:
   mt:
     driver: bridge
