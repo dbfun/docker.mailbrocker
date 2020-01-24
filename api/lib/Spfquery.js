@@ -17,11 +17,21 @@ class Spfquery {
 
 
   async check(ip, from) {
-    let { report, debug } = await this.fetchData(ip, from);
-    return {
-      report: report,
-      debug: debug,
-      test: this.parseTest(report)
+    try {
+      let { report, debug } = await this.fetchData(ip, from);
+      return {
+        result: "ok",
+        data: {
+          report,
+          debug,
+          test: this.parseTest(report)
+        }
+      }
+    } catch (e) {
+      return {
+        result: "fail",
+        message: e.message
+      }
     }
   }
 
@@ -48,7 +58,6 @@ class Spfquery {
       spfquery.on('close', (code) => {
         resolve({report: stdout, debug: stderr});
       });
-
     });
   }
 

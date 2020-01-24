@@ -9,10 +9,20 @@ const
 class Dmarccheck {
 
   async check(domain) {
-    let report = await this.fetchData(domain);
-    return {
-      report: report,
-      test: this.parseTest(report)
+    try {
+      let report = await this.fetchData(domain);
+      return {
+        result: "ok",
+        data: {
+          report,
+          test: this.parseTest(report)
+        }
+      }
+    } catch (e) {
+      return {
+        result: "fail",
+        message: e.message
+      }
     }
   }
 

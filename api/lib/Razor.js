@@ -12,7 +12,18 @@ class Razor {
 
 
   async check(msg) {
-    return await this.fetchData(msg);
+    try {
+      let data = await this.fetchData(msg);
+      return {
+        result: "ok",
+        data
+      }
+    } catch (e) {
+      return {
+        result: "fail",
+        message: e.message
+      }
+    }
   }
 
   async fetchData(msg) {

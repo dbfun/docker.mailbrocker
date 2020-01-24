@@ -40,7 +40,6 @@ describe('pyzor', () => {
     for(let testCase of testCasesParseTests) {
       it(testCase.name, async () => {
         let pz = Pyzor.prototype.parseTests(testCase.data);
-        // console.log(pz); process.exit(1);
         assert.deepStrictEqual(pz, testCase.expect);
       });
     }

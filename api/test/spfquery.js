@@ -232,7 +232,8 @@ describe('spfquery', () => {
     for(let testCase of testCasesCheck) {
       it(`${testCase.from} ${testCase.ip}`, async () => {
         let spf = await spfquery.check(testCase.ip, testCase.from);
-        assert.equal(spf.test["Response result"], testCase.expect["Response result"]);
+        assert.equal(spf.result, "ok");
+        assert.equal(spf.data.test["Response result"], testCase.expect["Response result"]);
       });
     }
   });

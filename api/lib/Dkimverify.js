@@ -7,10 +7,20 @@ const
 class Dkimverify {
 
   async check(msg) {
-    let report = await this.fetchData(msg);
-    return {
-      report: report,
-      test: this.parseTest(report)
+    try {
+      let report = await this.fetchData(msg);
+      return {
+        result: "ok",
+        data: {
+          report,
+          test: this.parseTest(report)
+        }
+      }
+    } catch (e) {
+      return {
+        result: "fail",
+        message: e.message
+      }
     }
   }
 
