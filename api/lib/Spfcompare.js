@@ -34,7 +34,7 @@ class Spfcompare {
 
     let data = ret.data;
 
-    await this.purgezone(ownDns, portOwnDnsControl, domain);
+    await this.purgeZoneTXT(ownDns, portOwnDnsControl, domain);
 
     await Promise.all([
       new Promise(async (resolve, reject) => {
@@ -105,7 +105,7 @@ class Spfcompare {
     });
   }
 
-  async purgezone(dns, port, domain) {
+  async purgeZoneTXT(dns, port, domain) {
     return new Promise((resolve, reject) => {
 
       let client = new net.Socket();
@@ -123,7 +123,7 @@ class Spfcompare {
       });
 
       client.connect(port, dns, () => {
-        client.write(`UBCT1 flush_zone ${domain}.\n`);
+        client.write(`UBCT1 flush_type ${domain}. TXT\n`);
       });
 
     });
