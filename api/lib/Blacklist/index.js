@@ -17,6 +17,13 @@ class Blacklist {
 
   async check(ip) {
     return new Promise(async (resolve, reject) => {
+      if(!ip) {
+        resolve({
+          result: "fail",
+          message: "Wrong IP"
+        });
+        return;
+      }
 
       let IPver = this.IPver(ip);
 
@@ -31,23 +38,27 @@ class Blacklist {
 
       Promise.all(dnsLookups).then((results) => {
         let ret = {
-          ip: ip,
-          reverseIP: reverseIP,
-          blackListed: [],
-          notListed: [],
-          failListed: [],
-          list: results
+          result: "ok",
+          data: {
+            ip: ip,
+            reverseIP: reverseIP,
+            blackListed: [],
+            notListed: [],
+            failListed: [],
+            list: results
+          }
         };
+        let data = ret.data;
         results.forEach(o => {
           switch(o.listed) {
             case true:
-              ret.blackListed.push(o.domain);
+              data.blackListed.push(o.domain);
               break;
             case false:
-              ret.notListed.push(o.domain);
+              data.notListed.push(o.domain);
               break;
             case null:
-              ret.failListed.push(o.domain);
+              data.failListed.push(o.domain);
               break;
           }
 
