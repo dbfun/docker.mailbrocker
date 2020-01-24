@@ -7,6 +7,7 @@ const
   _ = require('lodash'),
   assert = require('assert'),
   { Spfquery } = require('../lib/Spfquery'),
+  { Spfcompare } = require('../lib/Spfcompare'),
   { Dkimverify } = require('../lib/Dkimverify'),
   { Dmarccheck } = require('../lib/Dmarccheck'),
   { Blacklist } = require('../lib/Blacklist'),
@@ -14,7 +15,7 @@ const
   { Razor } = require('../lib/Razor'),
   { CheckdeliverySender } = require("../lib/Checkdelivery/Sender"),
   defaultConfig = {
-    availableTests: [ "spamassassin", "spf", "dkim", "dmarc", "blacklist", "pyzor", "razor", "checkdelivery" ],
+    availableTests: [ "spamassassin", "spf", "spfcompare", "dkim", "dmarc", "blacklist", "pyzor", "razor", "checkdelivery" ],
     availableDNS: [ "8.8.8.8", "77.88.8.8", "94.142.137.100", "94.142.136.100" ],
     blacklistDomains: require("../lib/Blacklist/dnsbl-domains"),
     checkdeliveryConfig: {
@@ -47,6 +48,8 @@ class Mailtester {
       doneTest: [],
       doneAt: null,
       to: "",
+      toUsername: "",
+      toDomain: "",
       from: "",
       lastMtaIP: null, // ipv4 / ipv6
       raw: null
@@ -76,6 +79,12 @@ class Mailtester {
     try {
       this.doc.from = this.parsed.from.value[0].address;
     } catch (e) { }
+    try {
+      let parts = this.doc.to.match(/^(.*?)@(.*?)$/);
+      this.doc.toUsername = parts[1];
+      this.doc.toDomain = parts[2];
+    } catch (e) { }
+
     try {
       let Received = _.find(this.parsed.headerLines, (o) => {
         return o.key === "received" && o.line.match(/^Received: from/);
@@ -110,11 +119,11 @@ class Mailtester {
   }
 
   getFieldToUsername() {
-    try {
-      return this.doc.to.match(/^(.*?)@/)[1];
-    } catch (e) {
-      return null;
-    }
+    return this.doc.toUsername;
+  }
+
+  getFieldToDomain() {
+    return this.doc.toDomain;
   }
 
   setObjectId(_ObjectId) {
@@ -178,6 +187,9 @@ class Mailtester {
         case "spf":
           tests.push(this.checkSpf(isSaveResults));
           break;
+        case "spfcompare":
+          tests.push(this.checkSpfcompare(isSaveResults));
+          break;
         case "dkim":
           tests.push(this.checkDkim(isSaveResults));
           break;
@@ -217,6 +229,14 @@ class Mailtester {
     return spfquery.check(this.doc.lastMtaIP, this.doc.from).then(async (spf) => {
       this.doc.spf = spf;
       if(isSaveResults) await this.saveResults('spf', spf);
+    });
+  }
+
+  checkSpfcompare(isSaveResults) {
+    let spfcompare = new Spfcompare;
+    return spfcompare.check(this.doc.toDomain).then(async (spfcompare) => {
+      this.doc.spfcompare = spfcompare;
+      if(isSaveResults) await this.saveResults('spfcompare', spfcompare);
     });
   }
 

@@ -21,7 +21,7 @@ ENV PORT_SPAMASSASSIN=783 \
     ADMIN_EMAIL=your-mail@gmail.com \
     API_DOMAIN=your-domain.com \
     API_DOMAIN_PROTOCOL=http \
-    API_AVAILABLE_TESTS=spamassassin,spf,dkim,dmarc,blacklist,pyzor,razor \
+    API_AVAILABLE_TESTS=spamassassin,spf,spfcompare,dkim,dmarc,blacklist,pyzor,razor \
     TZ=Europe/Moscow
 
 RUN \
@@ -53,6 +53,8 @@ RUN \
     # NodeJS bundle
     apk add --no-cache nodejs npm && \
     npm install --global pm2 mocha && \
+    # dig
+    apk add bind-tools && \
     # Timezone
     apk add tzdata && \
     cp /usr/share/zoneinfo/$TZ /etc/localtime && \

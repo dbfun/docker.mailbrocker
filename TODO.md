@@ -2,6 +2,8 @@
 [ ] Check Spamassassin and others waiting for the whole letter (with headers) or only "body"
 [ ] mail.ru reject spam letters, see below. How about use it?
 [ ] Exim warning: `Suggested action: either install a certificate or change tls_advertise_hosts option`
+[ ] replace some `test-letters`, some tests fails
+[ ] check `TO`: reject wrong domains. E.g. allow `a.site.com` and reject `b.site.com`
 
 
 ```

@@ -75,6 +75,7 @@ Work in progress
   * [x] Pyzor Check
   * [x] Razor2 Check
   * [x] Checkdelivery
+  * [x] Compare SPF records: authoritative and public DNS
 * [x] Self DNS resolving
 * [x] Mail test queue
 * [ ] IPv6 support
