@@ -18,7 +18,7 @@
     "express": "^4.17.1",
     "handlebars": "^4.5.3",
     "imap-simple": "^4.3.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "mailparser": "^2.7.1",
     "mongodb": "^3.3.0-beta2",
     "nodemailer": "^6.3.1",
