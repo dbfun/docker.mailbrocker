@@ -21,7 +21,7 @@
     "lodash": "^4.17.15",
     "mailparser": "^2.7.1",
     "mongodb": "^3.3.0-beta2",
-    "nodemailer": "^6.3.1",
+    "nodemailer": "^6.4.16",
     "sha1": "^1.1.1",
     "text-table": "^0.2.0",
     "url-parse": "^1.4.7",
