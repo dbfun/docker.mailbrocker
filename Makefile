@@ -5,13 +5,17 @@
 # Run all containers
 .PHONY: up
 up:
-	@docker-compose up -d --build
+	@docker-compose up -d
 
 # Stop all containers
 down:
 	@docker-compose down
 
 restart: down up
+
+.PHONY: rebuild
+rebuild:
+	@docker-compose up -d --build
 
 # Reload all services
 .PHONY: reload
@@ -51,7 +55,7 @@ test-compose:
 # Runs test container for debug purposes
 .PHONY: debug-compose
 debug-compose:
-	@docker-compose run test-compose sh
+	@docker-compose run --no-deps test-compose sh
 
 # Runs api pipe test
 .PHONY: test-api-pipe

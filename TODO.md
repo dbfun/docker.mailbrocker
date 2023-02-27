@@ -4,8 +4,16 @@
 [ ] Exim warning: `Suggested action: either install a certificate or change tls_advertise_hosts option`
 [ ] replace some `test-letters`, some tests fails
 [ ] check `TO`: reject wrong domains. E.g. allow `a.site.com` and reject `b.site.com`
-
-
+[ ] Add SA rules via "SpamAssassin rules file"
+[ ] ADD SA Test letters from "spamassassin/t/data/dkim"
+[ ] Make translations:
+    - SA:
+      - https://spamassassin.apache.org/full/3.0.x/dist/rules/30_text_fr.cf
+      - http://spamassassin.apache.org/old/tests_3_3_x.html
+      - http://www.sisyphus.ru/ru/srpm/BP3/spamassassin/sources/3
+      - http://eastoverhill.co.uk/techref/spam_assasin_test_settings.htm
+[ ] Check free mails: https://identibyte.com/
+[ ] Pwned https://haveibeenpwned.com/API/v3
 ```
 swaks --to email@mail.ru --from junk@gmail.com --add-header "Subject: Test _id: 5d443c9882cd8e56734b18e9" --add-header "X-Mailtester: 5d443c9882cd8e56734b18e9"
 
