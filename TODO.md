@@ -1,6 +1,6 @@
 # GitLab integration
 
-[ ] Поправить docker-compose.yml
+[x] Поправить docker-compose.yml
 [ ] Продублировать настройки из .env в GitLab variables
 [ ] Развернуть CI/CD (.gitlab-ci.yml)
 [ ] Каталог /ssl содержит сертификаты для DKIM - это нужно включить в CI/CD или придумать другое решение
