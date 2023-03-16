@@ -11,7 +11,7 @@ const
   config = {
     apiDomain: process.env.API_DOMAIN,
     apiDomainProtocol: process.env.API_DOMAIN_PROTOCOL,
-    apiPort: process.env.PORT_API,
+    apiPort: 80,
     apiBaseHref: null,
     checkdelivery: null,
     apiAvailableTests: process.env.API_AVAILABLE_TESTS ? process.env.API_AVAILABLE_TESTS.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [],

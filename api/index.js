@@ -6,7 +6,7 @@ const
   Registry = new (require("./lib/Registry").Registry),
   security = new(require("./lib/Security").Security)(process.env.SECURITY_SALT),
   config = {
-    apiPort: process.env.PORT_API,
+    apiPort: 80,
     incomingMailMaxSize: process.env.API_INCOMING_MAIL_MAX_SIZE,
     catchMtaLettersAll: process.env.API_CATCH_MTA_ALL === "on",
     catchMtaLettersTo: process.env.API_CATCH_MTA_TO ? process.env.API_CATCH_MTA_TO.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [],

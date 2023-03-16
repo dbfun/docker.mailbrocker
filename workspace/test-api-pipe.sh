@@ -16,7 +16,7 @@ RESP=`curl -s \
     --max-time 10 \
     --verbose \
     --include \
-    http://api:$PORT_API/healthcheck 2>&1`
+    http://api/healthcheck 2>&1`
 assert "$RESP" '> GET /healthcheck HTTP/1.1'
 assert "$RESP" '< HTTP/1.1 200 OK'
 assert "$RESP" '{"result":"ok"' # and ObjecId ...
@@ -33,7 +33,7 @@ RESP=`cat test-letters/spam-wrong-mail-to.eml | curl -s \
     --header 'Content-Type: text/plain' \
     --data-binary @- \
     --no-buffer \
-    http://api:$PORT_API/checkmail?mode=MTA 2>&1`
+    http://api/checkmail?mode=MTA 2>&1`
 
 assert "$RESP" '> POST /checkmail?mode=MTA HTTP/1.1'
 assert "$RESP" '< HTTP/1.1 403 Forbidden'
@@ -51,7 +51,7 @@ RESP=`cat test-letters/spam-GTUBE.eml | curl -s \
     --header 'Content-Type: text/plain' \
     --data-binary @- \
     --no-buffer \
-    http://api:$PORT_API/checkmail?mode=new 2>&1`
+    http://api/checkmail?mode=new 2>&1`
 assert "$RESP" '> POST /checkmail?mode=new HTTP/1.1'
 assert "$RESP" '< HTTP/1.1 200 OK'
 assert "$RESP" '< Content-Type: application/json;'

@@ -2,7 +2,6 @@ FROM alpine:edge
 
 ENV EXIM_DOMAIN=your-domain.com \
     RUN_TESTS=on \
-    PORT_API=8080 \
     PORT_EXIM=25 \
     TZ=Europe/Moscow
 

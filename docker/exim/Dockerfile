@@ -12,7 +12,6 @@ ENV EXIM_DOMAIN=your-domain.com \
     EXIM_DEBUG=on \
     EXIM_INCOMING_MAIL_MAX_SIZE=5M \
     PORT_EXIM=25 \
-    PORT_API=8080 \
     EXIM_MAIL_USER=noreply \
     EXIM_MAIL_PASS=exim_mail_password \
     EXIM_DKIM_SELECTOR=mailtester \

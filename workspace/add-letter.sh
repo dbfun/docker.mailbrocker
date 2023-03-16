@@ -37,7 +37,7 @@ RESP=`cat "$EML_FILE" | sed "s/5cc8161582cd8ed026085eb2/$ObjectId/g" | curl -s \
       --header 'Content-Type: text/plain' \
       --data-binary @- \
       --no-buffer \
-      http://api:$PORT_API/checkmail?mode=new 2>&1`
+      http://api/checkmail?mode=new 2>&1`
 
 assert "$RESP" '> POST /checkmail?mode=new HTTP/1.1'
 assert "$RESP" '< HTTP/1.1 200 OK'
