@@ -2,7 +2,7 @@
 # Application workflow
 #################################
 
-SERVICES=exim spamassassin mongo dns api rabbitmq
+SERVICES=exim spamassassin mongo dns api rabbitmq workspace
 
 # Run all containers
 .PHONY: up
@@ -57,7 +57,7 @@ test-integration-bash:
 # Runs test container for debug purposes
 .PHONY: workspace
 workspace:
-	@docker-compose run --no-deps workspace bash
+	@docker-compose exec --user=develop workspace zsh
 
 #################################
 # Utils

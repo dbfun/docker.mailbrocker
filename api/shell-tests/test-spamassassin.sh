@@ -11,7 +11,7 @@ source lib/case.sh
 TESTS_PASSED=1
 
 start_case "Spamassassin: GTUBE test"
-EMAIL=test-letters/spam-GTUBE.eml
+EMAIL=/srv/test-letters/spam-GTUBE.eml
 RESP=`cat "$EMAIL" | spamc -d spamassassin -p 783 -R`
 assert "$RESP" '1000 GTUBE'
 assert "$RESP" 'This is 100% spam mail'

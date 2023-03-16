@@ -20,7 +20,7 @@ EMAIL_TO=$USERNAME@$EXIM_DOMAIN
 end_case
 
 function mail_once {
-  swaks -S --body @test-letters/spam-APXvYqyVUhTnI3.eml --header "MIME-Version: 1.0" --header "Content-Type: text/html" --to "$EMAIL_TO" --from junk@gmail.com
+  swaks -S --body @/srv/test-letters/spam-APXvYqyVUhTnI3.eml --header "MIME-Version: 1.0" --header "Content-Type: text/html" --to "$EMAIL_TO" --from junk@gmail.com
 }
 
 function mail1 {

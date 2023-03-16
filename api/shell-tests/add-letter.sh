@@ -3,7 +3,7 @@
 # Add one email via API for test purposes
 # Usage:
 # * add dummy message:      ./add-letter.sh dummy
-# * add message from file:  ./add-letter.sh test-letters/ham-spf-rebus3d.ru.eml
+# * add message from file:  ./add-letter.sh /srv/test-letters/ham-spf-rebus3d.ru.eml
 
 set -u
 CASE_PASSED=1
@@ -14,7 +14,7 @@ source lib/case.sh
 source lib/functions.sh
 
 if [ "$1" == "dummy" ]; then
-  EML_FILE="test-letters/spam-GTUBE.eml"
+  EML_FILE="/srv/test-letters/spam-GTUBE.eml"
   RandomObjectId
   start_case "Add dummy mail $ObjectId into check queue"
 else

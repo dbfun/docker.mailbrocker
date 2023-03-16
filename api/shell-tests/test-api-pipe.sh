@@ -24,7 +24,7 @@ end_case
 
 
 start_case "API: Deny wrong mail \"To:\" header"
-RESP=`cat test-letters/spam-wrong-mail-to.eml | curl -s \
+RESP=`cat /srv/test-letters/spam-wrong-mail-to.eml | curl -s \
     -H "Connection: close" \
     --max-time 10 \
     --verbose \
@@ -42,7 +42,7 @@ assert "$RESP" '{"result":"fail","reason":"API: mail rejected in MTA mode: wrong
 end_case
 
 start_case "API: Add spam mail into check queue"
-RESP=`cat test-letters/spam-GTUBE.eml | curl -s \
+RESP=`cat /srv/test-letters/spam-GTUBE.eml | curl -s \
     -H "Connection: close" \
     --max-time 10 \
     --verbose \

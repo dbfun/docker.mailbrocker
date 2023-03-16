@@ -40,22 +40,6 @@ services:
     depends_on:
       - dns
 
-  workspace:
-    build:
-      dockerfile: ./docker/workspace/Dockerfile
-      context: .
-    volumes:
-      # dev volumes for hot reload
-      - ./workspace:/srv/
-      # configs
-      - ./config/checkdelivery-mails.json:/etc/checkdelivery-mails.json
-      - ./config/dnsbl-domains.json:/etc/dnsbl-domains.json
-    env_file:
-      - .env
-    depends_on:
-      - api
-      - dns
-
   dns:
     build:
       dockerfile: ./docker/dns/Dockerfile
@@ -68,20 +52,14 @@ services:
     build:
       dockerfile: ./docker/api/Dockerfile
       context: .
+      target: production
     volumes:
       # TODO собирать на этапе CI/CD
       # configs
       - ./config/checkdelivery-mails.json:/srv/lib/Checkdelivery/checkdelivery-mails.json
       - ./config/dnsbl-domains.json:/srv/lib/Blacklist/dnsbl-domains.json
       # dev volumes for hot reload
-      - ./api/index.js:/srv/index.js
-      - ./api/worker.js:/srv/worker.js
-      - ./api/process-checkdelivery.js:/srv/process-checkdelivery.js
-      - ./api/lib:/srv/lib
-      - ./api/tools:/srv/tools
-      - ./api/test:/srv/test
-      # test letters
-      - ./workspace/test-letters:/test-letters
+      - ./api:/srv
     env_file:
       - .env
     restart: always
@@ -93,6 +71,22 @@ services:
       - exim
       - spamassassin
       - rabbitmq
+
+  workspace:
+    build:
+      dockerfile: ./docker/api/Dockerfile
+      context: .
+      target: workspace
+    hostname: workspace
+    tty: true
+    volumes:
+      # configs
+      - ./config/checkdelivery-mails.json:/srv/lib/Checkdelivery/checkdelivery-mails.json
+      - ./config/dnsbl-domains.json:/srv/lib/Blacklist/dnsbl-domains.json
+      # dev volumes for hot reload
+      - ./api:/srv
+    env_file:
+      - .env
 
   rabbitmq:
     image: rabbitmq:management
