@@ -20,7 +20,7 @@ const
   publicDNSList = process.env.API_PUBLIC_DNS ? process.env.API_PUBLIC_DNS.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [ "8.8.8.8" ],
   // ownDns = process.env.IP_DNS_RESOLVER,
   ownDns = "dns",
-  portOwnDnsControl = process.env.PORT_DNS_CONTROL
+  portOwnDnsControl = 8953
   ;
 
 class Spfcompare {
