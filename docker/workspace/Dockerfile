@@ -1,7 +1,6 @@
 FROM alpine:edge
 
 ENV EXIM_DOMAIN=your-domain.com \
-    RUN_TESTS=on \
     PORT_EXIM=25 \
     TZ=Europe/Moscow
 
@@ -13,4 +12,4 @@ RUN apk add curl swaks perl-net-dns perl-net-ssleay bash jq bind-tools spamassas
 
 WORKDIR /srv
 
-CMD "./test.sh"
+CMD ["sleep", "1000000000"]

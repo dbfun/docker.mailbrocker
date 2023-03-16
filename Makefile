@@ -41,34 +41,23 @@ reload-dns:
 
 # Runs all tests
 .PHONY: test
-test: test-unit-mocha test-compose
+test: test-unit-mocha test-integration-bash
 
 # Runs unit test
 test-unit-mocha:
-	@docker-compose up -d
+	@docker-compose up -d ${SERVICES}
 	@docker-compose exec api mocha
 
 # Runs integration test
-.PHONY: test-compose
-test-compose:
-	@RUN_TESTS=on docker-compose up test-compose
-	@docker-compose logs -tf --tail=0 test-compose
+.PHONY: test-integration-bash
+test-integration-bash:
+	@docker-compose up workspace
+	@docker-compose exec workspace bash /srv/test.sh
 
 # Runs test container for debug purposes
-.PHONY: debug-compose
-debug-compose:
-	@docker-compose run --no-deps test-compose sh
-
-# Runs api pipe test
-.PHONY: test-api-pipe
-test-api-pipe:
-	@docker-compose run test-compose sh -c "/srv/test-api-pipe.sh"
-
-# Attach to api container (or run: `docker-compose exec api sh`)
-.PHONY: attach-api
-attach-api:
-	./attach.sh api
-
+.PHONY: workspace
+workspace:
+	@docker-compose run --no-deps workspace bash
 
 #################################
 # Utils
@@ -87,7 +76,7 @@ tools-blacklist:
 # Check IP in Blacklists (make tools-blacklist IP=127.0.0.2)
 .PHONY: swaks-checkdelivery
 swaks-checkdelivery:
-	@docker-compose run test-compose sh -c "/srv/checkdelivery-send.sh"
+	@docker-compose run workspace sh -c "/srv/checkdelivery-send.sh"
 
 .PHONY: dns-clear-cache
 dns-clear-cache:
