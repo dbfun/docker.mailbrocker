@@ -22,7 +22,7 @@ const
     DNSresolver: [ "dns" ],
     workerCheckAllNum: process.env.API_WORKER_CHECK_ALL_NUM ? parseInt(process.env.API_WORKER_CHECK_ALL_NUM) : 2,
     spamassassin: {
-      port: process.env.PORT_SPAMASSASSIN,
+      port: 783,
       maxSize: process.env.SPAMASSASSIN_MAX_MSG_SIZE
     },
     mongo: {

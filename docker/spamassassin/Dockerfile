@@ -1,7 +1,6 @@
 FROM alpine:latest
 
-ENV PORT_SPAMASSASSIN=783 \
-    TZ=Europe/Moscow
+ENV TZ=Europe/Moscow
 
 RUN apk add --no-cache spamassassin && sa-update && \
     # Timezone
