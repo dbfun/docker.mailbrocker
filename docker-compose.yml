@@ -13,7 +13,7 @@ services:
       - ${DATA_PATH}/exim/var/spool:/var/spool
       - ${DATA_PATH}/exim/var/mail:/var/mail
     ports:
-      - "25:25"
+      - ${PORT_EXIM}:${PORT_EXIM}
     env_file:
       - .env
     restart: always
