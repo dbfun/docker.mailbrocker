@@ -9,7 +9,7 @@ RUN apk add --no-cache spamassassin && sa-update && \
     cp /usr/share/zoneinfo/$TZ /etc/localtime && \
     echo "$TZ" >  /etc/timezone
 
-ADD . /srv
+ADD ./docker/spamassassin /srv
 
 WORKDIR srv
 
