@@ -2,7 +2,8 @@
 
 This is a DNS resolver container.
 
-Usage: in project root dir run: `make up` for starting all containers bundle and `make down` for stopping.
+The file `unbound.reference.conf` contains original Unbound config. Use `diff unbound.conf unbound.reference.conf` to
+see the changes.
 
 # Links
 
