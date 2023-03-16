@@ -3,6 +3,8 @@ FROM alpine:latest
 RUN apk add --no-cache exim curl openssl
 
 ### dev section
+# TODO multistage for develop and production
+# @see https://stackoverflow.com/a/67937236/9435985
 ENV ENV="/etc/profile"
 ADD ./docker/exim/dev.profile.sh /etc/profile.d/dev.profile.sh
 RUN apk add --no-cache busybox-extras exim-scripts tree
