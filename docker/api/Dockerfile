@@ -64,7 +64,7 @@ RUN cd /tmp && \
     npm install
 
 WORKDIR srv
-ADD . /srv
+ADD ./api /srv
 
 RUN mv /tmp/node_modules /srv
 
