@@ -1,4 +1,4 @@
-# !/bin/bash
+#!/bin/bash
 
 # @see analogue https://github.com/torokmark/assert.sh/blob/master/assert.sh
 

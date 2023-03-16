@@ -8,6 +8,11 @@ cd "$(dirname "$0")"
 source lib/ui.sh
 source lib/case.sh
 
+start_case "DNS: TODO доменов sigok.verteiltesysteme.net больше не существует, нужно переписать тест"
+assert_not_empty ""
+end_case
+exit
+
 TESTS_PASSED=1
 
 # @see http://dnssec.vs.uni-due.de/

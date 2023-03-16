@@ -1,4 +1,4 @@
-# !/bin/bash
+#!/bin/bash
 
 Color_Off='\e[0m'       # Text Reset
 Red='\e[0;31m'          # Red

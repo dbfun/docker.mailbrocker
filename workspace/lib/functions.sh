@@ -1,4 +1,4 @@
-# !/bin/bash
+#!/bin/bash
 
 # @return ObjectId string
 function RandomObjectId {
