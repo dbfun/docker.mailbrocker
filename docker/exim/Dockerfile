@@ -4,8 +4,8 @@ RUN apk add --no-cache exim curl openssl
 
 ### dev section
 ENV ENV="/etc/profile"
-ADD ./dev.profile.sh /etc/profile.d/dev.profile.sh
-RUN apk add --no-cache busybox-extras exim-scripts tree man
+ADD ./docker/exim/dev.profile.sh /etc/profile.d/dev.profile.sh
+RUN apk add --no-cache busybox-extras exim-scripts tree
 ### end dev section
 
 ENV EXIM_DOMAIN=your-domain.com \
@@ -25,9 +25,9 @@ RUN apk add tzdata && \
     echo "$TZ" >  /etc/timezone
 
 WORKDIR srv
-ADD ./srv /srv
+ADD ./docker/exim/srv /srv
 
-ADD ./exim.conf /etc/exim/exim.conf
+ADD ./docker/exim/exim.conf /etc/exim/exim.conf
 
 HEALTHCHECK --interval=60s --timeout=5s --start-period=5s CMD exiwhat | grep -qF "listening for SMTP on port" || exit 1
 
