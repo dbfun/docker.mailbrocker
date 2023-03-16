@@ -42,7 +42,7 @@ RUN \
     # DMARC
     apk add opendmarc --update-cache --repository http://nl.alpinelinux.org/alpine/edge/testing && \
     # Pyzor
-    apk add python3 && \
+    apk add python3 py3-pip && \
     pip3 install pyzor && \
     # SPF
     apk add libspf2-tools && \
@@ -61,7 +61,7 @@ RUN \
     echo "$TZ" >  /etc/timezone
 
 # App
-ADD ./package.json ./package-lock.json /tmp/
+ADD ./api/package.json ./api/package-lock.json /tmp/
 
 RUN cd /tmp && \
     npm install
@@ -70,8 +70,6 @@ WORKDIR srv
 ADD . /srv
 
 RUN mv /tmp/node_modules /srv
-
-
 
 HEALTHCHECK --interval=5s --timeout=1s --start-period=5s CMD ./docker-healthcheck.sh || exit 1
 
