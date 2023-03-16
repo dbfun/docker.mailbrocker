@@ -2,10 +2,12 @@
 # Application workflow
 #################################
 
+SERVICES=exim spamassassin mongo dns api rabbitmq
+
 # Run all containers
 .PHONY: up
 up:
-	@docker-compose up -d
+	@docker-compose up -d ${SERVICES}
 
 # Stop all containers
 down:
@@ -15,7 +17,7 @@ restart: down up
 
 .PHONY: rebuild
 rebuild:
-	@docker-compose up -d --build
+	@docker-compose up -d --build ${SERVICES}
 
 # Reload all services
 .PHONY: reload
