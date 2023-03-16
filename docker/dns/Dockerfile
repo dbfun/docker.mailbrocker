@@ -19,7 +19,7 @@ RUN apk add unbound gettext drill --no-cache && \
     echo "$TZ" >  /etc/timezone
 
 WORKDIR srv
-ADD ./ /srv
+ADD ./docker/dns /srv
 
 RUN \
   unbound-anchor -a /usr/share/dnssec-root/trusted-key.key && \

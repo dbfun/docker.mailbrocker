@@ -29,13 +29,11 @@ services:
       context: .
     env_file:
       - .env
-    hostname: spamassassin
     depends_on:
       - dns
 
   mongo:
     image: mongo
-    hostname: mongo
     volumes:
       # DB
       - ${DATA_PATH}/mongo/data/db:/data/db
@@ -58,7 +56,6 @@ services:
 #      - .env
 #    environment:
 #      RUN_TESTS: ${RUN_TESTS}
-#    hostname: test-compose
 #    networks:
 #      mt:
 #        ipv4_address: ${IP_TEST_COMPOSE}
@@ -107,7 +104,6 @@ services:
 
   rabbitmq:
     image: rabbitmq:management
-    hostname: rabbitmq
     restart: always
     volumes:
       - ${DATA_PATH}/rabbitmq/var/lib/rabbitmq/mnesia:/var/lib/rabbitmq/mnesia
