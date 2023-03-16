@@ -13,7 +13,8 @@ require("core-js");
 const
   assert = require('assert'),
   fs=require('fs'),
-  availableDNS = process.env.IP_DNS_RESOLVER ? process.env.IP_DNS_RESOLVER.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [ "94.142.137.100", "94.142.136.100" ],
+  // availableDNS = process.env.IP_DNS_RESOLVER ? process.env.IP_DNS_RESOLVER.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [ "94.142.137.100", "94.142.136.100" ],
+  availableDNS = [ "dns" ],
   testCasesCheckPreparation = [
     {
       src: __dirname + "/../../test-letters/ham-spf-rebus3d.ru.eml",

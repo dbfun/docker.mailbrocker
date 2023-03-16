@@ -18,7 +18,8 @@ const
     mailFrom: process.env.EXIM_MAIL_FROM,
     replyMtaLettersAll: process.env.API_REPLY_MTA_REPORT_ALL === "on",
     replyMtaLettersTo: process.env.API_REPLY_MTA_REPORT_TO ? process.env.API_REPLY_MTA_REPORT_TO.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [],
-    DNSresolver: process.env.IP_DNS_RESOLVER ? process.env.IP_DNS_RESOLVER.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [ "10.1.0.105" ],
+    // DNSresolver: process.env.IP_DNS_RESOLVER ? process.env.IP_DNS_RESOLVER.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [ "10.1.0.105" ],
+    DNSresolver: [ "dns" ],
     workerCheckAllNum: process.env.API_WORKER_CHECK_ALL_NUM ? parseInt(process.env.API_WORKER_CHECK_ALL_NUM) : 2,
     spamassassin: {
       port: process.env.PORT_SPAMASSASSIN,

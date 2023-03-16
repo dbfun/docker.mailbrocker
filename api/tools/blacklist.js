@@ -2,7 +2,8 @@
 
 const
   assert = require("assert"),
-  availableDNS = process.env.IP_DNS_RESOLVER ? process.env.IP_DNS_RESOLVER.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [ "94.142.137.100", "94.142.136.100" ],
+  // availableDNS = process.env.IP_DNS_RESOLVER ? process.env.IP_DNS_RESOLVER.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [ "94.142.137.100", "94.142.136.100" ],
+  availableDNS = [ "dns" ],
   blacklistDomains = require('../lib/Blacklist/dnsbl-domains'),
   { Blacklist } = require('../lib/Blacklist'),
   blacklist = new Blacklist(availableDNS, blacklistDomains),
