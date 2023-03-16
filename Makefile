@@ -106,5 +106,6 @@ dns-cache:
 
 # Shows mail count
 .PHONY: mail-stats
-mail-count:
-	@echo Num mails: `docker-compose exec mongo mongo mailtester --quiet --eval 'db.mails.count({});'`
+mail-stats:
+	@echo Num mails:
+	@echo `docker-compose exec mongo mongosh mailtester --quiet --eval 'db.mails.countDocuments({});'`
