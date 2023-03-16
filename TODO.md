@@ -1,3 +1,16 @@
+# GitLab integration
+
+[ ] Поправить docker-compose.yml
+[ ] Продублировать настройки из .env в GitLab variables
+[ ] Развернуть CI/CD (.gitlab-ci.yml)
+[ ] Каталог /ssl содержит сертификаты для DKIM - это нужно включить в CI/CD или придумать другое решение
+[ ] Каталог /config - собирать в CI/CD
+[ ] Обновить npm-пакеты
+[ ] Обновить документацию
+[ ] Переименовать названия в mailbroker
+
+# Old TODO
+
 [ ] `lastMtaIP` bad works with `ham-green-concert.eml` (127.0.0.1)
 [ ] Check Spamassassin and others waiting for the whole letter (with headers) or only "body"
 [ ] mail.ru reject spam letters, see below. How about use it?
