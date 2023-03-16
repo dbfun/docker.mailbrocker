@@ -12,7 +12,6 @@ RUN apk add curl swaks perl-net-dns perl-net-ssleay bash jq bind-tools spamassas
     cp /usr/share/zoneinfo/$TZ /etc/localtime && \
     echo "$TZ" >  /etc/timezone
 
-ADD . /srv
 WORKDIR /srv
 
 CMD "./test.sh"

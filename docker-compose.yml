@@ -40,29 +40,23 @@ services:
     depends_on:
       - dns
 
-#  test-compose:
-#    build: ./test-compose
-#    volumes:
-#      # dev volumes for hot reload
-#      - ./test-compose:/srv/
-#      # test letters
-#      - ./test-letters:/srv/test-letters
-#      # volume for store DKIM keys
-#      - ./ssl/dkim:/etc/ssl/certs/dkim
-#      # configs
-#      - ./config/checkdelivery-mails.json:/etc/checkdelivery-mails.json
-#      - ./config/dnsbl-domains.json:/etc/dnsbl-domains.json
-#    env_file:
-#      - .env
-#    environment:
-#      RUN_TESTS: ${RUN_TESTS}
-#    networks:
-#      mt:
-#        ipv4_address: ${IP_TEST_COMPOSE}
-#    dns: ${IP_DNS_RESOLVER}
-#    depends_on:
-#      - api
-#      - dns
+  workspace:
+    build:
+      dockerfile: ./docker/workspace/Dockerfile
+      context: .
+    volumes:
+      # dev volumes for hot reload
+      - ./workspace:/srv/
+      # test letters
+      - ./test-letters:/srv/test-letters
+      # configs
+      - ./config/checkdelivery-mails.json:/etc/checkdelivery-mails.json
+      - ./config/dnsbl-domains.json:/etc/dnsbl-domains.json
+    env_file:
+      - .env
+    depends_on:
+      - api
+      - dns
 
   dns:
     build:
