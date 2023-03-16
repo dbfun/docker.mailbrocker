@@ -1,89 +1,89 @@
 version: '3'
+
 services:
+
   exim:
-    build: ./exim
+    build:
+      dockerfile: ./docker/exim/Dockerfile
+      context: .
     volumes:
       # volume for store DKIM keys
-      - ./ssl/dkim:/etc/ssl/certs/dkim
+      - ${DATA_PATH}/exim/etc/ssl/certs/dkim:/etc/ssl/certs/dkim
       # mails
-      - ./var/exim/spool:/var/spool
-      - ./var/exim/mail:/var/mail
+      - ${DATA_PATH}/exim/var/spool:/var/spool
+      - ${DATA_PATH}/exim/var/mail:/var/mail
     ports:
-      - ${PORT_EXIM}:${PORT_EXIM}
+      - "25:25"
     env_file:
       - .env
     restart: always
     hostname: ${EXIM_DOMAIN}
-    networks:
-      mt:
-        ipv4_address: ${IP_EXIM}
-    dns: ${IP_DNS_RESOLVER}
+    # TODO для контейнеров - использовать DNS от docker, а для Exim - DNS контейнера dns, посмотреть как можно это сделать
+#    dns: ${IP_DNS_RESOLVER}
     depends_on:
       - dns
+
   spamassassin:
-    build: ./spamassassin
+    build:
+      dockerfile: ./docker/spamassassin/Dockerfile
+      context: .
     env_file:
       - .env
     hostname: spamassassin
-    networks:
-      mt:
-        ipv4_address: ${IP_SPAMASSASSIN}
-    dns: ${IP_DNS_RESOLVER}
     depends_on:
       - dns
+
   mongo:
     image: mongo
     hostname: mongo
-    networks:
-      mt:
-        ipv4_address: ${IP_MONGO}
-    dns: ${IP_DNS_RESOLVER}
     volumes:
       # DB
-      - ./var/mongo:/data/db
+      - ${DATA_PATH}/mongo/data/db:/data/db
     depends_on:
       - dns
-  test-compose:
-    build: ./test-compose
-    volumes:
-      # dev volumes for hot reload
-      - ./test-compose:/srv/
-      # test letters
-      - ./test-letters:/srv/test-letters
-      # volume for store DKIM keys
-      - ./ssl/dkim:/etc/ssl/certs/dkim
-      # configs
-      - ./config/checkdelivery-mails.json:/etc/checkdelivery-mails.json
-      - ./config/dnsbl-domains.json:/etc/dnsbl-domains.json
-    env_file:
-      - .env
-    environment:
-      RUN_TESTS: ${RUN_TESTS}
-    hostname: test-compose
-    networks:
-      mt:
-        ipv4_address: ${IP_TEST_COMPOSE}
-    dns: ${IP_DNS_RESOLVER}
-    depends_on:
-      - api
-      - dns
+
+#  test-compose:
+#    build: ./test-compose
+#    volumes:
+#      # dev volumes for hot reload
+#      - ./test-compose:/srv/
+#      # test letters
+#      - ./test-letters:/srv/test-letters
+#      # volume for store DKIM keys
+#      - ./ssl/dkim:/etc/ssl/certs/dkim
+#      # configs
+#      - ./config/checkdelivery-mails.json:/etc/checkdelivery-mails.json
+#      - ./config/dnsbl-domains.json:/etc/dnsbl-domains.json
+#    env_file:
+#      - .env
+#    environment:
+#      RUN_TESTS: ${RUN_TESTS}
+#    hostname: test-compose
+#    networks:
+#      mt:
+#        ipv4_address: ${IP_TEST_COMPOSE}
+#    dns: ${IP_DNS_RESOLVER}
+#    depends_on:
+#      - api
+#      - dns
+
   dns:
-    build: ./dns
+    build:
+      dockerfile: ./docker/dns/Dockerfile
+      context: .
     env_file:
       - .env
     restart: always
-    hostname: dns
-    networks:
-      mt:
-        ipv4_address: ${IP_DNS_RESOLVER}
+
   api:
-    build: ./api
+    build:
+      dockerfile: ./docker/api/Dockerfile
+      context: .
     volumes:
+      # TODO собирать на этапе CI/CD
       # configs
       - ./config/checkdelivery-mails.json:/srv/lib/Checkdelivery/checkdelivery-mails.json
       - ./config/dnsbl-domains.json:/srv/lib/Blacklist/dnsbl-domains.json
-      # SSL certificate
-      - ./ssl/api/node.pem:/etc/ssl/certs/node.pem
       # dev volumes for hot reload
       - ./api/index.js:/srv/index.js
       - ./api/worker.js:/srv/worker.js
@@ -97,12 +97,7 @@ services:
       - .env
     restart: always
     ports:
-      - ${PORT_API}:${PORT_API}
-    hostname: api
-    networks:
-      mt:
-        ipv4_address: ${IP_API}
-    dns: ${IP_DNS_RESOLVER}
+      - 443:80
     depends_on:
       - dns
       - mongo
@@ -114,20 +109,8 @@ services:
     image: rabbitmq:management
     hostname: rabbitmq
     restart: always
-    networks:
-      mt:
-        ipv4_address: ${IP_RABBIT_MQ}
-    ports:
-      - ${PORT_RABBIT_MQ_HTTP}:15672
     volumes:
-      - ./var/rabbitmq-mnesia/:/var/lib/rabbitmq/mnesia
+      - ${DATA_PATH}/rabbitmq/var/lib/rabbitmq/mnesia:/var/lib/rabbitmq/mnesia
     env_file:
       - .env
 
-networks:
-  mt:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: ${IP_SUBNET}

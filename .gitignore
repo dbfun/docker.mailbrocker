@@ -1,5 +1,4 @@
-/config
-/ssl
+/.idea/
+/config/
 /.env
-/var
 node_modules
