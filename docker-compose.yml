@@ -47,8 +47,6 @@ services:
     volumes:
       # dev volumes for hot reload
       - ./workspace:/srv/
-      # test letters
-      - ./test-letters:/srv/test-letters
       # configs
       - ./config/checkdelivery-mails.json:/etc/checkdelivery-mails.json
       - ./config/dnsbl-domains.json:/etc/dnsbl-domains.json
@@ -83,7 +81,7 @@ services:
       - ./api/tools:/srv/tools
       - ./api/test:/srv/test
       # test letters
-      - ./test-letters:/test-letters
+      - ./workspace/test-letters:/test-letters
     env_file:
       - .env
     restart: always
