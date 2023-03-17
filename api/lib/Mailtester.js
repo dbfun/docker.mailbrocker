@@ -66,7 +66,7 @@ class Mailtester {
     if(!this.ObjectId) throw new Error("No ObjectId specified");
 
     let collectionMails = Registry.get('mongo').collection('mails');
-    this.doc = await collectionMails.findOne({_id: ObjectId(this.ObjectId)});
+    this.doc = await collectionMails.findOne({_id: this.ObjectId});
     assert.notEqual(this.doc, null, "Mail not found");
   }
 
@@ -131,11 +131,11 @@ class Mailtester {
   }
 
   generateObjectId() {
-    return ObjectId().valueOf();
+    return new ObjectId;
   }
 
   validateObjectId(_ObjectId) {
-    ObjectId(_ObjectId);
+    return _ObjectId instanceof ObjectId;
   }
 
   getMailObjectId(to) {
@@ -167,7 +167,7 @@ class Mailtester {
     this.doc._ObjectId = this.ObjectId;
     return collectionMails.replaceOne(
       {
-        _id: ObjectId(this.ObjectId)
+        _id: this.ObjectId
       },
       this.doc,
       {
