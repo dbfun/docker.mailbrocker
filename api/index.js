@@ -43,8 +43,15 @@ class Api extends App {
   }
 
   async initMongo() {
-    await this.mongo.createCollection("mails");
-    await this.mongo.collection("mailblocker").createIndex( { "email": 1 }, { unique: true } );
+    let collections = await this.mongo.listCollections({}, {nameOnly: true}).toArray();
+
+    if(!collections.find(o => o.name === "mails")) {
+      await this.mongo.createCollection("mails");
+    }
+
+    if(!collections.find(o => o.name === "mailblocker")) {
+      await this.mongo.collection("mailblocker").createIndex( { "email": 1 }, { unique: true } );
+    }
   }
 
   async clearMongo() {

@@ -34,7 +34,7 @@ class ProcessCheckdelivery {
     return new Promise((resolve, reject) => {
       mongodb.MongoClient.connect(mongoConfig.uri, {
           useNewUrlParser: true,
-          keepAlive: 1,
+          keepAlive: true,
           connectTimeoutMS: 5000
         }, (err, db) => {
         assert.equal(null, err);

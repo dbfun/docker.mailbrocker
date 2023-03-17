@@ -30,10 +30,10 @@ reload-exim:
 	@docker-compose exec exim sh -c 'kill -HUP `cat /run/exim.pid`'
 
 reload-api:
-	@docker-compose exec api sh -c 'pm2 restart all'
+	@docker-compose exec api pm2 restart all
 
 reload-dns:
-	@docker-compose exec dns sh -c 'unbound-control reload'
+	@docker-compose exec dns unbound-control reload
 
 #################################
 # Test and debug

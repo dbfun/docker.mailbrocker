@@ -12,22 +12,12 @@ class App {
   }
 
   async connectMongo() {
-    const
-      mongodb = require("mongodb"),
-      MongoClient = mongodb.MongoClient
-      ;
+    const { MongoClient } = require('mongodb');
 
-    return new Promise((resolve, reject) => {
-      MongoClient.connect(this.config.mongo.uri, {
-          useNewUrlParser: true,
-          keepAlive: 1,
-          connectTimeoutMS: 5000
-        }, (err, db) => {
-        assert.equal(null, err);
-        this.mongo = db.db(this.config.mongo.db);
-        resolve();
-      });
-    });
+    const client = new MongoClient(this.config.mongo.uri);
+    await client.connect();
+
+    this.mongo = client.db(this.config.mongo.db);
   }
 
   async connectRabbitMQ() {
