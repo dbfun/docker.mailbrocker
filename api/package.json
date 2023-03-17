@@ -13,18 +13,18 @@
     "url": "git://github.com/dbfun/docker.mailtester.git"
   },
   "dependencies": {
-    "amqplib": "^0.5.5",
-    "core-js": "^3.1.4",
-    "express": "^4.17.1",
-    "handlebars": "^4.5.3",
-    "imap-simple": "^4.3.0",
-    "lodash": "^4.17.15",
-    "mailparser": "^2.7.1",
-    "mongodb": "^3.3.0-beta2",
-    "nodemailer": "^6.3.1",
+    "amqplib": "^0.10.3",
+    "core-js": "^3.29.1",
+    "express": "^4.18.2",
+    "handlebars": "^4.7.7",
+    "imap-simple": "^5.1.0",
+    "lodash": "^4.17.21",
+    "mailparser": "^3.6.4",
+    "mongodb": "^5.1.0",
+    "nodemailer": "^6.9.1",
     "sha1": "^1.1.1",
     "text-table": "^0.2.0",
-    "url-parse": "^1.4.7",
-    "yaml": "^1.6.0"
+    "url-parse": "^1.5.10",
+    "yaml": "^2.2.1"
   }
 }
