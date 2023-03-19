@@ -43,14 +43,18 @@ class Api extends App {
   }
 
   async initMongo() {
+    console.log('Init mongo...');
+
     let collections = await this.mongo.listCollections({}, {nameOnly: true}).toArray();
 
     if(!collections.find(o => o.name === "mails")) {
       await this.mongo.createCollection("mails");
+      console.log('Collection "mails" created');
     }
 
     if(!collections.find(o => o.name === "mailblocker")) {
       await this.mongo.collection("mailblocker").createIndex( { "email": 1 }, { unique: true } );
+      console.log('Collection "mailblocker" created');
     }
   }
 
@@ -251,7 +255,7 @@ class Api extends App {
         let ObjecId = req.params[0];
         let select = req.params[2];
 
-        let mailtester = new Mailtester({ availableDNS: this.config.DNSresolver });
+        let mailtester = new Mailtester({});
         try {
           await mailtester.load(ObjecId);
         } catch (err) {

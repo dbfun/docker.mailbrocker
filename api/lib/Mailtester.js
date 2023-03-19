@@ -66,7 +66,7 @@ class Mailtester {
     if(!this.ObjectId) throw new Error("No ObjectId specified");
 
     let collectionMails = Registry.get('mongo').collection('mails');
-    this.doc = await collectionMails.findOne({_id: this.ObjectId});
+    this.doc = await collectionMails.findOne({_id: new ObjectId(this.ObjectId)});
     assert.notEqual(this.doc, null, "Mail not found");
   }
 
@@ -206,6 +206,8 @@ class Mailtester {
           tests.push(this.checkRazor(isSaveResults));
           break;
         case "checkdelivery":
+          break;
+          // TODO Эта часть работает не стабильно
           let checkdeliverySender = new CheckdeliverySender(this.config.checkdeliveryConfig);
           tests.push(checkdeliverySender.sendAll(this.ObjectId, this.doc.raw));
           break;
@@ -281,6 +283,7 @@ class Mailtester {
   }
 
   async saveResults(section, data) {
+    console.log(`Saving results for ${section}`);
     if(!this.ObjectId) throw new Error("No ObjectId specified");
     let collectionMails = Registry.get('mongo').collection('mails');
     let update = {};
@@ -290,7 +293,7 @@ class Mailtester {
 
     return collectionMails.updateOne(
       {
-        _id: ObjectId(this.ObjectId)
+        _id: new ObjectId(this.ObjectId)
       },
       {
         $set: update,
@@ -316,7 +319,7 @@ class Mailtester {
     };
     return collectionMails.updateOne(
       {
-        _id: ObjectId(this.ObjectId)
+        _id: new ObjectId(this.ObjectId)
       },
       {
         $set: update

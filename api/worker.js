@@ -8,6 +8,7 @@ const
   { Report } = require("./lib/Report"),
   security = new(require("./lib/Security").Security)(process.env.SECURITY_SALT),
   { Mailtester } = require("./lib/Mailtester"),
+  { DockerDns } = require("./lib/DockerDns"),
   config = {
     apiDomain: process.env.API_DOMAIN,
     apiDomainProtocol: process.env.API_DOMAIN_PROTOCOL,
@@ -18,8 +19,7 @@ const
     mailFrom: process.env.EXIM_MAIL_FROM,
     replyMtaLettersAll: process.env.API_REPLY_MTA_REPORT_ALL === "on",
     replyMtaLettersTo: process.env.API_REPLY_MTA_REPORT_TO ? process.env.API_REPLY_MTA_REPORT_TO.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [],
-    // DNSresolver: process.env.IP_DNS_RESOLVER ? process.env.IP_DNS_RESOLVER.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [ "10.1.0.105" ],
-    DNSresolver: [ "dns" ],
+    DNSresolver: [],
     workerCheckAllNum: process.env.API_WORKER_CHECK_ALL_NUM ? parseInt(process.env.API_WORKER_CHECK_ALL_NUM) : 2,
     spamassassin: {
       port: 783,
@@ -64,11 +64,17 @@ class Worker extends App {
 
   async run() {
     this.amqpChannel.prefetch(this.config.workerCheckAllNum);
+
+    let internalDnsResolver = await DockerDns.resolve();
+    console.log(`Use internal DNS resolver: ${internalDnsResolver.join(', ')}`);
+    this.config.DNSresolver = internalDnsResolver;
+
     await this.amqpChannel.consume("checkAll", this.checkAll.bind(this), { noAck: false });
     console.log("Worker is started");
   }
 
   async checkAll(msg) {
+    console.log('Worker: checkAll...');
     let params = JSON.parse(msg.content.toString());
 
     try {
