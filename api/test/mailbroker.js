@@ -13,11 +13,9 @@ require("core-js");
 const
   assert = require('assert'),
   fs=require('fs'),
-  // availableDNS = process.env.IP_DNS_RESOLVER ? process.env.IP_DNS_RESOLVER.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [ "94.142.137.100", "94.142.136.100" ],
-  availableDNS = [ "dns" ],
   testCasesCheckPreparation = [
     {
-      src: __dirname + "/../../test-letters/ham-spf-rebus3d.ru.eml",
+      src: __dirname + "/../test-letters/ham-spf-rebus3d.ru.eml",
       expect: {
         ObjecId: "5cc8161582cd8ed026085eb1",
         from: "noreply@rebus3d.ru",
@@ -66,7 +64,7 @@ const
       }
     },
     {
-      src: __dirname + "/../../test-letters/ham-speed24.ru.eml",
+      src: __dirname + "/../test-letters/ham-speed24.ru.eml",
       expect: {
         ObjecId: "5d443c9882cd8e56734b18e9",
         from: "start@speed24.ru",
@@ -107,7 +105,7 @@ const
       }
     },
     {
-      src: __dirname + "/../../test-letters/ham-stepic.org.eml",
+      src: __dirname + "/../test-letters/ham-stepic.org.eml",
       expect: {
         ObjecId: "5cc8161582cd8ed026085eb1",
         from: "noreply@stepik.org",
@@ -155,7 +153,7 @@ const
       }
     },
     {
-      src: __dirname + "/../../test-letters/spam-GTUBE.eml",
+      src: __dirname + "/../test-letters/spam-GTUBE.eml",
       expect: {
         ObjecId: "5cc8161582cd8ed026085eb2",
         from: null,
@@ -200,7 +198,7 @@ const
       }
     },
     {
-      src: __dirname + "/../../test-letters/spam-JakobFichtl.eml",
+      src: __dirname + "/../test-letters/spam-JakobFichtl.eml",
       expect: {
         ObjecId: "5b18b1a182cd8eb11af1873d",
         from: "noreply@guide-des-vins-de-bourgogne.fr",
@@ -247,7 +245,7 @@ const
       }
     }
   ]
-;
+;const {DockerDns} = require("../lib/DockerDns");
 
 
 describe('mailbroker', () => {
@@ -255,8 +253,9 @@ describe('mailbroker', () => {
   const
     { Mailbroker } = require('../lib/Mailbroker');
 
-  describe('check', function() {
+  describe('check', async function() {
     this.timeout(15000);
+    const availableDNS = await DockerDns.resolve();
 
     let tests = [ "spf", "dkim", "blacklist", "pyzor", "razor" ];
     for(let testName of tests) {
