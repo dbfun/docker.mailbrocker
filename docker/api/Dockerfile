@@ -75,7 +75,7 @@ ADD ./api /srv
 
 RUN mv /tmp/node_modules /srv
 
-HEALTHCHECK --interval=5s --timeout=1s --start-period=5s CMD ./docker-healthcheck.sh || exit 1
+HEALTHCHECK --interval=15s --timeout=3s --start-period=15s CMD ./docker-healthcheck.sh || exit 1
 
 CMD [ "pm2-runtime", "start", "ecosystem.config.js" ]
 

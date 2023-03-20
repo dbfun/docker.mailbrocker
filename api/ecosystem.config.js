@@ -4,10 +4,10 @@ const
 let apps = [
   {
     name: 'API',
-    script: 'index.js',
+    script: 'api.js',
     instances: 1,
     autorestart: true,
-    watch: [ "index.js", "lib" ],
+    watch: [ "api.js", "lib" ],
     max_memory_restart: '512M'
   },
   {
