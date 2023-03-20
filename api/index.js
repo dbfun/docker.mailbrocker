@@ -99,7 +99,7 @@ class Api extends App {
       express = require("express"),
       bodyParser = require("body-parser"),
       api = express(),
-      { Mailtester } = require("./lib/Mailtester"),
+      { Mailbroker } = require("./lib/Mailbroker"),
       { Mailblocker } = require("./lib/Mailblocker")
       ;
 
@@ -120,15 +120,15 @@ class Api extends App {
     */
     api.post("/mailerdaemon", async (req, res, next) => {
       try {
-        let mailtester = new Mailtester({});
-        await mailtester.makeFromRaw(req.body);
+        let mailbroker = new Mailbroker({});
+        await mailbroker.makeFromRaw(req.body);
 
         let failedRecipients;
         try {
-          failedRecipients = mailtester.findHeader(mailtester.parsed.headerLines, "x-failed-recipients").line;
+          failedRecipients = mailbroker.findHeader(mailbroker.parsed.headerLines, "x-failed-recipients").line;
         } catch (e) { }
 
-        let msg = `API: Exim Mailer-Daemon report. Subj: ${mailtester.doc.subject}`;
+        let msg = `API: Exim Mailer-Daemon report. Subj: ${mailbroker.doc.subject}`;
         if(failedRecipients) {
           msg += `. Headers: ${failedRecipients}`;
         }
@@ -169,10 +169,10 @@ class Api extends App {
       // res.send(JSON.stringify({result: "ok"})); return;  // Ok short case
 
       try {
-        let mailtester = new Mailtester({});
-        await mailtester.makeFromRaw(req.body);
+        let mailbroker = new Mailbroker({});
+        await mailbroker.makeFromRaw(req.body);
 
-        let mailFrom = mailtester.getFieldFrom();
+        let mailFrom = mailbroker.getFieldFrom();
 
         let mailblocker = new Mailblocker;
         let doc = await mailblocker.get(mailFrom);
@@ -184,8 +184,8 @@ class Api extends App {
         }
 
         let mode = req.query.mode ? req.query.mode : "MTA";
-        let mailTo = mailtester.getFieldTo();
-        let mailToUsername = mailtester.getFieldToUsername();
+        let mailTo = mailbroker.getFieldTo();
+        let mailToUsername = mailbroker.getFieldToUsername();
         let ObjectId = null;
 
         if(["MTA", "new", "set"].indexOf(mode) === -1) {
@@ -197,7 +197,7 @@ class Api extends App {
             ObjectId = req.query.ObjectId;
             break;
           case "new":
-            ObjectId = mailtester.generateObjectId();
+            ObjectId = mailbroker.generateObjectId();
             break;
           case "MTA":
             if(this.config.mailFrom.toLowerCase() === mailTo.toLowerCase()) {
@@ -207,13 +207,13 @@ class Api extends App {
               return;
             }
 
-            ObjectId = mailtester.getMailObjectId(mailtester.getFieldTo());
+            ObjectId = mailbroker.getMailObjectId(mailbroker.getFieldTo());
             if(ObjectId === null) {
               if(this.config.catchMtaLettersAll) {
-                ObjectId = mailtester.generateObjectId();
+                ObjectId = mailbroker.generateObjectId();
                 console.log(`API: mail catched from MTA with this.config.catchMtaLettersAll option; TO: "${mailTo}"`);
               } else if(this.config.catchMtaLettersTo.indexOf(mailToUsername) !== -1) {
-                ObjectId = mailtester.generateObjectId();
+                ObjectId = mailbroker.generateObjectId();
                 console.log(`API: mail catched from MTA with username ${mailToUsername} and this.config.catchMtaLettersTo option: ${this.config.catchMtaLettersTo}; TO: "${mailTo}"`);
               } else {
                 let msg = `API: mail rejected in MTA mode: wrong fied TO: "${mailTo}". Use MongoDB ObjectId as user name`;
@@ -226,17 +226,17 @@ class Api extends App {
         }
 
         try {
-          mailtester.validateObjectId(ObjectId);
+          mailbroker.validateObjectId(ObjectId);
         } catch (e) {
           res.status(403).send(JSON.stringify({result: "fail", reason: "Wrong ObjectId"}));
           return;
         }
 
-        mailtester.setObjectId(ObjectId);
+        mailbroker.setObjectId(ObjectId);
 
         // Save mail and report about this
-        await mailtester.saveRaw();
-        let ret = {result: "ok", ObjecId: mailtester.getObjectId()};
+        await mailbroker.saveRaw();
+        let ret = {result: "ok", ObjecId: mailbroker.getObjectId()};
 
         await this.addMailToQueue({ObjecId: ret.ObjecId, mode});
 
@@ -255,19 +255,19 @@ class Api extends App {
         let ObjecId = req.params[0];
         let select = req.params[2];
 
-        let mailtester = new Mailtester({});
+        let mailbroker = new Mailbroker({});
         try {
-          await mailtester.load(ObjecId);
+          await mailbroker.load(ObjecId);
         } catch (err) {
           res.status(404).send(JSON.stringify({ error: err.message ? err.message : "Not found" }));
           return;
         }
         if(select === "raw") {
           res.setHeader("Content-Type", "text/plain");
-          res.send(mailtester.doc.raw);
+          res.send(mailbroker.doc.raw);
           return;
         }
-        res.send(JSON.stringify(select ? mailtester.doc[select] : mailtester.doc));
+        res.send(JSON.stringify(select ? mailbroker.doc[select] : mailbroker.doc));
 
       } catch (err) {
         next(err);

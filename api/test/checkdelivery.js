@@ -67,8 +67,8 @@ describe("checkdelivery", function() {
       console.log(data);
       assert.ok(true);
     }).catch(e => {
-      assert.ok(false, `Results not obtained. Note: do you have mails with "X-mailtester" header? No? Then run this:
-      swaks --to ${firstMailbox.email} --from junk@gmail.com --add-header "Subject: Test _id: ${ObjectId}" --add-header "X-Mailtester: ${ObjectId}"
+      assert.ok(false, `Results not obtained. Note: do you have mails with "X-mailbroker" header? No? Then run this:
+      swaks --to ${firstMailbox.email} --from junk@gmail.com --add-header "Subject: Test _id: ${ObjectId}" --add-header "X-Mailbroker: ${ObjectId}"
       OR
       make swaks-checkdelivery
       `);

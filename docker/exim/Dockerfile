@@ -16,7 +16,7 @@ ENV EXIM_DOMAIN=your-domain.com \
     PORT_EXIM=25 \
     EXIM_MAIL_USER=noreply \
     EXIM_MAIL_PASS=exim_mail_password \
-    EXIM_DKIM_SELECTOR=mailtester \
+    EXIM_DKIM_SELECTOR=mailbroker \
     EXIM_MAX_PARALLEL=2 \
     TZ=Europe/Moscow
 

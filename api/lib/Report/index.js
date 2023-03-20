@@ -8,8 +8,8 @@ const
 
 class Report {
 
-  constructor(mailtester, security) {
-    this.mailtester = mailtester;
+  constructor(mailbroker, security) {
+    this.mailbroker = mailbroker;
     this.security = security;
   }
 
@@ -128,7 +128,7 @@ To unsubscribe from any emails click here: {{{unsubscribe doc._ObjectId}}}
     });
 
     let template = Handlebars.compile(source);
-    let result = template(this.mailtester).trim();
+    let result = template(this.mailbroker).trim();
     return result;
   }
 

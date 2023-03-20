@@ -165,7 +165,7 @@ class CheckdeliveryWatcher {
         let headers = o.parts.filter((o) => {
           return o.which === "HEADER";
         });
-        let _id = headers[0].body["x-mailtester"]
+        let _id = headers[0].body["x-mailbroker"]
         if(!_id) return;
         if(!this.checkedLetters.byObjectId.hasOwnProperty(_id)) {
           this.checkedLetters.byObjectId[_id] = {

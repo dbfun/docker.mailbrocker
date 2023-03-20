@@ -4,8 +4,8 @@ ADD http://deb.debian.org/debian/pool/main/libm/libmail-dkim-perl/libmail-dkim-p
 
 ENV API_INCOMING_MAIL_MAX_SIZE=5mb \
     SPAMASSASSIN_MAX_MSG_SIZE=5000000 \
-    MONGO_URI=mongodb://mongo:27017/mailtester \
-    MONGO_DB=mailtester \
+    MONGO_URI=mongodb://mongo:27017/mailbroker \
+    MONGO_DB=mailbroker \
     API_MAX_MAIL_COUNT=2000 \
     API_CATCH_MTA_ALL=off \
     API_CATCH_MTA_TO=all,any,reply,autoreply \

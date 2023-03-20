@@ -1,7 +1,7 @@
 {
-  "name": "mailtester-api",
+  "name": "mailbroker-api",
   "version": "1.0.0",
-  "description": "API for mailtester",
+  "description": "API for mailbroker",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
@@ -10,7 +10,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git://github.com/dbfun/docker.mailtester.git"
+    "url": "git://github.com/dbfun/docker.mailbrocker.git"
   },
   "dependencies": {
     "amqplib": "^0.10.3",

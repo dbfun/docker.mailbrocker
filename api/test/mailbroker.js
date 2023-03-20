@@ -3,8 +3,8 @@
 @see https://nodejs.org/api/assert.html
 
 run one case bundle:
-  mocha test/mailtester.js -g "pyzor"
-  mocha test/mailtester.js -g "case 0"
+  mocha test/mailbroker.js -g "pyzor"
+  mocha test/mailbroker.js -g "case 0"
 */
 "use strict";
 
@@ -250,10 +250,10 @@ const
 ;
 
 
-describe('mailtester', () => {
+describe('mailbroker', () => {
 
   const
-    { Mailtester } = require('../lib/Mailtester');
+    { Mailbroker } = require('../lib/Mailbroker');
 
   describe('check', function() {
     this.timeout(15000);
@@ -271,7 +271,7 @@ describe('mailtester', () => {
 
             /*
             // TODO: "dmarc"
-            let dmarc = mailtester.getResults('dmarc');
+            let dmarc = mailbroker.getResults('dmarc');
             assert.deepStrictEqual(dmarc.test, testCase.expect.dmarc);
             */
 
@@ -279,48 +279,48 @@ describe('mailtester', () => {
 
 
 
-            let mailtester = new Mailtester({ availableDNS: availableDNS, availableTests: availableTests });
-            await mailtester.makeFromRaw(raw);
+            let mailbroker = new Mailbroker({ availableDNS: availableDNS, availableTests: availableTests });
+            await mailbroker.makeFromRaw(raw);
 
-            let ObjectId = mailtester.getMailObjectId(mailtester.getFieldTo());
+            let ObjectId = mailbroker.getMailObjectId(mailbroker.getFieldTo());
             assert.doesNotThrow(() => {
-              mailtester.validateObjectId(ObjectId);
+              mailbroker.validateObjectId(ObjectId);
             });
 
-            mailtester.setObjectId(ObjectId);
+            mailbroker.setObjectId(ObjectId);
 
-            assert.equal(mailtester.getObjectId(), testCase.expect.ObjecId);
-            assert.equal(mailtester.getFieldFrom(), testCase.expect.from);
-            assert.equal(mailtester.getFieldTo(), testCase.expect.to);
-            assert.equal(mailtester.getFieldLastMtaIP(), testCase.expect.lastMtaIP);
+            assert.equal(mailbroker.getObjectId(), testCase.expect.ObjecId);
+            assert.equal(mailbroker.getFieldFrom(), testCase.expect.from);
+            assert.equal(mailbroker.getFieldTo(), testCase.expect.to);
+            assert.equal(mailbroker.getFieldLastMtaIP(), testCase.expect.lastMtaIP);
 
-            await mailtester.checkAll(false);
+            await mailbroker.checkAll(false);
 
 
             if(availableTests.indexOf('spf') !== -1) {
-              let spf = mailtester.getResults('spf');
+              let spf = mailbroker.getResults('spf');
               assert.deepStrictEqual(spf.test, testCase.expect.spf);
             }
 
             if(availableTests.indexOf('dkim') !== -1) {
-              let dkim = mailtester.getResults('dkim');
+              let dkim = mailbroker.getResults('dkim');
               assert.deepStrictEqual(dkim.test, testCase.expect.dkim);
             }
 
             if(availableTests.indexOf('blacklist') !== -1) {
-              let blacklist = mailtester.getResults('blacklist');
+              let blacklist = mailbroker.getResults('blacklist');
               assert.deepStrictEqual(blacklist, testCase.expect.blacklist);
             }
 
             if(availableTests.indexOf('pyzor') !== -1) {
-              let pyzor = mailtester.getResults('pyzor');
+              let pyzor = mailbroker.getResults('pyzor');
               console.log(pyzor.test.Count);
               assert.ok(typeof pyzor.test.Count !== "undefined", "Count is undefined");
               assert.ok(pyzor.test.Count >= 0);
             }
 
             if(availableTests.indexOf('razor') !== -1) {
-              let razor = mailtester.getResults('razor');
+              let razor = mailbroker.getResults('razor');
               assert.equal(razor.test, testCase.expect.razor);
             }
 

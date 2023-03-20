@@ -10,7 +10,7 @@ PATCH?=0
 
 VERSION=$(MAJOR).$(MINOR).$(PATCH)
 
-APP_NAME="mailtester-api"
+APP_NAME="mailbroker-api"
 HUB_NAMESPACE="required"
 
 DOCKERFILE="./Dockerfile"

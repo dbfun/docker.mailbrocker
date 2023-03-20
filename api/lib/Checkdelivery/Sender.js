@@ -5,7 +5,7 @@ const
   ;
 /*
 
-cat email.eml | swaks -g --to test@gmail.com --header "X-Mailtester: 5df3e1bce7a84d14f2adf359" --from noreply@site.com --attach
+cat email.eml | swaks -g --to test@gmail.com --header "X-Mailbroker: 5df3e1bce7a84d14f2adf359" --from noreply@site.com --attach
 
 options order is important!
 
@@ -41,7 +41,7 @@ class CheckdeliverySender {
         "-g",
         "--to", emailTo,
         "--from", this.config.mailFrom,
-        "--header", `X-Mailtester: ${ObjectId}`,
+        "--header", `X-Mailbroker: ${ObjectId}`,
         "--header", `Message-Id: <${this.generateMessageId()}>`,
         "--header", `DKIM-Signature: `, // Exim will change it
         "--header", `From: ${this.config.mailFrom}`,

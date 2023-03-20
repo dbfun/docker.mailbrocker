@@ -37,7 +37,7 @@ check for DNS servers if you got this error:
   }
 */
 
-class Mailtester {
+class Mailbroker {
 
   constructor(config) {
     this.config = {...defaultConfig, ...config};
@@ -332,4 +332,4 @@ class Mailtester {
 
 }
 
-module.exports.Mailtester = Mailtester;
+module.exports.Mailbroker = Mailbroker;

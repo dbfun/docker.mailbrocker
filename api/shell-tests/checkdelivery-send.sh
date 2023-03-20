@@ -15,7 +15,7 @@ TESTS_PASSED=1
 
 while read EMAIL; do
   start_case "Send letter for \"checkdelivery\" TO: $EMAIL"
-    RESP=`swaks --to ${EMAIL} --from junk@gmail.com --header "Subject: Test _id: ${ObjectId}" --header "X-Mailtester: ${ObjectId}" -tls`
+    RESP=`swaks --to ${EMAIL} --from junk@gmail.com --header "Subject: Test _id: ${ObjectId}" --header "X-Mailbroker: ${ObjectId}" -tls`
     assert_exit_ok "$?"
     assert "$RESP" '=== Connected to'
     assert "$RESP" '~> MAIL FROM:'

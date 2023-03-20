@@ -7,7 +7,7 @@ const
   sendmail = new (require("./lib/Sendmail").Sendmail),
   { Report } = require("./lib/Report"),
   security = new(require("./lib/Security").Security)(process.env.SECURITY_SALT),
-  { Mailtester } = require("./lib/Mailtester"),
+  { Mailbroker } = require("./lib/Mailbroker"),
   { DockerDns } = require("./lib/DockerDns"),
   config = {
     apiDomain: process.env.API_DOMAIN,
@@ -78,11 +78,11 @@ class Worker extends App {
     let params = JSON.parse(msg.content.toString());
 
     try {
-      let mailtester = new Mailtester({ availableDNS: this.config.DNSresolver, availableTests: this.config.apiAvailableTests, checkdeliveryConfig: this.config.checkdelivery });
-      await mailtester.load(params.ObjecId);
-      await mailtester.checkAll(true);
+      let mailbroker = new Mailbroker({ availableDNS: this.config.DNSresolver, availableTests: this.config.apiAvailableTests, checkdeliveryConfig: this.config.checkdelivery });
+      await mailbroker.load(params.ObjecId);
+      await mailbroker.checkAll(true);
       if(params.mode === "MTA") {
-        await this.autoReply(mailtester);
+        await this.autoReply(mailbroker);
       }
       console.error(`Worker: mail test complete ${params.ObjecId}`);
       this.amqpChannel.ack(msg);
@@ -93,23 +93,23 @@ class Worker extends App {
     }
   }
 
-  autoReply(mailtester) {
-    let fromEmail = mailtester.getFieldFrom();
+  autoReply(mailbroker) {
+    let fromEmail = mailbroker.getFieldFrom();
 
     if(this.config.replyMtaLettersAll) {
       console.log(`Worker: reply mail with spam report in MTA mode with this.config.replyMtaLettersAll option; TO: ${fromEmail}`);
-      return this.mailReport(mailtester, fromEmail);
+      return this.mailReport(mailbroker, fromEmail);
     }
 
-    if(this.config.replyMtaLettersTo.includes( mailtester.getFieldToUsername() )) {
+    if(this.config.replyMtaLettersTo.includes( mailbroker.getFieldToUsername() )) {
       console.log(`Worker: reply mail with spam report in MTA mode with this.config.replyMtaLettersTo option: ${this.config.replyMtaLettersTo}; TO: ${fromEmail}`);
-      return this.mailReport(mailtester, fromEmail);
+      return this.mailReport(mailbroker, fromEmail);
     }
   }
 
-  async mailReport(mailtester, mailTo) {
+  async mailReport(mailbroker, mailTo) {
     try {
-      let report = new Report(mailtester, security);
+      let report = new Report(mailbroker, security);
       let plain = report.mailPlain({ baseHref: this.config.apiBaseHref });
       let info = await sendmail.mail({
         from: this.config.mailFrom,
