@@ -51,12 +51,19 @@ docker-compose up
 For autotest run:
 
 ```sh
-make test-compose
+make test
 ```
 
 ## For developers
 
-Developers can use `make` utility for run (`make up`), test (`make test-compose`, `make test-unit-mocha`), debug (`make debug-compose`, `make dns-cache`) and stats (`make dns-stats`) purposes. See [Makefile](Makefile) for more information.
+Developers can use `make` utility for:
+
+* run (`make up`)
+* test (`make test-integration-bash`, `make test-unit-mocha`)
+* debug (`make workspace`, `make dns-cache`)
+* stats (`make dns-stats`).
+ 
+See [Makefile](Makefile) for more information.
 
 ## Project status
 
