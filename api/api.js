@@ -8,7 +8,6 @@ const
   config = {
     apiPort: 80,
     incomingMailMaxSize: process.env.API_INCOMING_MAIL_MAX_SIZE,
-    catchMtaLettersAll: process.env.API_CATCH_MTA_ALL === "on",
     catchMtaLettersTo: process.env.API_CATCH_MTA_TO ? process.env.API_CATCH_MTA_TO.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [],
     mailFrom: process.env.EXIM_MAIL_FROM,
     maxMailCount: parseInt(process.env.API_MAX_MAIL_COUNT),
@@ -154,7 +153,6 @@ class Api extends App {
       POST /checkmail
       POST /checkmail?mode=MTA
         => parse mail header "TO:" for ObjectId (default mode for MTA)
-        => if option `this.config.catchMtaLettersAll` checked, generate ObjectId
         => looks for a special address "TO:" (`this.config.catchMtaLettersTo`), generate ObjectId
         => otherwise reject mail saving (a letter is real spam from spammer)
       POST /checkmail?mode=new
@@ -209,10 +207,7 @@ class Api extends App {
 
             ObjectId = mailbroker.getMailObjectId(mailbroker.getFieldTo());
             if(ObjectId === null) {
-              if(this.config.catchMtaLettersAll) {
-                ObjectId = mailbroker.generateObjectId();
-                console.log(`API: mail catched from MTA with this.config.catchMtaLettersAll option; TO: "${mailTo}"`);
-              } else if(this.config.catchMtaLettersTo.indexOf(mailToUsername) !== -1) {
+              if(this.config.catchMtaLettersTo.indexOf(mailToUsername) !== -1) {
                 ObjectId = mailbroker.generateObjectId();
                 console.log(`API: mail catched from MTA with username ${mailToUsername} and this.config.catchMtaLettersTo option: ${this.config.catchMtaLettersTo}; TO: "${mailTo}"`);
               } else {

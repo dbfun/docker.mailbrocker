@@ -7,7 +7,6 @@ ENV \
     ADMIN_EMAIL=your-mail@gmail.com \
     API_PUBLIC_DNS=8.8.8.8 \
     API_AVAILABLE_TESTS=spamassassin,spf,spfcompare,dkim,dmarc,blacklist,pyzor,razor \
-    API_CATCH_MTA_ALL=off \
     API_CATCH_MTA_TO=all,any,reply,autoreply \
     API_REPLY_MTA_REPORT_ALL=off \
     API_REPLY_MTA_REPORT_TO=reply,autoreply \
