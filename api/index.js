@@ -13,8 +13,8 @@ const
     mailFrom: process.env.EXIM_MAIL_FROM,
     maxMailCount: parseInt(process.env.API_MAX_MAIL_COUNT),
     mongo: {
-      uri: process.env.MONGO_URI,
-      db: process.env.MONGO_DB,
+      uri: 'mongodb://mongo:27017/mailbroker',
+      db: 'mailbroker',
     },
     rabbitMQuri: `amqp://${process.env.RABBITMQ_DEFAULT_USER}:${process.env.RABBITMQ_DEFAULT_PASS}@rabbitmq/${process.env.RABBITMQ_DEFAULT_VHOST}?heartbeat=60`
   }

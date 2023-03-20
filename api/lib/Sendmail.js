@@ -5,7 +5,7 @@ const nodemailer = require('nodemailer');
 const mailTransport = nodemailer.createTransport({
   host: 'exim',
   secure: false,
-  port: process.env.PORT_EXIM,
+  port: process.env.EXIM_PORT,
   auth: { user: process.env.EXIM_MAIL_USER, pass: process.env.EXIM_MAIL_PASS },
   tls: { rejectUnauthorized: false }
 });

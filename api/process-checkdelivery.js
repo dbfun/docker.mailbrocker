@@ -5,8 +5,8 @@ const
   { CheckdeliveryWatcher } = require("./lib/Checkdelivery/Watcher.js"),
   mongodb = require('mongodb'),
   mongoConfig = {
-    uri: process.env.MONGO_URI,
-    db: process.env.MONGO_DB,
+    uri: 'mongodb://mongo:27017/mailbroker',
+    db: 'mailbroker',
   },
   mailboxes = require("./lib/Checkdelivery/checkdelivery-mails").mailboxes.filter((o) => {
     return o.active === true;

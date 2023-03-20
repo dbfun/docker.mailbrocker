@@ -1,4 +1,5 @@
 .dockerignore
+/.git
 /api/node_modules/
 /api/Dockerfile
 /api/Makefile

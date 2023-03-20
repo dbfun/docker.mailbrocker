@@ -11,7 +11,7 @@ source lib/case.sh
 TESTS_PASSED=1
 
 start_case "MTA: The message is for this server"
-RESP=`swaks --body @/srv/test-letters/spam-GTUBE.eml --to test@${EXIM_DOMAIN} --from "junk@wrong-domain-name.com" --port ${PORT_EXIM} -tls`
+RESP=`swaks --body @/srv/test-letters/spam-GTUBE.eml --to test@${EXIM_DOMAIN} --from "junk@wrong-domain-name.com" --port ${EXIM_PORT} -tls`
 assert "$RESP" '=== Connected to'
 assert "$RESP" '~> MAIL FROM:'
 assert "$RESP" '~> RCPT TO:'
@@ -21,7 +21,7 @@ assert "$RESP" '<~  250 OK id='
 end_case
 
 start_case "MTA: Trying to use this server as an open relay"
-RESP=`swaks --body @/srv/test-letters/spam-GTUBE.eml --to test@gmail.com --from "junk@wrong-domain-name.com" --server ${EXIM_DOMAIN} --port ${PORT_EXIM} -tls`
+RESP=`swaks --body @/srv/test-letters/spam-GTUBE.eml --to test@gmail.com --from "junk@wrong-domain-name.com" --server ${EXIM_DOMAIN} --port ${EXIM_PORT} -tls`
 assert "$RESP" '=== Connected to'
 assert "$RESP" '~> MAIL FROM:'
 assert "$RESP" '~> RCPT TO:'

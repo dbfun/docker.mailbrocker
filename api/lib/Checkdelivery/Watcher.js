@@ -9,7 +9,8 @@ const
   maxDelayMs = 1 * 3600 * 1000
   ;
 
-assert.ok(process.env.NODE_TLS_REJECT_UNAUTHORIZED === "0" || process.env.NODE_EXTRA_CA_CERTS !== "", "Specify NodeJS env variables: `NODE_TLS_REJECT_UNAUTHORIZED` or `NODE_EXTRA_CA_CERTS`");
+// TODO Этот модуль используется для проверки доставки почты в ящики разных систем и в данных момент работает не стабильно.
+// assert.ok(process.env.NODE_TLS_REJECT_UNAUTHORIZED === "0" || process.env.NODE_EXTRA_CA_CERTS !== "", "Specify NodeJS env variables: `NODE_TLS_REJECT_UNAUTHORIZED` or `NODE_EXTRA_CA_CERTS`");
 
 class CheckdeliveryWatcher {
 

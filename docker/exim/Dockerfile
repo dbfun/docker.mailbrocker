@@ -10,14 +10,15 @@ ADD ./docker/exim/dev.profile.sh /etc/profile.d/dev.profile.sh
 RUN apk add --no-cache busybox-extras exim-scripts tree
 ### end dev section
 
-ENV EXIM_DOMAIN=your-domain.com \
-    EXIM_DEBUG=on \
+ENV \
+    EXIM_DOMAIN=your-domain.com \
+    EXIM_PORT=25 \
     EXIM_INCOMING_MAIL_MAX_SIZE=5M \
-    PORT_EXIM=25 \
     EXIM_MAIL_USER=noreply \
     EXIM_MAIL_PASS=exim_mail_password \
     EXIM_DKIM_SELECTOR=mailbroker \
     EXIM_MAX_PARALLEL=2 \
+    EXIM_DEBUG=on \
     TZ=Europe/Moscow
 
 # Timezone

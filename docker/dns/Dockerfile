@@ -1,13 +1,14 @@
 FROM alpine:edge
 
-ENV DNS_CACHE_MIN_TTL=60 \
+ENV \
+    DNS_CACHE_MIN_TTL=60 \
     DNS_CACHE_MAX_TTL=900 \
     DNS_CACHE_MAX_NEGATIVE_TTL=900 \
     DNS_DEBUG=off \
-    DNS_STATISTICS_INTERVAL=60 \
-    DNS_LOG_QUERIES=yes \
-    DNS_LOG_REPLIES=yes \
-    DNS_LOG_SERVFAIL=yes \
+    DNS_STATISTICS_INTERVAL=0 \
+    DNS_LOG_QUERIES=no \
+    DNS_LOG_REPLIES=no \
+    DNS_LOG_SERVFAIL=no \
     TZ=Europe/Moscow
 
 RUN apk add unbound gettext drill --no-cache && \

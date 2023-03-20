@@ -52,7 +52,7 @@ class CheckdeliverySender {
         "--auth-user", process.env.EXIM_MAIL_USER,
         "--auth-password", process.env.EXIM_MAIL_PASS,
         "--server", "exim",
-        "-p", process.env.PORT_EXIM
+        "-p", process.env.EXIM_PORT
       ];
 
       // console.log(options); process.exit();

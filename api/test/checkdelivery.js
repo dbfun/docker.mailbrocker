@@ -3,6 +3,8 @@
 if(!process.env.EXIM_MAIL_FROM) return;
 
 /*
+TODO Этот модуль используется для проверки доставки почты в ящики разных систем и в данных момент работает не стабильно.
+
 mocha test/checkdelivery.js -g "checkdelivery watcher"
 
 To break imap run:

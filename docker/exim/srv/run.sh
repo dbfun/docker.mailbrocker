@@ -47,8 +47,8 @@ chown -R mail.mail /etc/ssl/certs/dkim
 # `-oX` - port, but no pid file created => added `-oP`
 
 if [ "$EXIM_DEBUG" == "on" ]; then
-  exim -bd -q5s -d -oX $PORT_EXIM -oP /run/exim.pid
+  exim -bd -q5s -d -oX $EXIM_PORT -oP /run/exim.pid
 else
   # `-v` - verbose mode
-  exim -bd -q5s -v -oX $PORT_EXIM -oP /run/exim.pid
+  exim -bd -q5s -v -oX $EXIM_PORT -oP /run/exim.pid
 fi

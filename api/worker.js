@@ -11,7 +11,6 @@ const
   { DockerDns } = require("./lib/DockerDns"),
   config = {
     apiDomain: process.env.API_DOMAIN,
-    apiDomainProtocol: process.env.API_DOMAIN_PROTOCOL,
     apiPort: 80,
     apiBaseHref: null,
     checkdelivery: null,
@@ -20,20 +19,21 @@ const
     replyMtaLettersAll: process.env.API_REPLY_MTA_REPORT_ALL === "on",
     replyMtaLettersTo: process.env.API_REPLY_MTA_REPORT_TO ? process.env.API_REPLY_MTA_REPORT_TO.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [],
     DNSresolver: [],
-    workerCheckAllNum: process.env.API_WORKER_CHECK_ALL_NUM ? parseInt(process.env.API_WORKER_CHECK_ALL_NUM) : 2,
+    workerCheckAllCnt: process.env.API_WORKER_CHECK_ALL_CNT ? parseInt(process.env.API_WORKER_CHECK_ALL_CNT) : 2,
     spamassassin: {
       port: 783,
       maxSize: process.env.SPAMASSASSIN_MAX_MSG_SIZE
     },
     mongo: {
-      uri: process.env.MONGO_URI,
-      db: process.env.MONGO_DB,
+      uri: 'mongodb://mongo:27017/mailbroker',
+      db: 'mailbroker',
     },
     rabbitMQuri: `amqp://${process.env.RABBITMQ_DEFAULT_USER}:${process.env.RABBITMQ_DEFAULT_PASS}@rabbitmq/${process.env.RABBITMQ_DEFAULT_VHOST}?heartbeat=60`
   }
   ;
 
-config.apiBaseHref = `${config.apiDomainProtocol}://${config.apiDomain}${config.apiPort == 80 ? "" : ":" + config.apiPort}`;
+// Use reverse proxy for TLS!
+config.apiBaseHref = `https://${config.apiDomain}${config.apiPort == 80 ? "" : ":" + config.apiPort}`;
 config.checkdelivery = {
   mailFrom: config.mailFrom,
   mailboxes: require("./lib/Checkdelivery/checkdelivery-mails").mailboxes.filter((o) => {
@@ -63,7 +63,7 @@ class Worker extends App {
   }
 
   async run() {
-    this.amqpChannel.prefetch(this.config.workerCheckAllNum);
+    this.amqpChannel.prefetch(this.config.workerCheckAllCnt);
 
     let internalDnsResolver = await DockerDns.resolve();
     console.log(`Use internal DNS resolver: ${internalDnsResolver.join(', ')}`);
