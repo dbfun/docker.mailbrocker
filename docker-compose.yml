@@ -64,7 +64,7 @@ services:
       - .env
     restart: always
     ports:
-      - "80:80"
+      - ${PORT_API}:80
     depends_on:
       - dns
       - mongo
