@@ -3,7 +3,7 @@
 [x] Поправить docker-compose.yml
 [ ] Уменьшить количество настроек, сделать генерацию:
     [x] Убрать API_CATCH_MTA_ALL
-    [ ] Убрать API_REPLY_MTA_REPORT_ALL
+    [x] Убрать API_REPLY_MTA_REPORT_ALL
     [ ] Привести к одной настройке API_INCOMING_MAIL_MAX_SIZE и аналоги (SPAMASSASSIN_MAX_MSG_SIZE, EXIM_INCOMING_MAIL_MAX_SIZE)
     [ ] Генерировать EXIM_MAIL_USER
     [ ] Генерировать EXIM_MAIL_PASS

@@ -8,7 +8,6 @@ ENV \
     API_PUBLIC_DNS=8.8.8.8 \
     API_AVAILABLE_TESTS=spamassassin,spf,spfcompare,dkim,dmarc,blacklist,pyzor,razor \
     API_CATCH_MTA_TO=all,any,reply,autoreply \
-    API_REPLY_MTA_REPORT_ALL=off \
     API_REPLY_MTA_REPORT_TO=reply,autoreply \
     API_WORKER_CHECK_ALL_CNT=2 \
     API_INCOMING_MAIL_MAX_SIZE=5mb \

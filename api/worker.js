@@ -16,7 +16,6 @@ const
     checkdelivery: null,
     apiAvailableTests: process.env.API_AVAILABLE_TESTS ? process.env.API_AVAILABLE_TESTS.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [],
     mailFrom: process.env.EXIM_MAIL_FROM,
-    replyMtaLettersAll: process.env.API_REPLY_MTA_REPORT_ALL === "on",
     replyMtaLettersTo: process.env.API_REPLY_MTA_REPORT_TO ? process.env.API_REPLY_MTA_REPORT_TO.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [],
     DNSresolver: [],
     workerCheckAllCnt: process.env.API_WORKER_CHECK_ALL_CNT ? parseInt(process.env.API_WORKER_CHECK_ALL_CNT) : 2,
@@ -95,11 +94,6 @@ class Worker extends App {
 
   autoReply(mailbroker) {
     let fromEmail = mailbroker.getFieldFrom();
-
-    if(this.config.replyMtaLettersAll) {
-      console.log(`Worker: reply mail with spam report in MTA mode with this.config.replyMtaLettersAll option; TO: ${fromEmail}`);
-      return this.mailReport(mailbroker, fromEmail);
-    }
 
     if(this.config.replyMtaLettersTo.includes( mailbroker.getFieldToUsername() )) {
       console.log(`Worker: reply mail with spam report in MTA mode with this.config.replyMtaLettersTo option: ${this.config.replyMtaLettersTo}; TO: ${fromEmail}`);
