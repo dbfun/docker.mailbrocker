@@ -115,7 +115,7 @@ class Api extends App {
     });
 
     /*
-      This endpoint serves Mailer-Daemon reports
+      This endpoint serves Mailer-Daemon reports (messages from Exim Mailer Daemon such as "Dead letter mail")
     */
     api.post("/mailerdaemon", async (req, res, next) => {
       try {
@@ -141,7 +141,7 @@ class Api extends App {
     });
 
     /*
-      This endpoint serves incoming web and MTA messages
+      This endpoint serves incoming API and MTA messages
 
       API must return
       * 201 Created - all is fine

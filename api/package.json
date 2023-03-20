@@ -2,7 +2,7 @@
   "name": "mailbroker-api",
   "version": "1.0.0",
   "description": "API for mailbroker",
-  "main": "index.js",
+  "main": "api.js",
   "scripts": {
     "test": "mocha"
   },
