@@ -1,5 +1,10 @@
 "use strinct";
 
+const logger = require("log4js").getLogger();
+
+logger.level = "debug";
+logger.category = "Mailbroker";
+
 const
   simpleParser = require('mailparser').simpleParser,
   { ObjectId } = require('mongodb'),
@@ -283,13 +288,11 @@ class Mailbroker {
   }
 
   async saveResults(section, data) {
-    console.log(`Saving results for ${section}`);
     if(!this.ObjectId) throw new Error("No ObjectId specified");
+    logger.info("Saving results", {_id: this.ObjectId, section});
     let collectionMails = Registry.get('mongo').collection('mails');
     let update = {};
     update[section] = data;
-
-    // console.log(`Results saved: ${this.ObjectId}`);
 
     return collectionMails.updateOne(
       {

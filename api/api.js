@@ -1,7 +1,11 @@
 "use strict";
 
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
+const logger = require("log4js").getLogger();
+
 dotenv.config({path: "/etc/api/secrets.env"});
+logger.level = "debug";
+logger.category = "API";
 
 const
   assert = require("assert"),
@@ -45,18 +49,18 @@ class Api extends App {
   }
 
   async initMongo() {
-    console.log('Init mongo...');
+    logger.info('Init mongo...');
 
     let collections = await this.mongo.listCollections({}, {nameOnly: true}).toArray();
 
     if(!collections.find(o => o.name === "mails")) {
       await this.mongo.createCollection("mails");
-      console.log('Collection "mails" created');
+      logger.info('Collection "mails" created');
     }
 
     if(!collections.find(o => o.name === "mailblocker")) {
       await this.mongo.collection("mailblocker").createIndex( { "email": 1 }, { unique: true } );
-      console.log('Collection "mailblocker" created');
+      logger.info('Collection "mailblocker" created');
     }
   }
 
@@ -64,16 +68,16 @@ class Api extends App {
     try {
       let collectionMails = Registry.get("mongo").collection("mails");
       let stats = await collectionMails.stats();
-      console.log(`API: mails count: ${stats["count"]}`);
+      logger.info(`API: mails count: ${stats["count"]}`);
       let removeBorder = stats["count"] - this.config.maxMailCount;
       if(removeBorder <= 0) return;
       // `sort({_id: 1})` is not used because sometimes _id order may be random
       let borderDoc = await collectionMails.find().sort({created: 1}).skip(removeBorder).limit(1).next();
 
       collectionMails.deleteMany({created: { $lt: new Date(borderDoc.created) }});
-      console.log(`API: removed ${removeBorder} mails`);
+      logger.info(`API: removed ${removeBorder} mails`);
     } catch (err) {
-      console.log("API:", err);
+      logger.error("API:", err);
     }
   }
 
@@ -134,11 +138,11 @@ class Api extends App {
         if(failedRecipients) {
           msg += `. Headers: ${failedRecipients}`;
         }
-        console.log(msg);
+        logger.info(msg);
         res.status(403).send(JSON.stringify({result: "fail", reason: msg}));
       } catch (err) {
         // 5xx errors
-        console.log("API:", err);
+        logger.error("API:", err);
         next(err);
       }
     });
@@ -179,7 +183,7 @@ class Api extends App {
         let doc = await mailblocker.get(mailFrom);
         if(doc) {
           let msg = `API: mail rejected from ${doc.email}, reason: ${doc.reason}`;
-          console.log(msg);
+          logger.info(msg);
           res.status(403).send(JSON.stringify({result: "fail", reason: doc.reason, mailFrom: mailFrom, description: msg}));
           return;
         }
@@ -203,7 +207,7 @@ class Api extends App {
           case "MTA":
             if(this.config.mailFrom.toLowerCase() === mailTo.toLowerCase()) {
               let msg = `API: mail rejected in MTA mode: anti loop condition. FROM: "${this.config.mailFrom}" TO: "${mailTo}"`;
-              console.log(msg);
+              logger.info(msg);
               res.status(403).send(JSON.stringify({result: "fail", reason: msg}));
               return;
             }
@@ -212,10 +216,10 @@ class Api extends App {
             if(ObjectId === null) {
               if(this.config.catchMtaLettersTo.indexOf(mailToUsername) !== -1) {
                 ObjectId = mailbroker.generateObjectId();
-                console.log(`API: mail catched from MTA with username ${mailToUsername} and this.config.catchMtaLettersTo option: ${this.config.catchMtaLettersTo}; TO: "${mailTo}"`);
+                logger.info(`API: mail catched from MTA with username ${mailToUsername} and this.config.catchMtaLettersTo option: ${this.config.catchMtaLettersTo}; TO: "${mailTo}"`);
               } else {
                 let msg = `API: mail rejected in MTA mode: wrong fied TO: "${mailTo}". Use MongoDB ObjectId as user name`;
-                console.log(msg);
+                logger.info(msg);
                 res.status(403).send(JSON.stringify({result: "fail", reason: msg}));
                 return;
               }
@@ -238,12 +242,12 @@ class Api extends App {
 
         await this.addMailToQueue({ObjecId: ret.ObjecId, mode});
 
-        console.log(`API: new mail to check: ${ret.ObjecId}`);
+        logger.info(`API: new mail to check: ${ret.ObjecId}`);
         res.send(JSON.stringify(ret));
 
       } catch (err) {
         // 5xx errors
-        console.log("API:", err);
+        logger.info("API:", err);
         next(err);
       }
     });
@@ -299,7 +303,7 @@ class Api extends App {
 
     // Final error handler
     api.use((err, req, res, next) => {
-      console.log("API:", err);
+      logger.info("API:", err);
       if (req.xhr) {
         res.status(500).send(JSON.stringify({ error: err.message ? err.message : "Internal Server Error" }));
       } else {
@@ -308,7 +312,7 @@ class Api extends App {
     });
 
     api.listen(this.config.apiPort);
-    console.log(`API is listening port ${this.config.apiPort}`);
+    logger.info(`API is listening port ${this.config.apiPort}`);
   }
 
 }
@@ -317,6 +321,6 @@ let api = new Api(config);
 api.then((api) => {
   api.run();
 }).catch(err => {
-  console.log("API fatal error:", err);
+  logger.error("API fatal error:", err);
   process.exit(1);
 });

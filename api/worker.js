@@ -1,7 +1,11 @@
 "use strict";
 
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
+const logger = require("log4js").getLogger();
+
 dotenv.config({path: "/etc/api/secrets.env"});
+logger.level = "debug";
+logger.category = "Worker";
 
 const
   assert = require("assert"),
@@ -68,15 +72,15 @@ class Worker extends App {
     this.amqpChannel.prefetch(this.config.workerCheckAllCnt);
 
     let internalDnsResolver = await DockerDns.resolve();
-    console.log(`Use internal DNS resolver: ${internalDnsResolver.join(', ')}`);
+    logger.info("Setup internal DNS resolver", {dns: internalDnsResolver});
     this.config.DNSresolver = internalDnsResolver;
 
     await this.amqpChannel.consume("checkAll", this.checkAll.bind(this), { noAck: false });
-    console.log("Worker is started");
+    logger.info("Worker is started");
   }
 
   async checkAll(msg) {
-    console.log('Worker: checkAll...');
+    logger.info("Mail test start");
     let params = JSON.parse(msg.content.toString());
 
     try {
@@ -86,11 +90,11 @@ class Worker extends App {
       if(params.mode === "MTA") {
         await this.autoReply(mailbroker);
       }
-      console.error(`Worker: mail test complete ${params.ObjecId}`);
+      logger.info("Mail test complete", {_id: params.ObjecId});
       this.amqpChannel.ack(msg);
     } catch (err) {
       // TODO check error in mongo
-      console.log(`Worker: mail test error ${params.ObjecId}:`, err);
+      logger.info("Mail test error", {_id: params.ObjecId, err});
       this.amqpChannel.ack(msg);
     }
   }
@@ -99,7 +103,10 @@ class Worker extends App {
     let fromEmail = mailbroker.getFieldFrom();
 
     if(this.config.replyMtaLettersTo.includes( mailbroker.getFieldToUsername() )) {
-      console.log(`Worker: reply mail with spam report in MTA mode with this.config.replyMtaLettersTo option: ${this.config.replyMtaLettersTo}; TO: ${fromEmail}`);
+      logger.info("Reply mail with spam report in MTA mode", {
+        replyMtaLettersTo: this.config.replyMtaLettersTo,
+        to: fromEmail
+      });
       return this.mailReport(mailbroker, fromEmail);
     }
   }
@@ -115,8 +122,8 @@ class Worker extends App {
         text: plain
       });
       assert.ok(/^250 OK id=/.test(info.response));
-    } catch (e) {
-      console.log("Worker:", e);
+    } catch (err) {
+      logger.error("Mail report failed", {err});
     }
   }
 
@@ -126,7 +133,7 @@ let worker = new Worker(config);
 worker.then((worker) => {
   worker.run();
 }).catch(err => {
-  console.log("Worker fatal error:", err);
+  logger.error("Fatal error", {err});
   process.exit(1);
 });
 
