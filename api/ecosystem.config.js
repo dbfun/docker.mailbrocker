@@ -1,6 +1,9 @@
 const
   apiAvailableTests = process.env.API_AVAILABLE_TESTS ? process.env.API_AVAILABLE_TESTS.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [];
 
+const { initSecretsFile } = require("./init");
+initSecretsFile();
+
 let apps = [
   {
     name: 'API',

@@ -74,6 +74,7 @@ services:
       # configs
       - ./config/checkdelivery-mails.json:/srv/lib/Checkdelivery/checkdelivery-mails.json
       - ./config/dnsbl-domains.json:/srv/lib/Blacklist/dnsbl-domains.json
+      - ${DATA_PATH}/api/etc/api:/etc/api
       # dev volumes for hot reload
       - ./api:/srv
     environment:
@@ -86,7 +87,6 @@ services:
       - API_WORKER_CHECK_ALL_CNT=${API_WORKER_CHECK_ALL_CNT}
       - API_INCOMING_MAIL_MAX_SIZE=${API_INCOMING_MAIL_MAX_SIZE}
       - API_MAX_MAIL_COUNT=${API_MAX_MAIL_COUNT}
-      - SECURITY_SALT=${SECURITY_SALT}
 
       - SPAMASSASSIN_MAX_MSG_SIZE=${SPAMASSASSIN_MAX_MSG_SIZE}
       - EXIM_PORT=${EXIM_PORT}
@@ -121,6 +121,7 @@ services:
       # configs
       - ./config/checkdelivery-mails.json:/srv/lib/Checkdelivery/checkdelivery-mails.json
       - ./config/dnsbl-domains.json:/srv/lib/Blacklist/dnsbl-domains.json
+      - ${DATA_PATH}/api/etc/api:/etc/api
       # dev volumes for hot reload
       - ./api:/srv
     # Passing all environment variables

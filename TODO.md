@@ -7,7 +7,7 @@
     [ ] Привести к одной настройке API_INCOMING_MAIL_MAX_SIZE и аналоги (SPAMASSASSIN_MAX_MSG_SIZE, EXIM_INCOMING_MAIL_MAX_SIZE)
     [x] Генерировать EXIM_MAIL_USER, EXIM_MAIL_PASS, EXIM_MAIL_FROM - не просто, плюс надо прокидывать между окружениями.
         EXIM_MAIL_FROM - это поле FROM, может отличаться от EXIM_MAIL_USER.
-    [ ] Генерировать SECURITY_SALT
+    [x] Генерировать SECURITY_SALT
 [ ] Продублировать настройки из .env в GitLab variables
 [ ] Развернуть CI/CD (.gitlab-ci.yml)
 [ ] Каталог /ssl содержит сертификаты для DKIM - это нужно включить в CI/CD или придумать другое решение

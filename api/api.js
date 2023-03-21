@@ -1,5 +1,8 @@
 "use strict";
 
+const dotenv = require('dotenv');
+dotenv.config({path: "/etc/api/secrets.env"});
+
 const
   assert = require("assert"),
   { App } = require("./lib/App"),
