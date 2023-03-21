@@ -10,10 +10,9 @@ ENV \
     API_CATCH_MTA_TO=all,any,reply,autoreply \
     API_REPLY_MTA_REPORT_TO=reply,autoreply \
     API_WORKER_CHECK_ALL_CNT=2 \
-    API_INCOMING_MAIL_MAX_SIZE=5mb \
+    INCOMING_MAIL_MAX_SIZE_KILOBYTES=5000 \
     API_MAX_MAIL_COUNT=2000 \
 
-    SPAMASSASSIN_MAX_MSG_SIZE=5000000 \
     EXIM_PORT=25 \
     EXIM_DOMAIN=your-domain.com \
     EXIM_MAIL_USER=noreply \

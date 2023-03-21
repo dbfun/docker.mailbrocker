@@ -41,41 +41,39 @@ You need to install [docker-compose](https://docs.docker.com/compose/) then conf
 
 Config variables:
 
-| Variable name               | Sample value                                                 | Description                                                                                                                                      |
-|-----------------------------|--------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| DATA_PATH                   | /var/v-mailbroker                                            | Docker persistent volume mount point                                                                                                             |
-| TZ                          | Europe/Moscow                                                | Timezone                                                                                                                                         |
-| API_DOMAIN                  | your-domain.com                                              | API domain                                                                                                                                       |
-| ADMIN_EMAIL                 | your-mail@gmail.com                                          | Admin email for reporting and testing                                                                                                            |
-| API_PUBLIC_DNS              | 8.8.8.8                                                      | Public DNS cache servers comma separated (e.g. 8.8.8.8,1.1.1.1). Used to compare DNS responses from authoritative and cache servers.             |
-| API_AVAILABLE_TESTS         | spamassassin,spf,spfcompare,dkim,dmarc,blacklist,pyzor,razor | API available tests comma separated (e.g. spamassassin,spf,dkim,dmarc,blacklist,pyzor,razor,checkdelivery)                                       |
-| API_CATCH_MTA_TO            | all,any,reply,autoreply                                      | Specify dedicated names for catching, comma separated (left side of email address, e.g. "all@site.com" => "all")                                 |
-| API_REPLY_MTA_REPORT_TO     | reply,autoreply                                              | Specify dedicated names for reply with spam report, comma separated (left side of email address, e.g. "reply@site.com" => "reply")               |
-| API_WORKER_CHECK_ALL_CNT    | 2                                                            | API Worker: prefetch count for RabbitMQ                                                                                                          |
-| API_INCOMING_MAIL_MAX_SIZE  | 5mb                                                          | API: the maximum size of emails to receive. Larger emails will be rejected.                                                                      |
-| API_MAX_MAIL_COUNT          | 2000                                                         | This is max mail count, and older letters will be deleted                                                                                        |
-| API_PORT                    | 8080                                                         | API HTTP port (not TLS; use a reverse proxy for TLS)                                                                                             |
-| EXIM_DOMAIN                 | your-domain.com                                              | Exim domain - send your mails here. Email for a different domain will be rejected.                                                               |
-| EXIM_PORT                   | 25                                                           | Exim listening port for incoming emails                                                                                                          |
-| EXIM_INCOMING_MAIL_MAX_SIZE | 5M                                                           | Exim: the maximum size of emails to receive. Larger emails will be rejected.                                                                     |
-| EXIM_MAIL_FROM              | noreply@your-domain.com                                      | Exim technical email                                                                                                                             |
-| EXIM_MAIL_USER              | noreply                                                      | Exim auth credentials for mailing (don't worry it's not an open relay)                                                                           |
-| EXIM_MAIL_PASS              | exim_mail_password                                           | Exim auth credentials for mailing (don't worry it's not an open relay)                                                                           |
-| EXIM_DKIM_SELECTOR          | mailbroker                                                   | Exim domain selector for DKIM (mailbroker._domainkey.your-domain.com => mailbroker)                                                              |
-| EXIM_MAX_PARALLEL           | 2                                                            | The maximum number of simultaneous http requests to send emails from Exim to the API. Don't worry about the small value, Exim has its own queue. |
-| EXIM_DEBUG                  | off                                                          | Enable it to Exim debug (value: on/off)                                                                                                          |
-| DNS_CACHE_MIN_TTL           | 60                                                           | DNS cache: min TTL value, in seconds                                                                                                             |
-| DNS_CACHE_MAX_TTL           | 900                                                          | DNS cache: min TTL value, in seconds. "0" disables cache.                                                                                        |
-| DNS_CACHE_MAX_NEGATIVE_TTL  | 900                                                          | DNS cache: negative responses TTL value, in seconds                                                                                              |
-| DNS_DEBUG                   | off                                                          | Enable it to DNS debug (value: on/off)                                                                                                           |
-| DNS_STATISTICS_INTERVAL     | 0                                                            | Print DNS statistics to the log (for every thread) every N seconds. Set to 0 to disable                                                          |
-| DNS_LOG_QUERIES             | no                                                           | Log DNS queries (value: yes/no)                                                                                                                  |
-| DNS_LOG_REPLIES             | no                                                           | Log DNS replies (value: yes/no)                                                                                                                  |
-| DNS_LOG_SERVFAIL            | no                                                           | Log DNS servfail (value: yes/no)                                                                                                                 |
-| SPAMASSASSIN_MAX_MSG_SIZE   | 5000000                                                      | Spamassassin: the maximum size of message size which will be sent to spamd. Larger emails will be rejected.                                      |
-| RABBITMQ_DEFAULT_USER       | default_user                                                 | RabbitMQ credentials. Change this values or remove public port from docker-compose.yml!                                                          |
-| RABBITMQ_DEFAULT_PASS       | default_pass                                                 | RabbitMQ credentials. Change this values or remove public port from docker-compose.yml!                                                          |
-| RABBITMQ_DEFAULT_VHOST      | default_vhost                                                | RabbitMQ credentials. Change this values or remove public port from docker-compose.yml!                                                          |
+| Variable name                     | Default value                                                | Description                                                                                                                                      |
+|-----------------------------------|--------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| DATA_PATH                         | /var/v-mailbroker                                            | Docker persistent volume mount point                                                                                                             |
+| TZ                                | Europe/Moscow                                                | Timezone                                                                                                                                         |
+| INCOMING_MAIL_MAX_SIZE_KILOBYTES  | 5000                                                         | The maximum size of emails to receive in kilobytes. Larger emails will be rejected. Affects: Exim, API, Spamassassin                             |
+| API_DOMAIN                        | your-domain.com                                              | API domain                                                                                                                                       |
+| ADMIN_EMAIL                       | your-mail@gmail.com                                          | Admin email for reporting and testing                                                                                                            |
+| API_PUBLIC_DNS                    | 8.8.8.8                                                      | Public DNS cache servers comma separated (e.g. 8.8.8.8,1.1.1.1). Used to compare DNS responses from authoritative and cache servers.             |
+| API_AVAILABLE_TESTS               | spamassassin,spf,spfcompare,dkim,dmarc,blacklist,pyzor,razor | API available tests comma separated (e.g. spamassassin,spf,dkim,dmarc,blacklist,pyzor,razor,checkdelivery)                                       |
+| API_CATCH_MTA_TO                  | all,any,reply,autoreply                                      | Specify dedicated names for catching, comma separated (left side of email address, e.g. "all@site.com" => "all")                                 |
+| API_REPLY_MTA_REPORT_TO           | reply,autoreply                                              | Specify dedicated names for reply with spam report, comma separated (left side of email address, e.g. "reply@site.com" => "reply")               |
+| API_WORKER_CHECK_ALL_CNT          | 2                                                            | API Worker: prefetch count for RabbitMQ                                                                                                          |
+| API_MAX_MAIL_COUNT                | 2000                                                         | This is max mail count, and older letters will be deleted                                                                                        |
+| API_PORT                          | 8080                                                         | API HTTP port (not TLS; use a reverse proxy for TLS)                                                                                             |
+| EXIM_DOMAIN                       | your-domain.com                                              | Exim domain - send your mails here. Email for a different domain will be rejected.                                                               |
+| EXIM_PORT                         | 25                                                           | Exim listening port for incoming emails                                                                                                          |
+| EXIM_MAIL_FROM                    | noreply@your-domain.com                                      | Exim technical email                                                                                                                             |
+| EXIM_MAIL_USER                    | noreply                                                      | Exim auth credentials for mailing (don't worry it's not an open relay)                                                                           |
+| EXIM_MAIL_PASS                    | exim_mail_password                                           | Exim auth credentials for mailing (don't worry it's not an open relay)                                                                           |
+| EXIM_DKIM_SELECTOR                | mailbroker                                                   | Exim domain selector for DKIM (mailbroker._domainkey.your-domain.com => mailbroker)                                                              |
+| EXIM_MAX_PARALLEL                 | 2                                                            | The maximum number of simultaneous http requests to send emails from Exim to the API. Don't worry about the small value, Exim has its own queue. |
+| EXIM_DEBUG                        | off                                                          | Enable it to Exim debug (value: on/off)                                                                                                          |
+| DNS_CACHE_MIN_TTL                 | 60                                                           | DNS cache: min TTL value, in seconds                                                                                                             |
+| DNS_CACHE_MAX_TTL                 | 900                                                          | DNS cache: min TTL value, in seconds. "0" disables cache.                                                                                        |
+| DNS_CACHE_MAX_NEGATIVE_TTL        | 900                                                          | DNS cache: negative responses TTL value, in seconds                                                                                              |
+| DNS_DEBUG                         | off                                                          | Enable it to DNS debug (value: on/off)                                                                                                           |
+| DNS_STATISTICS_INTERVAL           | 0                                                            | Print DNS statistics to the log (for every thread) every N seconds. Set to 0 to disable                                                          |
+| DNS_LOG_QUERIES                   | no                                                           | Log DNS queries (value: yes/no)                                                                                                                  |
+| DNS_LOG_REPLIES                   | no                                                           | Log DNS replies (value: yes/no)                                                                                                                  |
+| DNS_LOG_SERVFAIL                  | no                                                           | Log DNS servfail (value: yes/no)                                                                                                                 |
+| RABBITMQ_DEFAULT_USER             | default_user                                                 | RabbitMQ credentials. Change this values or remove public port from docker-compose.yml!                                                          |
+| RABBITMQ_DEFAULT_PASS             | default_pass                                                 | RabbitMQ credentials. Change this values or remove public port from docker-compose.yml!                                                          |
+| RABBITMQ_DEFAULT_VHOST            | default_vhost                                                | RabbitMQ credentials. Change this values or remove public port from docker-compose.yml!                                                          |
 
 ## Run
 
@@ -180,11 +178,3 @@ Some DNSBLs block public DNS due to high volume queries:
 > Query Refused. See http://uribl.com/refused.shtml for more information [Your DNS IP: 77.88.56.72]
 
 Own DNS resolver (unbound) used in Spamassassin and Blacklist modules.
-
-## How to increase incoming email size?
-
-Default email size is 5 Mb. Change this settings in `config/.env` file:
-
-* `EXIM_INCOMING_MAIL_MAX_SIZE=5M`
-* `API_INCOMING_MAIL_MAX_SIZE=5mb`
-* `SPAMASSASSIN_MAX_MSG_SIZE=5000000`

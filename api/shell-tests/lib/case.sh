@@ -66,6 +66,14 @@ function assert_exit_ok {
   fi
 }
 
+function assert_exit_fail {
+  if [[ "$1" -eq "0" ]]; then
+    echo -e ${Red}"Exit code must be NOT 0: $1"${Color_Off}
+    TESTS_PASSED=0
+    CASE_PASSED=0
+  fi
+}
+
 function start_case {
   CASE_NAME="$1"
   CASE_PASSED=1

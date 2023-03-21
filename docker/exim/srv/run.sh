@@ -46,6 +46,9 @@ chown -R mail.mail /etc/ssl/certs/dkim
 # `-d` - debug, `-v` - verbose
 # `-oX` - port, but no pid file created => added `-oP`
 
+INCOMING_MAIL_MAX_SIZE_BYTES=$((INCOMING_MAIL_MAX_SIZE_KILOBYTES * 1000))
+export INCOMING_MAIL_MAX_SIZE_BYTES
+
 if [ "$EXIM_DEBUG" == "on" ]; then
   exim -bd -q5s -d -oX $EXIM_PORT -oP /run/exim.pid
 else

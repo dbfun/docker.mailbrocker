@@ -28,7 +28,7 @@ const
     workerCheckAllCnt: process.env.API_WORKER_CHECK_ALL_CNT ? parseInt(process.env.API_WORKER_CHECK_ALL_CNT) : 2,
     spamassassin: {
       port: 783,
-      maxSize: process.env.SPAMASSASSIN_MAX_MSG_SIZE
+      maxSize: process.env.INCOMING_MAIL_MAX_SIZE_KILOBYTES * 1000
     },
     mongo: {
       uri: 'mongodb://mongo:27017/mailbroker',

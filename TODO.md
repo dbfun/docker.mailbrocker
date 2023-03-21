@@ -4,7 +4,8 @@
 [ ] Уменьшить количество настроек, сделать генерацию:
     [x] Убрать API_CATCH_MTA_ALL
     [x] Убрать API_REPLY_MTA_REPORT_ALL
-    [ ] Привести к одной настройке API_INCOMING_MAIL_MAX_SIZE и аналоги (SPAMASSASSIN_MAX_MSG_SIZE, EXIM_INCOMING_MAIL_MAX_SIZE)
+    [x] Привести к одной настройке API_INCOMING_MAIL_MAX_SIZE и аналоги (SPAMASSASSIN_MAX_MSG_SIZE, EXIM_INCOMING_MAIL_MAX_SIZE)
+        => INCOMING_MAIL_MAX_SIZE_KILOBYTES
     [x] Генерировать EXIM_MAIL_USER, EXIM_MAIL_PASS, EXIM_MAIL_FROM - не просто, плюс надо прокидывать между окружениями.
         EXIM_MAIL_FROM - это поле FROM, может отличаться от EXIM_MAIL_USER.
     [x] Генерировать SECURITY_SALT

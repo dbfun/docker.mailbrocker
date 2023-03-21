@@ -13,7 +13,7 @@ RUN apk add --no-cache busybox-extras exim-scripts tree
 ENV \
     EXIM_DOMAIN=your-domain.com \
     EXIM_PORT=25 \
-    EXIM_INCOMING_MAIL_MAX_SIZE=5M \
+    INCOMING_MAIL_MAX_SIZE_KILOBYTES=5000 \
     EXIM_MAIL_USER=noreply \
     EXIM_MAIL_PASS=exim_mail_password \
     EXIM_DKIM_SELECTOR=mailbroker \

@@ -14,7 +14,7 @@ const
   security = new(require("./lib/Security").Security)(process.env.SECURITY_SALT),
   config = {
     apiPort: 80,
-    incomingMailMaxSize: process.env.API_INCOMING_MAIL_MAX_SIZE,
+    incomingMailMaxSize: process.env.INCOMING_MAIL_MAX_SIZE_KILOBYTES * 1000,
     catchMtaLettersTo: process.env.API_CATCH_MTA_TO ? process.env.API_CATCH_MTA_TO.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [],
     mailFrom: process.env.EXIM_MAIL_FROM,
     maxMailCount: parseInt(process.env.API_MAX_MAIL_COUNT),
@@ -174,10 +174,14 @@ class Api extends App {
       // res.send(JSON.stringify({result: "ok"})); return;  // Ok short case
 
       try {
+        let mode = req.query.mode ? req.query.mode : "MTA";
         let mailbroker = new Mailbroker({});
         await mailbroker.makeFromRaw(req.body);
 
         let mailFrom = mailbroker.getFieldFrom();
+        logger.info("New mail fetched", {mode, mailFrom, bodyLength: req.body.length});
+
+        // console.log(req.body);
 
         let mailblocker = new Mailblocker;
         let doc = await mailblocker.get(mailFrom);
@@ -188,7 +192,6 @@ class Api extends App {
           return;
         }
 
-        let mode = req.query.mode ? req.query.mode : "MTA";
         let mailTo = mailbroker.getFieldTo();
         let mailToUsername = mailbroker.getFieldToUsername();
         let ObjectId = null;
@@ -216,7 +219,7 @@ class Api extends App {
             if(ObjectId === null) {
               if(this.config.catchMtaLettersTo.indexOf(mailToUsername) !== -1) {
                 ObjectId = mailbroker.generateObjectId();
-                logger.info(`API: mail catched from MTA with username ${mailToUsername} and this.config.catchMtaLettersTo option: ${this.config.catchMtaLettersTo}; TO: "${mailTo}"`);
+                logger.info(`API: mail caught from MTA with username ${mailToUsername} and this.config.catchMtaLettersTo option: ${this.config.catchMtaLettersTo}; TO: "${mailTo}"`);
               } else {
                 let msg = `API: mail rejected in MTA mode: wrong fied TO: "${mailTo}". Use MongoDB ObjectId as user name`;
                 logger.info(msg);
