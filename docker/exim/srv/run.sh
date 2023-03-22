@@ -15,8 +15,11 @@ chown root.mail /etc/exim/exim.conf
 
 # Make new DKIM keys
 
-if [[ ! -f "/etc/ssl/certs/dkim/private.key" ]]; then
+if [ ! -f "/etc/ssl/certs/dkim/private.key" ]; then
+  echo "Creating DKIM keys"
   /srv/dkim-make-keys.sh
+else
+  echo "DKIM keys exists, skip"
 fi
 
 chown -R mail.mail /etc/ssl/certs/dkim
@@ -49,7 +52,7 @@ chown -R mail.mail /etc/ssl/certs/dkim
 INCOMING_MAIL_MAX_SIZE_BYTES=$((INCOMING_MAIL_MAX_SIZE_KILOBYTES * 1000))
 export INCOMING_MAIL_MAX_SIZE_BYTES
 
-if [ "$EXIM_DEBUG" == "on" ]; then
+if [ "$EXIM_DEBUG" = "on" ]; then
   exim -bd -q5s -d -oX $EXIM_PORT -oP /run/exim.pid
 else
   # `-v` - verbose mode

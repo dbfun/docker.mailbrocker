@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# WIP: not working
 # DNS resolving test
 
 set -u

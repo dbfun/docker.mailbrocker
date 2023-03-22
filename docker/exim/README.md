@@ -2,7 +2,8 @@
 
 This is a MTA container.
 
-Usage: in project root dir run: `make up` for starting all containers bundle and `make down` for stopping.
+The file `exim.reference.conf` contains original Exim config from repo.
+The `exim.conf` file contains too many changes to compare with the original file.
 
 # Useful commands
 

@@ -12,13 +12,13 @@ echo -e ${Green}Run tests at: `date`${Color_Off}
 ./test-dns.sh
 if [ "$?" -ne "0" ]; then TESTS_PASSED=0; fi
 
-./test-mta.sh
+./test-mta-not-open-relay.sh
 if [ "$?" -ne "0" ]; then TESTS_PASSED=0; fi
 
-./test-mail-send.sh
+./test-dkim.sh
 if [ "$?" -ne "0" ]; then TESTS_PASSED=0; fi
 
-./test-api-pipe.sh
+./test-http-pipe.sh
 if [ "$?" -ne "0" ]; then TESTS_PASSED=0; fi
 
 ./test-spamassassin.sh

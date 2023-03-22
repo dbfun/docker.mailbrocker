@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Mail delivery test
+# Testing that the MTA is not an open relay
 
 set -u
 

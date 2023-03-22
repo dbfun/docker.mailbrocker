@@ -1,7 +1,7 @@
 # GitLab integration
 
 [x] Поправить docker-compose.yml
-[ ] Уменьшить количество настроек, сделать генерацию:
+[x] Уменьшить количество настроек, сделать генерацию:
     [x] Убрать API_CATCH_MTA_ALL
     [x] Убрать API_REPLY_MTA_REPORT_ALL
     [x] Привести к одной настройке API_INCOMING_MAIL_MAX_SIZE и аналоги (SPAMASSASSIN_MAX_MSG_SIZE, EXIM_INCOMING_MAIL_MAX_SIZE)
@@ -11,11 +11,12 @@
     [x] Генерировать SECURITY_SALT
 [ ] Продублировать настройки из .env в GitLab variables
 [ ] Развернуть CI/CD (.gitlab-ci.yml)
-[ ] Каталог /ssl содержит сертификаты для DKIM - это нужно включить в CI/CD или придумать другое решение
+[x] Каталог /ssl содержит сертификаты для DKIM - это нужно включить в CI/CD или придумать другое решение
+    DKIM создается при запуске EXIM и хранится в volume
 [ ] Каталог /config - собирать в CI/CD
-[ ] Обновить npm-пакеты
+[x] Обновить npm-пакеты
 [ ] Обновить документацию
-[ ] Переименовать названия в mailbroker
+[x] Переименовать названия в mailbroker
 
 # Old TODO
 

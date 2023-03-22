@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# High load test
+# High load test for API testing
 
 set -u
 

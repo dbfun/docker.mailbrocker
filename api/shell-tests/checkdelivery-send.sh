@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# send letter for checkdelivery
+# WIP: not working
+# Send letter for checkdelivery via swaks
 
 set -u
 

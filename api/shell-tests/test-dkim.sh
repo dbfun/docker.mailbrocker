@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Test outgoing mail
+# Test outgoing mail: DKIM
 
 set -u
 
@@ -9,11 +9,6 @@ source lib/ui.sh
 source lib/case.sh
 
 TESTS_PASSED=1
-
-start_case "DNS: TODO необходимо установить ключ"
-assert_not_empty ""
-end_case
-exit
 
 start_case "Mail send: DNS TXT record for DKIM ($EXIM_DKIM_SELECTOR._domainkey.$EXIM_DOMAIN)"
 PUBLIC_KEY_FILE="/etc/ssl/certs/dkim/public.key"

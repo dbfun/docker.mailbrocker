@@ -26,6 +26,7 @@ ENV \
     TZ=Europe/Moscow
 
 RUN \
+    # Swaks
     apk add swaks --repository http://nl.alpinelinux.org/alpine/edge/testing && \
     # Healthcheck
     apk add curl && \
@@ -61,7 +62,7 @@ RUN \
     cp /usr/share/zoneinfo/$TZ /etc/localtime && \
     echo "$TZ" >  /etc/timezone
 
-# App
+# Quick rebuild optimization
 ADD ./api/package.json ./api/package-lock.json /tmp/
 
 RUN cd /tmp && \

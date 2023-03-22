@@ -1,4 +1,4 @@
-.dockerignore
+/.dockerignore
 /.git
 /api/node_modules/
 /api/Dockerfile
@@ -7,4 +7,4 @@
 /docker/dns/.dockerignore
 /docker/dns/Dockerfile
 /docker/dns/README.md
-/docker/dns/origin.unbound.conf
+/docker/dns/unbound.reference.conf

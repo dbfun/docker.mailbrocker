@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Large email rejection test
 
 set -u
 
