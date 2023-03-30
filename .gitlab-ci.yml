@@ -48,5 +48,6 @@ reload Caddy:
     - deploy
   script:
     - set -x
+    - env
     - echo "mailbroker.ru reverse_proxy :$HTTP_PORT" | sudo tee /etc/caddy/sites-enabled/mailbroker.ru
     - sudo service caddy reload
