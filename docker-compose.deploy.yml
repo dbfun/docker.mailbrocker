@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+
+  dns:
+    image: mailbroker_dns:${CI_COMMIT_SHA}
+    restart: always
+    environment:
+      - DNS_CACHE_MIN_TTL=${DNS_CACHE_MIN_TTL}
+      - DNS_CACHE_MAX_TTL=${DNS_CACHE_MAX_TTL}
+      - DNS_CACHE_MAX_NEGATIVE_TTL=${DNS_CACHE_MAX_NEGATIVE_TTL}
+      - DNS_DEBUG=${DNS_DEBUG}
+      - DNS_STATISTICS_INTERVAL=${DNS_STATISTICS_INTERVAL}
+      - DNS_LOG_QUERIES=${DNS_LOG_QUERIES}
+      - DNS_LOG_REPLIES=${DNS_LOG_REPLIES}
+      - DNS_LOG_SERVFAIL=${DNS_LOG_SERVFAIL}
+      - TZ=${TZ}
