@@ -27,11 +27,11 @@ ENV \
 
 RUN \
     # Swaks
-    apk add swaks --repository http://nl.alpinelinux.org/alpine/edge/testing && \
+    apk add --no-cache swaks --repository http://nl.alpinelinux.org/alpine/edge/testing && \
     # Healthcheck
-    apk add curl && \
+    apk add --no-cache curl && \
     # DKIM
-    apk add perl make perl-crypt-openssl-rsa perl-mailtools perl-net-dns && \
+    apk add --no-cache perl make perl-crypt-openssl-rsa perl-mailtools perl-net-dns && \
     cd /tmp/ && \
     tar -xzf libmail-dkim-perl_0.40.orig.tar.gz && \
     cd /tmp/Mail-DKIM-0.40 && \
@@ -42,23 +42,23 @@ RUN \
     cd / && \
     rm -rf /tmp/libmail-dkim-perl_0.40.orig.tar.gz /tmp/Mail-DKIM-0.40 && \
     # DMARC
-    apk add opendmarc --update-cache --repository http://nl.alpinelinux.org/alpine/edge/testing && \
+    apk add --no-cache opendmarc --update-cache --repository http://nl.alpinelinux.org/alpine/edge/testing && \
     # Pyzor
-    apk add python3 py3-pip && \
+    apk add --no-cache python3 py3-pip && \
     pip3 install pyzor && \
     # SPF
-    apk add libspf2-tools && \
+    apk add --no-cache libspf2-tools && \
     # Spamassassin client
-    apk add spamassassin-client && \
+    apk add --no-cache spamassassin-client && \
     # Razor
-    apk add razor && \
+    apk add --no-cache razor && \
     # NodeJS bundle
     apk add --no-cache nodejs npm && \
     npm install --global pm2 mocha && \
     # dig
-    apk add bind-tools && \
+    apk add --no-cache bind-tools && \
     # Timezone
-    apk add tzdata && \
+    apk add --no-cache tzdata && \
     cp /usr/share/zoneinfo/$TZ /etc/localtime && \
     echo "$TZ" >  /etc/timezone
 
@@ -87,7 +87,7 @@ CMD [ "pm2-runtime", "start", "ecosystem.config.js" ]
 
 FROM production AS workspace
 
-RUN apk add zsh git shadow perl-net-ssleay bash jq apache2-utils busybox-extras --update-cache --repository http://nl.alpinelinux.org/alpine/edge/testing
+RUN apk add --no-cache zsh git shadow perl-net-ssleay bash jq apache2-utils busybox-extras --update-cache --repository http://nl.alpinelinux.org/alpine/edge/testing
 
 ARG PUID=1000
 ENV PUID ${PUID}

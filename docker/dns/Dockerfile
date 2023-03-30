@@ -11,11 +11,13 @@ ENV \
     DNS_LOG_SERVFAIL=no \
     TZ=Europe/Moscow
 
-RUN apk add unbound gettext drill --no-cache && \
+RUN apk add --no-cache unbound gettext drill && \
     # Timezone
-    apk add tzdata && \
+    apk add --no-cache tzdata && \
     cp /usr/share/zoneinfo/$TZ /etc/localtime && \
-    echo "$TZ" >  /etc/timezone
+    echo "$TZ" > /etc/timezone && \
+    # Save original config
+    cp /etc/unbound/unbound.conf /etc/unbound/unbound.reference.conf
 
 RUN \
     chown -R root.unbound /usr/share/dnssec-root && \
