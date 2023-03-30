@@ -1,15 +1,6 @@
 FROM alpine:3.17.3
 
-ENV \
-    DNS_CACHE_MIN_TTL=60 \
-    DNS_CACHE_MAX_TTL=900 \
-    DNS_CACHE_MAX_NEGATIVE_TTL=900 \
-    DNS_DEBUG=off \
-    DNS_STATISTICS_INTERVAL=0 \
-    DNS_LOG_QUERIES=no \
-    DNS_LOG_REPLIES=no \
-    DNS_LOG_SERVFAIL=no \
-    TZ=Europe/Moscow
+ENV TZ=Europe/Moscow
 
 RUN apk add --no-cache unbound gettext drill && \
     # Timezone

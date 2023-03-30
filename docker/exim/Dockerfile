@@ -1,15 +1,6 @@
 FROM alpine:3.17.3
 
-ENV \
-    EXIM_DOMAIN=your-domain.com \
-    EXIM_PORT=25 \
-    INCOMING_MAIL_MAX_SIZE_KILOBYTES=5000 \
-    EXIM_MAIL_USER=noreply \
-    EXIM_MAIL_PASS=exim_mail_password \
-    EXIM_DKIM_SELECTOR=mailbroker \
-    EXIM_MAX_PARALLEL=2 \
-    EXIM_DEBUG=on \
-    TZ=Europe/Moscow
+ENV TZ=Europe/Moscow
 
 RUN apk add --no-cache exim curl openssl && \
     # Timezone

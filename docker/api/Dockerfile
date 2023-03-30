@@ -1,30 +1,8 @@
 FROM alpine:3.17.3 AS production
 
+ENV TZ=Europe/Moscow
+
 ADD http://deb.debian.org/debian/pool/main/libm/libmail-dkim-perl/libmail-dkim-perl_0.40.orig.tar.gz /tmp
-
-ENV \
-    API_DOMAIN=your-domain.com \
-    ADMIN_EMAIL=your-mail@gmail.com \
-    API_PUBLIC_DNS=8.8.8.8 \
-    API_AVAILABLE_TESTS=spamassassin,spf,spfcompare,dkim,dmarc,blacklist,pyzor,razor \
-    API_CATCH_MTA_TO=all,any,reply,autoreply \
-    API_REPLY_MTA_REPORT_TO=reply,autoreply \
-    API_WORKER_CHECK_ALL_CNT=2 \
-    INCOMING_MAIL_MAX_SIZE_KILOBYTES=5000 \
-    API_MAX_MAIL_COUNT=2000 \
-    # API_BLACKLIST_DOMAINS=TODO How to pass YAML?
-
-    EXIM_PORT=25 \
-    EXIM_DOMAIN=your-domain.com \
-    EXIM_MAIL_USER=noreply \
-    EXIM_MAIL_PASS=exim_mail_password \
-    EXIM_MAIL_FROM=noreply@your-domain.com \
-
-    RABBITMQ_DEFAULT_USER=default_user \
-    RABBITMQ_DEFAULT_PASS=default_pass \
-    RABBITMQ_DEFAULT_VHOST=default_vhost \
-
-    TZ=Europe/Moscow
 
 RUN \
     # Swaks
