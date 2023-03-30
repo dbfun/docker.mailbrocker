@@ -25,6 +25,7 @@ deploy from docker-compose.deploy.yml:
   script:
     - set -x
     - DEPLOY_DIR=~/deploy-from-dc/mailbroker
+    - DEPLOY_FILE=${DEPLOY_DIR}/docker-compose.yml
     - mkdir -p ${DEPLOY_DIR}
-    - cp docker-compose.deploy.yml ${DEPLOY_DIR}
-    - docker-compose -f ${DEPLOY_DIR}/docker-compose.deploy.yml up -d dns
+    - cp docker-compose.deploy.yml ${DEPLOY_FILE}
+    - docker-compose -f ${DEPLOY_FILE} up -d dns
