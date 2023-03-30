@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:3.17.3
 
 ENV \
     DNS_CACHE_MIN_TTL=60 \

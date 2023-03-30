@@ -1,4 +1,4 @@
-FROM alpine:edge AS production
+FROM alpine:3.17.3 AS production
 
 ADD http://deb.debian.org/debian/pool/main/libm/libmail-dkim-perl/libmail-dkim-perl_0.40.orig.tar.gz /tmp
 
