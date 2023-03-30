@@ -23,6 +23,13 @@ build spamassassin:
   script:
     - docker build . -f ./docker/spamassassin/Dockerfile -t mailbroker_spamassassin:${CI_COMMIT_SHA} -t mailbroker_spamassassin:latest
 
+build api:
+  stage: build
+  tags:
+    - docker-image-builder
+  script:
+    - docker build . -f ./docker/api/Dockerfile --target production -t mailbroker_api:${CI_COMMIT_SHA} -t mailbroker_api:latest
+
 deploy from docker-compose.deploy.yml:
   stage: deploy
   tags:
@@ -32,4 +39,4 @@ deploy from docker-compose.deploy.yml:
     - DEPLOY_FILE=${DEPLOY_DIR}/docker-compose.yml
     - mkdir -p ${DEPLOY_DIR}
     - cp docker-compose.deploy.yml ${DEPLOY_FILE}
-    - docker-compose -f ${DEPLOY_FILE} up -d dns exim spamassassin mongo rabbitmq
+    - docker-compose -f ${DEPLOY_FILE} up -d dns exim spamassassin mongo api rabbitmq

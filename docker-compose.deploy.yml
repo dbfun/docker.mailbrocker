@@ -41,6 +41,45 @@ services:
     volumes:
       - ${DATA_PATH}/mongo/data/db:/data/db
 
+  api:
+    image: mailbroker_api:${CI_COMMIT_SHA}
+    restart: always
+    volumes:
+      - ${DATA_PATH}/api/etc/api:/etc/api
+    environment:
+      - API_DOMAIN=${API_DOMAIN}
+      - ADMIN_EMAIL=${ADMIN_EMAIL}
+      - API_PUBLIC_DNS=${API_PUBLIC_DNS}
+      - API_AVAILABLE_TESTS=${API_AVAILABLE_TESTS}
+      - API_CATCH_MTA_TO=${API_CATCH_MTA_TO}
+      - API_REPLY_MTA_REPORT_TO=${API_REPLY_MTA_REPORT_TO}
+      - API_WORKER_CHECK_ALL_CNT=${API_WORKER_CHECK_ALL_CNT}
+      - INCOMING_MAIL_MAX_SIZE_KILOBYTES=${INCOMING_MAIL_MAX_SIZE_KILOBYTES}
+      - API_MAX_MAIL_COUNT=${API_MAX_MAIL_COUNT}
+      - API_BLACKLIST_DOMAINS=${API_BLACKLIST_DOMAINS}
+
+      - EXIM_PORT=${EXIM_PORT}
+      - EXIM_DOMAIN=${EXIM_DOMAIN}
+      - EXIM_MAIL_USER=${EXIM_MAIL_USER}
+      - EXIM_MAIL_PASS=${EXIM_MAIL_PASS}
+      - EXIM_MAIL_FROM=${EXIM_MAIL_FROM}
+
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
+      - RABBITMQ_DEFAULT_VHOST=${RABBITMQ_DEFAULT_VHOST}
+
+      - TZ=${TZ}
+    ports:
+      - ${API_PORT}:80
+    depends_on:
+      - dns
+      - mongo
+      - exim
+      - spamassassin
+      - rabbitmq
+
+  # workspace: skipped as it is only used for development
+
   dns:
     image: mailbroker_dns:${CI_COMMIT_SHA}
     restart: always
