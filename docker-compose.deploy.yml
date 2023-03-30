@@ -54,3 +54,13 @@ services:
       - DNS_LOG_REPLIES=${DNS_LOG_REPLIES}
       - DNS_LOG_SERVFAIL=${DNS_LOG_SERVFAIL}
       - TZ=${TZ}
+
+  rabbitmq:
+    image: rabbitmq:management
+    restart: always
+    volumes:
+      - ${DATA_PATH}/rabbitmq/var/lib/rabbitmq/mnesia:/var/lib/rabbitmq/mnesia
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
+      - RABBITMQ_DEFAULT_VHOST=${RABBITMQ_DEFAULT_VHOST}
