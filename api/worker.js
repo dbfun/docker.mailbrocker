@@ -1,5 +1,6 @@
 "use strict";
 
+const YAML = require('yaml');
 const dotenv = require("dotenv");
 const logger = require("log4js").getLogger();
 
@@ -26,6 +27,7 @@ const
     replyMtaLettersTo: process.env.API_REPLY_MTA_REPORT_TO ? process.env.API_REPLY_MTA_REPORT_TO.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [],
     DNSresolver: [],
     workerCheckAllCnt: process.env.API_WORKER_CHECK_ALL_CNT ? parseInt(process.env.API_WORKER_CHECK_ALL_CNT) : 2,
+    blacklistDomains: YAML.parse(process.env.API_BLACKLIST_DOMAINS),
     spamassassin: {
       port: 783,
       maxSize: process.env.INCOMING_MAIL_MAX_SIZE_KILOBYTES * 1000
@@ -86,7 +88,12 @@ class Worker extends App {
     let params = JSON.parse(msg.content.toString());
 
     try {
-      let mailbroker = new Mailbroker({ availableDNS: this.config.DNSresolver, availableTests: this.config.apiAvailableTests, checkdeliveryConfig: this.config.checkdelivery });
+      let mailbroker = new Mailbroker({
+        availableTests: this.config.apiAvailableTests,
+        availableDNS: this.config.DNSresolver,
+        blacklistDomains: this.config.blacklistDomains,
+        checkdeliveryConfig: this.config.checkdelivery
+      });
       await mailbroker.load(params.ObjecId);
       await mailbroker.checkAll(true);
       if(params.mode === "MTA") {
