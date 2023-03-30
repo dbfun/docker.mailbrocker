@@ -2,6 +2,31 @@ version: '3'
 
 services:
 
+  exim:
+    image: mailbroker_exim:${CI_COMMIT_SHA}
+    restart: always
+    volumes:
+      # volume for store DKIM keys
+      - ${DATA_PATH}/exim/etc/ssl/certs/dkim:/etc/ssl/certs/dkim
+      # mails
+      - ${DATA_PATH}/exim/var/spool:/var/spool
+      - ${DATA_PATH}/exim/var/mail:/var/mail
+    ports:
+      - ${EXIM_PORT}:${EXIM_PORT}
+    environment:
+      - EXIM_DOMAIN=${EXIM_DOMAIN}
+      - EXIM_PORT=${EXIM_PORT}
+      - INCOMING_MAIL_MAX_SIZE_KILOBYTES=${INCOMING_MAIL_MAX_SIZE_KILOBYTES}
+      - EXIM_MAIL_USER=${EXIM_MAIL_USER}
+      - EXIM_MAIL_PASS=${EXIM_MAIL_PASS}
+      - EXIM_DKIM_SELECTOR=${EXIM_DKIM_SELECTOR}
+      - EXIM_MAX_PARALLEL=${EXIM_MAX_PARALLEL}
+      - EXIM_DEBUG=${EXIM_DEBUG}
+      - TZ=${TZ}
+    hostname: ${EXIM_DOMAIN}
+    depends_on:
+      - dns
+
   dns:
     image: mailbroker_dns:${CI_COMMIT_SHA}
     restart: always

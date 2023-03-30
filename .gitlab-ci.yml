@@ -7,16 +7,14 @@ build dns:
   tags:
     - docker-image-builder
   script:
-    - set -x
     - docker build . -f ./docker/dns/Dockerfile -t mailbroker_dns:${CI_COMMIT_SHA} -t mailbroker_dns:latest
 
-#build exim:
-#  stage: build
-#  tags:
-#    - docker-image-builder
-#  script:
-#    - set -x
-#    - docker build . -f ./docker/exim/Dockerfile -t mailbroker_exim:${CI_COMMIT_SHA} -t mailbroker_exim:latest
+build exim:
+  stage: build
+  tags:
+    - docker-image-builder
+  script:
+    - docker build . -f ./docker/exim/Dockerfile -t mailbroker_exim:${CI_COMMIT_SHA} -t mailbroker_exim:latest
 
 deploy from docker-compose.deploy.yml:
   stage: deploy
@@ -28,4 +26,4 @@ deploy from docker-compose.deploy.yml:
     - DEPLOY_FILE=${DEPLOY_DIR}/docker-compose.yml
     - mkdir -p ${DEPLOY_DIR}
     - cp docker-compose.deploy.yml ${DEPLOY_FILE}
-    - docker-compose -f ${DEPLOY_FILE} up -d dns
+    - docker-compose -f ${DEPLOY_FILE} up -d dns exim
