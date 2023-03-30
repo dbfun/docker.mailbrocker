@@ -45,10 +45,7 @@ services:
     image: mongo
     restart: always
     volumes:
-      # DB
       - ${DATA_PATH}/mongo/data/db:/data/db
-    depends_on:
-      - dns
 
   dns:
     build:

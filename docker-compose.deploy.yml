@@ -35,6 +35,12 @@ services:
     depends_on:
       - dns
 
+  mongo:
+    image: mongo
+    restart: always
+    volumes:
+      - ${DATA_PATH}/mongo/data/db:/data/db
+
   dns:
     image: mailbroker_dns:${CI_COMMIT_SHA}
     restart: always

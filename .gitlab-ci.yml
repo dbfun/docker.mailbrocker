@@ -32,4 +32,4 @@ deploy from docker-compose.deploy.yml:
     - DEPLOY_FILE=${DEPLOY_DIR}/docker-compose.yml
     - mkdir -p ${DEPLOY_DIR}
     - cp docker-compose.deploy.yml ${DEPLOY_FILE}
-    - docker-compose -f ${DEPLOY_FILE} up -d dns exim spamassassin
+    - docker-compose -f ${DEPLOY_FILE} up -d dns exim spamassassin mongo
