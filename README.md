@@ -24,20 +24,12 @@ You need to install [docker-compose](https://docs.docker.com/compose/) then conf
 
 ## Configuration
 
-1. Copy file `.env.dist` to `.env` then edit `.env`:
+Copy file `.env.dist` to `.env` then edit `.env`:
 
-    ```sh
-    cp .env.dist .env
-    vim .env
-    ```
-
-2. Copy directory `config.dist` to `config` then edit files in it:
-
-    ```sh
-    cp -R config.dist config
-    vim config/api.checkdelivery.json
-    vim config/dnsbl-domains.json
-    ```
+```sh
+cp .env.dist .env
+vim .env
+```
 
 Config variables:
 

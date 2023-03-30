@@ -1,5 +1,10 @@
 "use strinct";
 
+const logger = require("log4js").getLogger();
+
+logger.level = "debug";
+logger.category = "Blacklist";
+
 const
   dns = require('dns'),
   assert = require('assert'),
@@ -17,6 +22,16 @@ class Blacklist {
 
   async check(ip) {
     return new Promise(async (resolve, reject) => {
+      if(!this.domains) {
+        let msg = "No domains to blacklist check";
+        logger.error(msg);
+        resolve({
+          result: "fail",
+          message: msg
+        });
+        return;
+      }
+
       if(!ip) {
         resolve({
           result: "fail",

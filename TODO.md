@@ -9,11 +9,11 @@
     [x] Генерировать EXIM_MAIL_USER, EXIM_MAIL_PASS, EXIM_MAIL_FROM - не просто, плюс надо прокидывать между окружениями.
         EXIM_MAIL_FROM - это поле FROM, может отличаться от EXIM_MAIL_USER.
     [x] Генерировать SECURITY_SALT
-[ ] Продублировать настройки из .env в GitLab variables
+[x] Продублировать настройки из .env в GitLab variables
 [ ] Развернуть CI/CD (.gitlab-ci.yml)
 [x] Каталог /ssl содержит сертификаты для DKIM - это нужно включить в CI/CD или придумать другое решение
     DKIM создается при запуске EXIM и хранится в volume
-[ ] Каталог /config - собирать в CI/CD
+[x] Каталог /config - собирать в CI/CD
 [x] Обновить npm-пакеты
 [ ] Обновить документацию
 [x] Переименовать названия в mailbroker

@@ -70,9 +70,6 @@ services:
       target: production
     restart: always
     volumes:
-      # TODO собирать на этапе CI/CD
-      # configs
-      - ./config/dnsbl-domains.json:/srv/lib/Blacklist/dnsbl-domains.json
       - ${DATA_PATH}/api/etc/api:/etc/api
       # dev volumes for hot reload
       - ./api:/srv
@@ -115,8 +112,6 @@ services:
     hostname: workspace
     tty: true
     volumes:
-      # configs
-      - ./config/dnsbl-domains.json:/srv/lib/Blacklist/dnsbl-domains.json
       - ${DATA_PATH}/api/etc/api:/etc/api
       # volume for store DKIM keys
       - ${DATA_PATH}/exim/etc/ssl/certs/dkim:/etc/ssl/certs/dkim
