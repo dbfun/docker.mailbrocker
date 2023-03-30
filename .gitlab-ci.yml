@@ -47,5 +47,5 @@ reload Caddy:
   tags:
     - deploy
   script:
-    - echo -e "mailbroker.ru {\n  reverse_proxy :$API_PORT\n}" | sudo tee /etc/caddy/sites-enabled/mailbroker.ru
+    - echo -e "$API_DOMAIN {\n  reverse_proxy :$API_PORT\n}" | sudo tee /etc/caddy/sites-enabled/mailbroker.ru
     - sudo service caddy reload

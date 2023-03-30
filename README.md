@@ -18,11 +18,13 @@ Mailbroker is an open source mail spam testing service. Send email to a special 
   *   [x] HTTP API (website use it)
 * [x] Special address for auto reply with spam test report
 
-# How to run mailbroker on your server
+# How to run mailbroker
+
+## Via docker-compose
 
 You need to install [docker-compose](https://docs.docker.com/compose/) then configure and run the mailbroker service.
 
-## Configuration
+### Configuration
 
 Copy file `.env.dist` to `.env` then edit `.env`:
 
@@ -68,27 +70,31 @@ Config variables:
 | RABBITMQ_DEFAULT_PASS             | default_pass                                                 | RabbitMQ credentials. Change this values or remove public port from docker-compose.yml!                                                          |
 | RABBITMQ_DEFAULT_VHOST            | default_vhost                                                | RabbitMQ credentials. Change this values or remove public port from docker-compose.yml!                                                          |
 
-## Run
+### Run
 
 Change directory to project directory then run:
 
 ```sh
-docker-compose up
+docker-compose up -d
+# OR
+make up
 ```
 
-For autotest run:
+## Via GitLab CI/CD
 
-```sh
-make test
-```
+There is `.gitlab-ci.yml` file for running with GitLab CI/CD. 
+
+For HTTPS to work, you need to install a reverse proxy server, such as Caddy.
+
+Use GitLab variables to configure this application.
 
 ## For developers
 
 Developers can use `make` utility for:
 
 * run (`make up`)
+* development and debug (`make workspace`, `make dns-cache`)
 * test (`make test-integration-bash`, `make test-unit-mocha`)
-* debug (`make workspace`, `make dns-cache`)
 * stats (`make dns-stats`).
  
 See [Makefile](Makefile) for more information.
@@ -112,6 +118,7 @@ Work in progress
   * [x] Checkdelivery
   * [x] Compare SPF records: authoritative and public DNS
 * [x] Self DNS resolving
+* [x] GitLab CI/CD
 * [x] Mail test queue
 * [ ] IPv6 support
   * [x] Spf
