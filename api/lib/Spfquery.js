@@ -13,6 +13,10 @@ const
     "unknown [...]": `The domain has a configuration error in the published data or defines a mechanism that this library does not understand. If the data contained an unrecognized mechanism, it will be presented following "unknown". You should test for unknown using a regexp /^unknown/ rather than eq "unknown".`
   };
 
+/**
+ * Полный синтаксис DKIM, DMARC и SPF: https://habr.com/ru/post/343128/
+ */
+
 class Spfquery {
 
 

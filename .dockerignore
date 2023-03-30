@@ -3,7 +3,7 @@
 /api/node_modules/
 /api/Dockerfile
 /api/Makefile
-/api/README.md
+/docker/api/README.md
 /docker/dns/.dockerignore
 /docker/dns/Dockerfile
 /docker/dns/README.md

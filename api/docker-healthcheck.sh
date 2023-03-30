@@ -1,4 +1,4 @@
-#/bin/sh
+#!/bin/sh
 
 RESP=`curl -sS http://localhost/healthcheck`
 if [ "$RESP" != '{"result":"ok"}' ]; then

@@ -4,12 +4,14 @@ const
   { spawn } = require('child_process')
   ;
 
+/**
+ * Pyzor can use public server public.pyzor.org or self server.
+ *
+ * Pyzor Client Commands: http://www.pyzor.org/en/release-1-0-0/client.html#commands
+ * Pyzor Whitelist: https://www.pyzor.org/en/latest/client.html#whitelist
+ */
+
 class Pyzor {
-
-  /*
-    Pyzor can use public server public.pyzor.org or self server
-  */
-
 
   async check(msg) {
     try {
