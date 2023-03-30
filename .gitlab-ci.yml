@@ -16,14 +16,20 @@ build exim:
   script:
     - docker build . -f ./docker/exim/Dockerfile -t mailbroker_exim:${CI_COMMIT_SHA} -t mailbroker_exim:latest
 
+build spamassassin:
+  stage: build
+  tags:
+    - docker-image-builder
+  script:
+    - docker build . -f ./docker/spamassassin/Dockerfile -t mailbroker_spamassassin:${CI_COMMIT_SHA} -t mailbroker_spamassassin:latest
+
 deploy from docker-compose.deploy.yml:
   stage: deploy
   tags:
     - deploy
   script:
-    - set -x
     - DEPLOY_DIR=~/deploy-from-dc/mailbroker
     - DEPLOY_FILE=${DEPLOY_DIR}/docker-compose.yml
     - mkdir -p ${DEPLOY_DIR}
     - cp docker-compose.deploy.yml ${DEPLOY_FILE}
-    - docker-compose -f ${DEPLOY_FILE} up -d dns exim
+    - docker-compose -f ${DEPLOY_FILE} up -d dns exim spamassassin

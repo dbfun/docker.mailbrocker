@@ -27,6 +27,14 @@ services:
     depends_on:
       - dns
 
+  spamassassin:
+    image: mailbroker_spamassassin:${CI_COMMIT_SHA}
+    restart: always
+    environment:
+      - TZ=${TZ}
+    depends_on:
+      - dns
+
   dns:
     image: mailbroker_dns:${CI_COMMIT_SHA}
     restart: always
