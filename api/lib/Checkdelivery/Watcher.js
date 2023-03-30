@@ -1,5 +1,9 @@
 "use strict";
 
+/**
+ * Not working! WIP.
+ */
+
 const
   assert = require("assert"),
   _ = require("lodash"),

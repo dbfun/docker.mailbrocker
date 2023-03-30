@@ -1,5 +1,9 @@
 "use strict";
 
+/**
+ * Not working! WIP.
+ */
+
 const
   assert = require("assert"),
   { CheckdeliveryWatcher } = require("./lib/Checkdelivery/Watcher.js"),
