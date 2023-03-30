@@ -40,12 +40,14 @@ const
 
 // Use reverse proxy for TLS!
 config.apiBaseHref = `https://${config.apiDomain}${config.apiPort == 80 ? "" : ":" + config.apiPort}`;
-config.checkdelivery = {
-  mailFrom: config.mailFrom,
-  mailboxes: require("./lib/Checkdelivery/checkdelivery-mails").mailboxes.filter((o) => {
-    return o.active === true;
-  })
-};
+
+// Отключено до починки checkdelivery
+// config.checkdelivery = {
+//   mailFrom: config.mailFrom,
+//   mailboxes: require("./lib/Checkdelivery/checkdelivery-mails").mailboxes.filter((o) => {
+//     return o.active === true;
+//   })
+// };
 
 class Worker extends App {
 
