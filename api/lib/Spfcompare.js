@@ -1,8 +1,5 @@
-"use strict";
-
-const
-  /*
-   1. Because `Blacklist` use `dns.setServers`, changing servers may cause a problem.
+/*
+   1. Because `Blacklist` module uses `dns.setServers`, changing servers may cause a problem.
    Let's use `dig`!
 
    2. Before using our DNS resolver, we must clear the domain zone
@@ -12,52 +9,42 @@ const
    Second way: send an equivalent command over TCP: `UBCT1 flush_zone site.com.`
 
    @see https://ru.stackoverflow.com/a/1073718/287469
-
   */
-  { spawn } = require('child_process'),
-  assert = require('assert'),
-  net = require('net'),
-  publicDNSList = process.env.API_PUBLIC_DNS ? process.env.API_PUBLIC_DNS.trim().split(",").map(Function.prototype.call, String.prototype.trim) : [ "8.8.8.8" ],
-  // ownDns = process.env.IP_DNS_RESOLVER,
-  ownDns = "dns",
-  portOwnDnsControl = 8953
-  ;
+const { spawn } = require('child_process');
+const assert = require('assert');
+const net = require('net');
+
+const publicDNSList = process.env.API_PUBLIC_DNS
+  ? process.env.API_PUBLIC_DNS.trim().split(',').map(Function.prototype.call, String.prototype.trim) : ['8.8.8.8'];
+const ownDns = 'dns';
+const portOwnDnsControl = 8953;
 
 class Spfcompare {
-
-  async check(domain) {
+  static async check(domain) {
     const ret = {
       data: {
         public: null,
-        authoritative: null
-      }
+        authoritative: null,
+      },
     };
 
-    let data = ret.data;
+    const { data } = ret;
 
-    await this.purgeZoneTXT(ownDns, portOwnDnsControl, domain);
+    await Spfcompare.purgeZoneTXT(ownDns, portOwnDnsControl, domain);
 
     await Promise.all([
-      new Promise(async (resolve, reject) => {
-        const dns = publicDNSList[Math.floor(Math.random() * publicDNSList.length)];
-        data.public = await this.fetchData(dns, domain);
-        resolve();
-      }),
-      new Promise(async (resolve, reject) => {
-        data.authoritative = await this.fetchData(ownDns, domain);
-        resolve();
-      })
+      Spfcompare.checkPublic(data, domain),
+      Spfcompare.checkAuthoritative(data, domain),
     ]);
 
-
-    if(data.public.code !== 0) {
-      ret.result = "fail";
+    if (data.public.code !== 0) {
+      ret.result = 'fail';
       data.message = data.public.debug;
     } else if (data.authoritative.code !== 0) {
-      ret.result = "fail";
+      ret.result = 'fail';
       data.message = data.authoritative.debug;
     } else {
-      ret.result = "ok";
+      ret.result = 'ok';
       try {
         assert.deepStrictEqual(data.public.spf, data.authoritative.spf);
         data.isSame = true;
@@ -66,18 +53,26 @@ class Spfcompare {
       }
     }
 
-
     return ret;
   }
 
-  async fetchData(dns, domain) {
-    return new Promise((resolve, reject) => {
+  static async checkPublic(data, domain) {
+    const dns = publicDNSList[Math.floor(Math.random() * publicDNSList.length)];
+    data.public = await this.fetchData(dns, domain);
+  }
+
+  static async checkAuthoritative(data, domain) {
+    data.authoritative = await this.fetchData(ownDns, domain);
+  }
+
+  static async fetchData(dns, domain) {
+    return new Promise((resolve) => {
       /*
         Dummy sample:
           dig +short TXT @dns-server.com domain
       */
-      let options = ['+short', 'TXT', `@${dns}`, domain];
-      let cmd = "dig " + options.join(" ");
+      const options = ['+short', 'TXT', `@${dns}`, domain];
+      const cmd = `dig ${options.join(' ')}`;
       const dig = spawn('dig', options);
 
       let stdout = '';
@@ -87,37 +82,33 @@ class Spfcompare {
         stdout += data;
       });
 
-      dig.stderr.on('data', function (data) {
+      dig.stderr.on('data', (data) => {
         stderr += data;
       });
 
       dig.on('close', (code) => {
-        resolve({report: stdout, debug: stderr, cmd, code, spf: this.parseSpf(stdout)});
+        resolve({
+          report: stdout, debug: stderr, cmd, code, spf: Spfcompare.parseSpf(stdout),
+        });
       });
-
     });
   }
 
-  parseSpf(str) {
-    return str.trim().split("\n").map((el) => {
-      return el.replace(/(^")|("$)/g, '');
-    }).filter((el) => {
-      return /^v=spf1\s/.test(el);
-    });
+  static parseSpf(str) {
+    return str.trim().split('\n').map((el) => el.replace(/(^")|("$)/g, '')).filter((el) => /^v=spf1\s/.test(el));
   }
 
-  async purgeZoneTXT(dns, port, domain) {
-    return new Promise((resolve, reject) => {
+  static async purgeZoneTXT(dns, port, domain) {
+    return new Promise((resolve) => {
+      const client = new net.Socket();
 
-      let client = new net.Socket();
-
-      let timer = setTimeout(() => {
+      const timer = setTimeout(() => {
         client.destroy();
         resolve();
       }, 500);
 
       client.on('data', (data) => {
-        console.log('RESP: ' + data);
+        console.log(`RESP: ${data}`);
         clearTimeout(timer);
         client.destroy();
         resolve();
@@ -126,10 +117,8 @@ class Spfcompare {
       client.connect(port, dns, () => {
         client.write(`UBCT1 flush_type ${domain}. TXT\n`);
       });
-
     });
   }
-
 }
 
 module.exports.Spfcompare = Spfcompare;

@@ -1,5 +1,3 @@
-"use strict";
-
 const nodemailer = require('nodemailer');
 
 const mailTransport = nodemailer.createTransport({
@@ -7,15 +5,14 @@ const mailTransport = nodemailer.createTransport({
   secure: false,
   port: process.env.EXIM_PORT,
   auth: { user: process.env.EXIM_MAIL_USER, pass: process.env.EXIM_MAIL_PASS },
-  tls: { rejectUnauthorized: false }
+  tls: { rejectUnauthorized: false },
 });
 
 class Sendmail {
-
-  async mail(options) {
+  static async mail(options) {
     return new Promise((resolve, reject) => {
       mailTransport.sendMail(options, (err, info) => {
-        if(err) {
+        if (err) {
           reject(err);
           return;
         }
@@ -23,7 +20,6 @@ class Sendmail {
       });
     });
   }
-
 }
 
 module.exports.Sendmail = Sendmail;

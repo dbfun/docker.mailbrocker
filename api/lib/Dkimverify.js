@@ -1,30 +1,25 @@
-"use strict";
-
-const
-  { spawn } = require('child_process')
-  ;
+const { spawn } = require('child_process');
 
 class Dkimverify {
-
-  async check(msg) {
+  static async check(msg) {
     try {
-      let report = await this.fetchData(msg);
+      const report = await Dkimverify.fetchData(msg);
       return {
-        result: "ok",
+        result: 'ok',
         data: {
           report,
-          test: this.parseTest(report)
-        }
-      }
+          test: Dkimverify.parseTest(report),
+        },
+      };
     } catch (e) {
       return {
-        result: "fail",
-        message: e.message
-      }
+        result: 'fail',
+        message: e.message,
+      };
     }
   }
 
-  async fetchData(msg) {
+  static async fetchData(msg) {
     return new Promise((resolve, reject) => {
       const dkimverify = spawn('dkimproxy-verify');
       dkimverify.stdin.write(msg);
@@ -36,24 +31,23 @@ class Dkimverify {
       });
 
       dkimverify.on('close', (code) => {
-        if(code !== 0) {
-          reject(new Error("Error occured"));
+        if (code !== 0) {
+          reject(new Error('Error occured'));
           return;
         }
         resolve(stdout);
       });
 
       dkimverify.stdin.end();
-
     });
   }
 
-  parseTest(report) {
-    let ret = {};
+  static parseTest(report) {
+    const ret = {};
 
-    let regexp = /^(.*?):\s(.*)$/gm;
+    const regexp = /^(.*?):\s(.*)$/gm;
 
-    var m;
+    let m;
     do {
       m = regexp.exec(report);
       if (m) {
@@ -63,7 +57,6 @@ class Dkimverify {
 
     return ret;
   }
-
 }
 
 module.exports.Dkimverify = Dkimverify;

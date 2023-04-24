@@ -1,19 +1,18 @@
-"use strict";
+const amqp = require('amqplib');
+const { MongoClient } = require('mongodb');
+const logger = require('log4js').getLogger();
+const dotenv = require('dotenv');
 
-const
-  assert = require("assert"),
-  amqp = require("amqplib")
-  ;
+logger.level = 'debug';
+logger.category = process.env.name;
 
 class App {
-
   constructor(config) {
+    dotenv.config({ path: '/etc/api/secrets.env' });
     this.config = config;
   }
 
   async connectMongo() {
-    const { MongoClient } = require('mongodb');
-
     const client = new MongoClient(this.config.mongo.uri);
     await client.connect();
 
@@ -21,16 +20,18 @@ class App {
   }
 
   async connectRabbitMQ() {
-    let conn = await amqp.connect(this.config.rabbitMQuri);
+    const conn = await amqp.connect(this.config.rabbitMQuri);
 
-    conn.on("error", (err) => {
-      if (err.message !== "Connection closing") {
-        console.error("[AMQP] conn error", err.message);
+    logger.info('[AMQP] connected');
+
+    conn.on('error', (err) => {
+      if (err.message !== 'Connection closing') {
+        logger.error('[AMQP] conn error', err.message);
       }
     });
 
-    conn.on("close", () => {
-      console.error("[AMQP] reconnecting");
+    conn.on('close', () => {
+      logger.error('[AMQP] reconnecting');
       setTimeout(this.connectRabbitMQ, 1000);
     });
 
@@ -40,14 +41,13 @@ class App {
   }
 
   async initRabbitMQ() {
-    let ch = await this.amqpConn.createConfirmChannel();
-    ch.on("close", () => {
-      console.log("[AMQP] channel closed");
+    const ch = await this.amqpConn.createConfirmChannel();
+    ch.on('close', () => {
+      logger.log('[AMQP] channel closed');
     });
     this.amqpChannel = ch;
-    await this.amqpChannel.assertQueue("checkAll", { durable: true });
+    await this.amqpChannel.assertQueue('checkAll', { durable: true });
   }
-
 }
 
 module.exports.App = App;

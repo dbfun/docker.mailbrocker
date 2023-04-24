@@ -1,20 +1,15 @@
-"use strinct";
-
-const
-  Handlebars = require('handlebars'),
-  table = require('text-table'),
-  _ = require('lodash')
-  ;
+const Handlebars = require('handlebars');
+const table = require('text-table');
+const _ = require('lodash');
 
 class Report {
-
   constructor(mailbroker, security) {
     this.mailbroker = mailbroker;
     this.security = security;
   }
 
   mailPlain(config) {
-    Handlebars.registerPartial("spf", `
+    Handlebars.registerPartial('spf', `
 {{#this}}
 
 ============
@@ -26,7 +21,7 @@ Description: {{this.test.spfquery}}
 {{/this}}
 `.trim());
 
-    Handlebars.registerPartial("dkim", `
+    Handlebars.registerPartial('dkim', `
 {{#this}}
 
 ============
@@ -54,7 +49,7 @@ Verify result: {{this.[verify result]}}
 {{/this}}
 `.trim());
 
-    Handlebars.registerPartial("blacklist", `
+    Handlebars.registerPartial('blacklist', `
 {{#this}}
 
 ============
@@ -73,7 +68,7 @@ Your IP is not blacklisted: {{ip}}
 {{/this}}
 `.trim());
 
-    Handlebars.registerPartial("spamassassin", `
+    Handlebars.registerPartial('spamassassin', `
 {{#this}}
 
 ============
@@ -89,7 +84,7 @@ Rules:
 {{/this}}
 `.trim());
 
-    let source = `
+    const source = `
 =================
 Your mail results
 =================
@@ -111,27 +106,23 @@ This is an automatically generated email
 To unsubscribe from any emails click here: {{{unsubscribe doc._ObjectId}}}
 `;
 
-    Handlebars.registerHelper('plaintable', rules => {
-      let data = [ [] ];
+    Handlebars.registerHelper('plaintable', (rules) => {
+      let data = [[]];
       try {
-        data = _.values(_.mapValues(rules, (o) => {
-          return _.values(o);
-        }));
-      } catch (e) { }
+        data = _.values(_.mapValues(rules, (o) => _.values(o)));
+      } catch (e) { /* Do nothing */ }
       return table(data);
     });
 
-    Handlebars.registerHelper('unsubscribe', _id => {
+    Handlebars.registerHelper('unsubscribe', (_id) => {
       let uri = `${config.baseHref}/unsubscribe?type=mongo&collection=mails&_id=${_id}`;
       uri = this.security.signUri(uri);
       return uri;
     });
 
-    let template = Handlebars.compile(source);
-    let result = template(this.mailbroker).trim();
-    return result;
+    const template = Handlebars.compile(source);
+    return template(this.mailbroker).trim();
   }
-
 }
 
 module.exports.Report = Report;

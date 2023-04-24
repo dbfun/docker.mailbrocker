@@ -1,34 +1,33 @@
-"use strinct";
+'use strinct';
 
-const logger = require("log4js").getLogger();
+const logger = require('log4js').getLogger();
 
-logger.level = "debug";
-logger.category = "Mailbroker";
+logger.level = 'debug';
+logger.category = 'Mailbroker';
 
-const
-  simpleParser = require('mailparser').simpleParser,
-  { ObjectId } = require('mongodb'),
-  Registry = new (require('./Registry').Registry),
-  _ = require('lodash'),
-  assert = require('assert'),
-  { Spfquery } = require('../lib/Spfquery'),
-  { Spfcompare } = require('../lib/Spfcompare'),
-  { Dkimverify } = require('../lib/Dkimverify'),
-  { Dmarccheck } = require('../lib/Dmarccheck'),
-  { Blacklist } = require('../lib/Blacklist'),
-  { Pyzor } = require('../lib/Pyzor'),
-  { Razor } = require('../lib/Razor'),
-  { CheckdeliverySender } = require("../lib/Checkdelivery/Sender"),
-  defaultConfig = {
-    availableTests: [ "spamassassin", "spf", "spfcompare", "dkim", "dmarc", "blacklist", "pyzor", "razor", "checkdelivery" ],
-    availableDNS: [ "8.8.8.8", "77.88.8.8", "94.142.137.100", "94.142.136.100" ],
-    blacklistDomains: null,
-    checkdeliveryConfig: {
-      mailFrom: "noreply@site.com",
-      mailboxes: []
-    }
-  }
-  ;
+const { simpleParser } = require('mailparser');
+const { ObjectId } = require('mongodb');
+const _ = require('lodash');
+const assert = require('assert');
+const { Registry } = require('./Registry');
+const { Spfquery } = require('./Spfquery');
+const { Spfcompare } = require('./Spfcompare');
+const { Dkimverify } = require('./Dkimverify');
+const { Dmarccheck } = require('./Dmarccheck');
+const { Blacklist } = require('./Blacklist');
+const { Pyzor } = require('./Pyzor');
+const { Razor } = require('./Razor');
+// const { CheckdeliverySender } = require('./Checkdelivery/Sender');
+
+const defaultConfig = {
+  availableTests: ['spamassassin', 'spf', 'spfcompare', 'dkim', 'dmarc', 'blacklist', 'pyzor', 'razor', 'checkdelivery'],
+  availableDNS: ['8.8.8.8', '77.88.8.8', '94.142.137.100', '94.142.136.100'],
+  blacklistDomains: null,
+  checkdeliveryConfig: {
+    mailFrom: 'noreply@site.com',
+    mailboxes: [],
+  },
+};
 
 /*
 check for DNS servers if you got this error:
@@ -43,21 +42,20 @@ check for DNS servers if you got this error:
 */
 
 class Mailbroker {
-
   constructor(config) {
-    this.config = {...defaultConfig, ...config};
+    this.config = { ...defaultConfig, ...config };
     this.ObjectId = null;
     this.doc = {
       createdAt: new Date(),
       done: false,
       doneTest: [],
       doneAt: null,
-      to: "",
-      toUsername: "",
-      toDomain: "",
-      from: "",
+      to: '',
+      toUsername: '',
+      toDomain: '',
+      from: '',
       lastMtaIP: null, // ipv4 / ipv6
-      raw: null
+      raw: null,
     };
   }
 
@@ -68,11 +66,11 @@ class Mailbroker {
 
   async load(_ObjecId) {
     this.ObjectId = _ObjecId;
-    if(!this.ObjectId) throw new Error("No ObjectId specified");
+    if (!this.ObjectId) throw new Error('No ObjectId specified');
 
-    let collectionMails = Registry.get('mongo').collection('mails');
-    this.doc = await collectionMails.findOne({_id: new ObjectId(this.ObjectId)});
-    assert.notEqual(this.doc, null, "Mail not found");
+    const collectionMails = Registry.get('mongo').collection('mails');
+    this.doc = await collectionMails.findOne({ _id: new ObjectId(this.ObjectId) });
+    assert.notEqual(this.doc, null, 'Mail not found');
   }
 
   async parseMail() {
@@ -80,26 +78,24 @@ class Mailbroker {
     this.parsed = await simpleParser(this.doc.raw);
     try {
       this.doc.to = this.parsed.to.value[0].address;
-    } catch (e) { }
+    } catch (e) { /* Do nothing */ }
     try {
       this.doc.from = this.parsed.from.value[0].address;
-    } catch (e) { }
+    } catch (e) { /* Do nothing */ }
     try {
-      let parts = this.doc.to.match(/^(.*?)@(.*?)$/);
+      const parts = this.doc.to.match(/^(.*?)@(.*?)$/);
       this.doc.toUsername = parts[1];
       this.doc.toDomain = parts[2];
-    } catch (e) { }
+    } catch (e) { /* Do nothing */ }
 
     try {
-      let Received = _.find(this.parsed.headerLines, (o) => {
-        return o.key === "received" && o.line.match(/^Received: from/);
-      });
-      let m = Received.line.match(/(\[([0-9a-f:]{8,}|[0-9.]{7,})\])/);
+      const Received = _.find(this.parsed.headerLines, (o) => o.key === 'received' && o.line.match(/^Received: from/));
+      const m = Received.line.match(/(\[([0-9a-f:]{8,}|[0-9.]{7,})\])/);
       this.doc.lastMtaIP = m[2];
-    } catch (e) { }
+    } catch (e) { /* Do nothing */ }
     try {
       this.doc.subject = this.parsed.subject;
-    } catch (e) { }
+    } catch (e) { /* Do nothing */ }
   }
 
   getObjectId() {
@@ -119,7 +115,7 @@ class Mailbroker {
   }
 
   getResults(name) {
-    if(this.config.availableTests.indexOf(name) === -1) return null;
+    if (this.config.availableTests.indexOf(name) === -1) return null;
     return this.doc[name];
   }
 
@@ -135,204 +131,198 @@ class Mailbroker {
     this.ObjectId = _ObjectId;
   }
 
-  generateObjectId() {
-    return new ObjectId;
+  static generateObjectId() {
+    return new ObjectId();
   }
 
-  validateObjectId(_ObjectId) {
+  static validateObjectId(_ObjectId) {
     return _ObjectId instanceof ObjectId;
   }
 
-  getMailObjectId(to) {
+  static getMailObjectId(to) {
     try {
-      let m = to.match(/^([0-9a-f]{24})@/);
+      const m = to.match(/^([0-9a-f]{24})@/);
       return m[1];
     } catch (e) {
       return null;
     }
   }
 
-  findHeader(headerLines, header) {
+  static findHeader(headerLines, header) {
     let ret;
     try {
-      ret = _.find(headerLines, (o) => {
-        return o.key === header;
-      });
-    } catch (e) { }
+      ret = _.find(headerLines, (o) => o.key === header);
+    } catch (e) { /* Do nothing */ }
     return ret;
   }
 
   async saveRaw() {
     try {
-      this.validateObjectId(this.ObjectId);
+      Mailbroker.validateObjectId(this.ObjectId);
     } catch (e) {
-      throw new Error("No ObjectId specified");
+      throw new Error('No ObjectId specified');
     }
-    let collectionMails = Registry.get('mongo').collection('mails');
+    const collectionMails = Registry.get('mongo').collection('mails');
     this.doc._ObjectId = this.ObjectId;
     return collectionMails.replaceOne(
       {
-        _id: this.ObjectId
+        _id: this.ObjectId,
       },
       this.doc,
       {
-        upsert: true
-      }
+        upsert: true,
+      },
     );
   }
 
   async checkAll(isSaveResults) {
-    let tests = [];
+    const tests = [];
 
-    for(let testName of this.config.availableTests) {
-      switch(testName) {
-        case "spamassassin":
+    // eslint-disable-next-line no-restricted-syntax
+    for (const testName of this.config.availableTests) {
+      switch (testName) {
+        case 'spamassassin':
           tests.push(this.checkSpamassassin(isSaveResults));
           break;
-        case "spf":
+        case 'spf':
           tests.push(this.checkSpf(isSaveResults));
           break;
-        case "spfcompare":
+        case 'spfcompare':
           tests.push(this.checkSpfcompare(isSaveResults));
           break;
-        case "dkim":
+        case 'dkim':
           tests.push(this.checkDkim(isSaveResults));
           break;
-        case "dmarc":
+        case 'dmarc':
           tests.push(this.checkDmarc(isSaveResults));
           break;
-        case "blacklist":
+        case 'blacklist':
           tests.push(this.checkBlacklist(isSaveResults));
           break;
-        case "pyzor":
+        case 'pyzor':
           tests.push(this.checkPyzor(isSaveResults));
           break;
-        case "razor":
+        case 'razor':
           tests.push(this.checkRazor(isSaveResults));
           break;
-        case "checkdelivery":
-          break;
-          // TODO Эта часть работает не стабильно
-          let checkdeliverySender = new CheckdeliverySender(this.config.checkdeliveryConfig);
-          tests.push(checkdeliverySender.sendAll(this.ObjectId, this.doc.raw));
-          break;
+        // case 'checkdelivery':
+        //   break;
+        //   // TODO Эта часть работает не стабильно
+        //   const checkdeliverySender = new CheckdeliverySender(this.config.checkdeliveryConfig);
+        //   tests.push(checkdeliverySender.sendAll(this.ObjectId, this.doc.raw));
+        //   break;
+        default:
+          throw new Error('Test not supported');
       }
     }
     return Promise.allSettled(tests).then(async () => {
-      if(isSaveResults) await this.saveDone();
+      if (isSaveResults) await this.saveDone();
     });
   }
 
   checkSpamassassin(isSaveResults) {
-    let spamassassin = Registry.get('spamassassin');
-    return spamassassin.check(this.doc.raw).then(async (spamassassin) => {
-      this.doc.spamassassin = spamassassin;
-      if(isSaveResults) await this.saveResults('spamassassin', spamassassin);
+    const sa = Registry.get('spamassassin');
+    return sa.check(this.doc.raw).then(async (report) => {
+      this.doc.spamassassin = report;
+      if (isSaveResults) await this.saveResults('spamassassin', report);
     });
   }
 
   checkSpf(isSaveResults) {
-    let spfquery = new Spfquery;
-    return spfquery.check(this.doc.lastMtaIP, this.doc.from).then(async (spf) => {
-      this.doc.spf = spf;
-      if(isSaveResults) await this.saveResults('spf', spf);
+    return Spfquery.check(this.doc.lastMtaIP, this.doc.from).then(async (report) => {
+      this.doc.spf = report;
+      if (isSaveResults) await this.saveResults('spf', report);
     });
   }
 
   checkSpfcompare(isSaveResults) {
-    let spfcompare = new Spfcompare;
-    return spfcompare.check(this.doc.toDomain).then(async (spfcompare) => {
-      this.doc.spfcompare = spfcompare;
-      if(isSaveResults) await this.saveResults('spfcompare', spfcompare);
+    return Spfcompare.check(this.doc.toDomain).then(async (report) => {
+      this.doc.spfcompare = report;
+      if (isSaveResults) await this.saveResults('spfcompare', report);
     });
   }
 
   checkDkim(isSaveResults) {
-    let dkimverify = new Dkimverify;
-    return dkimverify.check(this.doc.raw).then(async (dkim) => {
-      this.doc.dkim = dkim;
-      if(isSaveResults) await this.saveResults('dkim', dkim);
+    return Dkimverify.check(this.doc.raw).then(async (report) => {
+      this.doc.dkim = report;
+      if (isSaveResults) await this.saveResults('dkim', report);
     });
   }
 
   checkDmarc(isSaveResults) {
-    let dmarccheck = new Dmarccheck;
-    return dmarccheck.check(this.doc.from).then(async (dmarc) => {
-      this.doc.dmarc = dmarc;
-      if(isSaveResults) await this.saveResults('dmarc', dmarc);
+    return Dmarccheck.check(this.doc.from).then(async (report) => {
+      this.doc.dmarc = report;
+      if (isSaveResults) await this.saveResults('dmarc', report);
     });
   }
 
   checkBlacklist(isSaveResults) {
-    let blacklist = new Blacklist(this.config.availableDNS, this.config.blacklistDomains);
-    return blacklist.check(this.doc.lastMtaIP).then(async (bl) => {
-      this.doc.blacklist = bl;
-      if(isSaveResults) await this.saveResults('blacklist', bl);
+    const blacklist = new Blacklist(this.config.availableDNS, this.config.blacklistDomains);
+    return blacklist.check(this.doc.lastMtaIP).then(async (report) => {
+      this.doc.blacklist = report;
+      if (isSaveResults) await this.saveResults('blacklist', report);
     });
   }
 
   checkPyzor(isSaveResults) {
-    let pyzor = new Pyzor;
-    return pyzor.check(this.doc.raw).then(async (pz) => {
-      this.doc.pyzor = pz;
-      if(isSaveResults) await this.saveResults('pyzor', pz);
+    return Pyzor.check(this.doc.raw).then(async (report) => {
+      this.doc.pyzor = report;
+      if (isSaveResults) await this.saveResults('pyzor', report);
     });
   }
 
   checkRazor(isSaveResults) {
-    let razor = new Razor;
-    return razor.check(this.doc.raw).then(async (rz) => {
-      this.doc.razor = rz;
-      if(isSaveResults) await this.saveResults('razor', rz);
+    return Razor.check(this.doc.raw).then(async (report) => {
+      this.doc.razor = report;
+      if (isSaveResults) await this.saveResults('razor', report);
     });
   }
 
   async saveResults(section, data) {
-    if(!this.ObjectId) throw new Error("No ObjectId specified");
-    logger.info("Saving results", {_id: this.ObjectId, section});
-    let collectionMails = Registry.get('mongo').collection('mails');
-    let update = {};
+    if (!this.ObjectId) throw new Error('No ObjectId specified');
+    logger.info('Saving results', { _id: this.ObjectId, section });
+    const collectionMails = Registry.get('mongo').collection('mails');
+    const update = {};
     update[section] = data;
 
     return collectionMails.updateOne(
       {
-        _id: new ObjectId(this.ObjectId)
+        _id: new ObjectId(this.ObjectId),
       },
       {
         $set: update,
         $push: {
           doneTest: {
             name: section,
-            doneAt: new Date()
-          }
-        }
+            doneAt: new Date(),
+          },
+        },
       },
       {
-        upsert: false
-      }
+        upsert: false,
+      },
     );
   }
 
   async saveDone() {
-    if(!this.ObjectId) throw new Error("No ObjectId specified");
-    let collectionMails = Registry.get('mongo').collection('mails');
-    let update = {
+    if (!this.ObjectId) throw new Error('No ObjectId specified');
+    const collectionMails = Registry.get('mongo').collection('mails');
+    const update = {
       done: true,
-      doneAt: new Date()
+      doneAt: new Date(),
     };
     return collectionMails.updateOne(
       {
-        _id: new ObjectId(this.ObjectId)
+        _id: new ObjectId(this.ObjectId),
       },
       {
-        $set: update
+        $set: update,
       },
       {
-        upsert: false
-      }
+        upsert: false,
+      },
     );
   }
-
 }
 
 module.exports.Mailbroker = Mailbroker;

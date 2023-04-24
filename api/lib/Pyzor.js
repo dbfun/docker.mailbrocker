@@ -1,8 +1,4 @@
-"use strict";
-
-const
-  { spawn } = require('child_process')
-  ;
+const { spawn } = require('child_process');
 
 /**
  * Pyzor can use public server public.pyzor.org or self server.
@@ -12,36 +8,34 @@ const
  */
 
 class Pyzor {
-
-  async check(msg) {
+  static async check(msg) {
     try {
-      let report = await this.fetchData(msg);
+      const report = await Pyzor.fetchData(msg);
       return {
-        result: "ok",
+        result: 'ok',
         data: {
           report,
-          test: this.parseTests(report)
-        }
-      }
+          test: Pyzor.parseTests(report),
+        },
+      };
     } catch (e) {
       return {
-        result: "fail",
-        message: e.message
-      }
+        result: 'fail',
+        message: e.message,
+      };
     }
   }
 
-  async fetchData(msg) {
-    return new Promise((resolve, reject) => {
+  static async fetchData(msg) {
+    return new Promise((resolve) => {
       const pyzor = spawn('pyzor', ['info']);
-      pyzor.stdin.write(msg);
       let stdout = '';
 
       pyzor.stdout.on('data', (data) => {
         stdout += data;
       });
 
-      pyzor.on('close', (code) => {
+      pyzor.on('close', () => {
         /*
         The exit code is useless:
           1 if the report count is 0 or the whitelist count is > 0
@@ -50,32 +44,32 @@ class Pyzor {
         resolve(stdout);
       });
 
+      pyzor.stdin.write(msg);
       pyzor.stdin.end();
     });
   }
 
-  parseTests(data) {
-    let results = {};
+  static parseTests(data) {
+    const results = {};
 
-    let regexp = /^(.*?):\s(.*)$/gm;
+    const regexp = /^(.*?):\s(.*)$/gm;
 
-    var m;
+    let m;
     do {
       m = regexp.exec(data);
       if (m) {
-        results[m[1].trim()] = this.canonizeVal(m[2]);
+        results[m[1].trim()] = Pyzor.canonizeVal(m[2]);
       }
     } while (m);
 
     return results;
   }
 
-  canonizeVal(val) {
-    val = val.trim();
-    let num = parseFloat(val);
-    return !isNaN(parseFloat(num)) && num == val && isFinite(num) ? num : val;
+  static canonizeVal(val) {
+    const num = parseFloat(val);
+    // eslint-disable-next-line eqeqeq
+    return !Number.isNaN(num) && num == val && Number.isFinite(num) ? num : val;
   }
-
 }
 
 module.exports.Pyzor = Pyzor;

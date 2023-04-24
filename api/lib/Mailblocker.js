@@ -1,51 +1,53 @@
-"use strinct";
+const { ObjectId } = require('mongodb');
+const assert = require('assert');
+const logger = require('log4js').getLogger();
+const { Registry } = require('./Registry');
 
-const
-  Registry = new (require('./Registry').Registry),
-  { ObjectId } = require('mongodb'),
-  assert = require('assert')
-  ;
+logger.level = 'debug';
+logger.category = 'Mailblocker';
 
 class Mailblocker {
-
   constructor() {
     this.emails = [];
   }
 
   async addFromMongo(collectionName, _id, fieldName) {
-    assert.ok(typeof collectionName === "string", "Collection not found");
-    let collection = Registry.get('mongo').collection(collectionName);
-    let doc = await collection.findOne({_id: ObjectId(_id)});
-    assert.notEqual(doc, undefined, "Record not found");
-    let mail = doc[fieldName];
-    assert.notEqual(mail, undefined, "Mail not found");
+    assert.ok(typeof collectionName === 'string', 'Collection not found');
+    const collection = Registry.get('mongo').collection(collectionName);
+    const doc = await collection.findOne({ _id: ObjectId(_id) });
+    assert.notEqual(doc, undefined, 'Record not found');
+    const mail = doc[fieldName];
+    assert.notEqual(mail, undefined, 'Mail not found');
     this.emails.push(mail);
   }
 
   async block(reason) {
-    console.log(`Block emails for reason "${reason}": `, this.emails);
-    let collection = Registry.get('mongo').collection("mailblocker");
+    logger.info(`Block emails for reason "${reason}": `, this.emails);
+    const collection = Registry.get('mongo').collection('mailblocker');
 
-    for(let _email of this.emails) {
-      let email = _email.trim().toLowerCase();
+    // eslint-disable-next-line no-restricted-syntax,no-underscore-dangle
+    for (const _email of this.emails) {
+      const email = _email.trim().toLowerCase();
+      // eslint-disable-next-line no-await-in-loop
       await collection.replaceOne(
         {
-          email: email
+          email,
         },
-        { email: email, blocked: true, reason: reason, upd: new Date },
         {
-          upsert: true
-        }
+          email, blocked: true, reason, upd: new Date(),
+        },
+        {
+          upsert: true,
+        },
       );
     }
   }
 
-  async get(email) {
-    if(typeof email !== "string") return null;
-    let collection = Registry.get('mongo').collection("mailblocker");
-    return await collection.findOne({email: email.trim().toLowerCase()});
+  static async get(email) {
+    if (typeof email !== 'string') return null;
+    const collection = Registry.get('mongo').collection('mailblocker');
+    return collection.findOne({ email: email.trim().toLowerCase() });
   }
-
 }
 
 module.exports.Mailblocker = Mailblocker;
