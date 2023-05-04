@@ -23,6 +23,4 @@ ADD ./docker/exim/srv /srv
 
 ADD ./docker/exim/exim.conf /etc/exim/exim.conf
 
-HEALTHCHECK --interval=60s --timeout=5s --start-period=5s CMD exiwhat | grep -qF "listening for SMTP on port" || exit 1
-
 CMD ["/srv/run.sh"]
