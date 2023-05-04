@@ -2,6 +2,10 @@ stages:
   - build
   - deploy
 
+workflow:
+  rules:
+    - if: $CI_COMMIT_BRANCH == 'master'
+
 build dns:
   stage: build
   tags:
