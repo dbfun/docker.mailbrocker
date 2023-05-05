@@ -15,8 +15,9 @@ if (!isDockerDns) {
 }
 
 class DockerDns {
-  static async resolve() {
-    return resolver.resolve4('dns');
+  static async resolve(host) {
+    const IPs = await resolver.resolve4(host);
+    return IPs[0];
   }
 }
 

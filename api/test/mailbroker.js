@@ -253,7 +253,7 @@ describe('mailbroker', () => {
 
   describe('check', async function () {
     this.timeout(15000);
-    const availableDNS = await DockerDns.resolve();
+    const availableDNS = [await DockerDns.resolve('dns')];
 
     const tests = ['spf', 'dkim', 'blacklist', 'pyzor', 'razor'];
     for (const testName of tests) {

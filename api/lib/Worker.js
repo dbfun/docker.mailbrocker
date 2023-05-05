@@ -28,7 +28,7 @@ class Worker extends App {
 
     this.amqpChannel.prefetch(this.config.workerCheckAllCnt);
 
-    const internalDnsResolver = await DockerDns.resolve();
+    const internalDnsResolver = [await DockerDns.resolve('dns')];
     logger.info('Setup internal DNS resolver', { dns: internalDnsResolver });
     this.config.DNSresolver = internalDnsResolver;
 
