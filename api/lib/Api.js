@@ -2,16 +2,13 @@ const express = require('express');
 const assert = require('assert');
 const bodyParser = require('body-parser');
 const logger = require('log4js').getLogger();
-const { App } = require('./App');
+const App = require('./App');
 const { Mailbroker } = require('./Mailbroker');
 const { Mailblocker } = require('./Mailblocker');
 const { Registry } = require('./Registry');
-const { Security } = require('./Security');
 
 logger.level = 'debug';
 logger.category = process.env.name;
-
-const security = new Security(process.env.SECURITY_SALT);
 
 class Api extends App {
   async init() {
@@ -266,7 +263,7 @@ class Api extends App {
 
     api.get('/unsubscribe', async (req, res) => {
       const mailblocker = new Mailblocker();
-      if (!security.isUriValid(req.originalUrl)) {
+      if (!this.security.isUriValid(req.originalUrl)) {
         return res.status(404).send(JSON.stringify({ result: 'fail', reason: 'Security: wrong url sign' }));
       }
 

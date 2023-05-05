@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { Config } = require('../lib/Config');
+const Config = require('../lib/Config');
 const { Blacklist } = require('../lib/Blacklist');
 
 const IP = process.argv[2];

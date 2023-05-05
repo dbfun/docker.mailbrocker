@@ -1,15 +1,15 @@
 const amqp = require('amqplib');
 const { MongoClient } = require('mongodb');
 const logger = require('log4js').getLogger();
-const dotenv = require('dotenv');
+const { Security } = require('./Security');
 
 logger.level = 'debug';
 logger.category = process.env.name;
 
 class App {
   constructor(config) {
-    dotenv.config({ path: '/etc/api/secrets.env' });
     this.config = config;
+    this.security = new Security(config.securitySalt);
   }
 
   async connectMongo() {
@@ -50,4 +50,4 @@ class App {
   }
 }
 
-module.exports.App = App;
+module.exports = App;

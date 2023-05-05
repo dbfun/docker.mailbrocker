@@ -1,15 +1,12 @@
 const assert = require('assert');
 const logger = require('log4js').getLogger();
-const { App } = require('./App');
+const App = require('./App');
 const { DockerDns } = require('./DockerDns');
 const { Mailbroker } = require('./Mailbroker');
 const { Report } = require('./Report');
 const { Registry } = require('./Registry');
-const { Security } = require('./Security');
 const { Sendmail } = require('./Sendmail');
 const { Spamassassin } = require('./Spamassassin');
-
-const security = new Security(process.env.SECURITY_SALT);
 
 logger.level = 'debug';
 logger.category = process.env.name;
@@ -76,7 +73,7 @@ class Worker extends App {
 
   async mailReport(mailbroker, mailTo) {
     try {
-      const report = new Report(mailbroker, security);
+      const report = new Report(mailbroker, this.security);
       const plain = report.mailPlain({ baseHref: this.config.apiBaseHref });
       const info = await Sendmail.mail({
         from: this.config.mailFrom,
