@@ -43,8 +43,6 @@ Usage: https://www.surbl.org/guidelines
 DNSBL: multi.surbl.org
 Limits: [250,000 messages per day](https://www.surbl.org/faqs#high-volume). Note: if you get a result of `127.0.0.1` when doing a SURBL DNS query into the public nameservers, then it means your access is blocked.
 
-
-
 ## URIBL
 
 https://uribl.com/about.shtml
