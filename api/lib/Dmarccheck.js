@@ -36,7 +36,7 @@ class Dmarccheck {
 
       opendmarc.on('close', (code) => {
         if (code !== 0) {
-          reject(new Error('Error occured'));
+          reject(new Error('Error occurred'));
           return;
         }
         resolve(stdout);

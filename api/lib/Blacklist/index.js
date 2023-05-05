@@ -1,29 +1,17 @@
-const logger = require('log4js').getLogger();
 const dns = require('dns');
-const assert = require('assert');
-const padIpv6 = require('../node-pad-ipv6'); // @see https://github.com/fc00/node-pad-ipv6
-
-logger.level = 'debug';
-logger.category = 'Blacklist';
+const IPTools = require('../IPTools');
 
 class Blacklist {
-  constructor(availableDNS, domains) {
-    this.availableDNS = availableDNS;
+  constructor(dnsServers, domains) {
+    dns.setServers(dnsServers);
     this.domains = domains;
-    assert.ok(typeof this.availableDNS === 'object' && this.availableDNS.length > 0);
-    dns.setServers(this.availableDNS);
+
+    if (!this.domains) {
+      throw new Error('No domains to check in the blacklists');
+    }
   }
 
   async check(ip) {
-    if (!this.domains) {
-      const msg = 'No domains to blacklist check';
-      logger.error(msg);
-      return {
-        result: 'fail',
-        message: msg,
-      };
-    }
-
     if (!ip) {
       return {
         result: 'fail',
@@ -31,9 +19,9 @@ class Blacklist {
       };
     }
 
-    const IPver = Blacklist.IPver(ip);
+    const IPver = IPTools.IPver(ip);
 
-    const reverseIP = IPver === 4 ? Blacklist.reverseIPv4(ip) : Blacklist.reverseIPv6(ip);
+    const reverseIP = IPver === 4 ? IPTools.reverseIPv4(ip) : IPTools.reverseIPv6(ip);
     const dnsLookups = [];
 
     const domains = Blacklist.domainsByIpVer(this.domains, IPver);
@@ -81,20 +69,6 @@ class Blacklist {
   static domainsByIpVer(domains, IPver) {
     const IPverStr = IPver.toString();
     return domains.filter((it) => it.ipv.indexOf(IPverStr) !== -1);
-  }
-
-  static IPver(ip) {
-    return ip.match(/[0-9a-f:]{8,}/) ? 6 : 4;
-  }
-
-  static reverseIPv4(ip) {
-    assert.ok(typeof ip === 'string');
-    return ip.split('.').reverse().join('.');
-  }
-
-  static reverseIPv6(ip) {
-    const ipV6Expanded = padIpv6(ip);
-    return ipV6Expanded.replace(/:/g, '').split('').reverse().join('.');
   }
 
   static async dnsLookup(reverseIP, domainBundle) {
