@@ -28,7 +28,7 @@ class Config {
   }
 
   get catchMtaLettersTo() {
-    return process.env.API_CATCH_MTA_TO ? process.env.API_CATCH_MTA_TO.trim().split(',').map(Function.prototype.call, String.prototype.trim) : [];
+    return Config.commaSeparatedToArray(process.env.API_CATCH_MTA_TO);
   }
 
   get mailFrom() {
@@ -76,11 +76,11 @@ class Config {
   }
 
   get availableTests() {
-    return process.env.API_AVAILABLE_TESTS ? process.env.API_AVAILABLE_TESTS.trim().split(',').map(Function.prototype.call, String.prototype.trim) : [];
+    return Config.commaSeparatedToArray(process.env.API_AVAILABLE_TESTS);
   }
 
   get replyMtaLettersTo() {
-    return process.env.API_REPLY_MTA_REPORT_TO ? process.env.API_REPLY_MTA_REPORT_TO.trim().split(',').map(Function.prototype.call, String.prototype.trim) : [];
+    return Config.commaSeparatedToArray(process.env.API_REPLY_MTA_REPORT_TO);
   }
 
   get workerCheckAllCnt() {
@@ -93,6 +93,10 @@ class Config {
       port: 783,
       maxSize: process.env.INCOMING_MAIL_MAX_SIZE_KILOBYTES * 1000,
     };
+  }
+
+  static commaSeparatedToArray(str, def = []) {
+    return str ? str.split(',').map((o) => o.trim()) : def;
   }
 }
 
