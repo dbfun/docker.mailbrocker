@@ -1,7 +1,6 @@
 const assert = require('assert');
 const logger = require('log4js').getLogger();
 const App = require('./App');
-const { DockerDns } = require('./DockerDns');
 const { Mailbroker } = require('./Mailbroker');
 const { Report } = require('./Report');
 const { Registry } = require('./Registry');
@@ -25,10 +24,6 @@ class Worker extends App {
 
     this.amqpChannel.prefetch(this.config.workerCheckAllCnt);
 
-    const internalDnsResolver = [await DockerDns.resolve('dns')];
-    logger.info('Setup internal DNS resolver', { dns: internalDnsResolver });
-    this.config.DNSresolver = internalDnsResolver;
-
     await this.amqpChannel.consume('checkAll', this.checkAll.bind(this), { noAck: false });
     logger.info('Worker is started');
   }
@@ -39,8 +34,8 @@ class Worker extends App {
 
     try {
       const mailbroker = new Mailbroker({
-        availableTests: this.config.apiAvailableTests,
-        availableDNS: this.config.DNSresolver,
+        availableTests: this.config.availableTests,
+        availableDNS: [await this.config.internalDnsResolver],
         blacklistDomains: this.config.blacklistDomains,
         checkdeliveryConfig: this.config.checkdelivery,
       });

@@ -53,6 +53,47 @@ class Config {
   get securitySalt() {
     return process.env.SECURITY_SALT;
   }
+
+  get apiDomain() {
+    return process.env.API_DOMAIN;
+  }
+
+  get apiBaseHref() {
+    // Use reverse proxy for TLS!
+    return `https://${this.apiDomain}`;
+  }
+
+  get checkdelivery() {
+    // Отключено до починки checkdelivery
+    return null;
+
+    // return {
+    //   mailFrom: this.mailFrom,
+    //   mailboxes: require("./lib/Checkdelivery/checkdelivery-mails").mailboxes.filter((o) => {
+    //     return o.active === true;
+    //   })
+    // };
+  }
+
+  get availableTests() {
+    return process.env.API_AVAILABLE_TESTS ? process.env.API_AVAILABLE_TESTS.trim().split(',').map(Function.prototype.call, String.prototype.trim) : [];
+  }
+
+  get replyMtaLettersTo() {
+    return process.env.API_REPLY_MTA_REPORT_TO ? process.env.API_REPLY_MTA_REPORT_TO.trim().split(',').map(Function.prototype.call, String.prototype.trim) : [];
+  }
+
+  get workerCheckAllCnt() {
+    return process.env.API_WORKER_CHECK_ALL_CNT
+      ? parseInt(process.env.API_WORKER_CHECK_ALL_CNT, 10) : 2;
+  }
+
+  get spamassassin() {
+    return {
+      port: 783,
+      maxSize: process.env.INCOMING_MAIL_MAX_SIZE_KILOBYTES * 1000,
+    };
+  }
 }
 
 module.exports = Config;
