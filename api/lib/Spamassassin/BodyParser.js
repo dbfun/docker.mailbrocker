@@ -50,4 +50,4 @@ class BodyParser {
   }
 }
 
-module.exports.BodyParser = BodyParser;
+module.exports = BodyParser;

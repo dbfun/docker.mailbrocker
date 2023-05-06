@@ -1,7 +1,7 @@
 const { ObjectId } = require('mongodb');
 const assert = require('assert');
 const logger = require('log4js').getLogger();
-const { Registry } = require('./Registry');
+const Registry = require('./Registry');
 
 logger.level = 'debug';
 logger.category = 'Mailblocker';
@@ -50,4 +50,4 @@ class Mailblocker {
   }
 }
 
-module.exports.Mailblocker = Mailblocker;
+module.exports = Mailblocker;

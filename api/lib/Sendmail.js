@@ -22,4 +22,4 @@ class Sendmail {
   }
 }
 
-module.exports.Sendmail = Sendmail;
+module.exports = Sendmail;

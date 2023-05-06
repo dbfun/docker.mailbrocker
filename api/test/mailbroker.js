@@ -245,11 +245,10 @@ const testCasesCheckPreparation = [
     },
   },
 ];
-const { DockerDns } = require('../lib/DockerDns');
+const DockerDns = require('../lib/DockerDns');
 
 describe('mailbroker', () => {
-  const
-    { Mailbroker } = require('../lib/Mailbroker');
+  const Mailbroker = require('../lib/Mailbroker');
 
   describe('check', async function () {
     this.timeout(15000);

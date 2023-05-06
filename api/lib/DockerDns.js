@@ -21,4 +21,4 @@ class DockerDns {
   }
 }
 
-module.exports.DockerDns = DockerDns;
+module.exports = DockerDns;

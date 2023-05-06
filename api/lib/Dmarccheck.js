@@ -52,4 +52,4 @@ class Dmarccheck {
   }
 }
 
-module.exports.Dmarccheck = Dmarccheck;
+module.exports = Dmarccheck;

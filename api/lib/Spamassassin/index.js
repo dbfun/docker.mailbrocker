@@ -1,7 +1,7 @@
 const { spawn } = require('child_process');
-const { BodyParser } = require('./BodyParser');
+const BodyParser = require('./BodyParser');
 
-class Index {
+class Spamassassin {
   constructor(config) {
     this.config = config;
   }
@@ -13,7 +13,7 @@ class Index {
         result: 'ok',
         data: {
           report,
-          test: Index.parseTests(report),
+          test: Spamassassin.parseTests(report),
         },
       };
     } catch (e) {
@@ -56,4 +56,4 @@ class Index {
   }
 }
 
-module.exports.Spamassassin = Index;
+module.exports = Spamassassin;

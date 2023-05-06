@@ -121,4 +121,4 @@ class Spfcompare {
   }
 }
 
-module.exports.Spfcompare = Spfcompare;
+module.exports = Spfcompare;

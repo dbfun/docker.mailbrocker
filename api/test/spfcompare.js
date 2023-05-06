@@ -2,52 +2,46 @@
 @see https://mochajs.org/
 @see https://nodejs.org/api/assert.html
 */
-"use strict";
 
 const
-  assert = require('assert')
-  ;
+  assert = require('assert');
 
-describe('spfcompare', function() {
-
+describe('spfcompare', function () {
   this.timeout(15000);
 
-  const
-    spfcompare = new (require('../lib/Spfcompare')).Spfcompare;
+  const Spfcompare = require('../lib/Spfcompare');
+  const spfcompare = new Spfcompare();
 
-
-  it("selftest", async () => {
-    let domain = `selftest.${process.env.EXIM_DOMAIN}`; // selftest.site.com
-    let report = await spfcompare.check(domain);
+  it('selftest', async () => {
+    const domain = `selftest.${process.env.EXIM_DOMAIN}`; // selftest.site.com
+    const report = await spfcompare.check(domain);
 
     // console.log(report); process.exit(1);
 
-    assert.equal(report.result, "ok");
+    assert.equal(report.result, 'ok');
     assert.equal(report.data.message, undefined);
     assert.deepStrictEqual(report.data.public.spf, report.data.authoritative.spf);
     assert.ok(report.data.isSame);
   });
 
-  it("notexists", async () => {
-    let domain = `notexists.${process.env.EXIM_DOMAIN}`; // notexists.site.com
-    let report = await spfcompare.check(domain);
+  it('notexists', async () => {
+    const domain = `notexists.${process.env.EXIM_DOMAIN}`; // notexists.site.com
+    const report = await spfcompare.check(domain);
 
-    assert.equal(report.result, "ok");
+    assert.equal(report.result, 'ok');
     assert.equal(report.data.message, undefined);
     assert.deepStrictEqual(report.data.public.spf, report.data.authoritative.spf);
     assert.ok(report.data.isSame);
   });
 
-  it("junk", async () => {
-    let domain = `junk`; //
-    let report = await spfcompare.check(domain);
+  it('junk', async () => {
+    const domain = 'junk'; //
+    const report = await spfcompare.check(domain);
 
-    assert.equal(report.result, "ok");
+    assert.equal(report.result, 'ok');
     assert.equal(report.data.message, undefined);
 
     assert.deepStrictEqual(report.data.public.spf, report.data.authoritative.spf);
     assert.ok(report.data.isSame);
   });
-
-
 });

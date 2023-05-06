@@ -1,7 +1,7 @@
-const apiAvailableTests = process.env.API_AVAILABLE_TESTS
-  ? process.env.API_AVAILABLE_TESTS.trim().split(',').map(Function.prototype.call, String.prototype.trim) : [];
-
+const Config = require('./lib/Config');
 const { initSecretsFile } = require('./init');
+
+const config = new Config();
 
 initSecretsFile();
 
@@ -24,7 +24,7 @@ const apps = [
   },
 ];
 
-if (apiAvailableTests.indexOf('checkdelivery') !== -1) {
+if (config.availableTests.indexOf('checkdelivery') !== -1) {
   apps.push({
     name: 'Checkdelivery',
     script: 'process-checkdelivery.js',

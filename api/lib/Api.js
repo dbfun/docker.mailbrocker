@@ -3,9 +3,9 @@ const assert = require('assert');
 const bodyParser = require('body-parser');
 const logger = require('log4js').getLogger();
 const App = require('./App');
-const { Mailbroker } = require('./Mailbroker');
-const { Mailblocker } = require('./Mailblocker');
-const { Registry } = require('./Registry');
+const Mailbroker = require('./Mailbroker');
+const Mailblocker = require('./Mailblocker');
+const Registry = require('./Registry');
 
 logger.level = 'debug';
 logger.category = process.env.name;
@@ -60,13 +60,11 @@ class Api extends App {
   }
 
   async addMailToQueue(params) {
-    const exchange = '';
-    const routingKey = 'checkAll';
     const content = Buffer.from(JSON.stringify(params));
     return new Promise((resolve, reject) => {
       this.amqpChannel.publish(
-        exchange,
-        routingKey,
+        '',
+        'checkAll',
         content,
         { persistent: true },
         (err) => {

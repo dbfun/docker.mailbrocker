@@ -125,4 +125,4 @@ To unsubscribe from any emails click here: {{{unsubscribe doc._ObjectId}}}
   }
 }
 
-module.exports.Report = Report;
+module.exports = Report;

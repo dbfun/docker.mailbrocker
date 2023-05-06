@@ -109,4 +109,4 @@ class Blacklist {
   }
 }
 
-module.exports.Blacklist = Blacklist;
+module.exports = Blacklist;

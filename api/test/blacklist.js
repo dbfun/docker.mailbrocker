@@ -75,11 +75,10 @@ const testCases = [
     },
   },
 ];
-const { DockerDns } = require('../lib/DockerDns');
+const DockerDns = require('../lib/DockerDns');
 
 describe('blacklist', () => {
-  const
-    { Blacklist } = require('../lib/Blacklist');
+  const Blacklist = require('../lib/Blacklist');
 
   describe('check', async function () {
     this.timeout(15000);

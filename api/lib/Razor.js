@@ -50,4 +50,4 @@ class Razor {
   }
 }
 
-module.exports.Razor = Razor;
+module.exports = Razor;

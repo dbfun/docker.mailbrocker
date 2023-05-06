@@ -1,11 +1,11 @@
 const assert = require('assert');
 const logger = require('log4js').getLogger();
 const App = require('./App');
-const { Mailbroker } = require('./Mailbroker');
-const { Report } = require('./Report');
-const { Registry } = require('./Registry');
-const { Sendmail } = require('./Sendmail');
-const { Spamassassin } = require('./Spamassassin');
+const Mailbroker = require('./Mailbroker');
+const Report = require('./Report');
+const Registry = require('./Registry');
+const Sendmail = require('./Sendmail');
+const Spamassassin = require('./Spamassassin');
 
 logger.level = 'debug';
 logger.category = process.env.name;

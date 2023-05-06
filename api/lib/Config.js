@@ -1,6 +1,6 @@
 const YAML = require('yaml');
 const dotenv = require('dotenv');
-const { DockerDns } = require('./DockerDns');
+const DockerDns = require('./DockerDns');
 
 dotenv.config({ path: '/etc/api/secrets.env' });
 

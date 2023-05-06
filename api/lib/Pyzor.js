@@ -72,4 +72,4 @@ class Pyzor {
   }
 }
 
-module.exports.Pyzor = Pyzor;
+module.exports = Pyzor;

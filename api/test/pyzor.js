@@ -31,8 +31,7 @@ const testCasesParseTests = [
 ];
 
 describe('pyzor', () => {
-  const
-    { Pyzor } = require('../lib/Pyzor');
+  const Pyzor = require('../lib/Pyzor');
 
   describe('check', () => {
     for (const testCase of testCasesParseTests) {

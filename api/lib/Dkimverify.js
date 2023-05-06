@@ -59,4 +59,4 @@ class Dkimverify {
   }
 }
 
-module.exports.Dkimverify = Dkimverify;
+module.exports = Dkimverify;

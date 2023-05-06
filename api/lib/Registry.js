@@ -35,4 +35,4 @@ class Registry {
   }
 }
 
-module.exports.Registry = Registry;
+module.exports = Registry;

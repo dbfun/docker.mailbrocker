@@ -1,7 +1,7 @@
 const amqp = require('amqplib');
 const { MongoClient } = require('mongodb');
 const logger = require('log4js').getLogger();
-const { Security } = require('./Security');
+const Security = require('./Security');
 
 logger.level = 'debug';
 logger.category = process.env.name;

@@ -33,4 +33,4 @@ class Security {
   }
 }
 
-module.exports.Security = Security;
+module.exports = Security;

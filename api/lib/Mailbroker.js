@@ -9,14 +9,14 @@ const { simpleParser } = require('mailparser');
 const { ObjectId } = require('mongodb');
 const _ = require('lodash');
 const assert = require('assert');
-const { Registry } = require('./Registry');
+const Registry = require('./Registry');
 const { Spfquery } = require('./Spfquery');
-const { Spfcompare } = require('./Spfcompare');
-const { Dkimverify } = require('./Dkimverify');
-const { Dmarccheck } = require('./Dmarccheck');
-const { Blacklist } = require('./Blacklist');
-const { Pyzor } = require('./Pyzor');
-const { Razor } = require('./Razor');
+const Spfcompare = require('./Spfcompare');
+const Dkimverify = require('./Dkimverify');
+const Dmarccheck = require('./Dmarccheck');
+const Blacklist = require('./Blacklist');
+const Pyzor = require('./Pyzor');
+const Razor = require('./Razor');
 // const { CheckdeliverySender } = require('./Checkdelivery/Sender');
 
 /*
@@ -315,4 +315,4 @@ class Mailbroker {
   }
 }
 
-module.exports.Mailbroker = Mailbroker;
+module.exports = Mailbroker;

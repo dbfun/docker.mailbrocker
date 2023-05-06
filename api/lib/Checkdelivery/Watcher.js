@@ -6,7 +6,6 @@ const assert = require('assert');
 const _ = require('lodash');
 const imaps = require('imap-simple');
 const EventEmitter = require('events');
-const sendmail = new (require('../Sendmail').Sendmail)();
 
 const maxDelayMs = 1 * 3600 * 1000;
 
