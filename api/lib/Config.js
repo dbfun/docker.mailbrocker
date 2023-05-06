@@ -63,7 +63,7 @@ class Config {
     return `https://${this.apiDomain}`;
   }
 
-  get checkdelivery() {
+  get checkdeliveryConfig() {
     // Отключено до починки checkdelivery
     return null;
 

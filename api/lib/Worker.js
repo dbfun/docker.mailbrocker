@@ -35,9 +35,9 @@ class Worker extends App {
     try {
       const mailbroker = new Mailbroker({
         availableTests: this.config.availableTests,
-        availableDNS: [await this.config.internalDnsResolver],
+        dnsServers: [await this.config.internalDnsResolver],
         blacklistDomains: this.config.blacklistDomains,
-        checkdeliveryConfig: this.config.checkdelivery,
+        checkdeliveryConfig: this.config.checkdeliveryConfig,
       });
       await mailbroker.load(params.ObjecId);
       await mailbroker.checkAll(true);
@@ -47,7 +47,6 @@ class Worker extends App {
       logger.info('Mail test complete', { _id: params.ObjecId });
       this.amqpChannel.ack(msg);
     } catch (err) {
-      // TODO check error in mongo
       logger.info('Mail test error', { _id: params.ObjecId, err });
       this.amqpChannel.ack(msg);
     }

@@ -19,16 +19,6 @@ const { Pyzor } = require('./Pyzor');
 const { Razor } = require('./Razor');
 // const { CheckdeliverySender } = require('./Checkdelivery/Sender');
 
-const defaultConfig = {
-  availableTests: ['spamassassin', 'spf', 'spfcompare', 'dkim', 'dmarc', 'blacklist', 'pyzor', 'razor', 'checkdelivery'],
-  availableDNS: ['8.8.8.8', '77.88.8.8', '94.142.137.100', '94.142.136.100'],
-  blacklistDomains: null,
-  checkdeliveryConfig: {
-    mailFrom: 'noreply@site.com',
-    mailboxes: [],
-  },
-};
-
 /*
 check for DNS servers if you got this error:
 
@@ -43,7 +33,7 @@ check for DNS servers if you got this error:
 
 class Mailbroker {
   constructor(config) {
-    this.config = { ...defaultConfig, ...config };
+    this.config = config;
     this.ObjectId = null;
     this.doc = {
       createdAt: new Date(),
@@ -257,7 +247,7 @@ class Mailbroker {
   }
 
   checkBlacklist(isSaveResults) {
-    const blacklist = new Blacklist(this.config.availableDNS, this.config.blacklistDomains);
+    const blacklist = new Blacklist(this.config.dnsServers, this.config.blacklistDomains);
     return blacklist.check(this.doc.lastMtaIP).then(async (report) => {
       this.doc.blacklist = report;
       if (isSaveResults) await this.saveResults('blacklist', report);
