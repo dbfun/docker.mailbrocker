@@ -212,7 +212,7 @@ Received-SPF: pass (spfquery: domain of yandex-team.ru designates 2a02:6b8:0:1a2
 ];
 
 describe('spfquery', () => {
-  const { Spfquery } = require('../lib/Spfquery');
+  const { Spfquery } = require('../lib/tests/Spfquery');
   const spfquery = new Spfquery();
 
   describe('parseTest', () => {

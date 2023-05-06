@@ -5,7 +5,7 @@
 
 const assert = require('assert');
 const _ = require('lodash');
-const blacklistDomains = require('../lib/Blacklist/dnsbl-domains');
+const blacklistDomains = require('../lib/tests/Blacklist/dnsbl-domains');
 
 const testCases = [
   {
@@ -78,7 +78,7 @@ const testCases = [
 const DockerDns = require('../lib/DockerDns');
 
 describe('blacklist', () => {
-  const Blacklist = require('../lib/Blacklist');
+  const Blacklist = require('../lib/tests/Blacklist');
 
   describe('check', async function () {
     this.timeout(15000);

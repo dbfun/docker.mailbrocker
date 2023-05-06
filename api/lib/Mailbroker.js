@@ -10,13 +10,13 @@ const { ObjectId } = require('mongodb');
 const _ = require('lodash');
 const assert = require('assert');
 const Registry = require('./Registry');
-const { Spfquery } = require('./Spfquery');
-const Spfcompare = require('./Spfcompare');
-const Dkimverify = require('./Dkimverify');
-const Dmarccheck = require('./Dmarccheck');
-const Blacklist = require('./Blacklist');
-const Pyzor = require('./Pyzor');
-const Razor = require('./Razor');
+const { Spfquery } = require('./tests/Spfquery');
+const Spfcompare = require('./tests/Spfcompare');
+const Dkimverify = require('./tests/Dkimverify');
+const Dmarccheck = require('./tests/Dmarccheck');
+const Blacklist = require('./tests/Blacklist');
+const Pyzor = require('./tests/Pyzor');
+const Razor = require('./tests/Razor');
 // const { CheckdeliverySender } = require('./Checkdelivery/Sender');
 
 /*

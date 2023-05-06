@@ -57,7 +57,7 @@ const testCases = [
 ];
 
 describe('dmarccheck', () => {
-  const Dmarccheck = require('../lib/Dmarccheck');
+  const Dmarccheck = require('../lib/tests/Dmarccheck');
 
   describe('check', () => {
     const dmarccheck = new Dmarccheck();

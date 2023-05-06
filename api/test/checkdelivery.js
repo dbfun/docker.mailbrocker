@@ -13,8 +13,8 @@ To break imap run:
 
 const
   assert = require("assert"),
-  { CheckdeliveryWatcher } = require("../lib/Checkdelivery/Watcher.js"),
-  config = require('../lib/Checkdelivery/checkdelivery-mails'),
+  { CheckdeliveryWatcher } = require("../lib/tests/Checkdelivery/Watcher.js"),
+  config = require('../lib/tests/Checkdelivery/checkdelivery-mails'),
   mailboxes = config.mailboxes.filter((o) => {
     return o.active === true;
   }),

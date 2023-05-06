@@ -72,7 +72,7 @@ const testCases = [
 ];
 
 describe('dkimverify', () => {
-  const Dkimverify = require('../lib/Dkimverify');
+  const Dkimverify = require('../lib/tests/Dkimverify');
 
   describe('check', () => {
     const dkimverify = new Dkimverify();

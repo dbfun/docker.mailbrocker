@@ -9,8 +9,8 @@ if(!process.env.EXIM_MAIL_FROM) return;
 const
   assert = require('assert'),
   fs = require('fs'),
-  { CheckdeliverySender } = require('../lib/Checkdelivery/Sender'),
-  config = require('../lib/Checkdelivery/checkdelivery-mails'),
+  { CheckdeliverySender } = require('../lib/tests/Checkdelivery/Sender'),
+  config = require('../lib/tests/Checkdelivery/checkdelivery-mails'),
   mailboxes = config.mailboxes.filter((o) => {
     return o.active === true;
   }),

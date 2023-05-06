@@ -89,7 +89,7 @@ Content analysis details:   (1008.4 points, 5.0 required)
 ];
 describe('spamassassin', () => {
   describe('parseTests', () => {
-    const Spamassassin = require('../lib/Spamassassin');
+    const Spamassassin = require('../lib/tests/Spamassassin');
 
     for (const testCase of testCases) {
       it(testCase.name, () => {

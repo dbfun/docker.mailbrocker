@@ -4,13 +4,13 @@
 
 const assert = require('assert');
 const mongodb = require('mongodb');
-const { CheckdeliveryWatcher } = require('./lib/Checkdelivery/Watcher');
+const { CheckdeliveryWatcher } = require('./lib/tests/Checkdelivery/Watcher');
 
 const mongoConfig = {
   uri: 'mongodb://mongo:27017/mailbroker',
   db: 'mailbroker',
 };
-const mailboxes = require('./lib/Checkdelivery/checkdelivery-mails').mailboxes.filter((o) => o.active === true);
+const mailboxes = require('./lib/tests/Checkdelivery/checkdelivery-mails').mailboxes.filter((o) => o.active === true);
 
 assert.ok(mailboxes.length > 0, 'No mailboxes for check');
 

@@ -1,5 +1,5 @@
 const dns = require('dns');
-const IPTools = require('../IPTools');
+const IPTools = require('./IPTools');
 
 class Blacklist {
   constructor(dnsServers, domains) {

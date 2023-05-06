@@ -9,7 +9,7 @@ const
 describe('spfcompare', function () {
   this.timeout(15000);
 
-  const Spfcompare = require('../lib/Spfcompare');
+  const Spfcompare = require('../lib/tests/Spfcompare');
   const spfcompare = new Spfcompare();
 
   it('selftest', async () => {

@@ -5,7 +5,7 @@ const Mailbroker = require('./Mailbroker');
 const Report = require('./Report');
 const Registry = require('./Registry');
 const Sendmail = require('./Sendmail');
-const Spamassassin = require('./Spamassassin');
+const Spamassassin = require('./tests/Spamassassin');
 
 logger.level = 'debug';
 logger.category = process.env.name;

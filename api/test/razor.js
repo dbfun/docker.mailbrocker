@@ -22,7 +22,7 @@ const testCases = [
 ];
 
 describe('razor', () => {
-  const Razor = require('../lib/Razor');
+  const Razor = require('../lib/tests/Razor');
 
   describe('check', function () {
     const razor = new Razor();
